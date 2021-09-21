@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 import {useDispatch} from 'react-redux';
 import {colors} from '@utils/.';

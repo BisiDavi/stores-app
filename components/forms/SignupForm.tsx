@@ -3,7 +3,7 @@ import React, {useState, useContext} from 'react';
 import {RouteProp} from '@react-navigation/native';
 import {Feather} from '@expo/vector-icons';
 import {Formik} from 'formik';
-import {StyleSheet, View, Text, ToastAndroid} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 import {Button} from 'react-native-elements';
 import colors from '../../utils/colors';
 

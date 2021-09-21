@@ -18,14 +18,17 @@ type newOrder = {
 };
 
 export default function NewOrdersTab({navigation}: any) {
-  const renderItem = useCallback(function ({item}: newOrder) {
-    return (
-      <OrdersListItem
-        item={item}
-        onPress={() => navigation.navigate('ViewOrderScreen', item)}
-      />
-    );
-  }, []);
+  const renderItem = useCallback(
+    function ({item}: newOrder) {
+      return (
+        <OrdersListItem
+          item={item}
+          onPress={() => navigation.navigate('ViewOrderScreen', item)}
+        />
+      );
+    },
+    [navigation],
+  );
 
   const keyExtractor = useCallback(item => item.id.toString(), []);
   const ITEM_HEIGHT = 120;

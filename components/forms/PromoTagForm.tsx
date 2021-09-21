@@ -19,15 +19,7 @@ export default function PromoTagForm() {
         console.log('values', values);
       }}
     >
-      {({
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        values,
-        errors,
-        touched,
-        isValid,
-      }) => (
+      {({handleChange, handleBlur, values, errors, touched}) => (
         <View style={styles.promoTag}>
           {promoTagContent.map((formElement, index) => (
             <DisplayFormElements

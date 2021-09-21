@@ -18,7 +18,7 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
     if (authToken !== null) {
       dispatch({type: 'APP_LOAD', token: authToken});
     }
-  }, [authToken]);
+  }, [authToken, dispatch]);
 
   const authContext = useMemo(
     () => ({
@@ -39,7 +39,7 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
         dispatch({type: 'SIGN_UP', token: signUpToken});
       },
     }),
-    [],
+    [dispatch],
   );
 
   return (

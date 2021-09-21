@@ -1,13 +1,6 @@
 import React, {useState} from 'react';
 import {CheckBox} from 'react-native-elements';
-import {Formik} from 'formik';
-import {
-  View,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Dimensions,
-} from 'react-native';
+import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {Button} from 'react-native-elements';
 import colors from '@utils/colors';
 import PromoTagForm from './PromoTagForm';

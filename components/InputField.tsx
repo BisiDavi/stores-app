@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import {Input} from 'react-native-elements';
-import {StyleSheet, KeyboardTypeOptions, Dimensions, View} from 'react-native';
+import {StyleSheet, KeyboardTypeOptions, Dimensions} from 'react-native';
 import colors from '@utils/colors';
 
 export default function InputField({
@@ -9,7 +9,6 @@ export default function InputField({
   keyboardType,
   label,
   secureTextEntry = false,
-  styles,
   rightIcon,
   errorMessage,
   ...props

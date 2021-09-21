@@ -28,15 +28,7 @@ export default function AddNewProductForm({navigation}: any) {
         console.log('values', values);
       }}
     >
-      {({
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        values,
-        errors,
-        touched,
-        isValid,
-      }) => (
+      {({handleChange, handleBlur, values, errors, touched, isValid}) => (
         <View>
           {addproductContent.map((formElement, index) => (
             <DisplayFormElements

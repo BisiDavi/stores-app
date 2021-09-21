@@ -21,15 +21,7 @@ export default function RequestRiderForm() {
         console.log('values', values);
       }}
     >
-      {({
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        values,
-        errors,
-        touched,
-        isValid,
-      }) => (
+      {({handleChange, handleBlur, handleSubmit, values, errors, touched}) => (
         <>
           {requestRiderContent.map((formElement, index) => (
             <DisplayFormElements

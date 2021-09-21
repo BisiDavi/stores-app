@@ -16,7 +16,7 @@ export default function useStoreSetupNavigation() {
     if (setupStorestate.formPage !== 0) {
       screenNavigate(setupStorestate.formPage, navigation);
     }
-  }, [setupStorestate.formPage]);
+  }, [setupStorestate.formPage, navigation]);
 
   function onBoardingNextScreen(page: number, status: boolean) {
     dispatch(SetupStoreScreenAction(page, status));

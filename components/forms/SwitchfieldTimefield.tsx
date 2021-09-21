@@ -40,7 +40,7 @@ function TimeAndSwitchField(props: TimeAndSwitchField) {
 
   useEffect(() => {
     dispatch(StoreOpendaysAction({specificPeriod, period}));
-  }, [openDays]);
+  }, [specificPeriod, dispatch, period]);
 
   const switchStatus: boolean = openDays[period].status;
   function handleSelect(value: string, index: number) {
