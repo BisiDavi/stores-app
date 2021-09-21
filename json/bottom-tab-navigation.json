@@ -1,0 +1,17 @@
+{
+    "tabOne": [
+        { "name": "OrderScreen", "title": "Orders" },
+        { "name": "ViewOrderScreen" }
+    ],
+    "tabTwo": [
+        { "name": "DashboardScreen", "title": "Dashboard" },
+        { "name": "AvailableBalanceScreen", "title": "Available Balance" },
+        { "name": "AmountPaidScreen", "title": "Amount Paid" },
+        { "name": "StatisticsScreen", "title": "Statistics" }
+    ],
+    "tabThree": [
+        { "name": "ConfirmPayment", "title": "Confirm Payment" },
+        { "name": "PaymentApprovedScreen" },
+        { "name": "FailedPaymentScreen" }
+    ]
+}

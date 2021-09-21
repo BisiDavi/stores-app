@@ -1,0 +1,36 @@
+[
+    {
+        "label": "Settlement plan*",
+        "type": "select",
+        "placeholder": "Select your settlement plan",
+        "options": [
+            { "name": "Daily" },
+            { "name": "Weekly" },
+            { "name": "Monthly" }
+        ],
+        "name": "settlementPlan"
+    },
+    {
+        "label": "Bank Name*",
+        "type": "select",
+				"placeholder":"Select your bank",
+        "options": [],
+        "value": "bank_code",
+        "optionName": "bank_name",
+        "name": "bankCode"
+    },
+    {
+        "label": "Account Number (Must be 10 digits)*",
+        "type": "input",
+        "placeholder": "Your account number",
+        "name": "accountNumber",
+        "textContentType": "telephoneNumber",
+        "keyboardType": "numeric"
+    },
+    {
+        "label": "Account Name*",
+        "type": "input",
+        "placeholder": "Your account name",
+        "name": "accountName"
+    }
+]

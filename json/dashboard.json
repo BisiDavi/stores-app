@@ -1,0 +1,34 @@
+{
+  "card": [
+    {
+      "category": "Balance",
+      "content": [
+        {
+          "title": "Available balance",
+          "amount": "100,000 Naira",
+          "link": "AvailableBalanceScreen"
+        },
+        {
+          "title": "Total Revenue",
+          "amount": "90,000 Naira",
+          "link": "AmountPaidScreen"
+        }
+      ]
+    },
+    {
+      "category": "Orders",
+      "content": [
+        {
+          "title": "Total Number",
+          "amount": "250"
+        },
+        { "title": "Today Number", "amount": "250" }
+      ]
+    }
+  ],
+  "chart": {
+    "category": "Statistics",
+    "link": "StatisticsScreen",
+    "text": "Performance: Number of orders vs days."
+  }
+}

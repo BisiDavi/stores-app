@@ -1,0 +1,15 @@
+[
+    {
+        "content": [
+            { "name": "Food Product", "link": "FoodCategoryScreen" },
+            { "name": "Isbn Product", "link": "ProductWithISBNScreen" }
+        ]
+    },
+    {
+        "content": [
+            { "name": "Fresh Food Product", "link": "FoodCategoryScreen" },
+            { "name": "Scan to Upload", "link": "FoodCategoryScreen" }
+        ]
+    },
+    { "content": [{ "name": "Upload Via API", "link": "FoodCategoryScreen" }] }
+]

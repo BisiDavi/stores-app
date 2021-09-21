@@ -1,0 +1,23 @@
+[
+    {
+        "label": "Name of Owner (CEO, Store Owner, etc)*",
+        "placeholder": "Daniel Joe",
+        "name": "ownerName",
+        "type": "input"
+    },
+    {
+        "label": "Phone Number*",
+        "placeholder": "your phone number",
+        "name": "ownerPhone",
+        "type": "input",
+        "keyboardType": "numeric"
+    },
+    {
+        "label": "Owner Email",
+        "placeholder": "your email",
+        "name": "ownerEmail",
+        "keyboardType": "email-address",
+        "textContentType": "emailAddress",
+        "type": "input"
+    }
+]
