@@ -1,36 +1,36 @@
-import { useReducer } from "react";
+import {useReducer} from 'react';
 
 export default function useAuthReducer() {
   const [state, dispatch] = useReducer(
     (prevState: stateType, action: actionType) => {
       switch (action.type) {
-        case "SIGN_IN":
+        case 'SIGN_IN':
           return {
             ...prevState,
             isSignout: false,
             isLoading: false,
             userToken: action.token,
           };
-        case "SIGN_OUT":
+        case 'SIGN_OUT':
           return {
             ...prevState,
             isSignout: true,
             userToken: null,
             isLoading: false,
           };
-        case "SIGN_UP":
+        case 'SIGN_UP':
           return {
             ...prevState,
             isSignout: false,
             isLoading: false,
             userToken: action.token,
           };
-        case "LOADING":
+        case 'LOADING':
           return {
             ...prevState,
             isLoading: true,
           };
-        case "APP_LOAD":
+        case 'APP_LOAD':
           return {
             ...prevState,
             isLoading: false,
@@ -42,13 +42,13 @@ export default function useAuthReducer() {
       isLoading: false,
       isSignout: false,
       userToken: null,
-    }
+    },
   );
-  return { state, dispatch };
+  return {state, dispatch};
 }
 
 type actionType = {
-  type: "SIGN_IN" | "SIGN_OUT" | "SIGN_UP" | "LOADING" | "APP_LOAD";
+  type: 'SIGN_IN' | 'SIGN_OUT' | 'SIGN_UP' | 'LOADING' | 'APP_LOAD';
   token?: string;
 };
 

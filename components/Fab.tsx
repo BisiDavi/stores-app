@@ -1,9 +1,9 @@
-import colors from "@utils/colors";
-import React from "react";
-import { View, StyleSheet } from "react-native";
-import { FAB } from "react-native-elements";
+import colors from '@utils/colors';
+import React from 'react';
+import {View, StyleSheet} from 'react-native';
+import {FAB} from 'react-native-elements';
 
-const Fab = ({ onPress }: FabProps) => {
+const Fab = ({onPress}: FabProps) => {
   return (
     <FAB
       color={colors.mallBlue3}

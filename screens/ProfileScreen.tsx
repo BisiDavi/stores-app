@@ -1,12 +1,12 @@
-import React from "react";
-import { StyleSheet, View, Text } from "react-native";
-import { ListItem, Image } from "react-native-elements";
-import { Button } from "react-native-elements";
-import profileJson from "@json/profile.json";
-import { SafeAreaView } from "react-native-safe-area-context";
-import JollofRice from "@assets/jollofRice.png";
-import colors from "@utils/colors";
-import { ScrollView } from "react-native-gesture-handler";
+import React from 'react';
+import {StyleSheet, View, Text} from 'react-native';
+import {ListItem, Image} from 'react-native-elements';
+import {Button} from 'react-native-elements';
+import profileJson from '@json/profile.json';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import JollofRice from '@assets/jollofRice.png';
+import colors from '@utils/colors';
+import {ScrollView} from 'react-native-gesture-handler';
 
 export default function ProfileScreen() {
   return (
@@ -41,20 +41,20 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-start",
+    justifyContent: 'flex-start',
     backgroundColor: colors.neutralWhite,
   },
   profileText: {
-    color: "black",
+    color: 'black',
   },
   profileImage: {
     height: 50,
     width: 50,
   },
   profileDetails: {
-    flexDirection: "row",
-    alignItems: "flex-start",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
     padding: 20,
     paddingTop: 0,
     backgroundColor: colors.neutralWhite,

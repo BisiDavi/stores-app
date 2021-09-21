@@ -1,7 +1,7 @@
-import * as React from "react";
-import { StyleSheet, View } from "react-native";
-import { Image, Button } from "react-native-elements";
-import pizza from "@assets/pizza.png";
+import * as React from 'react';
+import {StyleSheet, View} from 'react-native';
+import {Image} from 'react-native-elements';
+import pizza from '@assets/pizza.png';
 
 export default function EditProductScreen() {
   return (
@@ -14,8 +14,8 @@ export default function EditProductScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "flex-start",
+    alignItems: 'center',
+    justifyContent: 'flex-start',
     padding: 20,
   },
   productImage: {
@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   button: {
-    justifyContent: "center",
-    alignItems: "center",
-    display: "flex",
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
     marginLeft: 30,
     marginRight: 30,
   },

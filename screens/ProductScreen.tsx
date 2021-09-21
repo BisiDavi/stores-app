@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import { RouteProp } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { View, ScrollView, StyleSheet, Text, Dimensions } from "react-native";
-import { ListItem, Switch, Image } from "react-native-elements";
-import productContent from "@json/products.json";
-import { DrawerStackParamList } from "@customTypes/.";
-import colors from "@utils/colors";
-import Fab from "@components/Fab";
-import displayAsset from "@utils/displayAsset";
+import React, {useState} from 'react';
+import {RouteProp} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {View, ScrollView, StyleSheet, Text, Dimensions} from 'react-native';
+import {ListItem, Switch, Image} from 'react-native-elements';
+import productContent from '@json/products.json';
+import {DrawerStackParamList} from '@customTypes/.';
+import colors from '@utils/colors';
+import Fab from '@components/Fab';
+import displayAsset from '@utils/displayAsset';
 
 type ProductScreenNavigationProps = StackNavigationProp<
   DrawerStackParamList,
-  "ProductScreen"
+  'ProductScreen'
 >;
 
-type ProductScreenRouteProps = RouteProp<DrawerStackParamList, "ProductScreen">;
+type ProductScreenRouteProps = RouteProp<DrawerStackParamList, 'ProductScreen'>;
 
 type Props = {
   route: ProductScreenRouteProps;
@@ -22,10 +22,10 @@ type Props = {
 };
 
 interface productType {
-  product: "staple" | "swallow";
+  product: 'staple' | 'swallow';
 }
 
-function ListView({ item }: any) {
+function ListView({item}: any) {
   const [toggle, setToggle] = useState(false);
 
   return (
@@ -34,7 +34,7 @@ function ListView({ item }: any) {
         <View style={styles.listViewContent}>
           <Text style={styles.meal}>{item.meal}</Text>
           <Text style={styles.edit}>
-            <Image source={displayAsset("editIcon")} style={styles.editIcon} />
+            <Image source={displayAsset('editIcon')} style={styles.editIcon} />
           </Text>
           <Switch
             value={toggle}
@@ -48,7 +48,7 @@ function ListView({ item }: any) {
   );
 }
 
-function ProductListView({ product }: productType) {
+function ProductListView({product}: productType) {
   return (
     <>
       {productContent[product].map((item, index) => (
@@ -58,7 +58,7 @@ function ProductListView({ product }: productType) {
   );
 }
 
-export default function ProductScreen({ navigation }: Props) {
+export default function ProductScreen({navigation}: Props) {
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -74,7 +74,7 @@ export default function ProductScreen({ navigation }: Props) {
         </View>
       </ScrollView>
       <View style={styles.fabView}>
-        <Fab onPress={() => navigation.navigate("AddProductScreenMethod")} />
+        <Fab onPress={() => navigation.navigate('AddProductScreenMethod')} />
       </View>
     </View>
   );
@@ -83,10 +83,10 @@ export default function ProductScreen({ navigation }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-start",
+    justifyContent: 'flex-start',
     backgroundColor: colors.neutralWhite,
-    flexDirection: "column",
-    width: Dimensions.get("window").width,
+    flexDirection: 'column',
+    width: Dimensions.get('window').width,
   },
   meal: {
     width: 100,
@@ -95,29 +95,29 @@ const styles = StyleSheet.create({
     color: colors.mallBlue5,
   },
   switch: {
-    display: "flex",
+    display: 'flex',
   },
   editIcon: {
     height: 15,
     width: 15,
   },
   listItem: {
-    width: Dimensions.get("window").width,
+    width: Dimensions.get('window').width,
   },
   listViewContent: {
-    alignItems: "flex-start",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: Dimensions.get("window").width * 0.9,
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: Dimensions.get('window').width * 0.9,
   },
   fabView: {
     height: 70,
   },
   productView: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
   },
   category: {
     color: colors.mallBlue5,
@@ -125,11 +125,11 @@ const styles = StyleSheet.create({
   },
   textView: {
     height: 50,
-    width: Dimensions.get("window").width,
+    width: Dimensions.get('window').width,
     borderWidth: 1,
     borderBottomColor: colors.neutral3,
-    borderLeftColor: "transparent",
-    borderTopColor: "transparent",
-    borderRightColor: "transparent",
+    borderLeftColor: 'transparent',
+    borderTopColor: 'transparent',
+    borderRightColor: 'transparent',
   },
 });

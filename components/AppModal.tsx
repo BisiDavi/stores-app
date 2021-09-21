@@ -1,6 +1,6 @@
-import React, { PropsWithChildren } from "react";
-import { StyleSheet, View } from "react-native";
-import Modal from "react-native-modal";
+import React, {PropsWithChildren} from 'react';
+import {StyleSheet, View} from 'react-native';
+import Modal from 'react-native-modal';
 
 export default function AppModal({
   children,

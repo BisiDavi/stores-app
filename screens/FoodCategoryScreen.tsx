@@ -1,19 +1,19 @@
-import React from "react";
-import { RouteProp } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import foodCategoryContent from "@json/food-category.json";
-import colors from "@utils/colors";
-import { BottomTabParamList } from "@customTypes/.";
+import React from 'react';
+import {RouteProp} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import foodCategoryContent from '@json/food-category.json';
+import colors from '@utils/colors';
+import {BottomTabParamList} from '@customTypes/.';
 
 type FoodCategoryScreenNavigationProps = StackNavigationProp<
   BottomTabParamList,
-  "FoodCategoryScreen"
+  'FoodCategoryScreen'
 >;
 
 type FoodCategoryScreenRouteProps = RouteProp<
   BottomTabParamList,
-  "FoodCategoryScreen"
+  'FoodCategoryScreen'
 >;
 
 type Props = {
@@ -26,7 +26,7 @@ type item = {
   link: any;
 };
 
-const FoodCategoryScreen = ({ navigation }: Props) => {
+const FoodCategoryScreen = ({navigation}: Props) => {
   return (
     <View style={styles.container}>
       {foodCategoryContent.map((item: item, index) => (
@@ -49,17 +49,17 @@ const styles = StyleSheet.create({
   },
   category: {
     height: 85,
-    display: "flex",
+    display: 'flex',
     borderWidth: 1,
     borderColor: colors.mallBlue2,
     borderRadius: 7,
     margin: 15,
-    justifyContent: "center",
+    justifyContent: 'center',
   },
   categoryText: {
     paddingLeft: 30,
     color: colors.mallBlue5,
-    fontFamily: "MontserratBold",
+    fontFamily: 'MontserratBold',
     fontSize: 18,
     lineHeight: 24,
   },

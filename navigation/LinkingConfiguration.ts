@@ -1,7 +1,7 @@
-import * as Linking from "expo-linking";
+import * as Linking from 'expo-linking';
 
 export default {
-  prefixes: [Linking.makeUrl("/")],
+  prefixes: [Linking.makeUrl('/')],
   config: {
     screens: {
       BottomNav: {
@@ -9,34 +9,34 @@ export default {
           Orders: {
             screens: {
               OrdersScreen: {
-                path: "orders",
+                path: 'orders',
               },
             },
           },
           Dashboard: {
             screens: {
-              DashboardScreen: "*",
+              DashboardScreen: '*',
             },
           },
           Mystore: {
             screens: {
-              MystoreScreen: "*",
+              MystoreScreen: '*',
             },
           },
           Profile: {
             screens: {
-              ProfileScreen: "*",
+              ProfileScreen: '*',
             },
           },
         },
       },
-      SignupScreen: "*",
-      OnboardingScreen: "*",
-      LoginScreen: "*",
-      StoreDetailsScreenOne: "*",
-      StoreDetailsScreenTwo: "*",
-      StoreDetailsScreenThree: "*",
-      StoreAddressScreen: "*",
+      SignupScreen: '*',
+      OnboardingScreen: '*',
+      LoginScreen: '*',
+      StoreDetailsScreenOne: '*',
+      StoreDetailsScreenTwo: '*',
+      StoreDetailsScreenThree: '*',
+      StoreAddressScreen: '*',
     },
   },
 };

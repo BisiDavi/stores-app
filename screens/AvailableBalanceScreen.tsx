@@ -1,10 +1,10 @@
-import React, { useCallback } from "react";
-import { StyleSheet, View, Text, FlatList, Dimensions } from "react-native";
-import { ListItem } from "react-native-elements";
-import availableBalanceContent from "@json/available-balance.json";
+import React, {useCallback} from 'react';
+import {StyleSheet, View, Text, FlatList, Dimensions} from 'react-native';
+import {ListItem} from 'react-native-elements';
+import availableBalanceContent from '@json/available-balance.json';
 
 export default function AvailableBalanceScreen() {
-  const availableBalance = useCallback(function renderItem({ item }: ItemType) {
+  const availableBalance = useCallback(function renderItem({item}: ItemType) {
     return (
       <ListItem key={item?.id} bottomDivider>
         <ListItem.Content>
@@ -38,31 +38,31 @@ export default function AvailableBalanceScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: 'center',
   },
   availableBalance: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-    width: Dimensions.get("window").width * 0.9,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    width: Dimensions.get('window').width * 0.9,
   },
   column1: {
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "row",
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   column2: {
-    display: "flex",
-    justifyContent: "flex-end",
-    alignItems: "flex-end",
-    flexDirection: "column",
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    flexDirection: 'column',
   },
   category: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   price: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 10,
   },
 });

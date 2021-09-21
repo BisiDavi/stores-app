@@ -1,3 +1,3 @@
 export default interface SVgProps {
-    color: string;
+  color: string;
 }

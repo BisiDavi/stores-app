@@ -1,9 +1,9 @@
-import React, { useCallback } from "react";
-import { StyleSheet, View, FlatList, Text } from "react-native";
-import { ListItem } from "react-native-elements";
-import DashboardChart from "@components/DashboardChart";
-import ordersStatisticsJson from "@json/statistics.json";
-import { SafeAreaView } from "react-native-safe-area-context";
+import React, {useCallback} from 'react';
+import {StyleSheet, View, FlatList, Text} from 'react-native';
+import {ListItem} from 'react-native-elements';
+import DashboardChart from '@components/DashboardChart';
+import ordersStatisticsJson from '@json/statistics.json';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 function StatisticsChart() {
   return (
@@ -17,7 +17,7 @@ function StatisticsChart() {
 }
 
 export default function StatisticsScreen() {
-  const ordersStatistics = useCallback(function renderItem({ item }) {
+  const ordersStatistics = useCallback(function renderItem({item}) {
     return (
       <ListItem key={item.date} bottomDivider>
         <ListItem.Content>
@@ -48,7 +48,7 @@ export default function StatisticsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-start",
+    justifyContent: 'flex-start',
     // padding: 20,
     paddingTop: 0,
   },
@@ -56,24 +56,24 @@ const styles = StyleSheet.create({
     marginLeft: 20,
   },
   row: {
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "row",
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   content: {
-    alignItems: "center",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "100%",
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
   },
   chartTitle: {
-    fontFamily: "RobotoRegular",
+    fontFamily: 'RobotoRegular',
     fontSize: 16,
     lineHeight: 16,
     marginBottom: 10,
     marginLeft: 25,
   },
   category: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
 });
