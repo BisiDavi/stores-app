@@ -1,17 +1,14 @@
 import {createStore, applyMiddleware} from 'redux';
 import {persistStore, persistReducer} from 'redux-persist';
-import createSecureStore from 'redux-persist-expo-securestore';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {RootReducer} from './RootReducer';
 import thunk from 'redux-thunk';
 
 const middleware = [thunk];
 
-// Secure storage
-const storage = createSecureStore();
-
 const config = {
   key: 'root',
-  storage,
+  storage: AsyncStorage,
 };
 
 const reducer = persistReducer(config, RootReducer);
