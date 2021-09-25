@@ -1,11 +1,11 @@
 type formatUploadedImageType = {
-  uri: string;
-  height: number;
-  width: number;
+  uri?: any;
+  height?: number;
+  width?: number;
 };
 
 export default function formatUploadedImage(image: formatUploadedImageType) {
-  let filename: string | any = image.uri.split('/').pop();
+  let filename: string | any = image?.uri.split('/').pop();
   let match = /\.(\w+)$/.exec(filename);
   let type = match ? `image/${match[1]}` : 'image';
   const source = {

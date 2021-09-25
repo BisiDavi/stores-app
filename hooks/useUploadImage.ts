@@ -1,5 +1,4 @@
 import {useState, Dispatch, SetStateAction} from 'react';
-import {Platform} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 
 import showToast from '@utils/showToast';
@@ -16,21 +15,26 @@ export default function useUploadImage(
 
   async function pickImage() {
     setLoading(true);
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: false,
-      aspect: [4, 3],
-    });
-    if (result.cancelled) {
-      showToast(
-        'To upload your stores logo, we need your permission to view your gallery',
-      );
-    }
-    if (!result.cancelled) {
-      let formData = formatUploadedImage(logoName, result);
-      setFormDataState(formData);
-      setImage(result.uri);
-    }
+    await ImagePicker.launchImageLibrary(
+      {
+        mediaType: 'photo',
+        maxWidth: 300,
+        maxHeight: 250,
+        selectionLimit: 1,
+      },
+      response => {
+        if (response.didCancel) {
+          console.log('response.errormessages', response.errorMessage);
+          showToast('We need you to upload your store logo');
+        }
+        if (response.assets) {
+          console.log('response.assets', response.assets[0]);
+          let formData = formatUploadedImage(logoName, response.assets[0]);
+          setFormDataState(formData);
+          setImage(response.assets[0].uri);
+        }
+      },
+    );
     setLoading(false);
   }
 
@@ -38,6 +42,5 @@ export default function useUploadImage(
     pickImage,
     image,
     formDataState,
-    
   };
 }
