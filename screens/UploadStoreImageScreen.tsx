@@ -17,7 +17,10 @@ export default function UploadStoreImageScreen() {
   const [loading, setLoading] = useState(false);
   const {onBoardingNextScreen} = useStoreSetupNavigation();
   const dispatch = useDispatch();
-  const {formDataState, image, pickImage} = useUploadImage(setLoading, 'logo');
+  const {formDataState, image, pickImage} = useUploadImage(
+    setLoading,
+    'background',
+  );
 
   console.log('image', image);
 

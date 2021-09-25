@@ -1,69 +1,64 @@
 import React from 'react';
-import {RouteProp} from '@react-navigation/native';
+import {StyleSheet, View} from 'react-native';
+import {Button} from 'react-native-elements';
 import {StackNavigationProp} from '@react-navigation/stack';
-import ProgressIndicator from '@components/ProgressIndicator';
-import {View, StyleSheet, ScrollView, Dimensions} from 'react-native';
-import AddProductOtherDetailsForm from '@components/forms/AddProductOtherDetailsForm';
 import {DrawerStackParamList} from '@customTypes/.';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import colors from '@utils/colors';
+import {RouteProp} from '@react-navigation/native';
+import InputField from '@components/InputField';
 
-type AddProductOtherDetailsScreenNavigationProps = StackNavigationProp<
+type AddProductScreenNavigationProps = StackNavigationProp<
   DrawerStackParamList,
-  'AddProductOtherDetailsScreen'
+  'AddProductCategoryScreen'
 >;
 
-type AddProductOtherDetailsScreenRouteProps = RouteProp<
+type AddProductScreenRouteProps = RouteProp<
   DrawerStackParamList,
-  'AddProductOtherDetailsScreen'
+  'AddProductCategoryScreen'
 >;
 
 type Props = {
-  route?: AddProductOtherDetailsScreenRouteProps;
-  navigation: AddProductOtherDetailsScreenNavigationProps;
+  route: AddProductScreenRouteProps;
+  navigation: AddProductScreenNavigationProps;
 };
 
-export default function AddProductOtherDetailsScreen({navigation}: Props) {
+export default function AddProductCategoryScreen() {
   return (
-    <SafeAreaView style={styles.view}>
-      <ScrollView style={styles.view}>
-        <View style={styles.container}>
-          <ProgressIndicator
-            style={styles.progressIndicator}
-            selected={2}
-            title="Step 2: Other Details"
-            total={2}
+    <View style={styles.container}>
+      <View style={styles.form}>
+        <InputField label="Add Product Category" />
+        <View style={styles.buttonViewStyle}>
+          <Button
+            buttonStyle={styles.buttonStyle}
+            titleStyle={styles.buttonText}
+            title="Add Product Category"
           />
-          <AddProductOtherDetailsForm navigation={navigation} />
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  view: {
-    flex: 1,
-  },
   container: {
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     flex: 1,
-    margin: 20,
-    marginTop: 0,
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-    width: Dimensions.get('window').width * 0.9,
   },
-  progressIndicator: {
-    margin: 5,
-    marginLeft: 0,
-    marginBottom: 20,
-    marginTop: 0,
+  buttonStyle: {
+    backgroundColor: colors.mallBlue5,
+    width: '100%',
   },
-  title: {
-    fontFamily: 'MontserratBold',
-    fontSize: 16,
-    marginTop: 0,
-    margin: 10,
-    marginLeft: 0,
-    textAlign: 'center',
+  input: {
+    height: 50,
+  },
+  buttonViewStyle: {},
+  buttonText: {
+    color: colors.neutralWhite,
+  },
+  form: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: 10,
   },
 });

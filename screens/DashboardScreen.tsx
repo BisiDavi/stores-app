@@ -1,6 +1,6 @@
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import React from 'react';
+import * as React from 'react';
 import {
   StyleSheet,
   View,
@@ -51,9 +51,9 @@ export default function DashboardScreen({navigation}: Props) {
               <View style={styles.category} key={`${item.category}-${index}`}>
                 <Text style={styles.categoryText}>{item.category}</Text>
                 <View style={styles.row}>
-                  {item.content.map((content, contentIndex) => (
+                  {item.content.map((content, icontentIndex) => (
                     <DashboardCard
-                      key={contentIndex}
+                      key={icontentIndex}
                       navigation={navigation}
                       content={content}
                     />
@@ -80,9 +80,6 @@ export default function DashboardScreen({navigation}: Props) {
 }
 
 const styles = StyleSheet.create({
-  view: {
-    flex: 1,
-  },
   container: {
     flex: 1,
     alignItems: 'flex-end',
@@ -90,6 +87,9 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingTop: 0,
     position: 'relative',
+  },
+  view: {
+    flex: 1,
   },
   selectField: {
     width: Dimensions.get('window').width * 0.4,

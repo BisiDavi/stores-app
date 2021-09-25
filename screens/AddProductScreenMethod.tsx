@@ -34,10 +34,10 @@ const AddProductScreenMethod = ({navigation}: Props) => {
         <View style={styles.content}>
           {addProductMethod.map((method, index) => (
             <View key={index} style={styles.methods}>
-              {method.content.map((item: item, contentIndex) => (
+              {method.content.map((item: item, index) => (
                 <TouchableOpacity
                   onPress={() => navigation.navigate(item.link)}
-                  key={contentIndex}
+                  key={index}
                 >
                   <View style={styles.method}>
                     <Text style={styles.text}>{item.name}</Text>
