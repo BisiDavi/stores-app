@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {Feather} from '@expo/vector-icons';
+
 import {Formik} from 'formik';
 import {StyleSheet, View, Text} from 'react-native';
 import {Button} from 'react-native-elements';
@@ -10,6 +10,8 @@ import InputField from '@components/InputField';
 import colors from '@utils/colors';
 import loginSchema from './LoginSchema';
 import AuthContext from '@context/AuthContext';
+import EyesOffSvg from '@assets/EyeoffSvg';
+import EyesSvg from '@assets/EyeSvg';
 
 type LoginScreenNavigationProps = StackNavigationProp<
   RootStackParamList,
@@ -23,10 +25,17 @@ type loginFormProps = {
 export default function LoginForm({navigation}: loginFormProps) {
   const [hidePassword, setHidePassword] = useState(true);
   const {authContext} = useContext(AuthContext);
-  const passwordIcon = hidePassword ? 'eye-off' : 'eye';
 
   function passwordVisbilityHandler() {
     setHidePassword(!hidePassword);
+  }
+
+  function inputIcon() {
+    return hidePassword ? (
+      <EyesOffSvg onPress={passwordVisbilityHandler} />
+    ) : (
+      <EyesSvg onPress={passwordVisbilityHandler} />
+    );
   }
 
   return (
@@ -67,14 +76,7 @@ export default function LoginForm({navigation}: loginFormProps) {
               errors.password && touched.password && errors.password
             }
             secureTextEntry={hidePassword}
-            rightIcon={
-              <Feather
-                name={passwordIcon}
-                onPress={passwordVisbilityHandler}
-                color="black"
-                size={24}
-              />
-            }
+            rightIcon={inputIcon()}
           />
           <Button
             type="solid"

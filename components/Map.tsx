@@ -1,14 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
 import MapView, {Marker} from 'react-native-maps';
 import {StyleSheet, View} from 'react-native';
-import * as Location from 'expo-location';
-import getDeviceDimensions from '@utils/getDeviceDimensions';
 import useCurrentLocation from '@hooks/useCurrentLocation';
+import getDeviceDimensions from '@utils/getDeviceDimensions';
 import LoadingActivityIndicator from './LoadingActivityIndicator';
 import {useDispatch, useSelector} from 'react-redux';
 import {GetUserCoordinateAction} from '@store/actions/UserCoordinateAction';
 import {RootState} from '@store/RootReducer';
 
+//
 const {deviceHeight, deviceWidth} = getDeviceDimensions();
 
 type locationStatusType = {
@@ -19,11 +20,10 @@ type locationStatusType = {
 };
 
 const Map = () => {
-  const locationStatus: locationStatusType | any = useCurrentLocation();
+  const {location, getLocation} = useCurrentLocation();
   const {longitude, latitude} = useSelector(
     (state: RootState) => state.coordinates,
   );
-  Location.installWebGeolocationPolyfill();
   const dispatch = useDispatch();
   const [coordinate, setCoordinate] = useState<any>({
     latitude: latitude,
@@ -33,8 +33,9 @@ const Map = () => {
   });
 
   useEffect(() => {
-    if (locationStatus !== 'Waiting..' || null) {
-      const parsedLocationStatus = JSON.parse(locationStatus);
+    getLocation();
+    if (location) {
+      const parsedLocationStatus = JSON.parse(location);
       dispatch(GetUserCoordinateAction(parsedLocationStatus.coords));
       setCoordinate({
         ...coordinate,
@@ -42,16 +43,18 @@ const Map = () => {
         longitude: parsedLocationStatus.coords.longitude,
       });
     }
-  }, [locationStatus]);
+  }, [dispatch, getLocation, location]);
 
   return (
     <>
-      {locationStatus !== 'Waiting..' || coordinate.latitude !== 0 ? (
+      {location !== 'Waiting..' || coordinate.latitude !== 0 ? (
         <MapView
           style={styles.map}
           initialRegion={coordinate}
           showsUserLocation={true}
-          onRegionChangeComplete={coordinate => setCoordinate({...coordinate})}
+          onRegionChangeComplete={userCoordinate =>
+            setCoordinate({...userCoordinate})
+          }
         >
           <Marker
             draggable

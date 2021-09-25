@@ -1,41 +1,73 @@
-import {useState, useEffect} from 'react';
-import * as Location from 'expo-location';
-
-type locationType = null | Location.LocationObject;
-type errorMsgType = null | string;
-type coordsType = {
-  latitude: string;
-  longitude: string;
-};
-type locationStatusType = {coords: coordsType} | string | undefined;
+import {useState} from 'react';
+import {Alert, PermissionsAndroid, Platform, ToastAndroid} from 'react-native';
+import Geolocation from 'react-native-geolocation-service';
 
 export default function useCurrentLocation() {
-  const [location, setLocation] = useState<locationType>(null);
-  const [errorMsg, setErrorMsg] = useState<errorMsgType>(null);
+  const [location, setLocation] = useState(null);
+  const hasLocationPermission = async () => {
+    if (Platform.OS === 'android' && Platform.Version < 23) {
+      return true;
+    }
 
-  useEffect(() => {
-    (async () => {
-      let {status} = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-        return;
-      }
+    const hasPermission = await PermissionsAndroid.check(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+    );
 
-      let location: Location.LocationObject =
-        await Location.getCurrentPositionAsync({
-          accuracy: Location.Accuracy.Lowest,
-        });
+    if (hasPermission) {
+      return true;
+    }
 
-      setLocation(location);
-    })();
-  }, []);
+    const status = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+    );
 
-  let locationStatus: locationStatusType = 'Waiting..';
-  if (errorMsg) {
-    locationStatus = errorMsg;
-  } else if (location) {
-    locationStatus = JSON.stringify(location);
+    if (status === PermissionsAndroid.RESULTS.GRANTED) {
+      return true;
+    }
+
+    if (status === PermissionsAndroid.RESULTS.DENIED) {
+      ToastAndroid.show(
+        'Location permission denied by user.',
+        ToastAndroid.LONG,
+      );
+    } else if (status === PermissionsAndroid.RESULTS.NEVER_ASK_AGAIN) {
+      ToastAndroid.show(
+        'Location permission revoked by user.',
+        ToastAndroid.LONG,
+      );
+    }
+
+    return false;
+  };
+  async function getLocation() {
+    const hasPermission = await hasLocationPermission();
+
+    if (!hasPermission) {
+      return;
+    }
+
+    Geolocation.getCurrentPosition(
+      (position: any) => {
+        setLocation(position);
+        console.log(position);
+      },
+      error => {
+        Alert.alert(`Code ${error.code}`, error.message);
+        setLocation(null);
+        console.log(error);
+      },
+      {
+        accuracy: {
+          android: 'high',
+          ios: 'best',
+        },
+        enableHighAccuracy: true,
+        timeout: 15000,
+        maximumAge: 10000,
+        distanceFilter: 0,
+        forceRequestLocation: true,
+      },
+    );
   }
-
-  return locationStatus;
+  return {location, getLocation};
 }
