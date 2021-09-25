@@ -2,12 +2,12 @@
 import React, {useState, useEffect} from 'react';
 import MapView, {Marker} from 'react-native-maps';
 import {StyleSheet, View} from 'react-native';
-import useCurrentLocation from '@hooks/useCurrentLocation';
-import getDeviceDimensions from '@utils/getDeviceDimensions';
+import useCurrentLocation from '../hooks/useCurrentLocation';
+import getDeviceDimensions from '../utils/getDeviceDimensions';
 import LoadingActivityIndicator from './LoadingActivityIndicator';
 import {useDispatch, useSelector} from 'react-redux';
-import {GetUserCoordinateAction} from '@store/actions/UserCoordinateAction';
-import {RootState} from '@store/RootReducer';
+import {GetUserCoordinateAction} from '../store/actions/UserCoordinateAction';
+import {RootState} from '../store/RootReducer';
 
 //
 const {deviceHeight, deviceWidth} = getDeviceDimensions();

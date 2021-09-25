@@ -2,9 +2,9 @@ import React from 'react';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {View, Text, StyleSheet, ScrollView, Dimensions} from 'react-native';
-import {DrawerStackParamList} from '@customTypes/.';
-import addProductMethod from '@json/add-product-method.json';
-import colors from '@utils/colors';
+import {DrawerStackParamList} from '../customTypes/.';
+import addProductMethod from '../json/add-product-method.json';
+import colors from '../utils/colors';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 type item = {

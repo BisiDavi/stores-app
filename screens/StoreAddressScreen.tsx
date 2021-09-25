@@ -8,14 +8,14 @@ import {
   FlatList,
   Dimensions,
 } from 'react-native';
-import Map from '@components/Map';
+import Map from '../components/Map';
 import {Button, Text} from 'react-native-elements';
 
-import {getDeviceDimensions, colors} from '@utils/.';
-import GoogleAutoCompleteInput from '@components/GoogleAutoCompleteInput';
+import {getDeviceDimensions, colors} from '../utils/.';
+import GoogleAutoCompleteInput from '../components/GoogleAutoCompleteInput';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {RootState} from '@store/RootReducer';
-import useStoreSetupNavigation from '@hooks/useStoreSetupNavigation';
+import {RootState} from '../store/RootReducer';
+import useStoreSetupNavigation from '../hooks//useStoreSetupNavigation';
 
 const {deviceHeight, deviceWidth} = getDeviceDimensions();
 

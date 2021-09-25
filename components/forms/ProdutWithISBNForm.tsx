@@ -1,11 +1,11 @@
 import React from 'react';
 import {Formik} from 'formik';
-import addProductSchema from '@components/forms/AddProductSchema';
 import {View, StyleSheet} from 'react-native';
-import {DisplayFormElements} from '@components/forms/DisplayFormElements';
 import {Button} from 'react-native-elements';
-import formContent from '@json/isbnProduct.json';
-import colors from '@utils/colors';
+import addProductSchema from './AddProductSchema';
+import {DisplayFormElements} from './DisplayFormElements';
+import formContent from '../../json/isbnProduct.json';
+import colors from '../../utils/colors';
 
 export default function ProdutWithISBNForm({navigation: {goBack}}: any) {
   return (

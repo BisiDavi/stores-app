@@ -2,14 +2,14 @@ import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {DrawerStackParamList} from '@customTypes/.';
+import {DrawerStackParamList} from '../customTypes/.';
 //import {Image} from 'react-native-elements';
-//import addproductContent from '@json/isbnProduct.json';
-//import pizza from '@assets/pizza.png';
+//import addproductContent from '../json/isbnProduct.json';
+//import pizza from '../assets/pizza.png';
 import {ScrollView} from 'react-native-gesture-handler';
-import AddNewProductForm from '@components/forms/AddNewProductForm';
-import Fab from '@components/Fab';
-import colors from '@utils/colors';
+import AddNewProductForm from '../components/forms/AddNewProductForm';
+import Fab from '../components/Fab';
+import colors from '../utils/colors';
 
 type ProductWithISBNNavigationProps = StackNavigationProp<
   DrawerStackParamList,

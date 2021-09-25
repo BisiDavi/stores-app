@@ -2,9 +2,9 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {StyleSheet, View, Text, Image} from 'react-native';
 import Modal from 'react-native-modal';
-import HandWave from '@assets/hand-wave.png';
-import {colors} from '@utils/.';
-import {RootState} from '@store/RootReducer';
+import HandWave from '../assets/hand-wave.png';
+import {colors} from '../utils/.';
+import {RootState} from '../store/RootReducer';
 
 export default function WelcomeModal({closeModal, visible}: AppModalProps) {
   const {storeDetails}: string | any = useSelector(

@@ -8,9 +8,9 @@ import {
   ScrollView,
 } from 'react-native';
 
-import ProgressIndicator from '@components/ProgressIndicator';
-import StoreDetailsFormTwo from '@components/forms/StoreDetailsFormTwo';
-import {colors} from '@utils/.';
+import ProgressIndicator from '../components/ProgressIndicator';
+import StoreDetailsFormTwo from '../components/forms/StoreDetailsFormTwo';
+import {colors} from '../utils/.';
 
 export default function StoreDetailsScreenTwo() {
   return (

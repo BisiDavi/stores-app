@@ -2,9 +2,9 @@ import React from 'react';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import foodCategoryContent from '@json/food-category.json';
-import colors from '@utils/colors';
-import {DrawerStackParamList} from '@customTypes/.';
+import foodCategoryContent from '../json/food-category.json';
+import colors from '../utils/colors';
+import {DrawerStackParamList} from '../customTypes/.';
 
 type FoodCategoryScreenNavigationProps = StackNavigationProp<
   DrawerStackParamList,

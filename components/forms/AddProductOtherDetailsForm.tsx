@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import {CheckBox} from 'react-native-elements';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {Button} from 'react-native-elements';
-import colors from '@utils/colors';
-import productExtras from '@json/add-product-extras.json';
+import colors from '../../utils/colors';
+import productExtras from '../../json/add-product-extras.json';
 import PromoTagForm from './PromoTagForm';
-import InputGroup from '@components/InputGroup';
+import InputGroup from '../InputGroup';
 
 interface DisplayCheckboxProps {
   title: string;

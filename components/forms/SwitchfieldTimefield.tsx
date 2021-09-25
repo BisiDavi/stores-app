@@ -1,10 +1,10 @@
-import SelectGroup from '@components/SelectGroup';
-import {StoreOpendaysAction} from '@store/actions/StoreDetailsAction';
-import colors from '@utils/colors';
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import {Switch} from 'react-native-elements';
 import {useDispatch} from 'react-redux';
+import SelectGroup from '../SelectGroup';
+import {StoreOpendaysAction} from '../../store/actions/StoreDetailsAction';
+import colors from '../../utils/colors';
 
 type TimeAndSwitchFieldType = {
   switch: {

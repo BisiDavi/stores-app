@@ -1,9 +1,9 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {DrawerStackParamList} from '@customTypes/.';
+import {DrawerStackParamList} from '../customTypes/.';
 import {RouteProp} from '@react-navigation/native';
-import AddExtraForm from '@components/forms/AddExtraForm';
+import AddExtraForm from '../components/forms/AddExtraForm';
 
 type AddProductScreenNavigationProps = StackNavigationProp<
   DrawerStackParamList,

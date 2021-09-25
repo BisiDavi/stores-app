@@ -3,11 +3,11 @@ import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {View, ScrollView, StyleSheet, Text, Dimensions} from 'react-native';
 import {ListItem, Switch, Image} from 'react-native-elements';
-import productContent from '@json/products.json';
-import {DrawerStackParamList} from '@customTypes/.';
-import colors from '@utils/colors';
-import Fab from '@components/Fab';
-import displayAsset from '@utils/displayAsset';
+import productContent from '../json/products.json';
+import {DrawerStackParamList} from '../customTypes/.';
+import colors from '../utils/colors';
+import Fab from '../components/Fab';
+import displayAsset from '../utils/displayAsset';
 
 type ProductScreenNavigationProps = StackNavigationProp<
   DrawerStackParamList,

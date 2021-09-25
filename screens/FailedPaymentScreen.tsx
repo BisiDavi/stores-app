@@ -1,9 +1,9 @@
 import React from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {DrawerStackParamList} from '@customTypes/.';
+import {DrawerStackParamList} from '../customTypes/.';
 import {View, Text, StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
-import colors from '@utils/colors';
+import colors from '../utils/colors';
 
 type FailedPaymentNavigationProps = StackNavigationProp<
   DrawerStackParamList,

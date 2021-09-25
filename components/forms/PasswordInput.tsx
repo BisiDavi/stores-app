@@ -1,7 +1,7 @@
 import React, {useState, ChangeEvent} from 'react';
-import InputField from '@components/InputField';
-import EyesOffSvg from '@assets/EyeoffSvg';
-import EyesSvg from '@assets/EyeSvg';
+import InputField from '../InputField';
+import EyesOffSvg from '../../assets/EyeoffSvg';
+import EyesSvg from '../../assets/EyeSvg';
 
 interface InputFieldProps {
   onChangeText?: (e: string | ChangeEvent<any>) => void | undefined;

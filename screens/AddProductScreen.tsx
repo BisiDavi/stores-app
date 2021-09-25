@@ -6,12 +6,12 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import {RouteProp} from '@react-navigation/native';
 import {Image} from 'react-native-elements';
 
-import useUploadImage from '@hooks/useUploadImage';
-import AddNewProductForm from '@components/forms/AddNewProductForm';
-import {colors, showToast} from '@utils/.';
-import {ProgressIndicator, Fab} from '@components/.';
-import {uploadProductImageRequest} from '@network/postRequest';
-import {DrawerStackParamList} from '@customTypes/.';
+import useUploadImage from '../hooks//useUploadImage';
+import AddNewProductForm from '../components/forms/AddNewProductForm';
+import {colors, showToast} from '../utils/.';
+import {ProgressIndicator, Fab} from '../components/.';
+import {uploadProductImageRequest} from '../network/postRequest';
+import {DrawerStackParamList} from '../customTypes/.';
 
 type AddProductScreenNavigationProps = StackNavigationProp<
   DrawerStackParamList,

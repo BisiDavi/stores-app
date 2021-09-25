@@ -4,17 +4,17 @@ import {useDispatch} from 'react-redux';
 import {Formik} from 'formik';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {Dimensions, StyleSheet, View} from 'react-native';
-import {storeDetailsScreenOneSchema} from '@components/forms';
-import {colors, showToast} from '@utils/.';
-import storeDetailsFormOne from '@json/storeDetailsFormOne.json';
-import {StoreDetailsAction} from '@store/actions/StoreDetailsAction';
-import {DisplayFormElements} from '@components/forms/DisplayFormElements';
-import useStoreSetupNavigation from '@hooks/useStoreSetupNavigation';
+import {storeDetailsScreenOneSchema} from '.';
+import {colors, showToast} from '../../utils/.';
+import storeDetailsFormOne from '../../json/storeDetailsFormOne.json';
+import {StoreDetailsAction} from '../../store/actions/StoreDetailsAction';
+import {DisplayFormElements} from './DisplayFormElements';
+import useStoreSetupNavigation from '../../hooks/useStoreSetupNavigation';
 import {
   getAvailableState,
   getStoreCategoriesRequest,
-} from '@network/getRequest';
-import StoreTypeInfoModal from '@components/StoreTypeInfoModal';
+} from '../../network/getRequest';
+import StoreTypeInfoModal from '../../components/StoreTypeInfoModal';
 
 export default function StoreDetailsFormOne() {
   const dispatch = useDispatch();

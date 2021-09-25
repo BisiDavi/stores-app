@@ -4,15 +4,15 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Formik} from 'formik';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {Dimensions, StyleSheet, View} from 'react-native';
-import {useStoreSetupNavigation} from '@hooks/.';
-import {colors, showToast} from '@utils/.';
+import {useStoreSetupNavigation} from '../../hooks/.';
+import {colors, showToast} from '../../utils/.';
 
-import settlementDetails from '@json/settlement-details.json';
-import {DisplayFormElements} from '@components/forms/DisplayFormElements';
+import settlementDetails from '../../json/settlement-details.json';
+import {DisplayFormElements} from './DisplayFormElements';
 import {storeSettlementDetailsSchema} from './StoreDetailsSchema';
-import {StoreSettlementAction} from '@store/actions/StoreDetailsAction';
-import {postStoreDetailsRequest} from '@network/postRequest';
-import {RootState} from '@store/RootReducer';
+import {StoreSettlementAction} from '../../store/actions/StoreDetailsAction';
+import {postStoreDetailsRequest} from '../../network/postRequest';
+import {RootState} from '../../store/RootReducer';
 
 interface formValuesState {
   settlementPlan: string;

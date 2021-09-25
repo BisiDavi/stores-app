@@ -1,7 +1,7 @@
 import React from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {DrawerStackParamList} from '@customTypes/.';
-import colors from '@utils/colors';
+import {DrawerStackParamList} from '../customTypes/.';
+import colors from '../utils/colors';
 import {View, Text, StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
 

@@ -11,8 +11,8 @@ import {
 } from 'react-native';
 
 import {RootStackParamList} from 'customTypes';
-import SignupForm from '@components/forms/SignupForm';
-import colors from '@utils/colors';
+import SignupForm from '../components/forms/SignupForm';
+import colors from '../utils/colors';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 type SignupScreenNavigationProps = StackNavigationProp<

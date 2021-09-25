@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import colors from '@utils/colors';
 import Modal from 'react-native-modal';
+import colors from '../utils/colors';
 
 interface StoreTypeInfoModalProps {
   modal: boolean;

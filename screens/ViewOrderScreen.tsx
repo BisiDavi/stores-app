@@ -1,5 +1,5 @@
-import colors from '@utils/colors';
-import displayAsset from '@utils/displayAsset';
+import colors from '../utils/colors';
+import displayAsset from '../utils/displayAsset';
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, Dimensions, TextInput} from 'react-native';
 import {Button, Image} from 'react-native-elements';

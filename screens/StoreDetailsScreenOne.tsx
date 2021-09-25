@@ -6,8 +6,8 @@ import {
   KeyboardAvoidingView,
   ScrollView,
 } from 'react-native';
-import ProgressIndicator from '@components/ProgressIndicator';
-import StoreDetailsFormOne from '@components/forms/StoreDetailsFormOne';
+import ProgressIndicator from '../components/ProgressIndicator';
+import StoreDetailsFormOne from '../components/forms/StoreDetailsFormOne';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 export default function StoreDetailsScreenOne() {

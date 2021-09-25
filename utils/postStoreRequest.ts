@@ -1,5 +1,5 @@
-import axiosInstance from '@network/axiosInstance';
-import showToast from '@utils/showToast';
+import axiosInstance from '../network/axiosInstance';
+import showToast from '../utils/showToast';
 
 export default async function postStoreRequest(store: any) {
   return await axiosInstance

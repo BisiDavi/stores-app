@@ -8,12 +8,12 @@ import {
   FlatList,
   Dimensions,
 } from 'react-native';
-import Map from '@components/Map';
+import Map from '../components/Map';
 import {Button, Text} from 'react-native-elements';
 
-import {getDeviceDimensions, colors} from '@utils/.';
-import GoogleAutoCompleteInput from '@components/GoogleAutoCompleteInput';
-import {RootState} from '@store/RootReducer';
+import {getDeviceDimensions, colors} from '../utils/.';
+import GoogleAutoCompleteInput from '../components/GoogleAutoCompleteInput';
+import {RootState} from '../store/RootReducer';
 
 const {deviceHeight, deviceWidth} = getDeviceDimensions();
 

@@ -1,7 +1,7 @@
-import colors from '@utils/colors';
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {FAB} from 'react-native-elements';
+import colors from '../utils/colors';
 
 const Fab = ({onPress}: FabProps) => {
   return (

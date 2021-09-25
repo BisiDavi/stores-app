@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import {ListItem, Image} from 'react-native-elements';
-import clipboard from '@assets/clipboard.png';
-import colors from '@utils/colors';
-import displayAsset from '@utils/displayAsset';
+import clipboard from '../assets/clipboard.png';
+import colors from '../utils/colors';
+import displayAsset from '../utils/displayAsset';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export default function OrdersListItem({item, onPress}: OrdersViewProps) {

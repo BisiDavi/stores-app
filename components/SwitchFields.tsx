@@ -1,7 +1,7 @@
-import colors from '@utils/colors';
 import React, {useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Switch} from 'react-native-elements';
+import colors from '../utils/colors';
 
 interface SwitchViewProps {
   label: string;

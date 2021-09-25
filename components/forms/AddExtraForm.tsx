@@ -1,11 +1,11 @@
 import React from 'react';
 import {Formik} from 'formik';
-import addExtraSchema from '@components/forms/addExtraSchema';
 import {View, StyleSheet} from 'react-native';
-import {DisplayFormElements} from '@components/forms/DisplayFormElements';
 import {Button} from 'react-native-elements';
-import formContent from '@json/add-extra.json';
-import colors from '@utils/colors';
+import formContent from '../../json/add-extra.json';
+import colors from '../../utils/colors';
+import addExtraSchema from '../forms/addExtraSchema';
+import {DisplayFormElements} from '../forms/DisplayFormElements';
 
 export default function AddExtraForm({navigation: {goBack}}: any) {
   return (

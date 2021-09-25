@@ -1,11 +1,11 @@
 import React from 'react';
 import {Formik} from 'formik';
-import requestRiderSchema from '@components/forms/RequestRiderSchema';
-import {View, StyleSheet, Dimensions} from 'react-native';
-import {DisplayFormElements} from '@components/forms/DisplayFormElements';
 import {Button} from 'react-native-elements';
-import requestRiderContent from '@json/request-rider.json';
-import colors from '@utils/colors';
+import {View, StyleSheet, Dimensions} from 'react-native';
+import requestRiderSchema from './RequestRiderSchema';
+import {DisplayFormElements} from './DisplayFormElements';
+import requestRiderContent from '../../json/request-rider.json';
+import colors from '../../utils/colors';
 
 export default function RequestRiderForm() {
   return (

@@ -1,9 +1,9 @@
 import React from 'react';
 import {Formik} from 'formik';
-import addNewProductSchema from '@components/forms/AddNewProductSchema';
 import {View, StyleSheet, Dimensions} from 'react-native';
-import {DisplayFormElements} from '@components/forms/DisplayFormElements';
-import promoTagContent from '@json/add-promo-tag.json';
+import addNewProductSchema from './AddNewProductSchema';
+import {DisplayFormElements} from './DisplayFormElements';
+import promoTagContent from '../../json/add-promo-tag.json';
 
 export default function PromoTagForm() {
   return (

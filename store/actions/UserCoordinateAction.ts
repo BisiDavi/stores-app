@@ -1,4 +1,4 @@
-import {GET_USER_COORDINATES} from '@store/constant';
+import {GET_USER_COORDINATES} from '../constant';
 
 type payloadType = {
   latitude: number;

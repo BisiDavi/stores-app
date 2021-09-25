@@ -5,13 +5,13 @@ import {Image, Button} from 'react-native-elements';
 import {useDispatch} from 'react-redux';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-import useStoreSetupNavigation from '@hooks/useStoreSetupNavigation';
-import UploadIcon from '@assets/upload.png';
-import colors from '@utils/colors';
-import ProgressIndicator from '@components/ProgressIndicator';
-import {StoreImageUploadAction} from '@store/actions/StoreDetailsAction';
-import {uploadStoreBackgroundRequest} from '@network/postRequest';
-import useUploadImage from '@hooks/useUploadImage';
+import useStoreSetupNavigation from '../hooks//useStoreSetupNavigation';
+import UploadIcon from '../assets/upload.png';
+import colors from '../utils/colors';
+import ProgressIndicator from '../components/ProgressIndicator';
+import {StoreImageUploadAction} from '../store/actions/StoreDetailsAction';
+import {uploadStoreBackgroundRequest} from '../network/postRequest';
+import useUploadImage from '../hooks//useUploadImage';
 
 export default function UploadStoreImageScreen() {
   const [loading, setLoading] = useState(false);

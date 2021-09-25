@@ -12,9 +12,9 @@ import {Button, Image} from 'react-native-elements';
 import AppIntroSlider from 'react-native-app-intro-slider';
 
 import {RootStackParamList} from 'customTypes';
-import colors from '@utils/colors';
-import onboardingScreenJson from '@json/onboarding.json';
-import displayAsset from '@utils/displayAsset';
+import colors from '../utils/colors';
+import onboardingScreenJson from '../json/onboarding.json';
+import displayAsset from '../utils/displayAsset';
 
 export default function OnboardingScreen({
   navigation,

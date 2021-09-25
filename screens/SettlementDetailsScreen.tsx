@@ -8,8 +8,8 @@ import {
   ScrollView,
   Dimensions,
 } from 'react-native';
-import ProgressIndicator from '@components/ProgressIndicator';
-import SettlementDetailsForm from '@components/forms/SettlementDetailsForm';
+import ProgressIndicator from '../components/ProgressIndicator';
+import SettlementDetailsForm from '../components/forms/SettlementDetailsForm';
 
 export default function SettlementDetailsScreen() {
   return (

@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 import {FlatList} from 'react-native';
-import NewOrdersList from '@json/new-order.json';
-import OrdersListItem from '@components/OrdersListItem';
+import NewOrdersList from '../json/new-order.json';
+import OrdersListItem from '../components/OrdersListItem';
 
 export type ordersList = {
   id: number;

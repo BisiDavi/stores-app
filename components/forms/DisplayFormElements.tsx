@@ -1,11 +1,11 @@
 import React, {memo, ChangeEvent} from 'react';
 import {Dimensions, KeyboardTypeOptions, StyleSheet} from 'react-native';
-import InputField from '@components/InputField';
-import RadioField from '@components/RadioField';
-import SelectField from '@components/SelectField';
-import {displayAsset} from '@utils/.';
-import InputGroup from '@components/InputGroup';
-import SwitchFields from '@components/SwitchFields';
+import InputField from '../InputField';
+import RadioField from '../RadioField';
+import SelectField from '../SelectField';
+import {displayAsset} from '../../utils/.';
+import InputGroup from '../InputGroup';
+import SwitchFields from '../SwitchFields';
 import SwitchfieldTimefield from './SwitchfieldTimefield';
 
 function FormElements(props: displayFormElementsProps) {

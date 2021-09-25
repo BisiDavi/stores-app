@@ -11,13 +11,13 @@ import {
   Platform,
   Dimensions,
 } from 'react-native';
-import DashboardCard from '@components/DashboardCard';
-import dashboardContent from '@json/dashboard.json';
+import DashboardCard from '../components/DashboardCard';
+import dashboardContent from '../json/dashboard.json';
 import {BottomTabParamList} from '../customTypes';
-import DashboardChart from '@components/DashboardChart';
-import colors from '@utils/colors';
-import SelectField from '@components/SelectField';
-import selectContent from '@json/dasboard-select.json';
+import DashboardChart from '../components/DashboardChart';
+import colors from '../utils/colors';
+import SelectField from '../components/SelectField';
+import selectContent from '../json/dasboard-select.json';
 
 type DashboardScreenNavigationProps = StackNavigationProp<
   BottomTabParamList,

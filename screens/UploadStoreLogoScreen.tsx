@@ -5,14 +5,14 @@ import {Image, Button} from 'react-native-elements';
 import {useDispatch} from 'react-redux';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-import useStoreSetupNavigation from '@hooks/useStoreSetupNavigation';
-import UploadIcon from '@assets/upload.png';
-import colors from '@utils/colors';
-import ProgressIndicator from '@components/ProgressIndicator';
-import {StoreLogoUploadAction} from '@store/actions/StoreDetailsAction';
-import {uploadStoreLogoRequest} from '@network/postRequest';
-import showToast from '@utils/showToast';
-import useUploadImage from '@hooks/useUploadImage';
+import useStoreSetupNavigation from '../hooks//useStoreSetupNavigation';
+import UploadIcon from '../assets/upload.png';
+import colors from '../utils/colors';
+import ProgressIndicator from '../components/ProgressIndicator';
+import {StoreLogoUploadAction} from '../store/actions/StoreDetailsAction';
+import {uploadStoreLogoRequest} from '../network/postRequest';
+import showToast from '../utils/showToast';
+import useUploadImage from '../hooks//useUploadImage';
 
 export default function UploadStoreLogoScreen() {
   const [loading, setLoading] = useState(false);

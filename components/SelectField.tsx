@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
-import colors from '@utils/colors';
+import colors from '../utils/colors';
 
 export default function SelectField({content, ...props}: selectFieldProps) {
   function getPickerValue(item: any) {

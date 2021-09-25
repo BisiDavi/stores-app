@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
-import colors from '@utils/colors';
 import {LineChart} from 'react-native-chart-kit';
+import colors from '../utils/colors';
 
 export default function DashboardChart() {
   return (

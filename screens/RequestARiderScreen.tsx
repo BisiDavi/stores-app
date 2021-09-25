@@ -1,11 +1,11 @@
 import React from 'react';
 import {View, Text, ScrollView, StyleSheet} from 'react-native';
 import {Input} from 'react-native-elements';
-import RequestRiderForm from '@components/forms/RequestRiderForm';
 import {StackScreenProps} from '@react-navigation/stack';
-import colors from '@utils/colors';
+import RequestRiderForm from '../components/forms/RequestRiderForm';
+import colors from '../utils/colors';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {DrawerStackParamList} from '@customTypes/.';
+import {DrawerStackParamList} from '../customTypes/.';
 
 export default function RequestARiderScreen({
   navigation,

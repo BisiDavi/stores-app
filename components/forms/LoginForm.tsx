@@ -5,11 +5,11 @@ import {Formik} from 'formik';
 import {StyleSheet, View, Text} from 'react-native';
 import {Button} from 'react-native-elements';
 
-import {RootStackParamList} from '@customTypes/.';
-import InputField from '@components/InputField';
-import colors from '@utils/colors';
+import {RootStackParamList} from '../../customTypes/.';
+import InputField from '../InputField';
+import colors from '../../utils/colors';
 import loginSchema from './LoginSchema';
-import AuthContext from '@context/AuthContext';
+import AuthContext from '../../context/AuthContext';
 import PasswordInput from './PasswordInput';
 
 type LoginScreenNavigationProps = StackNavigationProp<

@@ -2,10 +2,10 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button} from 'react-native-elements';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {DrawerStackParamList} from '@customTypes/.';
-import colors from '@utils/colors';
+import {DrawerStackParamList} from '../customTypes/.';
+import colors from '../utils/colors';
 import {RouteProp} from '@react-navigation/native';
-import InputField from '@components/InputField';
+import InputField from '../components/InputField';
 
 type AddProductScreenNavigationProps = StackNavigationProp<
   DrawerStackParamList,

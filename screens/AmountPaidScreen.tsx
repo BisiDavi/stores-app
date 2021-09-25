@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 import {StyleSheet, View, Text, FlatList, Dimensions} from 'react-native';
 import {ListItem} from 'react-native-elements';
-import amountPaidContent from '@json/amount-paid.json';
+import amountPaidContent from '../json/amount-paid.json';
 
 export default function AmountPaidScreen() {
   const amountPaid = useCallback(function renderItem({item}: ItemType) {

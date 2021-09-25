@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {DrawerStackParamList} from '@customTypes/.';
+import {DrawerStackParamList} from '../customTypes/.';
 
 type MyStoreScreenNavigationProps = StackNavigationProp<
   DrawerStackParamList,

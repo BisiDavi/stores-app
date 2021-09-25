@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 import {StyleSheet, View, Text, FlatList, Dimensions} from 'react-native';
 import {ListItem} from 'react-native-elements';
-import availableBalanceContent from '@json/available-balance.json';
+import availableBalanceContent from '../json/available-balance.json';
 
 export default function AvailableBalanceScreen() {
   const availableBalance = useCallback(function renderItem({item}: ItemType) {

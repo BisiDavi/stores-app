@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import {RadioButton} from 'react-native-paper';
 import {useDispatch, useSelector} from 'react-redux';
-import {colors, displayAsset} from '@utils/.';
-import {StoreDetailsTypeAction} from '@store/actions/StoreDetailsAction';
-import {RootState} from '@store/RootReducer';
+import {colors, displayAsset} from '../utils/.';
+import {StoreDetailsTypeAction} from '../store/actions/StoreDetailsAction';
+import {RootState} from '../store/RootReducer';
 
 export default function RadioField({content, toggleModal}: RadioFieldProps) {
   const [checked, setChecked] = useState('');

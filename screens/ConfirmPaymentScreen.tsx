@@ -1,10 +1,10 @@
 import React from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {DrawerStackParamList} from '@customTypes/.';
+import {DrawerStackParamList} from '../customTypes/.';
 import {View, Text, StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
-import InputField from '@components/InputField';
-import colors from '@utils/colors';
+import InputField from '../components/InputField';
+import colors from '../utils/colors';
 
 type ConfirmPaymentNavigationProps = StackNavigationProp<
   DrawerStackParamList,

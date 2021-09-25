@@ -11,9 +11,9 @@ import {
 } from 'react-native';
 
 import {RootStackParamList} from '../customTypes';
-import LoginForm from '@components/forms/LoginForm';
+import LoginForm from '../components/forms/LoginForm';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {colors} from '@utils/.';
+import {colors} from '../utils/.';
 
 type LoginScreenNavigationProps = StackNavigationProp<
   RootStackParamList,
