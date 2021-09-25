@@ -1,8 +1,8 @@
 import {
   addProductStateType,
   addProductTypes,
-} from '@customTypes/addProductTypes';
-import {ADD_PRODUCT_STEP_1, ADD_PRODUCT_STEP_2} from '@store/constant';
+} from '../../customTypes/addProductTypes';
+import {ADD_PRODUCT_STEP_1, ADD_PRODUCT_STEP_2} from '../constant';
 
 export function AddProductReducer(
   state: addProductStateType = {

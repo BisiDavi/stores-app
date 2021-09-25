@@ -1,4 +1,4 @@
-import axiosInstance from 'network/axiosInstance';
+import axiosInstance from '../network/axiosInstance';
 import showToast from './showToast';
 
 export async function signupUser(

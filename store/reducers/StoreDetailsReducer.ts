@@ -1,7 +1,7 @@
 import {
   storeDetailsActionType,
   StoreDetailsStateType,
-} from '@customTypes/storeDetailsTypes';
+} from '../../customTypes/storeDetailsTypes';
 import {
   STORETYPE_SELECTED,
   STOREDETAILS_SUBMITTED,

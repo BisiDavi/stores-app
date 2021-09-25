@@ -1,8 +1,8 @@
 import React, {PropsWithChildren, useState, useMemo, useEffect} from 'react';
-import useAuthReducer from '@hooks/useAuthReducer';
+import useAuthReducer from '../hooks/useAuthReducer';
 import AuthContext from './AuthContext';
-import {getAuthtoken, saveAuthtoken, signupUser, loginUser} from '@utils/.';
-import {setClientToken} from '@network/axiosInstance';
+import {getAuthtoken, saveAuthtoken, signupUser, loginUser} from '../utils/.';
+import {setClientToken} from '../network/axiosInstance';
 
 export default function AuthProvider({children}: PropsWithChildren<{}>) {
   const {state, dispatch} = useAuthReducer();

@@ -1,16 +1,16 @@
 import axios from 'axios';
-import {CLOUDMALL_BASE_API} from '@env';
-import {getAuthtoken} from '@utils/authToken';
+import Config from 'react-native-config';
+import {getAuthtoken} from '../utils/authToken';
 
 const axiosInstance = axios.create({
-  baseURL: CLOUDMALL_BASE_API,
+  baseURL: Config.CLOUDMALL_BASE_API,
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
 export const axiosImageInstance = axios.create({
-  baseURL: CLOUDMALL_BASE_API,
+  baseURL: Config.CLOUDMALL_BASE_API,
   headers: {
     'content-type': 'multipart/form-data;application/json',
     accept: 'application/json',

@@ -1,4 +1,4 @@
-import axiosInstance from '@network/axiosInstance';
+import axiosInstance from '../network/axiosInstance';
 import screenNavigate from './screenNavigate';
 
 export default async function checkExistingStore(

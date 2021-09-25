@@ -1,6 +1,6 @@
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
-import SvgWrapper from '@utils/SvgWrapper';
+import SvgWrapper from '../utils/SvgWrapper';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export default function MapSvg() {

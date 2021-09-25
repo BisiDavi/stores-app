@@ -7,10 +7,10 @@ import {
   DrawerItem,
   DrawerItemList,
 } from '@react-navigation/drawer';
-import JollofRice from '@assets/jollofRice.png';
-import colors from '@utils/colors';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {RootState} from '@store/RootReducer';
+import JollofRice from '../assets/jollofRice.png';
+import colors from '../utils/colors';
+import {RootState} from '../store/RootReducer';
 
 export default function ProfileIcon(props: any) {
   const {storeDetails} = useSelector((state: RootState) => state.storeDetails);

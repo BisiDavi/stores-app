@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import MenuSvg from '@assets/MenuSvg';
-import NotificationSvg from '@assets/NotificationSvg';
+import MenuSvg from '../assets/MenuSvg';
+import NotificationSvg from '../assets/NotificationSvg';
 
 interface HeaderIconProps {
   position: 'left' | 'right';

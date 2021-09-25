@@ -6,10 +6,10 @@ import {
   TabTwoNavigator,
   TabThreeNavigator,
 } from './TabNavigator';
-import colors from '@utils/colors';
-import DashboardSvg from '@assets/DashboardSvg';
-import OrderSvg from '@assets/OrderSvg';
-import ProfileSvg from '@assets/ProfileSvg';
+import colors from '../utils/colors';
+import DashboardSvg from '../assets/DashboardSvg';
+import OrderSvg from '../assets/OrderSvg';
+import ProfileSvg from '../assets/ProfileSvg';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 

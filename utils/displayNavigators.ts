@@ -1,11 +1,11 @@
-import BottomTabNavigator from '@navigation/BottomTabNavigator';
 import {
   DrawerOneStackNavigator,
   DrawerTwoStackNavigator,
   DrawerThreeStackNavigator,
   DrawerFourStackNavigator,
   DrawerFiveStackNavigator,
-} from '@navigation/DrawerStackNavigator';
+} from '../navigation/DrawerStackNavigator';
+import BottomTabNavigator from '../navigation/BottomTabNavigator';
 
 export default function displayNavigators(navigator: string) {
   switch (navigator) {

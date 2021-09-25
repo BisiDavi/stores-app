@@ -1,4 +1,4 @@
-import {UPDATE_STORE_PROFILE} from '@store/constant';
+import {UPDATE_STORE_PROFILE} from '../constant';
 
 const StoreProfileActions =
   (payload: unknown) =>

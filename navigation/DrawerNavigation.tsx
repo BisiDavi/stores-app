@@ -2,12 +2,11 @@ import React from 'react';
 import {Image} from 'react-native-elements';
 import {StyleSheet} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {DrawerStackParamList} from '@customTypes/.';
-import drawerJson from '@json/drawer.json';
-import displayAsset from '@utils/displayAsset';
-import displayNavigators from '@utils/displayNavigators';
-import ProfileIcon from '@components/ProfileIcon';
-import colors from '@utils/colors';
+import {DrawerStackParamList} from '../customTypes/.';
+import drawerJson from '../json/drawer.json';
+import {displayAsset, colors} from '../utils';
+import displayNavigators from '../utils/displayNavigators';
+import ProfileIcon from '../components/ProfileIcon';
 
 export default function DrawerNavigation() {
   const Drawer = createDrawerNavigator<DrawerStackParamList>();
