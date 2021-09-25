@@ -43,9 +43,7 @@ function RenderGoogleInput(nextPage: () => void) {
   );
 }
 
-export default function DeliveryAddressScreen({
-  navigation,
-}: StackScreenProps<DrawerStackParamList, 'DeliveryAddressScreen'>) {
+export default function DeliveryAddressScreen() {
   const {storeDetails} = useSelector((state: RootState) => state.storeDetails);
   const {latitude, longitude} = storeDetails;
   useEffect(() => {

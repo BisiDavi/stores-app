@@ -16,7 +16,7 @@ type Props = {
   navigation: MyStoreScreenNavigationProps;
 };
 
-export default function MyStoreScreen({navigation}: Props) {
+export default function MyStoreScreen() {
   return (
     <View>
       <Text>My Store Screen</Text>
