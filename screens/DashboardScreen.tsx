@@ -37,6 +37,11 @@ type dashboardContentType = {
 };
 
 export default function DashboardScreen({navigation}: Props) {
+  const StatisticsScreenRoute: keyof BottomTabParamList = 'StatisticsScreen';
+
+  function navigateToStatisticsScreen() {
+    return navigation.navigate(StatisticsScreenRoute);
+  }
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -51,9 +56,9 @@ export default function DashboardScreen({navigation}: Props) {
               <View style={styles.category} key={`${item.category}-${index}`}>
                 <Text style={styles.categoryText}>{item.category}</Text>
                 <View style={styles.row}>
-                  {item.content.map((content, icontentIndex) => (
+                  {item.content.map((content, contentIndex) => (
                     <DashboardCard
-                      key={icontentIndex}
+                      key={contentIndex}
                       navigation={navigation}
                       content={content}
                     />
@@ -67,9 +72,7 @@ export default function DashboardScreen({navigation}: Props) {
             <Text style={styles.chartTitle}>
               Performance: Number of orders vs days.
             </Text>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('StatisticsScreen')}
-            >
+            <TouchableOpacity onPress={navigateToStatisticsScreen}>
               <DashboardChart />
             </TouchableOpacity>
           </View>

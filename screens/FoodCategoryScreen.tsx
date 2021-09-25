@@ -4,15 +4,15 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import foodCategoryContent from '@json/food-category.json';
 import colors from '@utils/colors';
-import {BottomTabParamList} from '@customTypes/.';
+import {DrawerStackParamList} from '@customTypes/.';
 
 type FoodCategoryScreenNavigationProps = StackNavigationProp<
-  BottomTabParamList,
+  DrawerStackParamList,
   'FoodCategoryScreen'
 >;
 
 type FoodCategoryScreenRouteProps = RouteProp<
-  BottomTabParamList,
+  DrawerStackParamList,
   'FoodCategoryScreen'
 >;
 
