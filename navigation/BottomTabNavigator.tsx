@@ -54,16 +54,3 @@ export default function BottomTabNavigator() {
     </BottomTab.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  menu: {
-    height: 20,
-    width: 20,
-    marginLeft: 20,
-  },
-  notificationIcon: {
-    marginRight: 20,
-    height: 20,
-    width: 20,
-  },
-});

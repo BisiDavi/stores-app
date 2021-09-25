@@ -1,31 +1,31 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StatusBar} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import SplashScreen from 'react-native-splash-screen';
 import {PersistGate} from 'redux-persist/integration/react';
 import {Provider} from 'react-redux';
-import useCachedResources from '@hooks/useCachedResources';
 import Navigation from '@navigation/.';
 import AuthProvider from '@context/AuthProvider';
 import configureStore from './store/Store';
 
 export default function App() {
-  const isLoadingComplete = useCachedResources();
   const {persistor, store} = configureStore();
-  if (!isLoadingComplete) {
-    return null;
-  } else {
-    return (
-      <SafeAreaProvider>
-        <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
-            <AuthProvider>
-              <Navigation />
-              <StatusBar />
-            </AuthProvider>
-          </PersistGate>
-        </Provider>
-      </SafeAreaProvider>
-    );
-  }
+
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
+
+  return (
+    <SafeAreaProvider>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <AuthProvider>
+            <Navigation />
+            <StatusBar />
+          </AuthProvider>
+        </PersistGate>
+      </Provider>
+    </SafeAreaProvider>
+  );
 }

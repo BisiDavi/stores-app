@@ -29,10 +29,6 @@ export default function SettlementDetailsForm() {
   const {storeDetails} = useSelector((state: RootState) => state.storeDetails);
   console.log('storeDetails', storeDetails);
 
-  //function skipHandler() {
-  //  return onBoardingNextScreen(4, false);
-  //}
-
   settlementDetails[1].options = banks;
 
   useEffect(() => {

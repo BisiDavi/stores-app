@@ -34,13 +34,13 @@ export default function RootNavigator() {
         //checkExistingStore(navigation, userEmail);
       }
     }
-  }, [state]);
+  }, [formPage, isSignedIn, navigation, state]);
 
   useEffect(() => {
     if (!isSignedIn) {
       setClientToken(state.userToken);
     }
-  }, [isSignedIn]);
+  }, [isSignedIn, state.userToken]);
 
   return (
     <>
