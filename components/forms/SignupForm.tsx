@@ -1,7 +1,6 @@
 import {StackNavigationProp} from '@react-navigation/stack';
-import React, {useState, useContext} from 'react';
+import React, {useContext} from 'react';
 import {RouteProp} from '@react-navigation/native';
-import {Feather} from '@expo/vector-icons';
 import {Formik} from 'formik';
 import {StyleSheet, View, Text} from 'react-native';
 import {Button} from 'react-native-elements';
@@ -11,6 +10,7 @@ import {RootStackParamList} from 'customTypes';
 import InputField from '@components/InputField';
 import registrationSchema from './SignupSchema';
 import AuthContext from '../../context/AuthContext';
+import PasswordInput from './PasswordInput';
 
 type SignupFormNavigationProps = StackNavigationProp<
   RootStackParamList,
@@ -25,15 +25,7 @@ type signupFormProps = {
 };
 
 export default function SignupForm({navigation}: signupFormProps) {
-  const [hidePassword, setHidePassword] = useState(true);
-
   const {authContext} = useContext(AuthContext);
-
-  function passwordVisbilityHandler() {
-    setHidePassword(!hidePassword);
-  }
-
-  const passwordIcon = hidePassword ? 'eye-off' : 'eye';
 
   return (
     <Formik
@@ -63,44 +55,26 @@ export default function SignupForm({navigation}: signupFormProps) {
             textContentType="emailAddress"
             errorMessage={errors.email && touched.email && errors.email}
           />
-          <InputField
+          <PasswordInput
             label="Password"
-            value={values.password}
+            values={values.password}
             onChangeText={handleChange('password')}
             onBlur={handleBlur('password')}
             textContentType="password"
             errorMessage={
               errors.password && touched.password && errors.password
             }
-            secureTextEntry={hidePassword}
-            rightIcon={
-              <Feather
-                name={passwordIcon}
-                onPress={passwordVisbilityHandler}
-                color="black"
-                size={24}
-              />
-            }
           />
-          <InputField
+          <PasswordInput
             label="Re-enter Password"
             textContentType="password"
-            value={values.confirmPassword}
+            values={values.confirmPassword}
             onChangeText={handleChange('confirmPassword')}
             onBlur={handleBlur('confirmPassword')}
-            secureTextEntry={hidePassword}
             errorMessage={
               errors.confirmPassword &&
               touched.confirmPassword &&
               errors.confirmPassword
-            }
-            rightIcon={
-              <Feather
-                name={passwordIcon}
-                onPress={passwordVisbilityHandler}
-                color="black"
-                size={24}
-              />
             }
           />
           <Button
