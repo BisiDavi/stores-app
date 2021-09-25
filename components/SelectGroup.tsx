@@ -16,20 +16,20 @@ export default function SelectGroup(props: SelectGroupProps) {
     closeFlag: '',
   });
   const [secondOptions] = useState(selectField[1].options);
-
   return (
     <View style={styles.selectGroup}>
       {selectField.map((field: any, index: number) => {
         wholeday
           ? (selectField[1].options = null)
           : (selectField[1].options = secondOptions);
+
         return (
           <View key={index}>
             <SelectField
               content={field}
               selectedValue={selectedValue}
               onValueChange={(value: string) => {
-                value === '24 hours' ? setWholeday(true) : setWholeday(false);
+                value === '24:00' ? setWholeday(true) : setWholeday(false);
                 onValueChange(value, index);
                 value === 'Opens At' &&
                   setFlag({
