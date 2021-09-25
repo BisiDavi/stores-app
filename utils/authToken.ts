@@ -1,4 +1,4 @@
-import * as SecureStore from 'expo-secure-store';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import hasTokenExpired from './hasTokenExpired';
 
 export async function saveAuthtoken(token: any) {
@@ -7,13 +7,13 @@ export async function saveAuthtoken(token: any) {
   }
   const checkTokenExpiry = hasTokenExpired(token);
   if (!checkTokenExpiry) {
-    await SecureStore.setItemAsync('secure_auth_token', token);
+    await AsyncStorage.setItem('secure_auth_token', token);
   }
 }
 
 export async function getAuthtoken() {
   try {
-    const authToken = await SecureStore.getItemAsync('secure_auth_token');
+    const authToken = await AsyncStorage.getItem('secure_auth_token');
     return authToken;
   } catch (e) {
     console.log('error', e);
