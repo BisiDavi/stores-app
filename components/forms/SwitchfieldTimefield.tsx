@@ -33,14 +33,18 @@ function TimeAndSwitchField(props: TimeAndSwitchField) {
   const period: string = field.switch.name;
 
   const [openDays, setOpenDays] = useState({
-    [period]: {openingTime: '', closingTime: '', status: false},
+    [period]: {
+      openingTime: '0:00',
+      closingTime: '0:00',
+      status: false,
+    },
   });
 
   const specificPeriod = openDays[period];
 
   useEffect(() => {
     dispatch(StoreOpendaysAction({specificPeriod, period}));
-  }, [specificPeriod, dispatch, period]);
+  }, [dispatch, openDays, period, specificPeriod]);
 
   const switchStatus: boolean = openDays[period].status;
   function handleSelect(value: string, index: number) {
@@ -82,7 +86,6 @@ function TimeAndSwitchField(props: TimeAndSwitchField) {
           {switchStatus ? 'Open' : 'Close'}
         </Text>
       </View>
-
       {switchStatus && (
         <View style={styles.selectField}>
           <SelectGroup
