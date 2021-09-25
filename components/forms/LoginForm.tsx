@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useContext} from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 import {Formik} from 'formik';
@@ -10,8 +10,7 @@ import InputField from '@components/InputField';
 import colors from '@utils/colors';
 import loginSchema from './LoginSchema';
 import AuthContext from '@context/AuthContext';
-import EyesOffSvg from '@assets/EyeoffSvg';
-import EyesSvg from '@assets/EyeSvg';
+import PasswordInput from './PasswordInput';
 
 type LoginScreenNavigationProps = StackNavigationProp<
   RootStackParamList,
@@ -23,20 +22,7 @@ type loginFormProps = {
 };
 
 export default function LoginForm({navigation}: loginFormProps) {
-  const [hidePassword, setHidePassword] = useState(true);
   const {authContext} = useContext(AuthContext);
-
-  function passwordVisbilityHandler() {
-    setHidePassword(!hidePassword);
-  }
-
-  function inputIcon() {
-    return hidePassword ? (
-      <EyesOffSvg onPress={passwordVisbilityHandler} />
-    ) : (
-      <EyesSvg onPress={passwordVisbilityHandler} />
-    );
-  }
 
   return (
     <Formik
@@ -66,17 +52,15 @@ export default function LoginForm({navigation}: loginFormProps) {
             textContentType="emailAddress"
             errorMessage={errors.email && touched.email && errors.email}
           />
-          <InputField
+          <PasswordInput
             label="Password"
-            value={values.password}
+            values={values.password}
             onChangeText={handleChange('password')}
             onBlur={handleBlur('password')}
             textContentType="password"
             errorMessage={
               errors.password && touched.password && errors.password
             }
-            secureTextEntry={hidePassword}
-            rightIcon={inputIcon()}
           />
           <Button
             type="solid"

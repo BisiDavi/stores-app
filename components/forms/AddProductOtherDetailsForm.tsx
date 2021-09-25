@@ -3,7 +3,9 @@ import {CheckBox} from 'react-native-elements';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {Button} from 'react-native-elements';
 import colors from '@utils/colors';
+import productExtras from '@json/add-product-extras.json';
 import PromoTagForm from './PromoTagForm';
+import InputGroup from '@components/InputGroup';
 
 interface DisplayCheckboxProps {
   title: string;
@@ -19,10 +21,22 @@ function DisplayCheckbox({title}: DisplayCheckboxProps) {
 
 const AddProductOtherDetailsForm = ({navigation}: any) => {
   const [showPromoTag, setShowPromoTag] = useState(false);
-  const extras = {
-    main: ['main Extra 1', 'main Extra 2', 'main Extra 3'],
-    secondary: ['secondary Extra 1', 'secondary Extra 2', 'secondary Extra 3'],
-  };
+  const [isProductAvailable, setIsProductAvailable] = useState({
+    isAvailable: false,
+    duration: {
+      from: null,
+      to: null,
+    },
+  });
+  const {main, secondary, productAvailabilty} = productExtras;
+
+  function isAvailableHandler(status: boolean) {
+    return setIsProductAvailable({
+      ...isProductAvailable,
+      isAvailable: status,
+    });
+  }
+
   function goBack() {
     navigation.goBack();
   }
@@ -35,18 +49,49 @@ const AddProductOtherDetailsForm = ({navigation}: any) => {
       <View>
         <Text style={styles.extra}>Main Extras</Text>
         <View style={styles.checkboxView}>
-          {extras.main.map(extra => (
+          {main.map(extra => (
             <DisplayCheckbox title={extra} key={extra} />
           ))}
         </View>
       </View>
       <View>
         <Text style={styles.extra}>Secondary Extras</Text>
+
         <View style={styles.checkboxView}>
-          {extras.secondary.map(extra => (
+          {secondary.map(extra => (
             <DisplayCheckbox title={extra} key={extra} />
           ))}
         </View>
+      </View>
+      <View>
+        <Text style={styles.promoTagText}>Is product always available?</Text>
+        <View
+          style={{
+            ...styles.buttonGroup,
+            ...styles.productAvailabiltyButtonGroup,
+          }}
+        >
+          <Button
+            onPress={() => isAvailableHandler(true)}
+            type="outline"
+            buttonStyle={styles.backButton}
+            titleStyle={styles.backButtonTitle}
+            title="Yes"
+          />
+          <Button
+            onPress={() => isAvailableHandler(false)}
+            buttonStyle={styles.nextButton}
+            title="No"
+          />
+        </View>
+        {isProductAvailable.isAvailable && (
+          <View>
+            <InputGroup
+              inputGroup={productAvailabilty}
+              //onChangeText={props?.handleChange(formElement.name)}
+            />
+          </View>
+        )}
       </View>
       <View>
         <TouchableOpacity onPress={promoTagFormHandler}>
@@ -118,6 +163,9 @@ const styles = StyleSheet.create({
     width: '92%',
     margin: 10,
     marginTop: 30,
+  },
+  productAvailabiltyButtonGroup: {
+    marginTop: 5,
   },
 });
 
