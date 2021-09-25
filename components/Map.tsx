@@ -12,13 +12,6 @@ import {RootState} from '@store/RootReducer';
 //
 const {deviceHeight, deviceWidth} = getDeviceDimensions();
 
-type locationStatusType = {
-  coords: {
-    latitude: number;
-    longitude: number;
-  };
-};
-
 const Map = () => {
   const {location, getLocation} = useCurrentLocation();
   const {longitude, latitude} = useSelector(

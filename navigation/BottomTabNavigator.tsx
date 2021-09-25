@@ -1,6 +1,5 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {StyleSheet} from 'react-native';
 import {BottomTabParamList} from '../customTypes';
 import {
   TabOneNavigator,

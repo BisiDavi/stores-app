@@ -1,4 +1,3 @@
-import {StackScreenProps} from '@react-navigation/stack';
 import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import {
@@ -12,7 +11,6 @@ import {
 import Map from '@components/Map';
 import {Button, Text} from 'react-native-elements';
 
-import {DrawerStackParamList} from '@customTypes/.';
 import {getDeviceDimensions, colors} from '@utils/.';
 import GoogleAutoCompleteInput from '@components/GoogleAutoCompleteInput';
 import {RootState} from '@store/RootReducer';

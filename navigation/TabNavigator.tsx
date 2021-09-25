@@ -2,7 +2,6 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import bottomTabContent from '@json/bottom-tab-navigation.json';
 import {colors, HeaderIcon} from '@utils/.';
-import {StyleSheet} from 'react-native';
 import displayScreenComponent from '@utils/displayScreenComponents';
 
 const TabOneStack = createStackNavigator();
@@ -122,16 +121,3 @@ export function TabThreeNavigator({navigation}: any) {
     </TabThreeStack.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  menu: {
-    height: 20,
-    width: 20,
-    marginLeft: 20,
-  },
-  notificationIcon: {
-    marginRight: 20,
-    height: 20,
-    width: 20,
-  },
-});

@@ -3,7 +3,6 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {StyleSheet, View, Text, Dimensions, ScrollView} from 'react-native';
 import {Image, Button} from 'react-native-elements';
 import {useDispatch} from 'react-redux';
-import * as ImagePicker from 'expo-image-picker';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 import useStoreSetupNavigation from '@hooks/useStoreSetupNavigation';
@@ -12,14 +11,13 @@ import colors from '@utils/colors';
 import ProgressIndicator from '@components/ProgressIndicator';
 import {StoreImageUploadAction} from '@store/actions/StoreDetailsAction';
 import {uploadStoreBackgroundRequest} from '@network/postRequest';
-import formatUploadedImage from '@utils/formatUploadedImage';
+import useUploadImage from '@hooks/useUploadImage';
 
 export default function UploadStoreImageScreen() {
-  const [formDataState, setFormDataState] = useState({});
-  const [image, setImage] = useState<string>('');
   const [loading, setLoading] = useState(false);
   const {onBoardingNextScreen} = useStoreSetupNavigation();
   const dispatch = useDispatch();
+  const {formDataState, image, pickImage} = useUploadImage(setLoading, 'logo');
 
   console.log('image', image);
 
@@ -42,21 +40,6 @@ export default function UploadStoreImageScreen() {
     onBoardingNextScreen(6, true);
   }
 
-  const pickImage = async () => {
-    setLoading(true);
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: false,
-      aspect: [4, 3],
-    });
-    if (!result.cancelled) {
-      console.log('result', result);
-      let formData = formatUploadedImage(result);
-      setFormDataState(formData);
-      setImage(result.uri);
-    }
-    setLoading(false);
-  };
   return (
     <SafeAreaView style={styles.view}>
       <Spinner visible={loading} color="blue" />

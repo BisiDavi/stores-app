@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {DrawerStackParamList} from '@customTypes/.';
-import {Image} from 'react-native-elements';
-import addproductContent from '@json/isbnProduct.json';
-import pizza from '@assets/pizza.png';
+//import {Image} from 'react-native-elements';
+//import addproductContent from '@json/isbnProduct.json';
+//import pizza from '@assets/pizza.png';
 import {ScrollView} from 'react-native-gesture-handler';
 import AddNewProductForm from '@components/forms/AddNewProductForm';
 import Fab from '@components/Fab';
@@ -27,8 +27,8 @@ type Props = {
 };
 
 export default function ProductWithISBNScreen({navigation}: Props) {
-  const [productImage, setProductImage] = useState(false);
-  const productContent: productType[] = addproductContent;
+  //const [productImage, setProductImage] = useState(false);
+  //const productContent: productType[] = addproductContent;
 
   return (
     <ScrollView>
@@ -41,7 +41,7 @@ export default function ProductWithISBNScreen({navigation}: Props) {
             <Text>Upload Product Picture</Text>
           </View>
         </View>
-        {productImage && <Image style={styles.productImage} source={pizza} />}
+        {/*{productImage && <Image style={styles.productImage} source={pizza} />}*/}
         <AddNewProductForm navigation={navigation} />
       </View>
     </ScrollView>

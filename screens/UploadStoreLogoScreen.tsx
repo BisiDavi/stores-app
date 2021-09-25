@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View, Text, Dimensions, ScrollView} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Image, Button} from 'react-native-elements';
@@ -20,15 +20,9 @@ export default function UploadStoreLogoScreen() {
     formDataState,
     image: storeLogo,
     pickImage,
-    permissionToUploadImage,
   } = useUploadImage(setLoading, 'logo');
   const {onBoardingNextScreen} = useStoreSetupNavigation();
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const displayAfter2Secs = setTimeout(() => permissionToUploadImage, 2000);
-    return () => clearTimeout(displayAfter2Secs);
-  }, []);
 
   async function uploadImage() {
     dispatch(StoreLogoUploadAction(formDataState));
