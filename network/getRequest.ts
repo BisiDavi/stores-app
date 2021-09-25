@@ -15,3 +15,7 @@ export async function getAvailableState() {
 export async function getCatalogProductCategories() {
   return await axiosInstance.get('/api/store/pull-catalog-product-categories');
 }
+
+export async function getStoreDetailsRequest() {
+  return await axiosInstance.get('/api/store/profile');
+}
