@@ -1,26 +1,26 @@
 [
-    {
-        "name": "My Orders",
-        "stack": "bottomTab"
-    },
-    {
-        "name": "My Store",
-        "stack": "myStore"
-    },
-    {
-        "name": "My Products",
-        "stack": "products"
-    },
-    {
-        "name": "Request a Rider",
-        "stack": "confirmRider"
-    },
-    {
-        "name": "Settings",
-        "stack": "settings"
-    },
-    {
-        "name": "Help",
-        "stack": "help"
-    }
+	{
+			"name": "My Orders",
+			"stack": "bottomTab"
+	},
+	{
+			"name": "My Store",
+			"stack": "myStore"
+	},
+	{
+			"name": "My Products",
+			"stack": "products"
+	},
+	{
+			"name": "Request a Rider",
+			"stack": "confirmRider"
+	},
+	{
+			"name": "Settings",
+			"stack": "settings"
+	},
+	{
+			"name": "Help",
+			"stack": "help"
+	}
 ]

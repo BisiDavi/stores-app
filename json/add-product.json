@@ -1,14 +1,21 @@
 [
-  { "label": "Name of Product", "name": "productName", "type": "input" },
-  { "label": "Product Category", "name": "productCategory", "type": "input" },
+  {"label": "Name of Product", "name": "name", "type": "input"},
+  {
+    "label": "Product Category",
+    "name": "categoryId",
+    "type": "select",
+    "placeholder": "Select Product Category",
+    "value": "_id",
+    "options": []
+  },
   {
     "label": "Product Description",
-    "name": "productDescription",
+    "name": "description",
     "type": "input"
   },
   {
     "label": "Product Price",
-    "name": "productPrice",
+    "name": "price",
     "type": "input"
   },
   {

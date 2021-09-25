@@ -1,31 +1,31 @@
 {
-    "publicPage": [
-        { "name": "OnboardingScreen" },
-        {
-            "name": "SignupScreen",
-            "position": "left"
-        },
-        { "name": "LoginScreen", "position": "left" }
-    ],
-    "storeDetails": [
-        {
-            "name": "StoreDetailsScreenOne"
-        },
-        {
-            "name": "StoreDetailsScreenTwo"
-        },
+	"publicPage": [
+			{ "name": "OnboardingScreen" },
+			{
+					"name": "SignupScreen",
+					"position": "left"
+			},
+			{ "name": "LoginScreen", "position": "left" }
+	],
+	"storeDetails": [
+			{
+					"name": "StoreDetailsScreenOne"
+			},
+			{
+					"name": "StoreDetailsScreenTwo"
+			},
 
-        {
-            "name": "StoreAddressScreen"
-        },
-        {
-            "name": "SettlementDetailsScreen"
-        },
-        {
-            "name": "UploadStoreLogoScreen"
-        },
-        {
-            "name": "UploadStoreImageScreen"
-        }
-    ]
+			{
+					"name": "StoreAddressScreen"
+			},
+			{
+					"name": "SettlementDetailsScreen"
+			},
+			{
+					"name": "UploadStoreLogoScreen"
+			},
+			{
+					"name": "UploadStoreImageScreen"
+			}
+	]
 }
