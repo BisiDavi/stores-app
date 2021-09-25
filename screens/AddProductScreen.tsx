@@ -1,16 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import {ScrollView} from 'react-native-gesture-handler';
 import {StyleSheet, View, Text} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
+import Spinner from 'react-native-loading-spinner-overlay';
 import {RouteProp} from '@react-navigation/native';
 import {Image} from 'react-native-elements';
-import {ImagePicker} from 'react-native';
-import {DrawerStackParamList} from '@customTypes/.';
-import ProgressIndicator from '@components/ProgressIndicator';
-import {ScrollView} from 'react-native-gesture-handler';
+
+import useUploadImage from '@hooks/useUploadImage';
 import AddNewProductForm from '@components/forms/AddNewProductForm';
-import Fab from '@components/Fab';
-import colors from '@utils/colors';
-import formatUploadedImage from '@utils/formatUploadedImage';
+import {colors, showToast} from '@utils/.';
+import {ProgressIndicator, Fab} from '@components/.';
+import {uploadProductImageRequest} from '@network/postRequest';
+import {DrawerStackParamList} from '@customTypes/.';
 
 type AddProductScreenNavigationProps = StackNavigationProp<
   DrawerStackParamList,
@@ -28,27 +29,40 @@ type Props = {
 };
 
 export default function AddProductScreen({navigation}: Props) {
-  const [productImage, setProductImage] = useState('');
   const [loading, setLoading] = useState(false);
-  const [formDataState, setFormDataState] = useState({});
+  const {
+    formDataState,
+    image: productImage,
+    pickImage,
+  } = useUploadImage(setLoading, 'image');
 
-  const pickImage = async () => {
-    setLoading(true);
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: false,
-      aspect: [4, 3],
-    });
-    if (!result.cancelled) {
-      console.log('result', result);
-      let formData = formatUploadedImage(result);
-      setFormDataState(formData);
-      setProductImage(result.uri);
+  useEffect(() => {
+    const isFormDataStateEmpty = Object.keys(formDataState).length > 0;
+    if (isFormDataStateEmpty) {
+      async function uploadImage() {
+        return await uploadProductImageRequest(formDataState)
+          .then(response => {
+            console.log('response', response.data.message);
+            setLoading(false);
+            showToast(response.data.message);
+          })
+          .catch(error => {
+            console.log('uploadImage error', error);
+            let errorMessage;
+            if (error.request) {
+              console.log('error.request', error.request);
+              errorMessage = error.request._response;
+            }
+            showToast(errorMessage);
+          });
+      }
+      uploadImage();
     }
-    setLoading(false);
-  };
+  }, [formDataState]);
+
   return (
     <ScrollView>
+      <Spinner visible={loading} color={colors.cloudOrange5} />
       <View style={styles.container}>
         <View style={styles.progressIndicatorView}>
           <ProgressIndicator

@@ -1,110 +1,62 @@
 import React, {useState, useEffect} from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Platform,
-  ToastAndroid,
-  Dimensions,
-  ScrollView,
-} from 'react-native';
+import {StyleSheet, View, Text, Dimensions, ScrollView} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Image, Button} from 'react-native-elements';
-import {useDispatch, useSelector} from 'react-redux';
-import * as ImagePicker from 'expo-image-picker';
+import {useDispatch} from 'react-redux';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 import useStoreSetupNavigation from '@hooks/useStoreSetupNavigation';
 import UploadIcon from '@assets/upload.png';
 import colors from '@utils/colors';
-import {RootState} from '@store/RootReducer';
 import ProgressIndicator from '@components/ProgressIndicator';
 import {StoreLogoUploadAction} from '@store/actions/StoreDetailsAction';
-import {
-  uploadStoreLogoRequest,
-  postStoreDetailsRequest,
-} from '@network/postRequest';
-import formatUploadedImage from '@utils/formatUploadedImage';
+import {uploadStoreLogoRequest} from '@network/postRequest';
+import showToast from '@utils/showToast';
+import useUploadImage from '@hooks/useUploadImage';
 
 export default function UploadStoreLogoScreen() {
-  const [formDataState, setFormDataState] = useState({});
-  const [storeLogo, setStoreLogo] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const {
+    formDataState,
+    image: storeLogo,
+    pickImage,
+    permissionToUploadImage,
+  } = useUploadImage(setLoading, 'logo');
   const {onBoardingNextScreen} = useStoreSetupNavigation();
   const dispatch = useDispatch();
-  const {storeDetails} = useSelector((state: RootState) => state.storeDetails);
 
   useEffect(() => {
-    const displayAfter2Secs = setTimeout(() => {
-      (async () => {
-        if (Platform.OS !== 'web') {
-          const {status} =
-            await ImagePicker.requestMediaLibraryPermissionsAsync();
-          if (status !== 'granted') {
-            ToastAndroid.show(
-              'Sorry we need your permission to upload stores image.',
-              ToastAndroid.LONG,
-            );
-          }
-        }
-      })();
-    }, 2000);
-
+    const displayAfter2Secs = setTimeout(() => permissionToUploadImage, 2000);
     return () => clearTimeout(displayAfter2Secs);
   }, []);
-
-  async function postStoreDetails(screenNumber: number, status: boolean) {
-    setLoading(true);
-    await postStoreDetailsRequest(storeDetails)
-      .then(() => {
-        setLoading(false);
-        onBoardingNextScreen(screenNumber, status);
-      })
-      .catch(error => {
-        console.log('error', error);
-        setLoading(false);
-      });
-  }
 
   async function uploadImage() {
     dispatch(StoreLogoUploadAction(formDataState));
     setLoading(true);
     await uploadStoreLogoRequest(formDataState)
       .then(response => {
-        console.log('response', response);
+        console.log('response', response.data.message);
         setLoading(false);
+        showToast(response.data.message);
+        onBoardingNextScreen(5, false);
       })
       .catch(error => {
-        console.log('error', error);
+        console.log('uploadImage error', error);
+        let errorMessage;
+        if (error.request) {
+          console.log('error.request', error.request);
+          errorMessage = error.request._response;
+        }
+        showToast(errorMessage);
         setLoading(false);
       });
-    return postStoreDetails(5, false);
+    return;
   }
 
   async function skipImage() {
-    return postStoreDetails(6, true);
+    return onBoardingNextScreen(6, true);
   }
 
-  const pickImage = async () => {
-    setLoading(true);
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: false,
-      aspect: [4, 3],
-    });
-    if (result.cancelled) {
-      ToastAndroid.show(
-        'To upload your stores logo, we need your permission to view your gallery',
-        ToastAndroid.LONG,
-      );
-    }
-    if (!result.cancelled) {
-      let formData = formatUploadedImage(result);
-      setFormDataState(formData);
-      setStoreLogo(result.uri);
-    }
-    setLoading(false);
-  };
   return (
     <SafeAreaView style={styles.view}>
       <Spinner visible={loading} color={colors.cloudOrange5} />

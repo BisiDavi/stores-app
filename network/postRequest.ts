@@ -8,11 +8,12 @@ import {
   postStoreDetailsType,
   toggleSpecificationStatusRequestType,
 } from '@customTypes/postRequestTypes';
-import axiosInstance from './axiosInstance';
+import axiosInstance, {axiosImageInstance} from './axiosInstance';
 
 export async function postStoreDetailsRequest(data: postStoreDetailsType) {
-  console.log('dataToPost', data);
-  return await axiosInstance.post('/api/store/profile', data);
+  const dataToPost = JSON.stringify(data);
+  console.log('dataToPost', dataToPost);
+  return await axiosInstance.post('/api/store/profile', dataToPost);
 }
 
 export async function getAllProductsRequest(data: allProductType) {
@@ -28,17 +29,18 @@ export async function getPendingOrdersRequest(data: OrdersType) {
 }
 
 export async function uploadStoreLogoRequest(logo: any) {
-  return await axiosInstance.post(
-    'https://cloudmallng.com/api/store/profile',
-    logo,
-  );
+  return await axiosImageInstance.post('/api/store/upload-store-logo', logo);
 }
 
 export async function uploadStoreBackgroundRequest(background: any) {
-  return await axiosInstance.post(
+  return await axiosImageInstance.post(
     '/api/store/upload-store-background',
     background,
   );
+}
+
+export async function uploadProductImageRequest(image: any) {
+  return await axiosImageInstance.post('/api/store/add-product-image', image);
 }
 
 export async function pullCatalogProductsWithCategoryIdRequest(
@@ -83,5 +85,11 @@ export async function getProductMainExtra(productId: string) {
   return await axiosInstance.post(
     '/api/store/get-product-main-extras',
     productId,
+  );
+}
+export async function getProductsCategories(storeId: string) {
+  return await axiosInstance.post(
+    '/api/store/get-products-categories',
+    storeId,
   );
 }
