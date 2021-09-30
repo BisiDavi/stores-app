@@ -62,14 +62,14 @@
       "@components/*": ["components/*"],
       "@navigation/*": ["navigation/*"],
       "../screens/*": ["screens/*"],
-      "@hooks/*": ["hooks/*"],
+      "@hooks/*": ["src/hooks/*"],
       "@assets/*": ["assets/*"],
       "../json/*": ["json/*"],
       "../customTypes/*": ["customTypes/*"],
       "@utils/*": ["utils/*"],
       "@context/*": ["context/*"],
       "../network/*": ["network/*"],
-      "@store/*": ["store/*"]
+      "@store/*": ["src/store/*"]
     }
   },
   "include": [

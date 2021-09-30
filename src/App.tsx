@@ -5,8 +5,8 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 import {PersistGate} from 'redux-persist/integration/react';
 import {Provider} from 'react-redux';
-import Navigation from './navigation/index';
-import AuthProvider from './context/AuthProvider';
+import Navigation from '../navigation/index';
+import AuthProvider from '../context/AuthProvider';
 import configureStore from './store/Store';
 
 export default function App() {
