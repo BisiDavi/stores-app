@@ -1,4 +1,10 @@
-import {AUTH_TOKEN, CLOSE_WELCOME_MODAL, STOREDETAILS_PAGE} from '../constant';
+import {
+  AUTH_TOKEN,
+  CLOSE_WELCOME_MODAL,
+  STOREDETAILS_PAGE,
+  USER_LOGGED_IN,
+  USER_SIGNED_IN,
+} from '../constant';
 
 export function SetupStoreReducer(
   state = {
@@ -6,6 +12,7 @@ export function SetupStoreReducer(
     formPage: 0,
     isWelcomeModalShown: false,
     token: null,
+    authMethod: '',
   },
   action: actionType,
 ) {
@@ -30,13 +37,30 @@ export function SetupStoreReducer(
         token: payload.token,
       };
     }
+    case USER_SIGNED_IN: {
+      return {
+        ...state,
+        authMethod: 'SIGNIN',
+      };
+    }
+    case USER_LOGGED_IN: {
+      return {
+        ...state,
+        authMethod: 'LOGIN',
+      };
+    }
     default:
       return state;
   }
 }
 
 type actionType = {
-  type: 'STOREDETAILS_PAGE' | 'CLOSE_WELCOME_MODAL' | 'AUTH_TOKEN';
+  type:
+    | 'STOREDETAILS_PAGE'
+    | 'CLOSE_WELCOME_MODAL'
+    | 'AUTH_TOKEN'
+    | 'USER_SIGNED_IN'
+    | 'USER_LOGGED_IN';
   payload: {
     status: boolean;
     page: number;

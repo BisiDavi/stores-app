@@ -1,4 +1,10 @@
-import {AUTH_TOKEN, CLOSE_WELCOME_MODAL, STOREDETAILS_PAGE} from '../constant';
+import {
+  AUTH_TOKEN,
+  CLOSE_WELCOME_MODAL,
+  STOREDETAILS_PAGE,
+  USER_LOGGED_IN,
+  USER_SIGNED_IN,
+} from '../constant';
 
 export const SetupStoreScreenAction =
   (page: number, status: boolean) => (dispatch: (arg0: argType) => void) => {
@@ -25,6 +31,20 @@ export const AuthTokenAction =
       payload: {
         token,
       },
+    });
+  };
+
+export const UserLoggedinAction =
+  () => (dispatch: (arg0: {type: 'USER_LOGGED_IN'}) => void) => {
+    dispatch({
+      type: USER_LOGGED_IN,
+    });
+  };
+
+export const UserSignedinAction =
+  () => (dispatch: (arg0: {type: 'USER_SIGNED_IN'}) => void) => {
+    dispatch({
+      type: USER_SIGNED_IN,
     });
   };
 
