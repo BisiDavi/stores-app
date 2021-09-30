@@ -13,6 +13,7 @@ export default function App() {
   const {persistor, store} = configureStore();
 
   useEffect(() => {
+    console.log('hide splash screen');
     SplashScreen.hide();
   }, []);
 

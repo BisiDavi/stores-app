@@ -56,7 +56,6 @@ export default function RootNavigator() {
         if (formPage !== 0) {
           screenNavigate(formPage, navigation);
         }
-        //checkExistingStore(navigation, userEmail);
       }
     }
   }, [formPage, isSignedIn, navigation, state]);
