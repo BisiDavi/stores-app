@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   chartTitle: {
-    fontFamily: 'RobotoRegular',
+    fontFamily: 'Roboto-Regular',
     fontSize: 16,
     lineHeight: 16,
     marginBottom: 10,

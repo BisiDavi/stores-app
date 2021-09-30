@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     marginTop: 0,
   },
   title: {
-    fontFamily: 'MontserratBold',
+    fontFamily: 'Montserrat-Bold',
     fontSize: 16,
     marginTop: 0,
     margin: 10,

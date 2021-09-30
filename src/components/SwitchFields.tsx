@@ -52,13 +52,13 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   label: {
-    fontFamily: 'RobotoRegular',
+    fontFamily: 'Roboto-Regular',
     fontSize: 14,
     lineHeight: 20,
     marginBottom: 10,
   },
   switchText: {
-    fontFamily: 'RobotoRegular',
+    fontFamily: 'Roboto-Regular',
     fontSize: 17,
     lineHeight: 20,
   },

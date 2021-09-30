@@ -26,12 +26,12 @@ type signupScreenProps = {
 
 export default function SignupScreen({navigation}: signupScreenProps) {
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      enabled={true}
-      style={styles.view}
-    >
-      <SafeAreaView style={styles.view}>
+    <SafeAreaView style={styles.view}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        enabled={true}
+        style={styles.view}
+      >
         <ScrollView style={styles.view}>
           <View style={styles.container}>
             <View style={styles.textView}>
@@ -43,11 +43,10 @@ export default function SignupScreen({navigation}: signupScreenProps) {
             <SignupForm navigation={navigation} />
           </View>
         </ScrollView>
-      </SafeAreaView>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
-
 const styles = StyleSheet.create({
   view: {
     flex: 1,
@@ -59,11 +58,12 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     flex: 1,
+    paddingTop: 10,
     backgroundColor: colors.neutralWhite,
   },
   title: {
     color: colors.cloudOrange5,
-    fontFamily: 'MontserratBold',
+    fontFamily: 'Montserrat-Bold',
     fontSize: 18,
     lineHeight: 28,
   },
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     marginBottom: 0,
   },
   text: {
-    fontFamily: 'RobotoRegular',
+    fontFamily: 'Roboto-Regular',
     fontSize: 14,
     lineHeight: 20,
   },

@@ -23,7 +23,7 @@ export function DrawerOneStackNavigator({navigation}: any) {
             title: stack.title,
             headerTitleStyle: {
               textAlign: 'center',
-              fontFamily: 'RobotoBold',
+              fontFamily: 'Roboto-Bold',
             },
             headerLeft: props => (
               <HeaderIcon
@@ -62,7 +62,7 @@ export function DrawerTwoStackNavigator({navigation}: any) {
             headerTitleAlign: 'center',
             headerTitleStyle: {
               textAlign: 'center',
-              fontFamily: 'RobotoBold',
+              fontFamily: 'Roboto-Bold',
             },
             headerLeft: props => (
               <HeaderIcon
@@ -101,7 +101,7 @@ export function DrawerThreeStackNavigator({navigation}: any) {
             headerTitleAlign: 'center',
             headerTitleStyle: {
               textAlign: 'center',
-              fontFamily: 'RobotoBold',
+              fontFamily: 'Roboto-Bold',
             },
             headerLeft: props => (
               <HeaderIcon
@@ -139,7 +139,7 @@ export function DrawerFourStackNavigator({navigation}: any) {
             headerTitleAlign: 'center',
             headerTitleStyle: {
               textAlign: 'center',
-              fontFamily: 'RobotoBold',
+              fontFamily: 'Roboto-Bold',
             },
             headerLeft: props => (
               <HeaderIcon
@@ -178,7 +178,7 @@ export function DrawerFiveStackNavigator({navigation}: any) {
             headerTitleAlign: 'center',
             headerTitleStyle: {
               textAlign: 'center',
-              fontFamily: 'RobotoBold',
+              fontFamily: 'Roboto-Bold',
             },
             headerLeft: props => (
               <HeaderIcon

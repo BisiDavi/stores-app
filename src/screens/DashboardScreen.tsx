@@ -113,13 +113,13 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   categoryText: {
-    fontFamily: 'MontserratBold',
+    fontFamily: 'Montserrat-Bold',
     fontSize: 14,
     lineHeight: 16,
     marginBottom: 10,
   },
   chartTitle: {
-    fontFamily: 'RobotoRegular',
+    fontFamily: 'Roboto-Regular',
     fontSize: 12,
     lineHeight: 16,
     marginBottom: 10,

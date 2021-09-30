@@ -38,7 +38,7 @@ export default function SelectField({content, ...props}: selectFieldProps) {
                       : item.name;
                     return (
                       <Picker.Item
-                        fontFamily="RobotoRegular"
+                        fontFamily="Roboto-Regular"
                         key={`${item.name}-${index}`}
                         label={labelName}
                         value={getPickerValue(item)}
@@ -47,7 +47,7 @@ export default function SelectField({content, ...props}: selectFieldProps) {
                   })
                 ) : (
                   <Picker.Item
-                    fontFamily="RobotoRegular"
+                    fontFamily="Roboto-Regular"
                     label="Loading ..."
                     value="loading"
                   />
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     fontSize: 14,
     textAlign: 'left',
-    fontFamily: 'RobotoRegular',
+    fontFamily: 'Roboto-Regular',
   },
   textView: {
     alignItems: 'flex-start',
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     margin: 5,
     marginLeft: 5,
     marginBottom: 0,
-    fontFamily: 'RobotoRegular',
+    fontFamily: 'Roboto-Regular',
     fontSize: 12,
     fontWeight: '600',
   },

@@ -20,3 +20,13 @@ export async function getAuthtoken() {
     return null;
   }
 }
+
+export async function saveToStorage(name: string, item: any) {
+  const itemStringified = JSON.stringify(item);
+  console.log('itemStringified', itemStringified);
+  return await AsyncStorage.setItem(name, itemStringified);
+}
+
+export async function getFromStorage(name: string): Promise<any> {
+  return await AsyncStorage.getItem(name);
+}

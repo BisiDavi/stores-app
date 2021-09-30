@@ -49,13 +49,13 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colors.cloudOrange5,
-    fontFamily: 'RobotoBold',
+    fontFamily: 'Roboto-Bold',
     fontSize: 18,
     textAlign: 'center',
     margin: 10,
   },
   text: {
-    fontFamily: 'RobotoRegular',
+    fontFamily: 'Roboto-Regular',
     fontSize: 15,
     textAlign: 'left',
     color: 'black',

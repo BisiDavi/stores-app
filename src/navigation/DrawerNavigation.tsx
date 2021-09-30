@@ -19,7 +19,7 @@ export default function DrawerNavigation() {
         drawerActiveTintColor: colors.mallBlue5,
         drawerInactiveTintColor: 'black',
         drawerLabelStyle: {
-          fontFamily: 'RobotoBold',
+          fontFamily: 'Roboto-Bold',
           fontSize: 16,
         },
         headerRight: () => (

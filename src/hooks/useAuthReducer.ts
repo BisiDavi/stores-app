@@ -2,14 +2,15 @@ import {useReducer} from 'react';
 
 export default function useAuthReducer() {
   const [state, dispatch] = useReducer(
-    (prevState: stateType, action: actionType) => {
-      switch (action.type) {
+    (prevState: any, action: any) => {
+      const {type, token, ownsAccount} = action;
+      switch (type) {
         case 'SIGN_IN':
           return {
             ...prevState,
             isSignout: false,
             isLoading: false,
-            userToken: action.token,
+            userToken: token,
           };
         case 'SIGN_OUT':
           return {
@@ -23,7 +24,7 @@ export default function useAuthReducer() {
             ...prevState,
             isSignout: false,
             isLoading: false,
-            userToken: action.token,
+            userToken: token,
           };
         case 'LOADING':
           return {
@@ -34,26 +35,48 @@ export default function useAuthReducer() {
           return {
             ...prevState,
             isLoading: false,
-            userToken: action.token,
+            userToken: token,
           };
+        case 'HAS_ACCOUNT':
+          return {
+            ...prevState,
+            isLoading: false,
+            hasAccount: ownsAccount,
+          };
+        case 'STOP_LOADING': {
+          return {
+            ...prevState,
+            isLoading: false,
+          };
+        }
       }
     },
     {
       isLoading: false,
       isSignout: false,
       userToken: null,
+      hasAccount: false,
     },
   );
   return {state, dispatch};
 }
 
 type actionType = {
-  type: 'SIGN_IN' | 'SIGN_OUT' | 'SIGN_UP' | 'LOADING' | 'APP_LOAD';
+  type:
+    | 'SIGN_IN'
+    | 'SIGN_OUT'
+    | 'SIGN_UP'
+    | 'LOADING'
+    | 'APP_LOAD'
+    | 'STOP_LOADING'
+    | 'HAS_ACCOUNT';
   token?: string;
+  ownsAccount?: boolean;
 };
 
-export type stateType = {
+export type contextStateType = {
   isLoading: boolean;
   isSignout: boolean;
-  userToken?: undefined | null | string;
+  userToken: any;
+  hasAccount: boolean;
 };

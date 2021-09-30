@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
   },
   totalText: {
     color: colors.mallBlue5,
-    fontFamily: 'RobotoBold',
+    fontFamily: 'Roboto-Bold',
   },
   note: {
     marginTop: 10,

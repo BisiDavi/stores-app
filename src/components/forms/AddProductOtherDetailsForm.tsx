@@ -146,12 +146,12 @@ const styles = StyleSheet.create({
   },
   promoTagText: {
     color: colors.mallBlue5,
-    fontFamily: 'RobotoBold',
+    fontFamily: 'Roboto-Bold',
     margin: 10,
   },
   extra: {
     color: colors.black,
-    fontFamily: 'RobotoBold',
+    fontFamily: 'Roboto-Bold',
     fontSize: 14,
     letterSpacing: 0.0025,
     margin: 10,

@@ -27,7 +27,7 @@ function publicStackScreen(
           ? stackContent.position
           : 'center',
         headerTitleStyle: {
-          fontFamily: 'MontserratBold',
+          fontFamily: 'Montserrat-Bold',
           color: colors.cloudOrange5,
           fontSize: 18,
           lineHeight: 28,
@@ -46,7 +46,7 @@ function publicStackScreen(
           ? stackContent.position
           : 'center',
         headerTitleStyle: {
-          fontFamily: 'MontserratBold',
+          fontFamily: 'Montserrat-Bold',
           color: colors.cloudOrange5,
           fontSize: 18,
           lineHeight: 28,

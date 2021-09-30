@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 14,
     textAlign: 'left',
-    fontFamily: 'RobotoRegular',
+    fontFamily: 'Roboto-Regular',
   },
   content: {
     flexDirection: 'column',

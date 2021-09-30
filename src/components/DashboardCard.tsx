@@ -49,13 +49,13 @@ const styles = StyleSheet.create({
     padding: 0,
   },
   cardText: {
-    fontFamily: 'MontserratBold',
+    fontFamily: 'Montserrat-Bold',
     fontSize: 14,
     lineHeight: 16,
   },
   title: {
     fontWeight: '500',
-    fontFamily: 'RobotoRegular',
+    fontFamily: 'Roboto-Regular',
     fontSize: 14,
     lineHeight: 20,
     marginBottom: 10,

@@ -55,7 +55,7 @@ const inputStyles = StyleSheet.create({
     marginBottom: 5,
     fontWeight: '500',
     fontSize: 14,
-    fontFamily: 'RobotoRegular',
+    fontFamily: 'Roboto-Regular',
   },
   rightIconStyle: {
     width: 30,

@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colors.cloudOrange5,
-    fontFamily: 'MontserratBold',
+    fontFamily: 'Montserrat-Bold',
     fontSize: 18,
     lineHeight: 28,
     marginBottom: 10,

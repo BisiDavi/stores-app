@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.mallBlue5,
-    fontFamily: 'MontserratBold',
+    fontFamily: 'Montserrat-Bold',
     fontSize: 18,
     lineHeight: 24,
     textAlign: 'center',

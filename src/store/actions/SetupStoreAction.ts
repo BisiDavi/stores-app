@@ -4,6 +4,7 @@ import {
   STOREDETAILS_PAGE,
   USER_LOGGED_IN,
   USER_SIGNED_IN,
+  ONBOARDING_COMPLETED,
 } from '../constant';
 
 export const SetupStoreScreenAction =
@@ -25,7 +26,10 @@ export const CloseWelcomeModalAction =
   };
 
 export const AuthTokenAction =
-  (token: string) => (dispatch: (arg0: authArgType) => void) => {
+  (token: string | null) =>
+  (
+    dispatch: (arg0: {type: string; payload: {token: string | null}}) => void,
+  ) => {
     dispatch({
       type: AUTH_TOKEN,
       payload: {
@@ -45,6 +49,14 @@ export const UserSignedinAction =
   () => (dispatch: (arg0: {type: 'USER_SIGNED_IN'}) => void) => {
     dispatch({
       type: USER_SIGNED_IN,
+    });
+  };
+
+export const UserOnboardingCompletedAction =
+  () => (dispatch: (arg0: {type: 'ONBOARDING_COMPLETED'}) => void) => {
+    console.log('UserOnboardingCompletedAction was  launched');
+    dispatch({
+      type: ONBOARDING_COMPLETED,
     });
   };
 

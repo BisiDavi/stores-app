@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   },
   status: {
     color: colors.accentRed,
-    fontFamily: 'MontserratBold',
+    fontFamily: 'Montserrat-Bold',
     fontSize: 20,
     lineHeight: 24,
   },
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     marginTop: 50,
-    fontFamily: 'MontserratRegular',
+    fontFamily: 'Montserrat-Regular',
     fontSize: 18,
     lineHeight: 28,
     textAlign: 'center',

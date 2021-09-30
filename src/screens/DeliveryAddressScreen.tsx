@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 14,
-    fontFamily: 'RobotoRegular',
+    fontFamily: 'Roboto-Regular',
     marginLeft: 10,
   },
   mapView: {
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colors.cloudOrange5,
-    fontFamily: 'MontserratBold',
+    fontFamily: 'Montserrat-Bold',
     fontSize: 18,
     lineHeight: 28,
     marginBottom: 10,

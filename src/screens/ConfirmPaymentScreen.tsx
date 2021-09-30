@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     color: colors.neutralWhite,
   },
   labelStyle: {
-    fontFamily: 'MontserratBold',
+    fontFamily: 'Montserrat-Bold',
     fontSize: 18,
     lineHeight: 28,
     marginTop: 50,

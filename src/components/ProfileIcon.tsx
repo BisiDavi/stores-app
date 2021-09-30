@@ -43,14 +43,14 @@ const styles = StyleSheet.create({
   },
   userName: {
     color: colors.mallBlue5,
-    fontFamily: 'RobotoBold',
+    fontFamily: 'Roboto-Bold',
     fontSize: 16,
   },
   sidebarText: {
     color: 'black',
   },
   drawerItem: {
-    fontFamily: 'RobotoBold',
+    fontFamily: 'Roboto-Bold',
     fontSize: 16,
     color: 'black',
   },

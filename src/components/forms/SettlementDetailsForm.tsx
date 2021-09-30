@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     color: colors.neutralWhite,
     backgroundColor: colors.mallBlue5,
-    fontFamily: 'RobotoBold',
+    fontFamily: 'Roboto-Bold',
   },
   skipButtonStyle: {
     width: Dimensions.get('window').width * 0.3,
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     borderColor: colors.mallBlue5,
     borderWidth: 1,
-    fontFamily: 'RobotoBold',
+    fontFamily: 'Roboto-Bold',
   },
   skipTextStyle: {
     color: colors.mallBlue5,

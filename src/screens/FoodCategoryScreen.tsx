@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   categoryText: {
     paddingLeft: 30,
     color: colors.mallBlue5,
-    fontFamily: 'MontserratBold',
+    fontFamily: 'Montserrat-Bold',
     fontSize: 18,
     lineHeight: 24,
   },

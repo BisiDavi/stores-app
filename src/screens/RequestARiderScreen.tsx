@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
   link: {
     color: colors.mallBlue5,
-    fontFamily: 'RobotoBold',
+    fontFamily: 'Roboto-Bold',
     fontSize: 20,
     lineHeight: 24,
     marginLeft: 10,
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   text: {
     marginLeft: 10,
     color: colors.black,
-    fontFamily: 'RobotoRegular',
+    fontFamily: 'Roboto-Regular',
     fontSize: 17,
   },
 });

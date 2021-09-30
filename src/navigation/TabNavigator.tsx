@@ -35,7 +35,7 @@ export function TabOneNavigator({navigation}: any) {
             headerTitleAlign: 'left',
             headerTitleStyle: {
               fontSize: 18,
-              fontFamily: 'RobotoBold',
+              fontFamily: 'Roboto-Bold',
             },
             title: tab.title,
           }}
@@ -73,7 +73,7 @@ export function TabTwoNavigator({navigation}: any) {
             headerTitleAlign: 'left',
             headerTitleStyle: {
               fontSize: 18,
-              fontFamily: 'RobotoBold',
+              fontFamily: 'Roboto-Bold',
             },
             title: tab.title,
           }}
@@ -111,7 +111,7 @@ export function TabThreeNavigator({navigation}: any) {
             headerTitleAlign: 'left',
             headerTitleStyle: {
               fontSize: 18,
-              fontFamily: 'RobotoBold',
+              fontFamily: 'Roboto-Bold',
             },
             title: tab.title,
           }}
