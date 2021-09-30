@@ -1,9 +1,9 @@
 import {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/core';
-import {SetupStoreScreenAction} from '../store/actions/SetupStoreAction';
-import {RootState} from '../store/RootReducer';
-import screenNavigate from '../../utils/screenNavigate';
+import {SetupStoreScreenAction} from '@/store/actions/SetupStoreAction';
+import {RootState} from '@/store/RootReducer';
+import screenNavigate from '@/utils/screenNavigate';
 
 export default function useStoreSetupNavigation() {
   const setupStorestate: setupStorestateType = useSelector(

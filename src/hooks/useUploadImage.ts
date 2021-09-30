@@ -1,8 +1,8 @@
 import {useState, Dispatch, SetStateAction} from 'react';
 import ImagePicker from 'react-native-image-picker';
 
-import showToast from '../../utils/showToast';
-import formatUploadedImage from '../../utils/formatUploadedImage';
+import showToast from '@/utils/showToast';
+import formatUploadedImage from '@/utils/formatUploadedImage';
 
 type useUploadImage = Dispatch<SetStateAction<boolean>>;
 
