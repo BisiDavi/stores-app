@@ -15,6 +15,7 @@ import {RootStackParamList} from 'customTypes';
 import colors from '../utils/colors';
 import onboardingScreenJson from '../json/onboarding.json';
 import displayAsset from '../utils/displayAsset';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export default function OnboardingScreen({
   navigation,
@@ -55,11 +56,12 @@ export default function OnboardingScreen({
 
   function renderNextButton() {
     return (
-      <View style={styles.button}>
+      <TouchableOpacity style={styles.nextButton}>
         <Text style={styles.text}>Next</Text>
-      </View>
+      </TouchableOpacity>
     );
   }
+
   const renderSkipButton = () => (
     <Button
       buttonStyle={styles.renderSkipButton}
@@ -69,7 +71,7 @@ export default function OnboardingScreen({
     />
   );
   const renderDoneButton = () => (
-    <Button buttonStyle={styles.button} onPress={onDone} title="Done" />
+    <Button buttonStyle={styles.doneButton} onPress={onDone} title="Done" />
   );
 
   return (
@@ -90,7 +92,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   renderItem: {
     flex: 1,
@@ -100,11 +102,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    fontWeight: 'bold',
-    marginTop: 30,
+    marginTop: 10,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    fontFamily: 'RobotoLight',
+    fontFamily: 'Roboto-Bold',
     marginBottom: 0,
     textAlign: 'left',
     color: colors.mallBlue5,
@@ -116,8 +117,8 @@ const styles = StyleSheet.create({
     marginBottom: Dimensions.get('window').height * 0.05,
   },
   text: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: colors.neutralWhite,
+    fontFamily: 'Roboto-Bold',
     fontSize: 16,
   },
   button: {
@@ -128,9 +129,24 @@ const styles = StyleSheet.create({
     backgroundColor: colors.mallBlue5,
     padding: 20,
     height: 45,
-    borderRadius: 5,
-    flex: 1,
     alignItems: 'center',
+  },
+  nextButton: {
+    borderRadius: 5,
+    backgroundColor: colors.mallBlue5,
+    margin: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 45,
+  },
+  doneButton: {
+    marginTop: 50,
+    borderRadius: 5,
+    backgroundColor: colors.mallBlue5,
+    margin: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 45,
   },
   renderSkipButton: {
     margin: 20,

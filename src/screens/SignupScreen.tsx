@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     marginBottom: 0,
   },
   text: {
-    fontFamily: 'Roboto-Regular',
+    fontFamily: 'Roboto-Medium',
     fontSize: 14,
     lineHeight: 20,
   },

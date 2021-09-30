@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import SvgWrapper from '../utils/SvgWrapper';
+import SvgWrapper from '@/utils/SvgWrapper';
 
 interface EyesOffSvgProps {
   onPress: () => void;
@@ -12,7 +12,7 @@ export default function EyesOffSvg({onPress}: EyesOffSvgProps) {
   width="24"
   height="24"
   viewBox="0 0 24 24"
-  fill="none"
+  fill="black"
   stroke="currentColor"
   stroke-width="2"
   stroke-linecap="round"

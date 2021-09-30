@@ -1,7 +1,6 @@
 import React, {useState, ChangeEvent} from 'react';
 import InputField from '../InputField';
-import EyesOffSvg from '../../assets/EyeoffSvg';
-import EyesSvg from '../../assets/EyeSvg';
+import {Icon} from 'react-native-elements';
 
 interface InputFieldProps {
   onChangeText?: (e: string | ChangeEvent<any>) => void | undefined;
@@ -37,9 +36,19 @@ const PasswordInput = ({
 
   function inputIcon() {
     return hidePassword ? (
-      <EyesOffSvg onPress={passwordVisbilityHandler} />
+      <Icon
+        name="eye-off"
+        reverse
+        type="ionicon"
+        onPress={passwordVisbilityHandler}
+      />
     ) : (
-      <EyesSvg onPress={passwordVisbilityHandler} />
+      <Icon
+        name="eye"
+        reverse
+        type="ionicon"
+        onPress={passwordVisbilityHandler}
+      />
     );
   }
 

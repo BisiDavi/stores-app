@@ -12,6 +12,13 @@ plugins.push([
   },
 ]);
 
+plugins.push([
+  'babel-plugin-inline-import',
+  {
+    extensions: ['.svg'],
+  },
+]);
+
 module.exports = {
   presets,
   plugins,
