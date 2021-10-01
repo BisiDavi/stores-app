@@ -26,10 +26,7 @@ export type OrdersType = {
 };
 
 export type allProductType = {
-  data: {
-    categoryId: string;
-    storeId: string;
-  };
+  storeId: string;
 };
 
 export type uploadStoreLogoType = any;

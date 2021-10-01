@@ -3,15 +3,15 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {StyleSheet, SafeAreaView, View} from 'react-native';
 import {Tab, TabView} from 'react-native-elements';
 import {useDispatch, useSelector} from 'react-redux';
-import NewOrdersTab from '../components/NewOrdersTab';
-import CompletedOrdersTab from '../components/CompletedOrdersTab';
-import {RootState} from '../store/RootReducer';
-import WelcomeModal from '../components/WelcomeModal';
-import {CloseWelcomeModalAction} from '../store/actions/SetupStoreAction';
-import {colors} from '../utils/.';
-import {DrawerStackParamList} from '../customTypes/.';
-import StoreProfileActions from '../store/actions/storeProfileActions';
-import {getStoreDetailsRequest} from '../network/getRequest';
+import NewOrdersTab from '@/components/NewOrdersTab';
+import CompletedOrdersTab from '@/components/CompletedOrdersTab';
+import {RootState} from '@/store/RootReducer';
+import WelcomeModal from '@/components/WelcomeModal';
+import {CloseWelcomeModalAction} from '@/store/actions/SetupStoreAction';
+import {colors} from '@/utils/.';
+import {DrawerStackParamList} from '@/customTypes/.';
+import StoreProfileActions from '@/store/actions/storeProfileActions';
+import {getStoreDetailsRequest} from '@/network/getRequest';
 
 type OrdersScreenNavigationProps = StackNavigationProp<
   DrawerStackParamList,
@@ -56,7 +56,9 @@ export default function OrdersScreen({navigation}: Props) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
-        <WelcomeModal visible={welcomeModal} closeModal={closeModal} />
+        {welcomeModal && (
+          <WelcomeModal visible={welcomeModal} closeModal={closeModal} />
+        )}
         <>
           <Tab
             indicatorStyle={{

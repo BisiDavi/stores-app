@@ -1,38 +1,37 @@
 {
-	"orders": [
-			{ "name": "OrderScreen", "title": "Orders" },
-			{ "name": "ViewOrderScreen" }
-	],
-	"myStore": [
-			{ "name": "ViewStoreScreen", "title": "Ongbona" },
-			{ "name": "DashboardScreen", "title": "Dashboard" },
-			{ "name": "AvailableBalanceScreen", "title": "Available Balance" },
-			{ "name": "AmountPaidScreen", "title": "Amount Paid" },
-			{ "name": "StatisticsScreen", "title": "Statistics" },
-			{ "name": "ProfileScreen", "title": "Profile" }
-	],
-	"products": [
-			{ "name": "ProductScreen", "title": "My Product" },
-			{
-					"name": "AddProductScreen",
-					"title": "Add a new Product",
-					"position": "center"
-			},
-			{ "name": "EditProductScreen", "title": "Edit a new Product" },
-			{ "name": "AddProductScreenMethod", "title": "Add a Product" },
-			{ "name": "ProductWithISBNScreen", "title": "Add a Product" },
-			{ "name": "FoodCategoryScreen", "title": "Food Category" },
-			{
-					"name": "AddProductCategoryScreen",
-					"title": "Add a Product Category"
-			},
-			{ "name": "AddExtraScreen", "title": "Add an Extra" },
-			{ "name": "AddProductOtherDetailsScreen", "title": "Add a new Product" }
-	],
-	"confirmRider": [
-			{ "name": "RequestARiderScreen", "title": "Request a Rider" },
-			{ "name": "DeliveryAddressScreen" }
-	],
-	"settings": [{ "name": "SettingsScreen", "title": "Settings" }],
-	"help": [{ "name": "HelpScreen", "title": "Help" }]
+  "orders": [
+    {"name": "OrderScreen", "title": "Orders"},
+    {"name": "ViewOrderScreen"}
+  ],
+  "myStore": [
+    {"name": "ProfileScreen", "title": "Profile"},
+    {"name": "DashboardScreen", "title": "Dashboard"},
+    {"name": "AvailableBalanceScreen", "title": "Available Balance"},
+    {"name": "AmountPaidScreen", "title": "Amount Paid"},
+    {"name": "StatisticsScreen", "title": "Statistics"}
+  ],
+  "products": [
+    {"name": "ProductScreen", "title": "My Product"},
+    {
+      "name": "AddProductScreen",
+      "title": "Add a new Product",
+      "position": "center"
+    },
+    {"name": "EditProductScreen", "title": "Edit a new Product"},
+    {"name": "AddProductScreenMethod", "title": "Add a Product"},
+    {"name": "ProductWithISBNScreen", "title": "Add a Product"},
+    {"name": "FoodCategoryScreen", "title": "Food Category"},
+    {
+      "name": "AddProductCategoryScreen",
+      "title": "Add a Product Category"
+    },
+    {"name": "AddExtraScreen", "title": "Add an Extra"},
+    {"name": "AddProductOtherDetailsScreen", "title": "Add a new Product"}
+  ],
+  "confirmRider": [
+    {"name": "RequestARiderScreen", "title": "Request a Rider"},
+    {"name": "DeliveryAddressScreen"}
+  ],
+  "settings": [{"name": "SettingsScreen", "title": "Settings"}],
+  "help": [{"name": "HelpScreen", "title": "Help"}]
 }

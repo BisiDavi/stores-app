@@ -7,7 +7,7 @@ import {
   OrdersType,
   postStoreDetailsType,
   toggleSpecificationStatusRequestType,
-} from '../customTypes/postRequestTypes';
+} from '@/customTypes/postRequestTypes';
 import axiosInstance, {axiosImageInstance} from './axiosInstance';
 
 export async function postStoreDetailsRequest(data: postStoreDetailsType) {

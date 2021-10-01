@@ -21,8 +21,6 @@ export default function WelcomeModal({closeModal, visible}: AppModalProps) {
     setStoreName(storeDetails.name);
   }, []);
 
-  console.log('storeName', storeName);
-
   const storeFirstLetter = storeName.split('')[0];
 
   return (
