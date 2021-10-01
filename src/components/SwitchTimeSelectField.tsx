@@ -1,4 +1,4 @@
-import React, {Dispatch, useState} from 'react';
+import React, {Dispatch, SetStateAction, useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import colors from '@/utils/colors';
@@ -29,16 +29,16 @@ interface SwitchTimeSelectFieldProps {
   type: string;
   dispatch: Dispatch<any>;
   period: string;
+  setSelectedTime: Dispatch<SetStateAction<string>>;
 }
 
 export default function SwitchTimeSelectField({
   type,
   period,
   dispatch,
+  setSelectedTime,
 }: SwitchTimeSelectFieldProps) {
   const [availableTime, setAvailableTime] = useState('0:00');
-
-  console.log('availableTime', availableTime);
 
   const optionType = type === 'openingTime' ? openOptions : closeOptions;
   return (
@@ -48,6 +48,7 @@ export default function SwitchTimeSelectField({
           selectedValue={availableTime}
           onValueChange={value => {
             setAvailableTime(value);
+            setSelectedTime(value);
             dispatch(StoreOpendaysTimeAction(period, value, type));
           }}
           style={styles.pickerStyle}

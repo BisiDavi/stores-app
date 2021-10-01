@@ -1,19 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
-import MapView, {Marker} from 'react-native-maps';
+import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import {StyleSheet, View} from 'react-native';
-import useCurrentLocation from '../hooks/useCurrentLocation';
-import getDeviceDimensions from '../utils/getDeviceDimensions';
-import LoadingActivityIndicator from './LoadingActivityIndicator';
 import {useDispatch, useSelector} from 'react-redux';
-import {GetUserCoordinateAction} from '../store/actions/UserCoordinateAction';
-import {RootState} from '../store/RootReducer';
+import useCurrentLocation from '@/hooks/useCurrentLocation';
+import getDeviceDimensions from '@/utils/getDeviceDimensions';
+import LoadingActivityIndicator from './LoadingActivityIndicator';
+import {GetUserCoordinateAction} from '@/store/actions/UserCoordinateAction';
+import {RootState} from '@/store/RootReducer';
 
-//
 const {deviceHeight, deviceWidth} = getDeviceDimensions();
 
 const Map = () => {
-  const {location, getLocation} = useCurrentLocation();
+  const {location, getLocation}: any = useCurrentLocation();
   const {longitude, latitude} = useSelector(
     (state: RootState) => state.coordinates,
   );
@@ -28,20 +27,20 @@ const Map = () => {
   useEffect(() => {
     getLocation();
     if (location) {
-      const parsedLocationStatus = JSON.parse(location);
-      dispatch(GetUserCoordinateAction(parsedLocationStatus.coords));
+      dispatch(GetUserCoordinateAction(location?.coords));
       setCoordinate({
         ...coordinate,
-        latitude: parsedLocationStatus.coords.latitude,
-        longitude: parsedLocationStatus.coords.longitude,
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
       });
     }
-  }, [dispatch, getLocation, location]);
+  }, []);
 
   return (
     <>
       {location !== 'Waiting..' || coordinate.latitude !== 0 ? (
         <MapView
+          provider={PROVIDER_GOOGLE}
           style={styles.map}
           initialRegion={coordinate}
           showsUserLocation={true}
@@ -52,7 +51,6 @@ const Map = () => {
           <Marker
             draggable
             onDragEnd={e => {
-              console.log('onDragEnd', e.nativeEvent.coordinate);
               setCoordinate({
                 ...coordinate,
                 latitude: e.nativeEvent.coordinate,

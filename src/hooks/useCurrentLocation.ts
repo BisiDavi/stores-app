@@ -49,7 +49,6 @@ export default function useCurrentLocation() {
     Geolocation.getCurrentPosition(
       (position: any) => {
         setLocation(position);
-        console.log(position);
       },
       error => {
         Alert.alert(`Code ${error.code}`, error.message);

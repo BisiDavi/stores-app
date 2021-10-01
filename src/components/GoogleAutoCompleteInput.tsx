@@ -1,10 +1,9 @@
 import React from 'react';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 import {useDispatch} from 'react-redux';
-import {colors} from '../utils/.';
-import Config from 'react-native-config';
-import {GetUserCoordinateAction} from '../store/actions/UserCoordinateAction';
-import {StoreAddressCoordinatesAction} from '../store/actions/StoreDetailsAction';
+import {colors} from '@/utils/.';
+import {GetUserCoordinateAction} from '@/store/actions/UserCoordinateAction';
+import {StoreAddressCoordinatesAction} from '@/store/actions/StoreDetailsAction';
 
 const GoogleAutoCompleteInput = ({
   placeholder,
@@ -47,7 +46,7 @@ const GoogleAutoCompleteInput = ({
       nearbyPlacesAPI="GooglePlacesSearch"
       query={{
         language: 'en',
-        key: Config.GOOGLE_MAP_API_KEY,
+        key: 'AIzaSyDU7mH3j8xLd9I2u8p5u5LYt7e8gKRGXx0',
         components: 'country:ng',
       }}
       onFail={error => console.error('GoogleAutoCompleteInput error', error)}

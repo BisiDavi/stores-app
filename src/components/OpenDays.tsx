@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {Switch} from 'react-native-elements';
@@ -31,18 +31,27 @@ const periodsArray = [
   {name: 'Sunday', key: 'sunday'},
 ];
 
-const SwitchTimeSelectFieldArray = ['openingTime', 'closingTime'];
-
 function TimeAndSwitchField({period}: TimeAndSwitchFieldProps) {
   const [status, setStatus] = useState(false);
+  const [selectedTime, setSelectedTime] = useState('0:00');
+  const [timeArray, setTimeArray] = useState(['openingTime', 'closingTime']);
+
   const dispatch = useDispatch();
 
   function handleSwitchChange() {
-    dispatch(StoreOpendaysStatusAction(period.key, status));
-    setStatus(!status);
+    return setStatus(!status);
   }
+  useEffect(() => {
+    if (selectedTime === '24:00') {
+      setTimeArray(['openingTime']);
+    } else {
+      setTimeArray(['openingTime', 'closingTime']);
+    }
+  }, [selectedTime]);
 
-  console.log('period', period);
+  useEffect(() => {
+    dispatch(StoreOpendaysStatusAction(period.key, status));
+  }, [status, dispatch, period.key]);
 
   const textColor = status ? styles.open : styles.close;
 
@@ -63,13 +72,17 @@ function TimeAndSwitchField({period}: TimeAndSwitchFieldProps) {
       </View>
       {status && (
         <View style={styles.selectField}>
-          {SwitchTimeSelectFieldArray.map(switchTimeSelectField => (
-            <SwitchTimeSelectField
-              dispatch={dispatch}
-              period={period.key}
-              type={switchTimeSelectField}
-            />
-          ))}
+          {timeArray.map(switchTimeSelectField => {
+            return (
+              <SwitchTimeSelectField
+                key={switchTimeSelectField}
+                dispatch={dispatch}
+                period={period.key}
+                setSelectedTime={setSelectedTime}
+                type={switchTimeSelectField}
+              />
+            );
+          })}
         </View>
       )}
     </View>

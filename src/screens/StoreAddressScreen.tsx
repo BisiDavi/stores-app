@@ -1,5 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
+import {Button, Text} from 'react-native-elements';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {
   StyleSheet,
   View,
@@ -8,14 +11,11 @@ import {
   FlatList,
   Dimensions,
 } from 'react-native';
-import Map from '../components/Map';
-import {Button, Text} from 'react-native-elements';
-
-import {getDeviceDimensions, colors} from '../utils/.';
-import GoogleAutoCompleteInput from '../components/GoogleAutoCompleteInput';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {RootState} from '../store/RootReducer';
-import useStoreSetupNavigation from '../hooks//useStoreSetupNavigation';
+import Map from '@/components/Map';
+import {getDeviceDimensions, colors} from '@/utils/.';
+import GoogleAutoCompleteInput from '@/components/GoogleAutoCompleteInput';
+import {RootState} from '@/store/RootReducer';
+import useStoreSetupNavigation from '@/hooks/useStoreSetupNavigation';
 
 const {deviceHeight, deviceWidth} = getDeviceDimensions();
 
@@ -49,11 +49,10 @@ export default function StoreAddressScreen() {
   const {onBoardingNextScreen} = useStoreSetupNavigation();
 
   useEffect(() => {
-    console.log('latitude', latitude);
     if (latitude !== null || longitude !== null) {
       onBoardingNextScreen(2, false);
     }
-  }, [latitude, longitude, onBoardingNextScreen]);
+  }, []);
 
   function nextPage() {
     if (latitude || longitude) {

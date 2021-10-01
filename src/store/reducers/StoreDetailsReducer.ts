@@ -27,9 +27,9 @@ export function StoreDetailsReducer(
       category: '',
       type: '',
       openDays: {
-        weekDays: {status: false, openingTime: '', closingTime: ''},
-        saturday: {status: false, openingTime: '', closingTime: ''},
-        sunday: {status: false, openingTime: '', closingTime: ''},
+        weekDays: {status: false, openingTime: '0:00', closingTime: '0:00'},
+        saturday: {status: false, openingTime: '0:00', closingTime: '0:00'},
+        sunday: {status: false, openingTime: '0:00', closingTime: '0:00'},
       },
       latitude: null,
       longitude: null,
@@ -68,7 +68,6 @@ export function StoreDetailsReducer(
         ...openDaysCopy,
         [openDayPeriod]: {...period, status: status},
       };
-
       return {
         ...state,
         storeDetails: {
@@ -81,11 +80,18 @@ export function StoreDetailsReducer(
       const {openDayPeriod, time, section} = payload;
       let openDaysCopy = state.storeDetails.openDays;
       let period = openDaysCopy[openDayPeriod];
+
       openDaysCopy = {
         ...openDaysCopy,
-        [openDayPeriod]: {...period, [section]: time},
+        [openDayPeriod]: {
+          ...period,
+          [section]: time,
+        },
       };
 
+      if (time === '24:00') {
+        openDaysCopy[openDayPeriod].closingTime = '0:00';
+      }
       return {
         ...state,
         storeDetails: {

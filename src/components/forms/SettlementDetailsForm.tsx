@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
 import {Button} from 'react-native-elements';
 import {useDispatch, useSelector} from 'react-redux';
@@ -62,7 +63,7 @@ export default function SettlementDetailsForm() {
           showToast(errorMessage);
         });
     }
-  }, [formValues, onBoardingNextScreen, storeDetails]);
+  }, [formValues]);
 
   const settlementOptions: any = settlementDetails[1].options;
 
@@ -114,12 +115,6 @@ export default function SettlementDetailsForm() {
                 />
               ))}
               <View style={styles.buttonView}>
-                {/*<Button
-                                buttonStyle={styles.skipButtonStyle}
-                                onPress={skipHandler}
-                                titleStyle={styles.skipTextStyle}
-                                title="Skip"
-                            />*/}
                 <Button
                   buttonStyle={styles.nextButtonStyle}
                   onPress={handleSubmit}
