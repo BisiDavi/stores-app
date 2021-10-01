@@ -18,12 +18,16 @@ import StoreDetailsNavigation from './StoreDetailsNavigation';
 export default function RootNavigator() {
   const {state} = useContext(AuthContext);
 
-  console.log('context state', state);
-
   const {completed, formPage} = useSelector(
     (storeState: RootState) => storeState.setupStore,
   );
-  console.log('completed', completed);
+
+  const {storeDetails} = useSelector(
+    (storeState: RootState) => storeState.storeDetails,
+  );
+
+  console.log('storeDetails', storeDetails);
+
   const navigation = useNavigation();
   const tokenExpiry = hasTokenExpired(state.userToken);
 

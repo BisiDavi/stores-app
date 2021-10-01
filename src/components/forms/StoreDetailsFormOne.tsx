@@ -5,16 +5,17 @@ import {Formik} from 'formik';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {Dimensions, StyleSheet, View} from 'react-native';
 import {storeDetailsScreenOneSchema} from '.';
-import {colors, showToast} from '../../utils/.';
-import storeDetailsFormOne from '../../json/storeDetailsFormOne.json';
-import {StoreDetailsAction} from '../../store/actions/StoreDetailsAction';
+import {colors, showToast} from '@/utils/.';
+import storeDetailsFormOne from '@/json/storDetailsFormOneOne.json';
+import {StoreDetailsAction} from '@/store/actions/StoreDetailsAction';
 import {DisplayFormElements} from './DisplayFormElements';
-import useStoreSetupNavigation from '../../hooks/useStoreSetupNavigation';
+import useStoreSetupNavigation from '@/hooks/useStoreSetupNavigation';
 import {
   getAvailableState,
   getStoreCategoriesRequest,
-} from '../../network/getRequest';
-import StoreTypeInfoModal from '../../components/StoreTypeInfoModal';
+} from '@/network/getRequest';
+import StoreTypeInfoModal from '@/components/StoreTypeInfoModal';
+import OpenDays from '../OpenDays';
 
 export default function StoreDetailsFormOne() {
   const dispatch = useDispatch();
@@ -95,6 +96,7 @@ export default function StoreDetailsFormOne() {
                   toggleModal={toggleModal}
                 />
               ))}
+              <OpenDays />
               <View style={styles.buttonView}>
                 <Button
                   buttonStyle={styles.buttonStyle}

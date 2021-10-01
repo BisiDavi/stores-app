@@ -13,6 +13,8 @@ import {
   STORE_ADDRESS_COORDINATES,
   UPDATE_STORE_OPENDAYS,
   UPDATE_STORE_ID,
+  TOGGLE_OPEN_DAYS_STATUS,
+  SELECT_OPEN_DAYS_TIME,
 } from '../constant';
 
 export function StoreDetailsReducer(
@@ -55,6 +57,40 @@ export function StoreDetailsReducer(
         storeDetails: {
           ...state.storeDetails,
           type: payload,
+        },
+      };
+    }
+    case TOGGLE_OPEN_DAYS_STATUS: {
+      const {openDayPeriod, status} = payload;
+      let openDaysCopy = state.storeDetails.openDays;
+      let period = openDaysCopy[openDayPeriod];
+      openDaysCopy = {
+        ...openDaysCopy,
+        [openDayPeriod]: {...period, status: status},
+      };
+
+      return {
+        ...state,
+        storeDetails: {
+          ...state.storeDetails,
+          openDays: openDaysCopy,
+        },
+      };
+    }
+    case SELECT_OPEN_DAYS_TIME: {
+      const {openDayPeriod, time, section} = payload;
+      let openDaysCopy = state.storeDetails.openDays;
+      let period = openDaysCopy[openDayPeriod];
+      openDaysCopy = {
+        ...openDaysCopy,
+        [openDayPeriod]: {...period, [section]: time},
+      };
+
+      return {
+        ...state,
+        storeDetails: {
+          ...state.storeDetails,
+          openDays: openDaysCopy,
         },
       };
     }

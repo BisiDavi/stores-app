@@ -27,7 +27,7 @@ export default function OrdersScreen({navigation}: Props) {
   const [welcomeModal, setWelcomeModal] = useState(false);
   const dispatch = useDispatch();
 
-  const {completed, isWelcomeModalShown} = useSelector(
+  const {completed, isWelcomeModalShown, authMethod} = useSelector(
     (state: RootState) => state.setupStore,
   );
 
@@ -36,9 +36,12 @@ export default function OrdersScreen({navigation}: Props) {
   }
 
   useEffect(() => {
-    completed && !isWelcomeModalShown && setWelcomeModal(true);
+    completed &&
+      !isWelcomeModalShown &&
+      authMethod === 'SIGNIN' &&
+      setWelcomeModal(true);
     dispatch(CloseWelcomeModalAction());
-  }, [completed, dispatch, isWelcomeModalShown]);
+  }, [completed, dispatch, isWelcomeModalShown, authMethod]);
 
   useEffect(() => {
     getStoreDetailsRequest()

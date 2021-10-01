@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Switch} from 'react-native-elements';
-import colors from '../utils/colors';
+import colors from '@/utils/colors';
 
 interface SwitchViewProps {
   label: string;
@@ -52,13 +52,13 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   label: {
-    fontFamily: 'Roboto-Regular',
+    fontFamily: 'RobotoRegular',
     fontSize: 14,
     lineHeight: 20,
     marginBottom: 10,
   },
   switchText: {
-    fontFamily: 'Roboto-Regular',
+    fontFamily: 'RobotoRegular',
     fontSize: 17,
     lineHeight: 20,
   },

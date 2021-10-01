@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import {Switch} from 'react-native-elements';
 import {useDispatch} from 'react-redux';
-import SelectGroup from '../SelectGroup';
-import {StoreOpendaysAction} from '../../store/actions/StoreDetailsAction';
-import colors from '../../utils/colors';
+import SelectGroup from '@/components/SelectGroup';
+import {StoreOpendaysAction} from '@/store/actions/StoreDetailsAction';
+import colors from '@/utils/colors';
 
 type TimeAndSwitchFieldType = {
   switch: {
@@ -44,19 +45,19 @@ function TimeAndSwitchField(props: TimeAndSwitchField) {
 
   useEffect(() => {
     dispatch(StoreOpendaysAction({specificPeriod, period}));
-  }, [dispatch, openDays, period, specificPeriod]);
+  }, []);
 
   const switchStatus: boolean = openDays[period].status;
   function handleSelect(value: string, index: number) {
     const fieldName = field.time[index].name;
 
-    setOpenDays((prevState: any) => ({
-      ...prevState,
+    return setOpenDays({
+      ...openDays,
       [period]: {
-        ...prevState[period],
+        ...openDays[period],
         [fieldName]: value,
       },
-    }));
+    });
   }
 
   const textColor = switchStatus ? styles.open : styles.close;
@@ -142,13 +143,13 @@ const styles = StyleSheet.create({
   },
 
   label: {
-    fontFamily: 'Roboto-Regular',
+    fontFamily: 'RobotoRegular',
     fontSize: 14,
     lineHeight: 18,
     marginBottom: 10,
   },
   switchText: {
-    fontFamily: 'Roboto-Regular',
+    fontFamily: 'RobotoRegular',
     fontSize: 17,
     lineHeight: 19,
   },

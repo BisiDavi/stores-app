@@ -9,7 +9,9 @@ export type storeDetailsActionType = {
     | 'STORE_LOGO_UPLOAD'
     | 'STORE_ADDRESS_COORDINATES'
     | 'UPDATE_STORE_OPENDAYS'
-    | 'UPDATE_STORE_ID';
+    | 'UPDATE_STORE_ID'
+    | 'TOGGLE_OPEN_DAYS_STATUS'
+    | 'SELECT_OPEN_DAYS_TIME';
   payload: StoreDetailsPayloadType;
 };
 
@@ -68,6 +70,10 @@ export type StoreDetailsPayloadType = {
   ownerName: string;
   ownerPhone: string;
   ownerEmail: string;
+  openDayPeriod: 'weekDays' | 'saturday' | 'sunday';
+  time: string;
+  section: 'openingTime' | 'closingTime';
+  status: boolean;
   openDays: {
     weekDays: {
       status: boolean;

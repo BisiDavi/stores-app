@@ -22,6 +22,8 @@ target 'RNTS' do
 
   pod 'react-native-config', :path => '../node_modules/react-native-config'
 
+  pod 'RNCPicker', :path => '../node_modules/@react-native-picker/picker'
+
   target 'RNTSTests' do
     inherit! :complete
     # Pods for testing

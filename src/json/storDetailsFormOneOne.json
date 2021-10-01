@@ -1,0 +1,58 @@
+[
+  {
+    "label": "Name of Store *",
+    "placeholder": "Cloudmall Stores",
+    "name": "name",
+    "type": "input"
+  },
+  {
+    "label": "Email Address of Store *",
+    "placeholder": "mystore@cloudmall.com",
+    "name": "email",
+    "type": "input",
+    "keyboardType": "email-address",
+    "textContentType": "emailAddress"
+  },
+  {
+    "label": "Phone number *",
+    "name": "phone",
+    "type": "input",
+    "placeholder": "0812345678",
+    "textContentType": "telephoneNumber",
+    "keyboardType": "numeric"
+  },
+  {
+    "label": "Address of Store *",
+    "name": "address",
+    "type": "input",
+    "placeholder": "Mayfair, Ile-Ife",
+    "textContentType": "fullStreetAddress"
+  },
+  {
+    "label": "State *",
+    "name": "state",
+    "placeholder": "Select your State",
+    "type": "select",
+    "options": [],
+    "value": "_id"
+  },
+  {
+    "label": "Store Category *",
+    "type": "select",
+    "options": [],
+    "value": "_id",
+    "placeholder": "Select Store Category",
+    "name": "category"
+  },
+  {
+    "name": "type",
+    "label": "Type of Store *",
+    "icon": true,
+    "iconName": "infoIcon",
+    "type": "radio",
+    "fields": [
+      {"name": "type", "value": "IN STORE", "label": "Instore"},
+      {"name": "type", "value": "PICK UP", "label": "Pickup"}
+    ]
+  }
+]

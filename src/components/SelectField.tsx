@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
-import colors from '../utils/colors';
+import colors from '@/utils/colors';
 
 export default function SelectField({content, ...props}: selectFieldProps) {
   function getPickerValue(item: any) {
@@ -38,7 +38,7 @@ export default function SelectField({content, ...props}: selectFieldProps) {
                       : item.name;
                     return (
                       <Picker.Item
-                        fontFamily="Roboto-Regular"
+                        fontFamily="RobotoRegular"
                         key={`${item.name}-${index}`}
                         label={labelName}
                         value={getPickerValue(item)}
@@ -47,7 +47,7 @@ export default function SelectField({content, ...props}: selectFieldProps) {
                   })
                 ) : (
                   <Picker.Item
-                    fontFamily="Roboto-Regular"
+                    fontFamily="RobotoRegular"
                     label="Loading ..."
                     value="loading"
                   />
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     fontSize: 14,
     textAlign: 'left',
-    fontFamily: 'Roboto-Regular',
+    fontFamily: 'RobotoRegular',
   },
   textView: {
     alignItems: 'flex-start',
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     margin: 5,
     marginLeft: 5,
     marginBottom: 0,
-    fontFamily: 'Roboto-Regular',
+    fontFamily: 'RobotoRegular',
     fontSize: 12,
     fontWeight: '600',
   },

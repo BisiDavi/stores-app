@@ -8,6 +8,8 @@ import {
   STORE_ADDRESS_COORDINATES,
   STORE_LOGO_UPLOAD,
   UPDATE_STORE_OPENDAYS,
+  TOGGLE_OPEN_DAYS_STATUS,
+  SELECT_OPEN_DAYS_TIME,
 } from '../constant';
 
 export const StoreDetailsTypeAction = (payload: any) => (dispatch: any) => {
@@ -82,5 +84,44 @@ export const StoreOpendaysAction =
     dispatch({
       type: UPDATE_STORE_OPENDAYS,
       payload,
+    });
+  };
+
+export const StoreOpendaysStatusAction =
+  (openDayPeriod: string, status: boolean) =>
+  (
+    dispatch: (arg0: {
+      type: 'TOGGLE_OPEN_DAYS_STATUS';
+      payload: {openDayPeriod: string; status: boolean};
+    }) => void,
+  ) => {
+    dispatch({
+      type: TOGGLE_OPEN_DAYS_STATUS,
+      payload: {
+        openDayPeriod,
+        status,
+      },
+    });
+  };
+
+export const StoreOpendaysTimeAction =
+  (openDayPeriod: string, time: string, section: string) =>
+  (
+    dispatch: (arg0: {
+      type: 'SELECT_OPEN_DAYS_TIME';
+      payload: {
+        openDayPeriod: string;
+        time: string;
+        section: string;
+      };
+    }) => void,
+  ) => {
+    dispatch({
+      type: SELECT_OPEN_DAYS_TIME,
+      payload: {
+        openDayPeriod,
+        time,
+        section,
+      },
     });
   };
