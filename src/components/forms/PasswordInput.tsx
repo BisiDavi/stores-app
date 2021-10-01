@@ -37,15 +37,13 @@ const PasswordInput = ({
   function inputIcon() {
     return hidePassword ? (
       <Icon
-        name="eye-off"
-        reverse
+        name="eye-off-outline"
         type="ionicon"
         onPress={passwordVisbilityHandler}
       />
     ) : (
       <Icon
-        name="eye"
-        reverse
+        name="eye-outline"
         type="ionicon"
         onPress={passwordVisbilityHandler}
       />

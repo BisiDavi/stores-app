@@ -6,6 +6,7 @@ export async function signupUser(
   password: string,
 ): Promise<string | undefined> {
   let token;
+  console.log('email', email, 'password', password);
   await axiosInstance
     .post('/api/store/register', {email, password})
     .then(response => {

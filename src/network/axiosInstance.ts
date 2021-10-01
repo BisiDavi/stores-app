@@ -2,6 +2,8 @@ import axios from 'axios';
 import Config from 'react-native-config';
 import {getAuthtoken} from '../utils/authToken';
 
+console.log('base url', Config.CLOUDMALL_BASE_API);
+
 const axiosInstance = axios.create({
   baseURL: Config.CLOUDMALL_BASE_API,
   headers: {
