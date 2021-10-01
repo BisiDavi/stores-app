@@ -1,4 +1,4 @@
-import axiosInstance from '../network/axiosInstance';
+import axiosInstance from '@/network/axiosInstance';
 import showToast from './showToast';
 
 export async function signupUser(
@@ -6,26 +6,27 @@ export async function signupUser(
   password: string,
 ): Promise<string | undefined> {
   let token;
-  console.log('email', email, 'password', password);
-  await axiosInstance
+  return await axiosInstance
     .post('/api/store/register', {email, password})
     .then(response => {
+      console.log('response.data', response?.data);
       showToast(response.data.message);
       token = response.data.token;
       return token;
     })
     .catch(error => {
-      console.log('response', error.response.data.message);
-      if (error.response.data.message === 'Registration unsuccessful.') {
+      console.log('response error', error);
+      if (error.response) {
+        token = null;
         let message = "email doesn't exist please use a valid email";
         showToast(message);
-      } else {
-        showToast(error.response.data.message);
+        return token;
+      } else if (error.request) {
+        showToast('Opps, Network error');
+        token = null;
+        return token;
       }
-      token = error.response.data.token;
-      return token;
     });
-  return token;
 }
 
 export async function loginUser(

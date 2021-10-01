@@ -1,17 +1,33 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import {StyleSheet, View, Text, Image} from 'react-native';
 import Modal from 'react-native-modal';
-import HandWave from '../assets/hand-wave.png';
-import {colors} from '../utils/.';
-import {RootState} from '../store/RootReducer';
+import HandWave from '@/assets/hand-wave.png';
+import {colors} from '@/utils/.';
+import {RootState} from '@/store/RootReducer';
+import {StoreDetailsStateType} from '@/customTypes/storeDetailsTypes';
 
 export default function WelcomeModal({closeModal, visible}: AppModalProps) {
-  const {storeDetails}: string | any = useSelector(
+  const [storeName, setStoreName] = useState('');
+
+  const {storeProfile}: any = useSelector(
+    (state: RootState) => state.storeProfile,
+  );
+
+  const {storeDetails}: StoreDetailsStateType = useSelector(
     (state: RootState) => state.storeDetails,
   );
-  const {name} = storeDetails;
-  const storeFirstLetter = name.split('')[0];
+
+  useEffect(() => {
+    if (storeProfile !== null) {
+      const {name} = storeProfile;
+      setStoreName(name);
+    } else {
+      setStoreName(storeDetails.name);
+    }
+  }, [storeDetails.name, storeProfile, storeProfile.name]);
+
+  const storeFirstLetter = storeName.split('')[0];
 
   return (
     <Modal
@@ -24,7 +40,7 @@ export default function WelcomeModal({closeModal, visible}: AppModalProps) {
           <View style={styles.userNameView}>
             <Text style={styles.userName}>{storeFirstLetter}</Text>
           </View>
-          <Text style={styles.welcome}>Welcome {name}. </Text>
+          <Text style={styles.welcome}>Welcome {storeName}. </Text>
           <Image source={HandWave} />
         </View>
         <Text style={styles.modalContent}>
@@ -73,19 +89,19 @@ const styles = StyleSheet.create({
   userName: {
     color: 'black',
     fontSize: 24,
-    fontFamily: 'Montserrat-Bold',
+    fontFamily: 'MontserratBold',
     lineHeight: 32,
     textAlign: 'center',
   },
   welcome: {
     fontSize: 14,
-    fontFamily: 'Montserrat-Bold',
+    fontFamily: 'MontserratBold',
     lineHeight: 16,
     color: colors.textColor,
   },
   modalContent: {
     fontSize: 14,
-    fontFamily: 'Roboto-Regular',
+    fontFamily: 'RobotoRegular',
     lineHeight: 20,
     color: colors.textColor,
     marginTop: 10,

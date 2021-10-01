@@ -14,12 +14,13 @@ export default function useStoreSetupNavigation() {
 
   useEffect(() => {
     if (setupStorestate.formPage !== 0) {
-      screenNavigate(setupStorestate.formPage, navigation);
+      return screenNavigate(setupStorestate.formPage, navigation);
     }
-  }, [navigation, setupStorestate.formPage]);
+  }, [setupStorestate.formPage, navigation]);
 
   function onBoardingNextScreen(page: number, status: boolean) {
-    dispatch(SetupStoreScreenAction(page, status));
+    screenNavigate(page, navigation);
+    return dispatch(SetupStoreScreenAction(page, status));
   }
 
   return {setupStorestate, onBoardingNextScreen};

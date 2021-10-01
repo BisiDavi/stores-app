@@ -4,6 +4,7 @@ import {
   STOREDETAILS_PAGE,
   USER_LOGGED_IN,
   USER_SIGNED_IN,
+  ONBOARDING_COMPLETED,
 } from '../constant';
 
 export function SetupStoreReducer(
@@ -49,6 +50,12 @@ export function SetupStoreReducer(
         authMethod: 'LOGIN',
       };
     }
+    case ONBOARDING_COMPLETED: {
+      return {
+        ...state,
+        completed: true,
+      };
+    }
     default:
       return state;
   }
@@ -60,7 +67,8 @@ type actionType = {
     | 'CLOSE_WELCOME_MODAL'
     | 'AUTH_TOKEN'
     | 'USER_SIGNED_IN'
-    | 'USER_LOGGED_IN';
+    | 'USER_LOGGED_IN'
+    | 'ONBOARDING_COMPLETED';
   payload: {
     status: boolean;
     page: number;

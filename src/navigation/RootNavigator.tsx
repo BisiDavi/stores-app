@@ -1,77 +1,56 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import Spinner from 'react-native-loading-spinner-overlay';
-import AuthContext from '../context/AuthContext';
-import {setClientToken} from '../network/axiosInstance';
-import {RootState} from '../store/RootReducer';
+import AuthContext from '@/context/AuthContext';
+import {setClientToken} from '@/network/axiosInstance';
+import {RootState} from '@/store/RootReducer';
 import {
   getsignedUserEmail,
   hasTokenExpired,
   colors,
   screenNavigate,
-} from '../utils/.';
+} from '@/utils/.';
 import DrawerNavigation from './DrawerNavigation';
 import PublicNavigation from './PublicNavigation';
 import StoreDetailsNavigation from './StoreDetailsNavigation';
-import {getStoreDetailsRequest} from '../network/getRequest';
 
 export default function RootNavigator() {
   const {state} = useContext(AuthContext);
-  const [storeProfile, setStoreProfile] = useState({
-    isStoreRegistered: false,
-    profile: null,
-  });
+
+  console.log('context state', state);
+
   const {completed, formPage} = useSelector(
     (storeState: RootState) => storeState.setupStore,
   );
+  console.log('completed', completed);
   const navigation = useNavigation();
-  const isSignedIn = hasTokenExpired(state.userToken);
+  const tokenExpiry = hasTokenExpired(state.userToken);
 
   useEffect(() => {
-    getStoreDetailsRequest()
-      .then(response => {
-        console.log('response getStoreDetailsRequest', response.data);
-        if (response.data.bank) {
-          setStoreProfile({
-            ...storeProfile,
-            isStoreRegistered: true,
-          });
-        }
-      })
-      .catch(error => {
-        if (error.response) {
-          console.log('error response', error.response);
-        } else if (error.request) {
-          console.log('error request', error.request);
-        }
-      });
-  }, [storeProfile]);
-
-  useEffect(() => {
-    if (state.userToken) {
+    if (state.userToken && !completed) {
       const userEmail = getsignedUserEmail(state.userToken);
-      if (userEmail && !isSignedIn) {
+      if (userEmail && !tokenExpiry) {
         setClientToken(state.userToken);
         if (formPage !== 0) {
           screenNavigate(formPage, navigation);
         }
       }
     }
-  }, [formPage, isSignedIn, navigation, state]);
+  }, [completed, formPage, navigation, state.userToken, tokenExpiry]);
 
   useEffect(() => {
-    if (!isSignedIn) {
+    if (!tokenExpiry) {
       setClientToken(state.userToken);
     }
-  }, [isSignedIn, state.userToken]);
+  }, [tokenExpiry, state.userToken]);
 
   return (
     <>
       <Spinner visible={state.isLoading} color={colors.cloudOrange5} />
-      {!isSignedIn && !completed ? (
+      {!tokenExpiry && !completed ? (
         <StoreDetailsNavigation />
-      ) : (!isSignedIn && completed) || storeProfile.isStoreRegistered ? (
+      ) : !tokenExpiry && completed ? (
         <DrawerNavigation />
       ) : (
         <PublicNavigation />

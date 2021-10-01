@@ -44,11 +44,11 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
         const loginInToken: any = await loginUser(email, password);
         !loginInToken && dispatch({type: 'STOP_LOADING'});
         dispatchRedux(AuthTokenAction(loginInToken));
-        dispatchRedux(UserLoggedinAction());
         if (loginInToken) {
           saveAuthtoken(loginInToken);
           setClientToken(loginInToken);
         }
+        loginInToken && dispatchRedux(UserLoggedinAction());
         console.log('loginToken', loginInToken);
         let bankStatus: boolean;
         loginInToken &&
@@ -84,13 +84,18 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
       signOut: () => dispatch({type: 'SIGN_OUT'}),
       signUp: async (email: string, password: string) => {
         dispatch({type: 'LOADING'});
-        const signUpToken = await signupUser(email, password);
-        !signUpToken && dispatch({type: 'STOP_LOADING'});
-        console.log('signupToken', signUpToken);
-        await saveAuthtoken(signUpToken);
-        setClientToken(signUpToken);
-        dispatch({type: 'SIGN_UP', token: signUpToken});
-        dispatchRedux(UserSignedinAction());
+        await signupUser(email, password)
+          .then(response => {
+            console.log('response from signupToken', response);
+            setClientToken(response);
+            dispatchRedux(UserSignedinAction());
+            saveAuthtoken(response);
+            dispatch({type: 'SIGN_UP', token: response});
+          })
+          .catch(error => {
+            console.log('error from signupToken', error);
+            dispatch({type: 'STOP_LOADING'});
+          });
       },
     }),
     [dispatch, dispatchRedux],

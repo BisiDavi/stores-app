@@ -1,8 +1,8 @@
 import {
   addProductStateType,
   addProductTypes,
-} from '../../customTypes/addProductTypes';
-import {ADD_PRODUCT_STEP_1, ADD_PRODUCT_STEP_2} from '../constant';
+} from '@/customTypes/addProductTypes';
+import {ADD_PRODUCT_STEP_1, ADD_PRODUCT_STEP_2} from '@/store/constant';
 
 export function AddProductReducer(
   state: addProductStateType = {
@@ -27,6 +27,7 @@ export function AddProductReducer(
         name: payload.name,
         description: payload.description,
         price: payload.price,
+        takeAwayPrice: payload.takeAwayPrice,
         quantity: payload.quantity,
         categoryId: payload.categoryId,
       };
@@ -36,7 +37,6 @@ export function AddProductReducer(
         ...state,
         duration: payload.duration,
         isAvailable: payload.isAvailable,
-        takeAwayPrice: payload.takeAwayPrice,
       };
     }
     default:

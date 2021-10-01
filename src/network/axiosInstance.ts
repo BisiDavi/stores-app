@@ -1,21 +1,21 @@
 import axios from 'axios';
-import Config from 'react-native-config';
 import {getAuthtoken} from '../utils/authToken';
 
-console.log('base url', Config.CLOUDMALL_BASE_API);
-
 const axiosInstance = axios.create({
-  baseURL: Config.CLOUDMALL_BASE_API,
+  baseURL: 'https://cloudmallng.com',
   headers: {
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*/*',
+    accept: 'application/json',
   },
 });
 
 export const axiosImageInstance = axios.create({
-  baseURL: Config.CLOUDMALL_BASE_API,
+  baseURL: 'https://cloudmallng.com',
   headers: {
     'content-type': 'multipart/form-data;application/json',
     accept: 'application/json',
+    'Access-Control-Allow-Origin': '*/*',
   },
 });
 
@@ -30,7 +30,6 @@ axiosInstance.interceptors.request.use(
     if (savedToken) {
       config.headers.Authorization = 'Bearer ' + savedToken;
     }
-    config.headers['Content-Type'] = 'application/json';
     return config;
   },
   error => {
@@ -44,7 +43,6 @@ axiosImageInstance.interceptors.request.use(
       config.headers.Authorization = 'Bearer ' + savedToken;
     }
     console.log('savedToken', savedToken);
-    config.headers['content-type'] = 'multipart/form-data;application/json';
     return config;
   },
   error => {
