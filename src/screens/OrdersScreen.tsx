@@ -46,13 +46,12 @@ export default function OrdersScreen({navigation}: Props) {
   useEffect(() => {
     getStoreDetailsRequest()
       .then(response => {
-        console.log('getStoreDetailsRequest', getStoreDetailsRequest);
-        StoreProfileActions(response.data);
+        dispatch(StoreProfileActions(response.data));
       })
       .catch(error => {
         console.log('error', error);
       });
-  }, []);
+  }, [dispatch]);
 
   return (
     <SafeAreaView style={styles.container}>

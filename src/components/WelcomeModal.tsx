@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import {StyleSheet, View, Text, Image} from 'react-native';
@@ -10,22 +11,17 @@ import {StoreDetailsStateType} from '@/customTypes/storeDetailsTypes';
 export default function WelcomeModal({closeModal, visible}: AppModalProps) {
   const [storeName, setStoreName] = useState('');
 
-  const {storeProfile}: any = useSelector(
-    (state: RootState) => state.storeProfile,
-  );
-
   const {storeDetails}: StoreDetailsStateType = useSelector(
     (state: RootState) => state.storeDetails,
   );
 
+  console.log('storeDetails', storeDetails);
+
   useEffect(() => {
-    if (storeProfile !== null) {
-      const {name} = storeProfile;
-      setStoreName(name);
-    } else {
-      setStoreName(storeDetails.name);
-    }
-  }, [storeDetails.name, storeProfile, storeProfile.name]);
+    setStoreName(storeDetails.name);
+  }, []);
+
+  console.log('storeName', storeName);
 
   const storeFirstLetter = storeName.split('')[0];
 

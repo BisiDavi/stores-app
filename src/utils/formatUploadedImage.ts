@@ -20,7 +20,6 @@ export default function formatUploadedImage(
     height: image.height,
     width: image.width,
   };
-  console.log('source', source);
   let formData = new FormData();
   formData.append(name, source);
   return formData;

@@ -1,4 +1,4 @@
-import axiosInstance from '../network/axiosInstance';
+import axiosInstance from '@/network/axiosInstance';
 import screenNavigate from './screenNavigate';
 
 export default async function checkExistingStore(
@@ -20,4 +20,9 @@ export default async function checkExistingStore(
     .catch(error => {
       console.log('error checkExistingStore', error);
     });
+}
+
+export function checkObjectKey(name: string | {}) {
+  const keysLength = Object.keys(name).length;
+  return keysLength;
 }

@@ -10,11 +10,11 @@ export type RootStackParamList = {
   LoginScreen: undefined;
   AvailableBalanceScreen: undefined;
   AmountPaidScreen: undefined;
+  StatisticsScreen: undefined;
   SettlementDetailsScreen: undefined;
 };
 
 export type BottomTabParamList = {
-  StatisticsScreen: undefined;
   Orders: undefined;
   Dashboard: undefined;
   Payment: undefined;
@@ -27,10 +27,12 @@ export type DrawerStackParamList = {
   ViewStoreScreen: undefined;
   OrdersScreen: undefined;
   EditProductScreen: undefined;
-  FoodCategoryScreen: undefined;
+  StatisticsScreen: undefined;
   ProductWithISBN: undefined;
+  FreshFoodProductScreen: undefined;
   AddExtraScreen: undefined;
   AddProductOtherDetailsScreen: undefined;
+  AddFreshFoodOtherDetailsScreen: undefined;
   ProductScreen: undefined;
   ConfirmRiderScreen: undefined;
   SettingsScreen: undefined;
@@ -46,4 +48,6 @@ export type DrawerStackParamList = {
   DeliveryAddressScreen: undefined;
   ViewOrderScreen: undefined;
   AddProductCategoryScreen: undefined;
+  FoodCategoryScreen: undefined;
+  ProfileScreen: undefined;
 };

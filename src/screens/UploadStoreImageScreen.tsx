@@ -5,13 +5,14 @@ import {Image, Button} from 'react-native-elements';
 import {useDispatch} from 'react-redux';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-import useStoreSetupNavigation from '../hooks//useStoreSetupNavigation';
-import UploadIcon from '../assets/upload.png';
-import colors from '../utils/colors';
-import ProgressIndicator from '../components/ProgressIndicator';
-import {StoreImageUploadAction} from '../store/actions/StoreDetailsAction';
-import {uploadStoreBackgroundRequest} from '../network/postRequest';
-import useUploadImage from '../hooks//useUploadImage';
+import useStoreSetupNavigation from '@/hooks/useStoreSetupNavigation';
+import useUploadImage from '@/hooks/useUploadImage';
+import ProgressIndicator from '@/components/ProgressIndicator';
+import UploadIcon from '@/assets/upload.png';
+import {colors, showToast} from '@/utils/.';
+import {StoreImageUploadAction} from '@/store/actions/StoreDetailsAction';
+import {uploadStoreBackgroundRequest} from '@/network/postRequest';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export default function UploadStoreImageScreen() {
   const [loading, setLoading] = useState(false);
@@ -22,19 +23,18 @@ export default function UploadStoreImageScreen() {
     'background',
   );
 
-  console.log('image', image);
-
   async function uploadImage() {
     setLoading(true);
     dispatch(StoreImageUploadAction(formDataState));
     return uploadStoreBackgroundRequest(formDataState)
       .then(response => {
         setLoading(false);
-        console.log('response', response);
+        showToast(response.data.message);
         onBoardingNextScreen(6, true);
       })
       .catch(error => {
         setLoading(false);
+        showToast('Oops,unable to upload image, an error occured');
         console.log('error', error);
       });
   }
@@ -45,7 +45,7 @@ export default function UploadStoreImageScreen() {
 
   return (
     <SafeAreaView style={styles.view}>
-      <Spinner visible={loading} color="blue" />
+      <Spinner visible={loading} color={colors.cloudOrange5} />
       <ScrollView>
         <View style={styles.container}>
           <ProgressIndicator title="Upload Store's Image" selected={4} />
@@ -56,22 +56,18 @@ export default function UploadStoreImageScreen() {
             {!image ? (
               <>
                 <View style={styles.imageView}>
-                  <Image
-                    onPress={pickImage}
-                    style={styles.uploadIcon}
-                    source={UploadIcon}
-                  />
+                  <TouchableOpacity onPress={pickImage}>
+                    <Image style={styles.uploadIcon} source={UploadIcon} />
+                  </TouchableOpacity>
                 </View>
                 <Text style={styles.error}>
                   please upload an image, click on the icon above
                 </Text>
               </>
             ) : (
-              <Image
-                style={styles.image}
-                onPress={pickImage}
-                source={{uri: image}}
-              />
+              <TouchableOpacity onPress={pickImage}>
+                <Image style={styles.image} source={{uri: image}} />
+              </TouchableOpacity>
             )}
             <View>
               <Button
