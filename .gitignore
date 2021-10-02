@@ -57,6 +57,10 @@ AndroidManifest.xml
 
 # Bundle artifact
 *.jsbundle
+.env
+.env.local
 
 # CocoaPods
 /ios/Pods/
+
+secrets
