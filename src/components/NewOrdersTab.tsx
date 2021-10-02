@@ -29,6 +29,7 @@ export default function NewOrdersTab({navigation}: any) {
     },
     [navigation],
   );
+  console.log('newOrdersTab');
 
   const keyExtractor = useCallback(item => item.id.toString(), []);
   const ITEM_HEIGHT = 120;

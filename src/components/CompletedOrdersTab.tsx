@@ -22,6 +22,8 @@ export default function CompletedOrdersTab({navigation}: any) {
     console.log('viewOrder, I am console.log');
     navigation.navigate('ViewOrderScreen', item);
   }
+  console.log('newOrdersTab');
+
   const completedOrders = function renderItem({item}: completedOrders) {
     return (
       <OrdersListItem

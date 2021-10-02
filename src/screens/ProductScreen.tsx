@@ -105,9 +105,9 @@ export default function ProductScreen({navigation}: Props) {
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.productView}>
-          {storeProducts !== null && storeProducts.length > 0 ? (
+          {storeProducts !== null && storeProducts?.length > 0 ? (
             <ProductListView products={storeProducts} />
-          ) : storeProducts !== null && storeProducts.length === 0 ? (
+          ) : storeProducts !== null && storeProducts?.length === 0 ? (
             <Text style={styles.indicator}>
               No Product available, you can add products, by click on the plus
               button
