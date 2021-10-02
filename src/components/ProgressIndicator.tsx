@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Dimensions} from 'react-native';
 
-import colors from '../utils/colors';
+import colors from '@/utils/colors';
 
 export default function ProgressIndicator({
   selected,

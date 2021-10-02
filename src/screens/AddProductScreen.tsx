@@ -3,28 +3,21 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {StyleSheet, View, Text} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import Spinner from 'react-native-loading-spinner-overlay';
-import {RouteProp} from '@react-navigation/native';
 import {Image} from 'react-native-elements';
 
-import useUploadImage from '../hooks//useUploadImage';
-import AddNewProductForm from '../components/forms/AddNewProductForm';
-import {colors, showToast} from '../utils/.';
-import {ProgressIndicator, Fab} from '../components/.';
-import {uploadProductImageRequest} from '../network/postRequest';
-import {DrawerStackParamList} from '../customTypes/.';
+import useUploadImage from '@/hooks/useUploadImage';
+import AddNewProductForm from '@/components/forms/AddNewProductForm';
+import {colors, showToast} from '@/utils/.';
+import {ProgressIndicator, Fab} from '@/components/.';
+import {uploadProductImageRequest} from '@/network/postRequest';
+import {DrawerStackParamList} from '@/customTypes/.';
 
-type AddProductScreenNavigationProps = StackNavigationProp<
-  DrawerStackParamList,
-  'AddProductScreen'
->;
-
-type AddProductScreenRouteProps = RouteProp<
+export type AddProductScreenNavigationProps = StackNavigationProp<
   DrawerStackParamList,
   'AddProductScreen'
 >;
 
 type Props = {
-  route: AddProductScreenRouteProps;
   navigation: AddProductScreenNavigationProps;
 };
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import {RouteProp} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {View, StyleSheet, ScrollView, Dimensions} from 'react-native';
@@ -8,18 +7,12 @@ import ProgressIndicator from '@/components/ProgressIndicator';
 import AddProductOtherDetailsForm from '@/components/forms/AddProductOtherDetailsForm';
 import {DrawerStackParamList} from '@/customTypes';
 
-type AddFreshFoodOtherDetailsScreenNavigationProps = StackNavigationProp<
-  DrawerStackParamList,
-  'AddFreshFoodOtherDetailsScreen'
->;
-
-type AddFreshFoodOtherDetailsScreenRouteProps = RouteProp<
+export type AddFreshFoodOtherDetailsScreenNavigationProps = StackNavigationProp<
   DrawerStackParamList,
   'AddFreshFoodOtherDetailsScreen'
 >;
 
 type Props = {
-  route?: AddFreshFoodOtherDetailsScreenRouteProps;
   navigation: AddFreshFoodOtherDetailsScreenNavigationProps;
 };
 

@@ -1,21 +1,22 @@
 import React from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {DrawerStackParamList} from '../customTypes/.';
 import {View, Text, StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
-import InputField from '../components/InputField';
-import colors from '../utils/colors';
 
-type ConfirmPaymentNavigationProps = StackNavigationProp<
+import InputField from '@/components/InputField';
+import {DrawerStackParamList} from '@/customTypes/.';
+import colors from '@/utils/colors';
+
+export type confirmPaymentNavProps = StackNavigationProp<
   DrawerStackParamList,
   'ConfirmPaymentScreen'
 >;
 
 type Props = {
-  navigation: ConfirmPaymentNavigationProps;
+  navigation: confirmPaymentNavProps;
 };
 
-export default function ConfirmPayment({navigation}: Props) {
+export default function ConfirmPaymentScreen({navigation}: Props) {
   function nextScreen() {
     navigation.navigate('PaymentApprovedScreen');
   }

@@ -1,29 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {RouteProp} from '@react-navigation/native';
+import {StyleSheet, View} from 'react-native';
 import {Button} from 'react-native-elements';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {DrawerStackParamList} from '@/customTypes/.';
 import colors from '@/utils/colors';
 import InputField from '@/components/InputField';
 
-type AddProductScreenNavigationProps = StackNavigationProp<
-  DrawerStackParamList,
-  'AddProductCategoryScreen'
->;
-
-type AddProductScreenRouteProps = RouteProp<
-  DrawerStackParamList,
-  'AddProductCategoryScreen'
->;
-
-type Props = {
-  route: AddProductScreenRouteProps;
-  navigation: AddProductScreenNavigationProps;
-};
-
-export default function AddProductCategoryScreen({navigation}: Props) {
+export default function AddProductCategoryScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.form}>

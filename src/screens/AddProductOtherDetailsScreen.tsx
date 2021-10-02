@@ -1,26 +1,8 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button} from 'react-native-elements';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {DrawerStackParamList} from '../customTypes/.';
-import colors from '../utils/colors';
-import {RouteProp} from '@react-navigation/native';
-import InputField from '../components/InputField';
-
-type AddProductScreenNavigationProps = StackNavigationProp<
-  DrawerStackParamList,
-  'AddProductCategoryScreen'
->;
-
-type AddProductScreenRouteProps = RouteProp<
-  DrawerStackParamList,
-  'AddProductCategoryScreen'
->;
-
-type Props = {
-  route: AddProductScreenRouteProps;
-  navigation: AddProductScreenNavigationProps;
-};
+import colors from '@/utils/colors';
+import InputField from '@/components/InputField';
 
 export default function AddProductCategoryScreen() {
   return (
