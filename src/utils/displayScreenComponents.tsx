@@ -36,6 +36,7 @@ import ViewOrderScreen from '@/screens/ViewOrderScreen';
 import AddProductCategoryScreen from '@/screens/AddProductCategoryScreen';
 import FreshFoodProductScreen from '@/screens/FreshFoodProductScreen';
 import AddFreshFoodOtherDetailsScreen from '@/screens/AddFreshFoodOtherDetailsScreen';
+import ProductReplacementScreen from '@/screens/ProductReplacementScreen';
 
 export default function displayScreenComponent(
   name: string | RootStackParamList,
@@ -115,6 +116,8 @@ export default function displayScreenComponent(
       return FreshFoodProductScreen;
     case 'AddFreshFoodOtherDetailsScreen':
       return AddFreshFoodOtherDetailsScreen;
+    case 'ProductReplacementScreen':
+      return ProductReplacementScreen;
     default:
       return null;
   }

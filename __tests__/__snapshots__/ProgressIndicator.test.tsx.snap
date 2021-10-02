@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing the ProgressIndicator Component renders correctly, Snapshot test 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "column",
+      "justifyContent": "flex-start",
+      "marginBottom": 10,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#F29100",
+        "fontFamily": "Montserrat-Bold",
+        "fontSize": 18,
+        "lineHeight": 28,
+        "marginBottom": 10,
+        "padding": 0,
+      }
+    }
+  >
+    Step 2: Other Details (fresh food)
+  </Text>
+  <View
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "justifyContent": "flex-start",
+        "marginTop": 0,
+        "paddingTop": 0,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#F29100",
+          "borderColor": "#707070",
+          "borderWidth": 1,
+          "height": 5,
+          "margin": 0,
+          "width": 150,
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderColor": "#707070",
+          "borderWidth": 1,
+          "height": 5,
+          "margin": 0,
+          "width": 150,
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderColor": "#707070",
+          "borderWidth": 1,
+          "height": 5,
+          "margin": 0,
+          "width": 150,
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderColor": "#707070",
+          "borderWidth": 1,
+          "height": 5,
+          "margin": 0,
+          "width": 150,
+        }
+      }
+    />
+  </View>
+</View>
+`;

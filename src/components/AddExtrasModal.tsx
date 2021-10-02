@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import {Button} from 'react-native-elements';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
@@ -13,8 +13,8 @@ export default function AddExtrasModal({
 }: AppModalProps) {
   const navigation: any = useNavigation();
   return (
-    <AppModal visible={visible} style={styles} toggleOverlay={toggleOverlay}>
-      <View>
+    <AppModal visible={visible} toggleOverlay={toggleOverlay}>
+      <View style={styles.modalView}>
         <TouchableOpacity>
           <Text style={styles.text}>Done</Text>
         </TouchableOpacity>
@@ -57,5 +57,14 @@ const styles = StyleSheet.create({
   buttonText: {
     fontFamily: 'Roboto-Light',
     textAlign: 'center',
+  },
+  modalView: {
+    backgroundColor: colors.neutralWhite,
+    height: 180,
+    borderRadius: 10,
+    padding: 20,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    width: Dimensions.get('window').width * 0.5,
   },
 });

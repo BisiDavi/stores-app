@@ -1,15 +1,41 @@
 import React, {useState, memo} from 'react';
-import {View, Text, StyleSheet, Dimensions, TextInput} from 'react-native';
+import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import {Button, Image} from 'react-native-elements';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import colors from '@/utils/colors';
 import displayAsset from '@/utils/displayAsset';
-import {useNavigation} from '@react-navigation/core';
 
-function ViewOrderScreen({route}: any) {
-  const [note, setNote] = useState('');
+interface OrdersViewProps {
+  order: {
+    name: string;
+    amount: string;
+  };
+  userOrders: {
+    image: string;
+  };
+}
+
+function OrdersView({order, userOrders}: OrdersViewProps) {
+  const [showReplacement, setReplacement] = useState(false);
+
+  function onPressHandler() {
+    return setReplacement(!showReplacement);
+  }
+  return (
+    <TouchableOpacity onPress={onPressHandler}>
+      <View style={styles.orderView}>
+        <Image style={styles.image} source={displayAsset(userOrders.image)} />
+        <View style={styles.foodDescription}>
+          <Text>{order.name}</Text>
+          <Text>N {order.amount}</Text>
+        </View>
+      </View>
+    </TouchableOpacity>
+  );
+}
+
+function ProductReplacementScreen({route}: any) {
   const userOrders = route.params;
-  const navigation = useNavigation();
   return (
     <ScrollView style={styles.view}>
       <View style={styles.container}>
@@ -19,40 +45,13 @@ function ViewOrderScreen({route}: any) {
         </View>
         <View style={styles.orderGroup}>
           {userOrders.orders.map((order: any, index: number) => (
-            <TouchableOpacity
-              onPress={() => navigation.navigate('ProductReplacementScreen')}
-            >
-              <View style={styles.orderView} key={index}>
-                <Image
-                  style={styles.image}
-                  source={displayAsset(userOrders.image)}
-                />
-                <View style={styles.foodDescription}>
-                  <Text>{order.name}</Text>
-                  <Text>N{order.amount}</Text>
-                </View>
-              </View>
-            </TouchableOpacity>
+            <OrdersView order={order} userOrders={userOrders} key={index} />
           ))}
           <View style={{...styles.orderView, ...styles.totalView}}>
             <Text style={styles.totalText}>Total Amount</Text>
             <Text style={styles.totalText}>N1200</Text>
           </View>
-          <View style={styles.note}>
-            <TextInput
-              multiline={true}
-              numberOfLines={3}
-              onChangeText={text => setNote(text)}
-              value={note}
-              placeholder="Dont put plenty oil in the beans"
-            />
-          </View>
-          <View style={styles.note}>
-            <Text>
-              Accept the order if all the products are available. Recommend
-              Replacement for unavailable products
-            </Text>
-          </View>
+
           <View style={styles.buttonView}>
             <Button
               buttonStyle={styles.outlineButton}
@@ -68,7 +67,7 @@ function ViewOrderScreen({route}: any) {
   );
 }
 
-export default memo(ViewOrderScreen);
+export default memo(ProductReplacementScreen);
 
 const styles = StyleSheet.create({
   view: {
@@ -147,13 +146,5 @@ const styles = StyleSheet.create({
   totalText: {
     color: colors.mallBlue5,
     fontFamily: 'Roboto-Bold',
-  },
-  note: {
-    marginTop: 10,
-    marginBottom: 10,
-    alignItems: 'center',
-    padding: 10,
-    borderWidth: 1,
-    borderColor: colors.mallBlue5,
   },
 });
