@@ -70,7 +70,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    //width: "100%",
     width: Dimensions.get('window').width * 0.7,
     marginTop: 10,
     marginBottom: 10,
