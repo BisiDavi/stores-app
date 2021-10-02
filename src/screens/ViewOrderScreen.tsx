@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, memo} from 'react';
 import {View, Text, StyleSheet, Dimensions, TextInput} from 'react-native';
 import {Button, Image} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
 import colors from '@/utils/colors';
 import displayAsset from '@/utils/displayAsset';
 
-export default function ViewOrderScreen({route}: any) {
+function ViewOrderScreen({route}: any) {
   const [note, setNote] = useState('');
   const userOrders = route.params;
   return (
@@ -61,6 +61,8 @@ export default function ViewOrderScreen({route}: any) {
     </ScrollView>
   );
 }
+
+export default memo(ViewOrderScreen);
 
 const styles = StyleSheet.create({
   view: {

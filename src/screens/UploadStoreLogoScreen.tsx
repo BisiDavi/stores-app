@@ -12,6 +12,7 @@ import ProgressIndicator from '@/components/ProgressIndicator';
 import {StoreLogoUploadAction} from '@/store/actions/StoreDetailsAction';
 import {uploadStoreLogoRequest} from '@/network/postRequest';
 import useUploadImage from '@/hooks/useUploadImage';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export default function UploadStoreLogoScreen() {
   const [loading, setLoading] = useState(false);
@@ -63,22 +64,22 @@ export default function UploadStoreLogoScreen() {
             {!storeLogo ? (
               <>
                 <View style={styles.imageView}>
-                  <Image
-                    onPress={pickImage}
-                    style={styles.uploadIcon}
-                    source={UploadIcon}
-                  />
+                  <TouchableOpacity onPress={pickImage}>
+                    <Image style={styles.uploadIcon} source={UploadIcon} />
+                  </TouchableOpacity>
                 </View>
                 <Text style={styles.error}>
                   please upload your logo, click on the icon above
                 </Text>
               </>
             ) : (
-              <Image
-                style={styles.logo}
-                onPress={pickImage}
-                source={{uri: storeLogo}}
-              />
+              <TouchableOpacity onPress={pickImage}>
+                <Image
+                  style={styles.logo}
+                  onPress={pickImage}
+                  source={{uri: storeLogo}}
+                />
+              </TouchableOpacity>
             )}
             <View>
               <Button

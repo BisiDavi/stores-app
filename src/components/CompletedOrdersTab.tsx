@@ -1,38 +1,24 @@
-import React from 'react';
-import {FlatList} from 'react-native';
-import CompletedOrdersList from '../json/completed-order.json';
-import OrdersListItem from '../components/OrdersListItem';
+import React, {useCallback} from 'react';
+import {FlatList, TouchableOpacity} from 'react-native';
+import CompletedOrdersList from '@/json/completed-order.json';
+import OrdersListItem from '@/components/OrdersListItem';
 
-type ordersList = {
-  id: number;
-  name: string;
-  code: string;
-  time: string;
-  status: string;
-  image: string;
-  orders: {name: string; amount: string}[];
-};
-
-type completedOrders = {
-  item: ordersList;
-};
-
-export default function CompletedOrdersTab() {
-  console.log('CompletedOrdersTab');
-
-  const completedOrders = function renderItem({item}: completedOrders) {
-    return <OrdersListItem key={item.id} item={item} />;
-  };
+export default function CompletedOrdersTab({navigation}: any) {
+  const keyExtractor = useCallback(item => item.id.toString(), []);
 
   return (
     <FlatList
       data={CompletedOrdersList}
-      renderItem={completedOrders}
+      renderItem={({item}) => (
+        <TouchableOpacity
+          onPressIn={() => navigation.navigate('ViewOrderScreen', item)}
+        >
+          <OrdersListItem item={item} />
+        </TouchableOpacity>
+      )}
       initialNumToRender={5}
       maxToRenderPerBatch={5}
-      keyExtractor={function (item) {
-        return item.id.toString();
-      }}
+      keyExtractor={keyExtractor}
     />
   );
 }

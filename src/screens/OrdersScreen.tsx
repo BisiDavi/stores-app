@@ -23,7 +23,7 @@ type Props = {
   navigation: OrdersScreenNavigationProps;
 };
 
-export default function OrdersScreen() {
+export default function OrdersScreen({navigation}: Props) {
   const [index, setIndex] = useState(0);
   const [welcomeModal, setWelcomeModal] = useState(false);
   const dispatch = useDispatch();
@@ -38,7 +38,6 @@ export default function OrdersScreen() {
 
   useEffect(() => {
     let renderOnce = true;
-    console.log('i m workin');
     completed &&
       !isWelcomeModalShown &&
       authMethod === 'SIGNIN' &&
@@ -51,14 +50,18 @@ export default function OrdersScreen() {
   }, []);
 
   useEffect(() => {
-    console.log('so am i');
-    getStoreDetailsRequest()
-      .then(response => {
-        dispatch(StoreProfileActions(response.data));
-      })
-      .catch(error => {
-        console.log('error', error);
-      });
+    let renderOnce = true;
+    renderOnce &&
+      getStoreDetailsRequest()
+        .then(response => {
+          dispatch(StoreProfileActions(response.data));
+        })
+        .catch(error => {
+          console.log('error', error);
+        });
+    return () => {
+      renderOnce = false;
+    };
   }, []);
 
   return (
@@ -84,10 +87,10 @@ export default function OrdersScreen() {
           </Tab>
           <TabView value={index} onChange={setIndex}>
             <TabView.Item style={styles.TabOneView}>
-              <NewOrdersTab />
+              <NewOrdersTab navigation={navigation} />
             </TabView.Item>
             <TabView.Item style={styles.TabTwoView}>
-              <CompletedOrdersTab />
+              <CompletedOrdersTab navigation={navigation} />
             </TabView.Item>
           </TabView>
         </>

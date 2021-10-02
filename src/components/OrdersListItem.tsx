@@ -1,14 +1,10 @@
 import React, {memo} from 'react';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {useNavigation} from '@react-navigation/core';
 import {ListItem, Image} from 'react-native-elements';
 import colors from '@/utils/colors';
 import displayAsset from '@/utils/displayAsset';
 
 function OrdersListItem({item}: OrdersViewProps) {
-  const navigation = useNavigation();
-
   const statusStyle =
     item.status === 'New'
       ? styles.new
@@ -17,34 +13,25 @@ function OrdersListItem({item}: OrdersViewProps) {
       : styles.completed;
 
   return (
-    <TouchableOpacity
-      style={styles.touchableOpacity}
-      key={item?.id}
-      onPress={() => navigation.navigate('ViewOrderScreen', item)}
-    >
-      <ListItem style={styles.listItem} bottomDivider>
-        <Image source={displayAsset(item.image)} style={styles.avatar} />
-        <ListItem.Content style={styles.listItemContent}>
-          <View style={styles.row}>
-            <Text>{item?.name}</Text>
-            <Text>{item?.code}</Text>
-          </View>
-          <View style={styles.row}>
-            <Text>{item?.time}</Text>
-            <Text style={{...styles.status, ...statusStyle}}>
-              {item?.status}
-            </Text>
-          </View>
-        </ListItem.Content>
-      </ListItem>
-    </TouchableOpacity>
+    <ListItem style={styles.listItem} bottomDivider>
+      <Image source={displayAsset(item.image)} style={styles.avatar} />
+      <ListItem.Content style={styles.listItemContent}>
+        <View style={styles.row}>
+          <Text>{item?.name}</Text>
+          <Text>{item?.code}</Text>
+        </View>
+        <View style={styles.row}>
+          <Text>{item?.time}</Text>
+          <Text style={{...styles.status, ...statusStyle}}>{item?.status}</Text>
+        </View>
+      </ListItem.Content>
+    </ListItem>
   );
 }
 
 export default memo(OrdersListItem);
 
 interface OrdersViewProps {
-  onPress?: () => void;
   item: {
     id: number;
     name: string;
