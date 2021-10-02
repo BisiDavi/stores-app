@@ -5,9 +5,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Formik} from 'formik';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {Dimensions, StyleSheet, View} from 'react-native';
-import {useStoreSetupNavigation} from '@/hooks/.';
-import {colors, showToast} from '@/utils/.';
 
+import {useFormValues, useStoreSetupNavigation} from '@/hooks/.';
+import {colors, showToast} from '@/utils/.';
 import settlementDetails from '@/json/settlement-details.json';
 import {DisplayFormElements} from './DisplayFormElements';
 import {storeSettlementDetailsSchema} from './StoreDetailsSchema';
@@ -29,9 +29,12 @@ export default function SettlementDetailsForm() {
   const {onBoardingNextScreen} = useStoreSetupNavigation();
   const dispatch = useDispatch();
   const {storeDetails} = useSelector((state: RootState) => state.storeDetails);
+  const {formThreeMainValues} = useFormValues();
+
   console.log('storeDetails', storeDetails);
 
   useEffect(() => {
+    let postSettlementDetails = true;
     const {settlementPlan, bankName, bankCode, accountName, accountNumber} =
       storeDetails;
     const notEmpty = (name: string) => name.length !== 0;
@@ -48,8 +51,10 @@ export default function SettlementDetailsForm() {
         .then(response => {
           console.log('response postStoreDetailsRequest', response.data);
           setLoading(false);
-          showToast(response.data.message);
-          onBoardingNextScreen(4, false);
+          if (postSettlementDetails) {
+            showToast(response.data.message);
+            onBoardingNextScreen(4, false);
+          }
         })
         .catch(error => {
           console.log('error postStoreDetailsRequest', error);
@@ -63,7 +68,11 @@ export default function SettlementDetailsForm() {
           showToast(errorMessage);
         });
     }
-  }, [formValues]);
+    //cancel subscription to useEffect
+    return () => {
+      postSettlementDetails = false;
+    };
+  }, []);
 
   const settlementOptions: any = settlementDetails[1].options;
 
@@ -73,13 +82,7 @@ export default function SettlementDetailsForm() {
       <View style={styles.form}>
         <Formik
           validationSchema={storeSettlementDetailsSchema}
-          initialValues={{
-            settlementPlan: '',
-            bankName: '',
-            bankCode: '',
-            accountNumber: '',
-            accountName: '',
-          }}
+          initialValues={formThreeMainValues}
           onSubmit={values => {
             const selectedBank: any = settlementOptions.filter(
               (bank: any) => bank.bank_code === values.bankCode,

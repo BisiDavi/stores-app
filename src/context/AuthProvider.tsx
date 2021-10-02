@@ -65,6 +65,7 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
                   ownsAccount: response.bank,
                 });
               }
+              showToast("You're not done with your registration");
               dispatch({
                 type: 'SIGN_IN',
                 token: loginInToken,

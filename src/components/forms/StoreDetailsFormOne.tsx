@@ -9,7 +9,7 @@ import {colors, showToast} from '@/utils/.';
 import storeDetailsFormOne from '@/json/storDetailsFormOneOne.json';
 import {StoreDetailsAction} from '@/store/actions/StoreDetailsAction';
 import {DisplayFormElements} from './DisplayFormElements';
-import useStoreSetupNavigation from '@/hooks/useStoreSetupNavigation';
+import {useStoreSetupNavigation, useFormValues} from '@/hooks';
 import {
   getAvailableState,
   getStoreCategoriesRequest,
@@ -24,6 +24,7 @@ export default function StoreDetailsFormOne() {
   const [infoModal, setInfoModal] = useState(false);
   const [storeCategory, setStoreCategory] = useState([]);
   const [availableStates, setAvailableState] = useState([]);
+  const {formOneMainValues} = useFormValues();
 
   storeDetailsFormOne[4].options = availableStates;
   storeDetailsFormOne[5].options = storeCategory;
@@ -59,14 +60,7 @@ export default function StoreDetailsFormOne() {
       <View style={styles.form}>
         <Formik
           validationSchema={storeDetailsScreenOneSchema}
-          initialValues={{
-            name: '',
-            email: '',
-            phone: '',
-            address: '',
-            state: '',
-            category: '',
-          }}
+          initialValues={formOneMainValues}
           onSubmit={values => {
             setLoading(true);
             dispatch(StoreDetailsAction(values));

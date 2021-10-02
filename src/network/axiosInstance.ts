@@ -30,6 +30,7 @@ axiosInstance.interceptors.request.use(
     if (savedToken) {
       config.headers.Authorization = 'Bearer ' + savedToken;
     }
+    console.log('savedToken', savedToken);
     return config;
   },
   error => {
@@ -42,7 +43,6 @@ axiosImageInstance.interceptors.request.use(
     if (savedToken) {
       config.headers.Authorization = 'Bearer ' + savedToken;
     }
-    console.log('savedToken', savedToken);
     return config;
   },
   error => {

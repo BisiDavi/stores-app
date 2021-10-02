@@ -4,28 +4,24 @@ import {useDispatch} from 'react-redux';
 import {Formik} from 'formik';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {StyleSheet, Dimensions, View} from 'react-native';
-import {useStoreSetupNavigation} from '../../hooks/.';
-import storeDetailsFormTwo from '../../json/storeDetailsFormTwo.json';
+import {useStoreSetupNavigation, useFormValues} from '@/hooks/.';
+import storeDetailsFormTwo from '@/json/storeDetailsFormTwo.json';
 import {storeDetailsScreenTwoSchema} from '../forms';
 import {DisplayFormElements} from './DisplayFormElements';
-import {StoreOwnerAction} from '../../store/actions/StoreDetailsAction';
-import {colors} from '../../utils/.';
+import {StoreOwnerAction} from '@/store/actions/StoreDetailsAction';
+import {colors} from '@/utils/.';
 
 export default function StoreDetailsFormTwo() {
   const [loading, setLoading] = useState(false);
   const {onBoardingNextScreen} = useStoreSetupNavigation();
   const dispatch = useDispatch();
-
+  const {formTwoMainValues} = useFormValues();
   return (
     <>
       <Spinner visible={loading} color={colors.cloudOrange5} />
       <Formik
         validationSchema={storeDetailsScreenTwoSchema}
-        initialValues={{
-          ownerName: '',
-          ownerPhone: '',
-          ownerEmail: '',
-        }}
+        initialValues={formTwoMainValues}
         onSubmit={values => {
           console.log('values', values);
           setLoading(true);
