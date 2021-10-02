@@ -1,46 +1,70 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import {Button} from 'react-native-elements';
-import colors from '@/utils/colors';
-import InputField from '@/components/InputField';
+import {RouteProp} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
-export default function AddProductCategoryScreen() {
+import ProgressIndicator from '@/components/ProgressIndicator';
+import {View, StyleSheet, ScrollView, Dimensions} from 'react-native';
+import AddProductOtherDetailsForm from '@/components/forms/AddProductOtherDetailsForm';
+import {DrawerStackParamList} from '@/customTypes';
+
+type AddProductOtherDetailsScreenNavigationProps = StackNavigationProp<
+  DrawerStackParamList,
+  'AddProductOtherDetailsScreen'
+>;
+
+type AddProductOtherDetailsScreenRouteProps = RouteProp<
+  DrawerStackParamList,
+  'AddProductOtherDetailsScreen'
+>;
+
+type Props = {
+  route?: AddProductOtherDetailsScreenRouteProps;
+  navigation: AddProductOtherDetailsScreenNavigationProps;
+};
+
+export default function AddProductOtherDetailsScreen({navigation}: Props) {
   return (
-    <View style={styles.container}>
-      <View style={styles.form}>
-        <InputField label="Add Product Category" />
-        <View style={styles.buttonViewStyle}>
-          <Button
-            buttonStyle={styles.buttonStyle}
-            titleStyle={styles.buttonText}
-            title="Add Product Category"
+    <SafeAreaView style={styles.scrollView}>
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.container}>
+          <ProgressIndicator
+            style={styles.progressIndicator}
+            selected={2}
+            title="Step 2: Other Details"
+            total={2}
           />
+          <AddProductOtherDetailsForm navigation={navigation} />
         </View>
-      </View>
-    </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+  scrollView: {
     flex: 1,
   },
-  buttonStyle: {
-    backgroundColor: colors.mallBlue5,
-    width: '100%',
+  container: {
+    flex: 1,
+    margin: 20,
+    marginTop: 0,
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    width: Dimensions.get('window').width * 0.9,
   },
-  input: {
-    height: 50,
+  progressIndicator: {
+    margin: 5,
+    marginLeft: 0,
+    marginBottom: 20,
+    marginTop: 0,
   },
-  buttonViewStyle: {},
-  buttonText: {
-    color: colors.neutralWhite,
-  },
-  form: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginTop: 10,
+  title: {
+    fontFamily: 'MontserratBold',
+    fontSize: 16,
+    marginTop: 0,
+    margin: 10,
+    marginLeft: 0,
+    textAlign: 'center',
   },
 });

@@ -10,7 +10,6 @@ export type RootStackParamList = {
   LoginScreen: undefined;
   AvailableBalanceScreen: undefined;
   AmountPaidScreen: undefined;
-  StatisticsScreen: undefined;
   SettlementDetailsScreen: undefined;
 };
 

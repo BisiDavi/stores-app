@@ -1,6 +1,5 @@
-import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import * as React from 'react';
+import React from 'react';
 import {
   StyleSheet,
   View,
@@ -11,24 +10,21 @@ import {
   Platform,
   Dimensions,
 } from 'react-native';
-import DashboardCard from '../components/DashboardCard';
-import dashboardContent from '../json/dashboard.json';
-import {BottomTabParamList} from '../customTypes';
-import DashboardChart from '../components/DashboardChart';
-import colors from '../utils/colors';
-import SelectField from '../components/SelectField';
-import selectContent from '../json/dasboard-select.json';
+import DashboardCard from '@/components/DashboardCard';
+import dashboardContent from '@/json/dashboard.json';
+import {BottomTabParamList} from '@/customTypes';
+import DashboardChart from '@/components/DashboardChart';
+import colors from '@/utils/colors';
+import SelectField from '@/components/SelectField';
+import selectContent from '@/json/dasboard-select.json';
 
-type DashboardScreenNavigationProps = StackNavigationProp<
+export type DashboardScreenNavProps = StackNavigationProp<
   BottomTabParamList,
   'Dashboard'
 >;
 
-type DashboardScreenRouteProps = RouteProp<BottomTabParamList, 'Dashboard'>;
-
 type Props = {
-  route?: DashboardScreenRouteProps;
-  navigation: DashboardScreenNavigationProps;
+  navigation: DashboardScreenNavProps;
 };
 
 type dashboardContentType = {
@@ -37,7 +33,7 @@ type dashboardContentType = {
 };
 
 export default function DashboardScreen({navigation}: Props) {
-  const StatisticsScreenRoute: keyof BottomTabParamList = 'StatisticsScreen';
+  const StatisticsScreenRoute: any = 'StatisticsScreen';
 
   function navigateToStatisticsScreen() {
     return navigation.navigate(StatisticsScreenRoute);

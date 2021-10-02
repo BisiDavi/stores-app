@@ -4,6 +4,7 @@ import {StyleSheet, View, Text} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {Image} from 'react-native-elements';
+import {useSelector} from 'react-redux';
 
 import useUploadImage from '@/hooks/useUploadImage';
 import AddNewProductForm from '@/components/forms/AddNewProductForm';
@@ -11,6 +12,7 @@ import {colors, showToast} from '@/utils/.';
 import {ProgressIndicator, Fab} from '@/components/.';
 import {uploadProductImageRequest} from '@/network/postRequest';
 import {DrawerStackParamList} from '@/customTypes/.';
+import {RootState} from '@/store/RootReducer';
 
 export type AddProductScreenNavigationProps = StackNavigationProp<
   DrawerStackParamList,
@@ -23,19 +25,22 @@ type Props = {
 
 export default function AddProductScreen({navigation}: Props) {
   const [loading, setLoading] = useState(false);
+  const {submitProduct} = useSelector((state: RootState) => state.addProduct);
   const {
     formDataState,
     image: productImage,
     pickImage,
   } = useUploadImage(setLoading, 'image');
 
+  console.log('submitProduct', submitProduct);
+
   useEffect(() => {
+    let uploadOnce = true;
     const isFormDataStateEmpty = Object.keys(formDataState).length > 0;
-    if (isFormDataStateEmpty) {
+    if (isFormDataStateEmpty && uploadOnce && submitProduct) {
       async function uploadImage() {
         return await uploadProductImageRequest(formDataState)
           .then(response => {
-            console.log('response', response.data.message);
             setLoading(false);
             showToast(response.data.message);
           })
@@ -51,7 +56,10 @@ export default function AddProductScreen({navigation}: Props) {
       }
       uploadImage();
     }
-  }, [formDataState]);
+    return () => {
+      uploadOnce = false;
+    };
+  }, [formDataState, submitProduct]);
 
   return (
     <ScrollView>

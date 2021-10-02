@@ -3,13 +3,13 @@ import {Formik} from 'formik';
 import {View, StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {Button} from 'react-native-elements';
-import addNewProductSchema from '../forms/AddNewProductSchema';
-import {DisplayFormElements} from '../forms/DisplayFormElements';
-import addproductContent from '../../json/add-product.json';
-import colors from '../../utils/colors';
-import {AddProductStep1Action} from '../../store/actions/addProductAction';
-import {getProductsCategories} from '../../network/postRequest';
-import {RootState} from '../../store/RootReducer';
+import addNewProductSchema from '@/components/forms/AddNewProductSchema';
+import {DisplayFormElements} from '@/components/forms/DisplayFormElements';
+import addproductContent from '@/json/add-product.json';
+import colors from '@/utils/colors';
+import {AddProductStep1Action} from '@/store/actions/addProductAction';
+import {getProductsCategories} from '@/network/postRequest';
+import {RootState} from '@/store/RootReducer';
 
 export default function AddNewProductForm({navigation}: any) {
   const [productCategories, setProductCategories] = useState<any>([]);

@@ -21,3 +21,4 @@ export {default as AddProductCategoryScreen} from '@/screens/AddProductCategoryS
 export {default as AddFreshFoodOtherDetailsScreen} from '@/screens/AddFreshFoodOtherDetailsScreen';
 export {default as AddProductScreenMethod} from '@/screens/AddProductScreenMethod';
 export {default as ConfirmPaymentScreen} from '@/screens/ConfirmPaymentScreen';
+export {default as ConfirmRiderScreen} from '@/screens/ConfirmRiderScreen';

@@ -17,14 +17,17 @@ export type addProductTypes = {
 };
 
 export type addProductStateType = {
-  name: string;
-  description: string;
-  price: string;
-  quantity: number;
-  categoryId: string;
-  takeAwayPrice: number;
-  storeId: string;
-  kg: string;
-  duration: number;
-  isAvailable: boolean;
+  product: {
+    name: string;
+    description: string;
+    price: string;
+    quantity: number;
+    categoryId: string;
+    takeAwayPrice: number;
+    storeId: string;
+    kg: string;
+    duration: number;
+    isAvailable: boolean;
+  };
+  submitProduct: boolean;
 };
