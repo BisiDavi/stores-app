@@ -21,6 +21,7 @@ export default function RootNavigator() {
   const {completed, formPage} = useSelector(
     (storeState: RootState) => storeState.setupStore,
   );
+
   const navigation = useNavigation();
   const tokenExpiry = hasTokenExpired(state.userToken);
 

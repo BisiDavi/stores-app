@@ -29,9 +29,6 @@ export default function useFormValues() {
     accountName: '',
   };
 
-  const storeTypeInitial = '';
-  const storeTypeRedux = storeDetails.type;
-
   const formOneValues = {
     name: storeDetails.name,
     email: storeDetails.email,
@@ -40,6 +37,7 @@ export default function useFormValues() {
     state: storeDetails.state,
     category: storeDetails.category,
   };
+
   const formTwoValues = {
     ownerName: storeDetails.ownerName,
     ownerEmail: storeDetails.ownerEmail,
@@ -59,8 +57,6 @@ export default function useFormValues() {
 
   const checkFormThreeValues: boolean = isDataObjectFilled(formThreeValues);
 
-  const checkFormStoreType: boolean = isDataObjectFilled(storeTypeRedux);
-
   const formOneMainValues: any = checkFormOneValues
     ? formOneValues
     : formOneInitialValues;
@@ -73,12 +69,9 @@ export default function useFormValues() {
     ? formThreeValues
     : formThreeInitialValues;
 
-  const storeFormType = checkFormStoreType ? storeTypeRedux : storeTypeInitial;
-
   return {
     formOneMainValues,
     formTwoMainValues,
     formThreeMainValues,
-    storeFormType,
   };
 }

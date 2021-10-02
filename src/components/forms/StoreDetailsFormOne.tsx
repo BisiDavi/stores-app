@@ -34,9 +34,12 @@ export default function StoreDetailsFormOne() {
   }
 
   useEffect(() => {
+    let useEffectRendered = true;
     getStoreCategoriesRequest()
       .then(response => {
-        setStoreCategory(response.data.data);
+        if (useEffectRendered) {
+          setStoreCategory(response.data.data);
+        }
       })
       .catch(error => {
         if (error.response) {
@@ -48,9 +51,15 @@ export default function StoreDetailsFormOne() {
 
     getAvailableState()
       .then(response => {
-        setAvailableState(response.data.data);
+        if (useEffectRendered) {
+          setAvailableState(response.data.data);
+        }
       })
       .catch(error => console.log('error', error));
+
+    return () => {
+      useEffectRendered = false;
+    };
   }, []);
 
   return (

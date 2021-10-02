@@ -1,30 +1,24 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import {RadioButton} from 'react-native-paper';
-import {useDispatch, useSelector} from 'react-redux';
-import {colors, displayAsset} from '../utils/.';
-import {StoreDetailsTypeAction} from '../store/actions/StoreDetailsAction';
-import {RootState} from '../store/RootReducer';
+import {useDispatch} from 'react-redux';
+import {colors, displayAsset} from '@/utils/.';
+import {StoreDetailsTypeAction} from '@/store/actions/StoreDetailsAction';
 
 export default function RadioField({content, toggleModal}: RadioFieldProps) {
   const [checked, setChecked] = useState('');
   const dispatch = useDispatch();
-  const {storeDetails}: any = useSelector(
-    (state: RootState) => state.storeDetails,
-  );
-  const {type} = storeDetails;
+
+  function checkHandler(item: string) {
+    setChecked(item);
+  }
+  const isTypeValid = checked.length > 0;
 
   useEffect(() => {
-    let dispatchFormValue = true;
-    if (dispatchFormValue) {
+    if (checked.length > 0) {
       dispatch(StoreDetailsTypeAction(checked));
     }
-    return () => {
-      dispatchFormValue = false;
-    };
   }, [checked, dispatch]);
-
-  const isTypeValid = type.length > 0;
 
   return (
     <View style={styles.storeType}>
@@ -38,7 +32,7 @@ export default function RadioField({content, toggleModal}: RadioFieldProps) {
             <Text style={styles.label}>{item.label}</Text>
             <RadioButton
               value={item.value}
-              onPress={() => setChecked(item.value)}
+              onPress={() => checkHandler(item.value)}
               uncheckedColor={colors.mallBlue4}
               color={colors.mallBlue5}
               status={checked === item.value ? 'checked' : 'unchecked'}
