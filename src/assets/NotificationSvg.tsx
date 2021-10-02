@@ -1,6 +1,6 @@
 import React from 'react';
-import SvgWrapper from '../utils/SvgWrapper';
-import SVgProps from '../customTypes/svgTypes';
+import SvgWrapper from '@/utils/SvgWrapper';
+import SVgProps from '@/customTypes/svgTypes';
 
 export default function NotificationSvg({color}: SVgProps) {
   const svg = `<svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
