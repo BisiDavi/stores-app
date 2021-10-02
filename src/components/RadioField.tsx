@@ -10,7 +10,7 @@ export default function RadioField({content, toggleModal}: RadioFieldProps) {
   const dispatch = useDispatch();
 
   function checkHandler(item: string) {
-    setChecked(item);
+    return setChecked(item);
   }
   const isTypeValid = checked.length > 0;
 

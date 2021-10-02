@@ -50,6 +50,7 @@ export function StoreDetailsReducer(
   action: storeDetailsActionType,
 ) {
   const {payload, type} = action;
+
   switch (type) {
     case STORETYPE_SELECTED: {
       return {

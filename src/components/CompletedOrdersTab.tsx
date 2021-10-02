@@ -17,21 +17,11 @@ type completedOrders = {
   item: ordersList;
 };
 
-export default function CompletedOrdersTab({navigation}: any) {
-  function viewOrder(item: ordersList) {
-    console.log('viewOrder, I am console.log');
-    navigation.navigate('ViewOrderScreen', item);
-  }
-  console.log('newOrdersTab');
+export default function CompletedOrdersTab() {
+  console.log('CompletedOrdersTab');
 
   const completedOrders = function renderItem({item}: completedOrders) {
-    return (
-      <OrdersListItem
-        key={item.id}
-        item={item}
-        onPress={() => viewOrder(item)}
-      />
-    );
+    return <OrdersListItem key={item.id} item={item} />;
   };
 
   return (

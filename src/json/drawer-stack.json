@@ -1,7 +1,7 @@
 {
   "orders": [
     {"name": "OrderScreen", "title": "Orders"},
-    {"name": "ViewOrderScreen"}
+    {"name": "ViewOrderScreen", "title": "Order details"}
   ],
   "myStore": [
     {"name": "ProfileScreen", "title": "Profile"},

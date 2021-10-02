@@ -12,10 +12,12 @@ import {
   SELECT_OPEN_DAYS_TIME,
 } from '../constant';
 
-export const StoreDetailsTypeAction = (payload: any) => (dispatch: any) => {
-  dispatch({
+export const StoreDetailsTypeAction = (type: any) => (dispatch: any) => {
+  return dispatch({
     type: STORETYPE_SELECTED,
-    payload,
+    payload: {
+      type,
+    },
   });
 };
 

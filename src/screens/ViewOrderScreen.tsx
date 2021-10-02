@@ -1,14 +1,12 @@
-import colors from '../utils/colors';
-import displayAsset from '../utils/displayAsset';
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, Dimensions, TextInput} from 'react-native';
 import {Button, Image} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
+import colors from '@/utils/colors';
+import displayAsset from '@/utils/displayAsset';
 
 export default function ViewOrderScreen({route}: any) {
   const [note, setNote] = useState('');
-  console.log('route viewOrderScreen', route.params);
-
   const userOrders = route.params;
   return (
     <ScrollView style={styles.view}>

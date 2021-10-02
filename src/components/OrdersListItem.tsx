@@ -1,12 +1,14 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
-import {ListItem, Image} from 'react-native-elements';
-import clipboard from '../assets/clipboard.png';
-import colors from '../utils/colors';
-import displayAsset from '../utils/displayAsset';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {useNavigation} from '@react-navigation/core';
+import {ListItem, Image} from 'react-native-elements';
+import colors from '@/utils/colors';
+import displayAsset from '@/utils/displayAsset';
 
-export default function OrdersListItem({item, onPress}: OrdersViewProps) {
+function OrdersListItem({item}: OrdersViewProps) {
+  const navigation = useNavigation();
+
   const statusStyle =
     item.status === 'New'
       ? styles.new
@@ -18,7 +20,7 @@ export default function OrdersListItem({item, onPress}: OrdersViewProps) {
     <TouchableOpacity
       style={styles.touchableOpacity}
       key={item?.id}
-      onPress={onPress}
+      onPress={() => navigation.navigate('ViewOrderScreen', item)}
     >
       <ListItem style={styles.listItem} bottomDivider>
         <Image source={displayAsset(item.image)} style={styles.avatar} />
@@ -29,7 +31,6 @@ export default function OrdersListItem({item, onPress}: OrdersViewProps) {
           </View>
           <View style={styles.row}>
             <Text>{item?.time}</Text>
-            <Image style={styles.clipboard} source={clipboard} />
             <Text style={{...styles.status, ...statusStyle}}>
               {item?.status}
             </Text>
@@ -39,6 +40,8 @@ export default function OrdersListItem({item, onPress}: OrdersViewProps) {
     </TouchableOpacity>
   );
 }
+
+export default memo(OrdersListItem);
 
 interface OrdersViewProps {
   onPress?: () => void;

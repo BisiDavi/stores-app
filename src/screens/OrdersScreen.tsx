@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StyleSheet, SafeAreaView, View} from 'react-native';
@@ -22,7 +23,7 @@ type Props = {
   navigation: OrdersScreenNavigationProps;
 };
 
-export default function OrdersScreen({navigation}: Props) {
+export default function OrdersScreen() {
   const [index, setIndex] = useState(0);
   const [welcomeModal, setWelcomeModal] = useState(false);
   const dispatch = useDispatch();
@@ -36,14 +37,21 @@ export default function OrdersScreen({navigation}: Props) {
   }
 
   useEffect(() => {
+    let renderOnce = true;
+    console.log('i m workin');
     completed &&
       !isWelcomeModalShown &&
       authMethod === 'SIGNIN' &&
+      renderOnce &&
       setWelcomeModal(true);
     dispatch(CloseWelcomeModalAction());
-  }, [completed, dispatch, isWelcomeModalShown, authMethod]);
+    return () => {
+      renderOnce = false;
+    };
+  }, []);
 
   useEffect(() => {
+    console.log('so am i');
     getStoreDetailsRequest()
       .then(response => {
         dispatch(StoreProfileActions(response.data));
@@ -51,7 +59,7 @@ export default function OrdersScreen({navigation}: Props) {
       .catch(error => {
         console.log('error', error);
       });
-  }, [dispatch]);
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -76,10 +84,10 @@ export default function OrdersScreen({navigation}: Props) {
           </Tab>
           <TabView value={index} onChange={setIndex}>
             <TabView.Item style={styles.TabOneView}>
-              <NewOrdersTab navigation={navigation} />
+              <NewOrdersTab />
             </TabView.Item>
             <TabView.Item style={styles.TabTwoView}>
-              <CompletedOrdersTab navigation={navigation} />
+              <CompletedOrdersTab />
             </TabView.Item>
           </TabView>
         </>
