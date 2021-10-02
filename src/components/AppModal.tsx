@@ -6,18 +6,19 @@ export default function AppModal({
   children,
   visible,
   style,
+  toggleOverlay,
 }: PropsWithChildren<AppModalProps>) {
   return (
     <View>
-      <Modal style={style} isVisible={visible}>
+      <Modal style={style} isVisible={visible} onBackdropPress={toggleOverlay}>
         {children}
       </Modal>
     </View>
   );
 }
 
-interface AppModalProps {
+export interface AppModalProps {
   toggleOverlay: () => void;
   visible: boolean;
-  style: any;
+  style?: any;
 }

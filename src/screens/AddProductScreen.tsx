@@ -100,7 +100,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     padding: 15,
-    paddingTop: 0,
   },
   progressIndicatorView: {
     marginLeft: 15,

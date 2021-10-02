@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import {Switch} from 'react-native-elements';
 import colors from '@/utils/colors';
 
@@ -15,7 +15,7 @@ interface SwitchFieldsProps {
   };
 }
 
-function SwitchView({label}: SwitchViewProps) {
+export function SwitchView({label}: SwitchViewProps) {
   const [open, setOpen] = useState(false);
   return (
     <View style={styles.switchView}>
@@ -46,6 +46,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     margin: 10,
+    width: Dimensions.get('window').width * 0.85,
+    alignItems: 'flex-start',
   },
   SwitchFields: {
     marginTop: 0,

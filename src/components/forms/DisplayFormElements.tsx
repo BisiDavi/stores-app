@@ -3,9 +3,9 @@ import {Dimensions, KeyboardTypeOptions, StyleSheet} from 'react-native';
 import InputField from '../InputField';
 import RadioField from '../RadioField';
 import SelectField from '../SelectField';
-import {displayAsset} from '../../utils/.';
+import {displayAsset} from '@/utils/.';
 import InputGroup from '../InputGroup';
-import SwitchFields from '../SwitchFields';
+import SwitchFields, {SwitchView} from '../SwitchFields';
 import SwitchfieldTimefield from './SwitchfieldTimefield';
 
 function FormElements(props: displayFormElementsProps) {
@@ -32,6 +32,9 @@ function FormElements(props: displayFormElementsProps) {
     }
     case 'radio': {
       return <RadioField content={formElement} toggleModal={toggleModal} />;
+    }
+    case 'switchView': {
+      return <SwitchView label={formElement.label} />;
     }
     case 'select': {
       return (

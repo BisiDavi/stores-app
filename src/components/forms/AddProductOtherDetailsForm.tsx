@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {CheckBox} from 'react-native-elements';
 import {useDispatch, useSelector} from 'react-redux';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
@@ -13,28 +13,41 @@ import {RootState} from '@/store/RootReducer';
 import {addProductsRequest} from '@/network/postRequest';
 import showToast from '@/utils/showToast';
 import {AddProductStep2Action} from '@/store/actions/addProductAction';
+import {getAllStoreExtrasRequest} from '@/network/getRequest';
 
 interface DisplayCheckboxProps {
-  title: string;
+  title: {
+    name: string;
+    isCompulsory: boolean;
+    _id: string;
+    price: string;
+  };
 }
+
+type storeExtrasType = {
+  name: string;
+  isCompulsory: boolean;
+  _id: string;
+  price: string;
+}[];
 
 function DisplayCheckbox({title}: DisplayCheckboxProps) {
   const [addExtra, setAddExtra] = useState(false);
+  const extrasTitle = `${title.name} (${title.price})`;
   function toggleCheckBox() {
     return setAddExtra(!addExtra);
   }
-  return <CheckBox checked={addExtra} title={title} onPress={toggleCheckBox} />;
+  return (
+    <CheckBox checked={addExtra} title={extrasTitle} onPress={toggleCheckBox} />
+  );
 }
 
 const AddProductOtherDetailsForm = ({navigation}: any) => {
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
-  const [productFields, setProductFields] = useState<any>({});
-  const addedProduct: any = useSelector((state: RootState) => state.addProduct);
-  const {storeProfile}: any = useSelector(
-    (state: RootState) => state.storeProfile,
-  );
+  const [storesExtras, setStoresExtras] = useState<storeExtrasType>([]);
   const [showPromoTag, setShowPromoTag] = useState(false);
+  const [productFields, setProductFields] = useState<any>({});
+  const dispatch = useDispatch();
   const [isProductAvailable, setIsProductAvailable] = useState<any>({
     isAvailable: null,
     duration: {
@@ -42,9 +55,39 @@ const AddProductOtherDetailsForm = ({navigation}: any) => {
       to: null,
     },
   });
-  const {main, secondary, productAvailabilty} = productExtras;
-
+  const addedProduct: any = useSelector((state: RootState) => state.addProduct);
+  const {storeProfile}: any = useSelector(
+    (state: RootState) => state.storeProfile,
+  );
+  const {productAvailabilty} = productExtras;
   console.log('productFields', productFields);
+
+  useEffect(() => {
+    let renderOnce = true;
+    getAllStoreExtrasRequest()
+      .then(response => {
+        if (renderOnce) {
+          setStoresExtras(response.data.data);
+        }
+      })
+      .catch(error => {
+        if (error.request) {
+          showToast('oops, an error occurred, unable to fetch stores extras');
+        } else if (error.response) {
+          showToast(error.response?.data?.message);
+        }
+      });
+    return () => {
+      renderOnce = false;
+    };
+  }, []);
+
+  const mainExtras = storesExtras.filter(
+    extras => extras.isCompulsory === true,
+  );
+  const secondaryExtras = storesExtras.filter(
+    extras => extras.isCompulsory === false,
+  );
 
   function submitProduct() {
     setLoading(true);
@@ -102,8 +145,8 @@ const AddProductOtherDetailsForm = ({navigation}: any) => {
         <View>
           <Text style={styles.extra}>Main Extras</Text>
           <View style={styles.checkboxView}>
-            {main.map(extra => (
-              <DisplayCheckbox title={extra} key={extra} />
+            {mainExtras.map(extra => (
+              <DisplayCheckbox key={extra._id} title={extra} />
             ))}
           </View>
         </View>
@@ -111,8 +154,8 @@ const AddProductOtherDetailsForm = ({navigation}: any) => {
           <Text style={styles.extra}>Secondary Extras</Text>
 
           <View style={styles.checkboxView}>
-            {secondary.map(extra => (
-              <DisplayCheckbox title={extra} key={extra} />
+            {secondaryExtras.map(extra => (
+              <DisplayCheckbox key={extra._id} title={extra} />
             ))}
           </View>
         </View>
@@ -159,7 +202,9 @@ const AddProductOtherDetailsForm = ({navigation}: any) => {
             <Text style={styles.promoTagText}>Add Promo Tag</Text>
           </TouchableOpacity>
         </View>
-        {showPromoTag && <PromoTagForm />}
+        <View style={styles.promoTagForm}>
+          {showPromoTag && <PromoTagForm />}
+        </View>
         <View style={styles.buttonGroup}>
           <Button
             title="Back"
@@ -209,13 +254,16 @@ const styles = StyleSheet.create({
     color: colors.mallBlue5,
   },
   promoTagText: {
-    color: colors.mallBlue5,
-    fontFamily: 'RobotoBold',
+    color: colors.accentRed,
+    fontFamily: 'Roboto-Bold',
     margin: 10,
+  },
+  promoTagForm: {
+    marginTop: 0,
   },
   extra: {
     color: colors.black,
-    fontFamily: 'RobotoBold',
+    fontFamily: 'Roboto-Bold',
     fontSize: 14,
     letterSpacing: 0.0025,
     margin: 10,
@@ -226,7 +274,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '92%',
     margin: 10,
-    marginTop: 30,
+    marginTop: 0,
   },
   productButtonGroup: {
     flexDirection: 'row',
@@ -234,7 +282,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '86%',
     margin: 10,
-    marginTop: 30,
+    marginTop: 0,
+    marginLeft: 0,
   },
   error: {
     color: colors.accentRed,

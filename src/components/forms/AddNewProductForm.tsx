@@ -20,14 +20,20 @@ export default function AddNewProductForm({navigation}: any) {
   );
 
   useEffect(() => {
+    let renderOnce = true;
     getProductsCategories(storeProfile._id)
       .then(response => {
         console.log('productCategories', response.data);
-        return setProductCategories(response.data);
+        if (renderOnce) {
+          return setProductCategories(response.data);
+        }
       })
       .catch(error => {
-        console.log('error', error);
+        console.log('getProductsCategories error', error);
       });
+    return () => {
+      renderOnce = false;
+    };
   }, [storeProfile._id]);
 
   useEffect(() => {

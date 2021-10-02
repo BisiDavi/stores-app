@@ -19,3 +19,7 @@ export async function getCatalogProductCategories() {
 export async function getStoreDetailsRequest() {
   return await axiosInstance.get('/api/store/profile');
 }
+
+export async function getAllStoreExtrasRequest() {
+  return await axiosInstance.get('/api/store/all-store-extras');
+}

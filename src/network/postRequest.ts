@@ -92,3 +92,11 @@ export async function getProductsCategories(storeId: string) {
     storeId,
   );
 }
+
+export async function addExtrasRequest(extra: any) {
+  return await axiosInstance.post('/api/store/add-extras', extra);
+}
+
+export async function addProductsCategories(category: {name: string}) {
+  return await axiosInstance.post('/api/store/add-product-category', category);
+}
