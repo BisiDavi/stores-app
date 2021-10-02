@@ -16,6 +16,7 @@ export default function StoreDetailsFormTwo() {
   const {onBoardingNextScreen} = useStoreSetupNavigation();
   const dispatch = useDispatch();
   const {formTwoMainValues} = useFormValues();
+  console.log('formTwoMainValues', formTwoMainValues);
   return (
     <>
       <Spinner visible={loading} color={colors.cloudOrange5} />

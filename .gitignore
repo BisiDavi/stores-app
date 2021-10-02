@@ -63,4 +63,4 @@ AndroidManifest.xml
 # CocoaPods
 /ios/Pods/
 
-secrets
+secrets.ts

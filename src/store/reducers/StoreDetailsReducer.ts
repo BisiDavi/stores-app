@@ -56,7 +56,7 @@ export function StoreDetailsReducer(
         ...state,
         storeDetails: {
           ...state.storeDetails,
-          type: payload,
+          type: payload.type,
         },
       };
     }

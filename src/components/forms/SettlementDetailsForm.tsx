@@ -25,7 +25,7 @@ interface formValuesState {
 
 export default function SettlementDetailsForm() {
   const [loading, setLoading] = useState(false);
-  const [formValues, setFormValues] = useState<formValuesState | null>(null);
+  const [submitForm, setSubmitForm] = useState(false);
   const {onBoardingNextScreen} = useStoreSetupNavigation();
   const dispatch = useDispatch();
   const {storeDetails} = useSelector((state: RootState) => state.storeDetails);
@@ -35,17 +35,7 @@ export default function SettlementDetailsForm() {
 
   useEffect(() => {
     let postSettlementDetails = true;
-    const {settlementPlan, bankName, bankCode, accountName, accountNumber} =
-      storeDetails;
-    const notEmpty = (name: string) => name.length !== 0;
-    if (
-      notEmpty(settlementPlan) &&
-      notEmpty(bankName) &&
-      notEmpty(bankCode) &&
-      notEmpty(accountNumber) &&
-      notEmpty(accountName) &&
-      formValues !== null
-    ) {
+    if (submitForm) {
       console.log('running request');
       postStoreDetailsRequest(storeDetails)
         .then(response => {
@@ -72,7 +62,7 @@ export default function SettlementDetailsForm() {
     return () => {
       postSettlementDetails = false;
     };
-  }, []);
+  }, [submitForm]);
 
   const settlementOptions: any = settlementDetails[1].options;
 
@@ -91,9 +81,9 @@ export default function SettlementDetailsForm() {
               (bank: any) => bank.bank_name,
             );
             values.bankName = selectedBankArray[0];
-            setFormValues(values);
             setLoading(true);
             dispatch(StoreSettlementAction(values));
+            setSubmitForm(true);
           }}
         >
           {({

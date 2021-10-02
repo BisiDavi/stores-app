@@ -1,8 +1,9 @@
 import axios from 'axios';
 import {getAuthtoken} from '../utils/authToken';
+import {CLOUDMALL_BASE_API} from '@/secrets';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://cloudmallng.com',
+  baseURL: CLOUDMALL_BASE_API,
   headers: {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*/*',
@@ -11,7 +12,7 @@ const axiosInstance = axios.create({
 });
 
 export const axiosImageInstance = axios.create({
-  baseURL: 'https://cloudmallng.com',
+  baseURL: CLOUDMALL_BASE_API,
   headers: {
     'content-type': 'multipart/form-data;application/json',
     accept: 'application/json',
@@ -30,7 +31,6 @@ axiosInstance.interceptors.request.use(
     if (savedToken) {
       config.headers.Authorization = 'Bearer ' + savedToken;
     }
-    console.log('savedToken', savedToken);
     return config;
   },
   error => {

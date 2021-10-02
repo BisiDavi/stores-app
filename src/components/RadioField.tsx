@@ -13,8 +13,15 @@ export default function RadioField({content, toggleModal}: RadioFieldProps) {
     (state: RootState) => state.storeDetails,
   );
   const {type} = storeDetails;
+
   useEffect(() => {
-    dispatch(StoreDetailsTypeAction(checked));
+    let dispatchFormValue = true;
+    if (dispatchFormValue) {
+      dispatch(StoreDetailsTypeAction(checked));
+    }
+    return () => {
+      dispatchFormValue = false;
+    };
   }, [checked, dispatch]);
 
   const isTypeValid = type.length > 0;
