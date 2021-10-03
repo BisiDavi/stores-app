@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {FlatList, TouchableOpacity, View, Text, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 
-import CompletedOrdersList from '@/json/completed-order.json';
+//import CompletedOrdersList from '@/json/completed-order.json';
 import OrdersListItem from '@/components/OrdersListItem';
 import {getCompletedOrdersRequest} from '@/network/postRequest';
 import {RootState} from '@/store/RootReducer';

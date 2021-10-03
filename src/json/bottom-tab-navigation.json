@@ -12,7 +12,7 @@
   ],
   "tabThree": [
     {"name": "ConfirmPayment", "title": "Confirm Payment"},
-    {"name": "PaymentApprovedScreen"},
-    {"name": "FailedPaymentScreen"}
+    {"name": "PaymentApprovedScreen", "title": "Make Payment"},
+    {"name": "FailedPaymentScreen", "title": "Failed Payment"}
   ]
 }

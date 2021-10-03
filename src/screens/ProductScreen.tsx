@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -14,7 +13,7 @@ import {
   toggleSpecificationStatusRequest,
 } from '@/network/postRequest';
 import {RootState} from '@/store/RootReducer';
-import Spinner from 'react-native-loading-spinner-overlay';
+import ProductLoader from '@/components/loader/ProductLoader';
 
 type ProductScreenNavigationProps = StackNavigationProp<
   DrawerStackParamList,
@@ -114,7 +113,7 @@ export default function ProductScreen({navigation}: Props) {
               plus button
             </Text>
           ) : (
-            <Spinner color={colors.cloudOrange5} />
+            <ProductLoader />
           )}
         </View>
       </ScrollView>

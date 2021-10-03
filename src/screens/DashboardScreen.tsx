@@ -45,7 +45,7 @@ export default function DashboardScreen({navigation}: Props) {
   useEffect(() => {
     dashboardContent.card[0].content[0].amount = `${storeProfile.wallet} Naira`;
     dashboardContent.card[0].content[1].amount = `${storeProfile.wallet} Naira`;
-  }, [storeProfile]);
+  }, []);
 
   function navigateToStatisticsScreen() {
     return navigation.navigate(StatisticsScreenRoute);

@@ -4,7 +4,7 @@ import {FlatList, View, Text, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 
 import {RootState} from '@/store/RootReducer';
-import NewOrdersList from '@/json/new-order.json';
+//import NewOrdersList from '@/json/new-order.json';
 import OrdersListItem from '@/components/OrdersListItem';
 import {getPendingOrdersRequest} from '@/network/postRequest';
 
@@ -47,8 +47,7 @@ export default function NewOrdersTab({navigation}: any) {
       ) : (
         <View style={styles.container}>
           <Text style={styles.text}>
-            Hello {storeProfile.name}, you currently don't have any completed
-            orders
+            Hello {storeProfile.name}, you currently don't have any new orders
           </Text>
         </View>
       )}
