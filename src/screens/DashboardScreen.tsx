@@ -1,5 +1,5 @@
 import {StackNavigationProp} from '@react-navigation/stack';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   StyleSheet,
   View,
@@ -10,6 +10,8 @@ import {
   Platform,
   Dimensions,
 } from 'react-native';
+import {useSelector} from 'react-redux';
+
 import DashboardCard from '@/components/DashboardCard';
 import dashboardContent from '@/json/dashboard.json';
 import {BottomTabParamList} from '@/customTypes';
@@ -17,6 +19,7 @@ import DashboardChart from '@/components/DashboardChart';
 import colors from '@/utils/colors';
 import SelectField from '@/components/SelectField';
 import selectContent from '@/json/dasboard-select.json';
+import {RootState} from '@/store/RootReducer';
 
 export type DashboardScreenNavProps = StackNavigationProp<
   BottomTabParamList,
@@ -34,6 +37,15 @@ type dashboardContentType = {
 
 export default function DashboardScreen({navigation}: Props) {
   const StatisticsScreenRoute: any = 'StatisticsScreen';
+
+  const {storeProfile}: any = useSelector(
+    (state: RootState) => state.storeProfile,
+  );
+
+  useEffect(() => {
+    dashboardContent.card[0].content[0].amount = `${storeProfile.wallet} Naira`;
+    dashboardContent.card[0].content[1].amount = `${storeProfile.wallet} Naira`;
+  }, [storeProfile]);
 
   function navigateToStatisticsScreen() {
     return navigation.navigate(StatisticsScreenRoute);

@@ -7,7 +7,6 @@ import {
   DrawerItem,
   DrawerItemList,
 } from '@react-navigation/drawer';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import JollofRice from '@/assets/jollofRice.png';
 import colors from '@/utils/colors';
@@ -21,17 +20,13 @@ export default function ProfileIcon(props: any) {
   const {name}: any | string = storeDetails;
   const storeName = name.length === 0 ? storeProfile.name : name;
 
-  function navigateToProfile() {
-    props.navigation.navigate('ProfileScreen');
-  }
   return (
     <DrawerContentScrollView style={styles.drawerScrollView} {...props}>
-      <TouchableOpacity onPress={navigateToProfile}>
-        <View style={styles.profileIconView}>
-          <Image source={JollofRice} style={styles.avatar} />
-          <Text style={styles.userName}>{storeName}</Text>
-        </View>
-      </TouchableOpacity>
+      <View style={styles.profileIconView}>
+        <Image source={JollofRice} style={styles.avatar} />
+        <Text style={styles.userName}>{storeName}</Text>
+      </View>
+
       <DrawerItemList {...props} />
       <DrawerItem
         labelStyle={styles.drawerItem}

@@ -1,12 +1,13 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {BottomTabParamList} from '../customTypes';
+
 import {
-  TabOneNavigator,
+	TabOneNavigator,
   TabTwoNavigator,
   TabThreeNavigator,
 } from './TabNavigator';
 import colors from '@/utils/colors';
+import {BottomTabParamList} from '@/customTypes';
 import DashboardSvg from '@/assets/DashboardSvg';
 import OrderSvg from '@/assets/OrderSvg';
 import ProfileSvg from '@/assets/ProfileSvg';

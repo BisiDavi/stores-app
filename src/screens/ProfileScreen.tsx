@@ -1,21 +1,45 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {ListItem, Image} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Button} from 'react-native-elements';
-import profileJson from '../json/profile.json';
-import JollofRice from '../assets/jollofRice.png';
-import colors from '../utils/colors';
+
+import profileJson from '@/json/profile.json';
+import JollofRice from '@/assets/jollofRice.png';
+import colors from '@/utils/colors';
+import {getStoreDetailsRequest} from '@/network/getRequest';
+import {showToast} from '@/utils';
 
 export default function ProfileScreen() {
+  const [storeProfile, setStorProfile] = useState<any>({});
+
+  useEffect(() => {
+    let once = true;
+    getStoreDetailsRequest()
+      .then(response => {
+        if (once) {
+          setStorProfile(response.data.data);
+        }
+      })
+      .catch(error => {
+        if (error.request) {
+          showToast('poor network, unable to fetch your profile');
+        } else if (error.response) {
+          showToast(error.response.data.message);
+        }
+      });
+    return () => {
+      once = false;
+    };
+  }, []);
   return (
     <ScrollView>
       <SafeAreaView style={styles.container}>
         <View style={styles.profileDetails}>
           <Image style={styles.profileImage} source={JollofRice} />
           <View>
-            <Text>Ongbonna</Text>
+            <Text>{storeProfile?.name}</Text>
             <Text>Store ID: 11</Text>
           </View>
           <Button
@@ -59,9 +83,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.neutralWhite,
   },
   reviewBtn: {
-    height: 20,
+    alignItems: 'center',
   },
   btnTitle: {
     fontSize: 14,
+    color: colors.neutralWhite,
+    fontFamily: 'Roboto-Bold',
+    padding: 0,
   },
 });

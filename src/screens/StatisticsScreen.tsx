@@ -49,8 +49,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    // padding: 20,
-    paddingTop: 0,
   },
   performanceText: {
     marginLeft: 20,
@@ -71,6 +69,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 16,
     marginBottom: 10,
+    marginTop: 10,
     marginLeft: 25,
   },
   category: {

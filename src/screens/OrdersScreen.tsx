@@ -54,14 +54,7 @@ export default function OrdersScreen({navigation}: Props) {
     renderOnce &&
       getStoreDetailsRequest()
         .then(response => {
-          const {name, _id, category, state} = response.data.data;
-          const storeProfileData = {
-            name,
-            _id,
-            category,
-            state,
-          };
-          dispatch(StoreProfileActions(storeProfileData));
+          dispatch(StoreProfileActions(response.data.data));
         })
         .catch(error => {
           console.log('error', error);

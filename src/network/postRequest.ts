@@ -4,7 +4,6 @@ import {
   addProductSpecificationType,
   addProductsRequestType,
   allProductType,
-  OrdersType,
   postStoreDetailsType,
   toggleSpecificationStatusRequestType,
 } from '@/customTypes/postRequestTypes';
@@ -19,12 +18,12 @@ export async function getAllProductsRequest(data: allProductType) {
   return await axiosInstance.post('/api/store/get-all-products', data);
 }
 
-export async function getCompletedOrdersRequest(data: OrdersType) {
-  return await axiosInstance.post('/api/store/get-completed-orders', data);
+export async function getCompletedOrdersRequest(storeId: {storeId: string}) {
+  return await axiosInstance.post('/api/store/get-completed-orders', storeId);
 }
 
-export async function getPendingOrdersRequest(data: OrdersType) {
-  return await axiosInstance.post('/api/store/get-pending-orders', data);
+export async function getPendingOrdersRequest(storeId: {storeId: string}) {
+  return await axiosInstance.post('/api/store/get-pending-orders', storeId);
 }
 
 export async function uploadStoreLogoRequest(logo: any) {
