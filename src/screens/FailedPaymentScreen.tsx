@@ -1,12 +1,12 @@
 import React from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {DrawerStackParamList} from '../customTypes/.';
+import {BottomTabParamList} from '@/customTypes/.';
 import {View, Text, StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
-import colors from '../utils/colors';
+import colors from '@/utils/colors';
 
 type FailedPaymentNavigationProps = StackNavigationProp<
-  DrawerStackParamList,
+  BottomTabParamList,
   'FailedPaymentScreen'
 >;
 
@@ -15,8 +15,9 @@ type Props = {
 };
 
 export default function FailedPaymentScreen({navigation}: Props) {
+  const orderScreen: keyof BottomTabParamList = 'OrdersScreen';
   function nextScreen() {
-    navigation.navigate('OrderScreen');
+    navigation.navigate(orderScreen);
   }
   return (
     <View style={styles.container}>

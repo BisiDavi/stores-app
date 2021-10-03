@@ -4,11 +4,11 @@ import {View, Text, StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
 
 import InputField from '@/components/InputField';
-import {DrawerStackParamList} from '@/customTypes/.';
+import {BottomTabParamList} from '@/customTypes/.';
 import colors from '@/utils/colors';
 
 export type confirmPaymentNavProps = StackNavigationProp<
-  DrawerStackParamList,
+  BottomTabParamList,
   'ConfirmPaymentScreen'
 >;
 
@@ -17,8 +17,10 @@ type Props = {
 };
 
 export default function ConfirmPaymentScreen({navigation}: Props) {
+  const barcodeScreen: keyof BottomTabParamList = 'BarCodeScannerScreen';
   function nextScreen() {
-    navigation.navigate('PaymentApprovedScreen');
+    //PaymentApprovedScreen
+    navigation.navigate(barcodeScreen);
   }
   return (
     <View style={styles.container}>

@@ -2,7 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {
-	TabOneNavigator,
+  TabOneNavigator,
   TabTwoNavigator,
   TabThreeNavigator,
 } from './TabNavigator';

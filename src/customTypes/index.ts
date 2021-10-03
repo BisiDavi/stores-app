@@ -18,6 +18,11 @@ export type BottomTabParamList = {
   Dashboard: undefined;
   Payment: undefined;
   ProductReplacementScreen: undefined;
+  BarCodeScannerScreen: undefined;
+  ConfirmPaymentScreen: undefined;
+  PaymentApprovedScreen: undefined;
+  OrdersScreen: undefined;
+  FailedPaymentScreen: undefined;
 };
 
 export type DrawerStackParamList = {
@@ -39,10 +44,7 @@ export type DrawerStackParamList = {
   HelpScreen: undefined;
   LogoutScreen: undefined;
   AddProductScreenMethod: undefined;
-  FailedPaymentScreen: undefined;
   bottomTab: undefined;
-  PaymentApprovedScreen: undefined;
-  ConfirmPaymentScreen: undefined;
   OrderScreen: undefined;
   RequestARiderScreen: undefined;
   DeliveryAddressScreen: undefined;

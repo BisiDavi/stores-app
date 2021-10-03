@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Image} from 'react-native-elements';
-import pizza from '../assets/pizza.png';
+import pizza from '@/assets/pizza.png';
 
 export default function EditProductScreen() {
   return (

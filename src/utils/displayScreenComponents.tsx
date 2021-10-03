@@ -37,6 +37,7 @@ import AddProductCategoryScreen from '@/screens/AddProductCategoryScreen';
 import FreshFoodProductScreen from '@/screens/FreshFoodProductScreen';
 import AddFreshFoodOtherDetailsScreen from '@/screens/AddFreshFoodOtherDetailsScreen';
 import ProductReplacementScreen from '@/screens/ProductReplacementScreen';
+import BarCodeScannerScreen from '@/screens/BarCodeScannerScreen';
 
 export default function displayScreenComponent(
   name: string | RootStackParamList,
@@ -118,6 +119,8 @@ export default function displayScreenComponent(
       return AddFreshFoodOtherDetailsScreen;
     case 'ProductReplacementScreen':
       return ProductReplacementScreen;
+    case 'BarCodeScannerScreen':
+      return BarCodeScannerScreen;
     default:
       return null;
   }
