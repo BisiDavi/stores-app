@@ -20,9 +20,10 @@ function ViewOrderScreen({route}: any) {
         <View style={styles.orderGroup}>
           {userOrders.orders.map((order: any, index: number) => (
             <TouchableOpacity
+              key={index}
               onPress={() => navigation.navigate('ProductReplacementScreen')}
             >
-              <View style={styles.orderView} key={index}>
+              <View style={styles.orderView}>
                 <Image
                   style={styles.image}
                   source={displayAsset(userOrders.image)}

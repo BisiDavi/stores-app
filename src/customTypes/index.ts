@@ -17,6 +17,7 @@ export type BottomTabParamList = {
   Orders: undefined;
   Dashboard: undefined;
   Payment: undefined;
+  ProductReplacementScreen: undefined;
 };
 
 export type DrawerStackParamList = {

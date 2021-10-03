@@ -44,7 +44,7 @@ function ProductReplacementScreen({route}: any) {
           <Text>2 Packs</Text>
         </View>
         <View style={styles.orderGroup}>
-          {userOrders.orders.map((order: any, index: number) => (
+          {userOrders?.orders.map((order: any, index: number) => (
             <OrdersView order={order} userOrders={userOrders} key={index} />
           ))}
           <View style={{...styles.orderView, ...styles.totalView}}>

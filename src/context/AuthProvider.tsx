@@ -49,13 +49,11 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
           setClientToken(loginInToken);
         }
         loginInToken && dispatchRedux(UserLoggedinAction());
-        console.log('loginToken', loginInToken);
         let bankStatus: boolean;
         loginInToken &&
           getExistingStoreProfile()
             .then((response: any) => {
-              response !== null &&
-                dispatchRedux(StoreProfileActions(response.data));
+              response !== null && dispatchRedux(StoreProfileActions(response));
               bankStatus = response.bank;
               saveToStorage('registrationCompleted', response.bank);
               if (response.bank) {
@@ -66,7 +64,7 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
                   ownsAccount: response.bank,
                 });
               }
-              showToast("You're not done with your registration");
+
               dispatch({
                 type: 'SIGN_IN',
                 token: loginInToken,

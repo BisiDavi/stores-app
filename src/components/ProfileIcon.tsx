@@ -8,13 +8,19 @@ import {
   DrawerItemList,
 } from '@react-navigation/drawer';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import JollofRice from '../assets/jollofRice.png';
-import colors from '../utils/colors';
-import {RootState} from '../store/RootReducer';
+
+import JollofRice from '@/assets/jollofRice.png';
+import colors from '@/utils/colors';
+import {RootState} from '@/store/RootReducer';
 
 export default function ProfileIcon(props: any) {
   const {storeDetails} = useSelector((state: RootState) => state.storeDetails);
-  const {name} = storeDetails;
+  const {storeProfile}: any = useSelector(
+    (state: RootState) => state.storeProfile,
+  );
+  const {name}: any | string = storeDetails;
+  const storeName = name.length === 0 ? storeProfile.name : name;
+
   function navigateToProfile() {
     props.navigation.navigate('ProfileScreen');
   }
@@ -23,7 +29,7 @@ export default function ProfileIcon(props: any) {
       <TouchableOpacity onPress={navigateToProfile}>
         <View style={styles.profileIconView}>
           <Image source={JollofRice} style={styles.avatar} />
-          <Text style={styles.userName}>{name}</Text>
+          <Text style={styles.userName}>{storeName}</Text>
         </View>
       </TouchableOpacity>
       <DrawerItemList {...props} />

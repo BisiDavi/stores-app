@@ -3,6 +3,7 @@ import {Formik} from 'formik';
 import {View, StyleSheet} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {Button} from 'react-native-elements';
+
 import addNewProductSchema from '@/components/forms/AddNewProductSchema';
 import {DisplayFormElements} from '@/components/forms/DisplayFormElements';
 import addproductContent from '@/json/add-product.json';
@@ -50,7 +51,7 @@ export default function AddNewProductForm({navigation}: any) {
         categoryId: '',
         description: '',
         price: '',
-        quantity: 0,
+        quantity: 1,
       }}
       validationSchema={addNewProductSchema}
       onSubmit={(values: any) => {

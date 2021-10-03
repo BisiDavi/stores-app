@@ -56,7 +56,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'space-between',
     padding: 20,
-    paddingTop: 0,
     backgroundColor: colors.neutralWhite,
   },
   reviewBtn: {

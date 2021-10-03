@@ -17,11 +17,5 @@
     "label": "Product Price",
     "name": "price",
     "type": "input"
-  },
-  {
-    "label": "Quantity",
-    "name": "quantity",
-    "type": "input",
-    "keyboardType": "numeric"
   }
 ]

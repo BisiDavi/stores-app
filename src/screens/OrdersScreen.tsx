@@ -32,6 +32,12 @@ export default function OrdersScreen({navigation}: Props) {
     (state: RootState) => state.setupStore,
   );
 
+  const {storeProfile}: any = useSelector(
+    (state: RootState) => state.storeProfile,
+  );
+
+  console.log('storeProfile', storeProfile);
+
   function closeModal() {
     return setWelcomeModal(false);
   }
@@ -54,7 +60,14 @@ export default function OrdersScreen({navigation}: Props) {
     renderOnce &&
       getStoreDetailsRequest()
         .then(response => {
-          dispatch(StoreProfileActions(response.data));
+          const {name, _id, category, state} = response.data.data;
+          const storeProfileData = {
+            name,
+            _id,
+            category,
+            state,
+          };
+          dispatch(StoreProfileActions(storeProfileData));
         })
         .catch(error => {
           console.log('error', error);
