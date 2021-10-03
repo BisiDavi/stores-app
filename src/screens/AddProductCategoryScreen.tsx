@@ -25,7 +25,7 @@ export default function AddProductCategoryScreen() {
       .catch(error => {
         setLoading(false);
         if (error.response) {
-          showToast(error.response.message);
+          showToast(error.response.data.message);
         } else if (error.request) {
           showToast('Oops, network error');
         }

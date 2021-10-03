@@ -42,7 +42,7 @@ export default function AddExtraForm({navigation: {goBack}}: any) {
         if (error.request) {
           showToast('Oops, an error occured');
         } else if (error.response) {
-          showToast(error.response.message);
+          showToast(error.response.data.message);
         }
       });
   }

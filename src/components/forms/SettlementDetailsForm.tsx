@@ -53,7 +53,7 @@ export default function SettlementDetailsForm() {
           if (error.request) {
             errorMessage = 'Oops, poor network, try again';
           } else if (error.response) {
-            errorMessage = error.response.message;
+            errorMessage = error.response.data.message;
           }
           showToast(errorMessage);
         });

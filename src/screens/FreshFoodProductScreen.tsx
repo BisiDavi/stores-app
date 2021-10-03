@@ -56,7 +56,7 @@ export default function FreshFoodProductScreen({navigation}: Props) {
           console.log('error.request', error.request);
           showToast('Oops,poor network, unable to upload product image');
         } else if (error.response) {
-          showToast(error.response.message);
+          showToast(error.response.data.message);
         }
       });
     return;

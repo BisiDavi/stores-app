@@ -44,7 +44,7 @@ function ListView({item}: any) {
       })
       .catch(error => {
         if (error.response) {
-          showToast(error.response.message);
+          showToast(error.response.data.message);
         } else if (error.request) {
           showToast('Oops, unable to update, due to poor network');
         }

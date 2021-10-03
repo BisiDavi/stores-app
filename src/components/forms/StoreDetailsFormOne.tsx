@@ -43,7 +43,7 @@ export default function StoreDetailsFormOne() {
       })
       .catch(error => {
         if (error.response) {
-          showToast(error.response.message);
+          showToast(error.response.data.message);
         } else if (error.request) {
           showToast('Oops an error occured');
         }
