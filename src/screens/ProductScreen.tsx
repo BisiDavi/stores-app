@@ -100,7 +100,7 @@ export default function ProductScreen({navigation}: Props) {
       .catch((error: any) => {
         console.log('getAllProductsRequest error', error);
       });
-  }, []);
+  }, [storeProfile]);
 
   return (
     <View style={styles.container}>
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: Dimensions.get('window').width * 0.9,
+    width: Dimensions.get('window').width * 0.85,
   },
   fabView: {
     height: 70,
@@ -169,18 +169,5 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
-  },
-  category: {
-    color: colors.mallBlue5,
-    padding: 15,
-  },
-  textView: {
-    height: 50,
-    width: Dimensions.get('window').width,
-    borderWidth: 1,
-    borderBottomColor: colors.neutral3,
-    borderLeftColor: 'transparent',
-    borderTopColor: 'transparent',
-    borderRightColor: 'transparent',
   },
 });

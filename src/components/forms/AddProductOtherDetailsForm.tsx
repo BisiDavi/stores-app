@@ -61,9 +61,7 @@ export default function AddProductOtherDetailsForm({navigation}: any) {
   );
   const dispatch = useDispatch();
   const {productAvailabilty} = productExtras;
-  console.log('productFields outSide', productFields);
 
-  console.log('product', product);
   useEffect(() => {
     let renderOnce = true;
     getAllStoreExtrasRequest()
@@ -89,7 +87,6 @@ export default function AddProductOtherDetailsForm({navigation}: any) {
       addProductsRequest(productFields)
         .then(response => {
           setLoading(false);
-          console.log('response', response.data);
           showToast(response.data.message);
           setSubmitAddProduct(false);
           dispatch(SubmitProductAction(false));
@@ -99,15 +96,13 @@ export default function AddProductOtherDetailsForm({navigation}: any) {
           setLoading(false);
           setSubmitAddProduct(false);
           dispatch(SubmitProductAction(false));
-          console.log('response addProductsRequest', error.response);
           if (error.request) {
-            console.log('error.request', error.request);
             showToast(
               'Oops network is bad, unable to submit, please try again',
             );
           } else if (error.response) {
-            console.log('error.response', error.response);
-            showToast(error.response.message);
+            console.log('error.response', error.response.data.message);
+            showToast(error.response.data.message);
           }
         });
     }
@@ -120,7 +115,7 @@ export default function AddProductOtherDetailsForm({navigation}: any) {
     extras => extras.isCompulsory === false,
   );
 
-  const {from, to} = isProductAvailable.duration;
+  const {from} = isProductAvailable.duration;
 
   function submitProduct() {
     setLoading(true);
@@ -128,7 +123,7 @@ export default function AddProductOtherDetailsForm({navigation}: any) {
     setProductFields({
       ...productFields,
       ...product,
-      duration: `${from}:${to}`,
+      duration: from,
       isAvailable: isProductAvailable.isAvailable,
       kg: 0,
       takeAwayPrice: Number(product.takeAwayPrice),
