@@ -12,6 +12,10 @@ export default function InputGroup({inputGroup, ...props}: InputGroupProps) {
             key={index}
             placeholder={input.placeholder}
             {...props}
+            value={props.value[input.name]}
+            onChangeText={(inputValue: string) =>
+              props.onChangeText(input.name, inputValue)
+            }
             styleContainer={styles.input}
           />
         ))}
@@ -27,7 +31,8 @@ interface InputGroupProps {
     type: string;
     inputs?: {placeholder: string; name: string; type: string}[];
   };
-  onChangeText?: (e: string | ChangeEvent<any>) => void | undefined;
+  value: any;
+  onChangeText?: any;
   onBlur?: (e: string | ChangeEvent<any>) => void | undefined;
   errorMessage?: any;
 }

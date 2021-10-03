@@ -16,6 +16,7 @@
   {
     "label": "Product Price",
     "name": "price",
-    "type": "input"
+    "type": "input",
+		"keyboardType":"numeric"
   }
 ]

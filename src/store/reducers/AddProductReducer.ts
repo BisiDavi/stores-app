@@ -2,7 +2,11 @@ import {
   addProductStateType,
   addProductTypes,
 } from '@/customTypes/addProductTypes';
-import {ADD_PRODUCT_STEP_1, ADD_PRODUCT_STEP_2} from '@/store/constant';
+import {
+  ADD_PRODUCT_STEP_1,
+  ADD_PRODUCT_STEP_2,
+  SUBMIT_PRODUCT,
+} from '@/store/constant';
 
 export function AddProductReducer(
   state: addProductStateType = {
@@ -10,12 +14,10 @@ export function AddProductReducer(
       name: '',
       description: '',
       storeId: '',
-      quantity: 0,
       categoryId: '',
       takeAwayPrice: 0,
-      kg: '',
       duration: 0,
-      price: '',
+      price: 0,
       isAvailable: true,
     },
     submitProduct: false,
@@ -33,9 +35,15 @@ export function AddProductReducer(
           description: payload.description,
           price: payload.price,
           takeAwayPrice: payload.takeAwayPrice,
-          quantity: payload.quantity,
           categoryId: payload.categoryId,
         },
+      };
+    }
+    case SUBMIT_PRODUCT: {
+      console.log('payload SUBMIT_PRODUCT', payload);
+      return {
+        ...state,
+        submitProduct: payload,
       };
     }
     case ADD_PRODUCT_STEP_2: {

@@ -51,7 +51,7 @@ export default function AddNewProductForm({navigation}: any) {
         categoryId: '',
         description: '',
         price: '',
-        quantity: 1,
+        takeAwayPrice: 100,
       }}
       validationSchema={addNewProductSchema}
       onSubmit={(values: any) => {

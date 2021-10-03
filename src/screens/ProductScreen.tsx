@@ -14,6 +14,7 @@ import {
   toggleSpecificationStatusRequest,
 } from '@/network/postRequest';
 import {RootState} from '@/store/RootReducer';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 type ProductScreenNavigationProps = StackNavigationProp<
   DrawerStackParamList,
@@ -92,8 +93,8 @@ export default function ProductScreen({navigation}: Props) {
   useEffect(() => {
     getAllProductsRequest({storeId: storeProfile._id})
       .then((response: any) => {
+        console.log('response.data', response.data);
         const {products} = response.data.data;
-        console.log('products', products);
         setStoreProducts(products);
       })
       .catch((error: any) => {
@@ -109,11 +110,11 @@ export default function ProductScreen({navigation}: Props) {
             <ProductListView products={storeProducts} />
           ) : storeProducts !== null && storeProducts?.length === 0 ? (
             <Text style={styles.indicator}>
-              No Product available, you can add products, by click on the plus
-              button
+              No Product available, you can add products, by clicking on the
+              plus button
             </Text>
           ) : (
-            <Text style={styles.indicator}>Fetching Products...</Text>
+            <Spinner color={colors.cloudOrange5} />
           )}
         </View>
       </ScrollView>
@@ -130,14 +131,16 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: colors.neutralWhite,
     flexDirection: 'column',
+    textAlign: 'center',
+    padding: 15,
     width: Dimensions.get('window').width,
   },
   meal: {
     width: 100,
   },
   indicator: {
-    marginLeft: 30,
-    marginTop: 20,
+    marginTop: 0,
+    fontFamily: 'Roboto-Medium',
   },
   edit: {
     color: colors.mallBlue5,

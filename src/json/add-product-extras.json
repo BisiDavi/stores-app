@@ -1,13 +1,11 @@
 {
-  "main": ["main Extra 1 (N500)", "main Extra 2 (N300)", "main Extra 3 (N400)"],
-  "secondary": ["secondary Extra 1", "secondary Extra 2", "secondary Extra 3"],
   "productAvailabilty": {
     "label": "Availability Duration",
     "name": "availabiltyDuration",
     "type": "input-group",
     "inputs": [
-      {"placeholder": "from", "type": "input", "name": "From"},
-      {"placeholder": "To", "type": "input", "name": "To"}
+      {"placeholder": "from", "type": "input", "name": "from"},
+      {"placeholder": "to", "type": "input", "name": "to"}
     ]
   }
 }

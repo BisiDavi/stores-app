@@ -12,7 +12,7 @@ import InputGroup from '@/components/InputGroup';
 import {RootState} from '@/store/RootReducer';
 import {addProductsRequest} from '@/network/postRequest';
 import showToast from '@/utils/showToast';
-import {AddProductStep2Action} from '@/store/actions/addProductAction';
+import {SubmitProductAction} from '@/store/actions/addProductAction';
 import {getAllStoreExtrasRequest} from '@/network/getRequest';
 
 interface DisplayCheckboxProps {
@@ -42,26 +42,28 @@ function DisplayCheckbox({title}: DisplayCheckboxProps) {
   );
 }
 
-const AddProductOtherDetailsForm = ({navigation}: any) => {
+export default function AddProductOtherDetailsForm({navigation}: any) {
   const [loading, setLoading] = useState(false);
+  const [submitAddProduct, setSubmitAddProduct] = useState(false);
   const [storesExtras, setStoresExtras] = useState<storeExtrasType>([]);
   const [showPromoTag, setShowPromoTag] = useState(false);
   const [productFields, setProductFields] = useState<any>({});
-  const dispatch = useDispatch();
   const [isProductAvailable, setIsProductAvailable] = useState<any>({
     isAvailable: null,
     duration: {
-      from: null,
-      to: null,
+      from: 0,
+      to: 0,
     },
   });
   const {product}: any = useSelector((state: RootState) => state.addProduct);
   const {storeProfile}: any = useSelector(
     (state: RootState) => state.storeProfile,
   );
+  const dispatch = useDispatch();
   const {productAvailabilty} = productExtras;
-  console.log('productFields', productFields);
+  console.log('productFields outSide', productFields);
 
+  console.log('product', product);
   useEffect(() => {
     let renderOnce = true;
     getAllStoreExtrasRequest()
@@ -82,6 +84,35 @@ const AddProductOtherDetailsForm = ({navigation}: any) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (submitAddProduct) {
+      addProductsRequest(productFields)
+        .then(response => {
+          setLoading(false);
+          console.log('response', response.data);
+          showToast(response.data.message);
+          setSubmitAddProduct(false);
+          dispatch(SubmitProductAction(false));
+          navigation.navigate('ProductScreen');
+        })
+        .catch(error => {
+          setLoading(false);
+          setSubmitAddProduct(false);
+          dispatch(SubmitProductAction(false));
+          console.log('response addProductsRequest', error.response);
+          if (error.request) {
+            console.log('error.request', error.request);
+            showToast(
+              'Oops network is bad, unable to submit, please try again',
+            );
+          } else if (error.response) {
+            console.log('error.response', error.response);
+            showToast(error.response.message);
+          }
+        });
+    }
+  }, [navigation, productFields, dispatch, submitAddProduct]);
+
   const mainExtras = storesExtras.filter(
     extras => extras.isCompulsory === true,
   );
@@ -89,39 +120,23 @@ const AddProductOtherDetailsForm = ({navigation}: any) => {
     extras => extras.isCompulsory === false,
   );
 
+  const {from, to} = isProductAvailable.duration;
+
   function submitProduct() {
     setLoading(true);
+    dispatch(SubmitProductAction(true));
     setProductFields({
       ...productFields,
       ...product,
-      duration: 0,
+      duration: `${from}:${to}`,
       isAvailable: isProductAvailable.isAvailable,
       kg: 0,
       takeAwayPrice: Number(product.takeAwayPrice),
-      quantity: Number(product.quantity),
+      quantity: 1,
       price: Number(product.price),
       storeId: storeProfile._id,
     });
-    console.log('productFields', productFields);
-    dispatch(AddProductStep2Action(productFields));
-    addProductsRequest(productFields)
-      .then(response => {
-        setLoading(false);
-        console.log('response', response.data);
-        showToast(response.data.message);
-        navigation.navigate('ProductScreen');
-      })
-      .catch(error => {
-        setLoading(false);
-        console.log('response addProductsRequest', error);
-        if (error.request) {
-          console.log('error.request', error.request);
-          showToast('Oops network is bad, unable to submit, please try again');
-        } else if (error.response) {
-          console.log('error.response', error.response);
-          showToast(error.response.message);
-        }
-      });
+    setSubmitAddProduct(true);
   }
 
   function isAvailableHandler(status: boolean) {
@@ -193,7 +208,19 @@ const AddProductOtherDetailsForm = ({navigation}: any) => {
           </View>
           {!isProductAvailable.isAvailable && (
             <View>
-              <InputGroup inputGroup={productAvailabilty} />
+              <InputGroup
+                value={isProductAvailable.duration}
+                onChangeText={(name: string, value: string) =>
+                  setIsProductAvailable({
+                    ...isProductAvailable,
+                    duration: {
+                      ...isProductAvailable.duration,
+                      [name]: value,
+                    },
+                  })
+                }
+                inputGroup={productAvailabilty}
+              />
             </View>
           )}
         </View>
@@ -223,7 +250,7 @@ const AddProductOtherDetailsForm = ({navigation}: any) => {
       </View>
     </>
   );
-};
+}
 
 const styles = StyleSheet.create({
   form: {
@@ -294,5 +321,3 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
 });
-
-export default AddProductOtherDetailsForm;

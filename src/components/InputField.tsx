@@ -63,7 +63,7 @@ const inputStyles = StyleSheet.create({
 });
 
 interface InputFieldProps {
-  onChangeText?: (e: string | ChangeEvent<any>) => void | undefined;
+  onChangeText?: any;
   value?: any;
   label?: string;
   keyboardType?: KeyboardTypeOptions;

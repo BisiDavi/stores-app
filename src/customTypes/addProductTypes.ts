@@ -1,10 +1,12 @@
-export type productType = 'ADD_PRODUCT_STEP_1' | 'ADD_PRODUCT_STEP_2';
+export type productType =
+  | 'ADD_PRODUCT_STEP_1'
+  | 'ADD_PRODUCT_STEP_2'
+  | 'SUBMIT_PRODUCT';
 
 export type productPayloadType = {
   name: string;
   description: string;
   price: string;
-  quantity: number;
   categoryId: string;
   takeAwayPrice: number;
   isAvailable: number;
@@ -20,12 +22,10 @@ export type addProductStateType = {
   product: {
     name: string;
     description: string;
-    price: string;
-    quantity: number;
+    price: number;
     categoryId: string;
     takeAwayPrice: number;
     storeId: string;
-    kg: string;
     duration: number;
     isAvailable: boolean;
   };
