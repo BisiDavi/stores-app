@@ -55,7 +55,7 @@ const AddProductOtherDetailsForm = ({navigation}: any) => {
       to: null,
     },
   });
-  const addedProduct: any = useSelector((state: RootState) => state.addProduct);
+  const {product}: any = useSelector((state: RootState) => state.addProduct);
   const {storeProfile}: any = useSelector(
     (state: RootState) => state.storeProfile,
   );
@@ -93,14 +93,14 @@ const AddProductOtherDetailsForm = ({navigation}: any) => {
     setLoading(true);
     setProductFields({
       ...productFields,
-      ...addedProduct,
+      ...product,
       duration: 0,
       isAvailable: isProductAvailable.isAvailable,
       kg: 0,
-      takeAwayPrice: Number(addedProduct.takeAwayPrice),
-      quantity: Number(addedProduct.quantity),
-      price: Number(addedProduct.price),
-      storeId: storeProfile.id,
+      takeAwayPrice: Number(product.takeAwayPrice),
+      quantity: Number(product.quantity),
+      price: Number(product.price),
+      storeId: storeProfile._id,
     });
     console.log('productFields', productFields);
     dispatch(AddProductStep2Action(productFields));
@@ -119,7 +119,7 @@ const AddProductOtherDetailsForm = ({navigation}: any) => {
           showToast('Oops network is bad, unable to submit, please try again');
         } else if (error.response) {
           console.log('error.response', error.response);
-          showToast(error.response.data.message);
+          showToast(error.response.message);
         }
       });
   }
@@ -161,7 +161,7 @@ const AddProductOtherDetailsForm = ({navigation}: any) => {
         </View>
         <View>
           <Text style={styles.promoTagText}>
-            Is {addedProduct.name} always available?
+            Is {product.name} always available?
           </Text>
           <View
             style={{

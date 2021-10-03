@@ -1,46 +1,40 @@
 import React, {useEffect, useState} from 'react';
 import {Formik} from 'formik';
 import {View, StyleSheet} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {Button} from 'react-native-elements';
 import addNewProductSchema from '@/components/forms/AddNewProductSchema';
 import {DisplayFormElements} from '@/components/forms/DisplayFormElements';
 import addproductContent from '@/json/add-product.json';
 import colors from '@/utils/colors';
 import {AddProductStep1Action} from '@/store/actions/addProductAction';
-import {getProductsCategories} from '@/network/postRequest';
-import {RootState} from '@/store/RootReducer';
+import {getProductsCategories} from '@/network/getRequest';
+import {showToast} from '@/utils';
 
 export default function AddNewProductForm({navigation}: any) {
   const [productCategories, setProductCategories] = useState<any>([]);
-
   const dispatch = useDispatch();
-  const {storeProfile}: any = useSelector(
-    (state: RootState) => state.storeProfile,
-  );
 
   useEffect(() => {
     let renderOnce = true;
-    getProductsCategories(storeProfile._id)
+    getProductsCategories()
       .then(response => {
-        console.log('productCategories', response.data);
         if (renderOnce) {
-          return setProductCategories(response.data);
+          return setProductCategories(response.data.data);
         }
       })
       .catch(error => {
-        console.log('getProductsCategories error', error);
+        if (error.request) {
+        } else if (error.response) {
+          showToast(error.response?.data?.message);
+        }
       });
     return () => {
       renderOnce = false;
     };
-  }, [storeProfile._id]);
+  }, []);
 
-  useEffect(() => {
-    if (productCategories.length !== 0) {
-      addproductContent[1].options = productCategories;
-    }
-  }, [productCategories]);
+  addproductContent[1].options = productCategories;
 
   function navigationHandler(handleSubmit: any) {
     handleSubmit();
@@ -73,7 +67,7 @@ export default function AddNewProductForm({navigation}: any) {
         touched,
         isValid,
       }) => (
-        <>
+        <View style={styles.formStyle}>
           {addproductContent.map((formElement, index) => (
             <DisplayFormElements
               key={index}
@@ -101,13 +95,16 @@ export default function AddNewProductForm({navigation}: any) {
               buttonStyle={styles.nextButton}
             />
           </View>
-        </>
+        </View>
       )}
     </Formik>
   );
 }
 
 const styles = StyleSheet.create({
+  formStyle: {
+    alignItems: 'center',
+  },
   nextButton: {
     justifyContent: 'center',
     alignItems: 'center',

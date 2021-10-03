@@ -65,7 +65,7 @@ export default function AddExtraForm({navigation: {goBack}}: any) {
             ...values,
             isAvailable: true,
             isCompulsory: isCompulsory,
-            storeId: storeProfile.data._id,
+            storeId: storeProfile._id,
             price: Number(values.price),
           };
           addExtras(formValues);

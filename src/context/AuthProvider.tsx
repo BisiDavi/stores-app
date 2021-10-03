@@ -54,7 +54,8 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
         loginInToken &&
           getExistingStoreProfile()
             .then((response: any) => {
-              response !== null && dispatchRedux(StoreProfileActions(response));
+              response !== null &&
+                dispatchRedux(StoreProfileActions(response.data));
               bankStatus = response.bank;
               saveToStorage('registrationCompleted', response.bank);
               if (response.bank) {

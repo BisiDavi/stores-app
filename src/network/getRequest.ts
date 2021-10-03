@@ -23,3 +23,7 @@ export async function getStoreDetailsRequest() {
 export async function getAllStoreExtrasRequest() {
   return await axiosInstance.get('/api/store/all-store-extras');
 }
+
+export async function getProductsCategories() {
+  return await axiosInstance.get('/api/store/product-categories');
+}

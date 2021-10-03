@@ -44,7 +44,7 @@ function ListView({item}: any) {
       })
       .catch(error => {
         if (error.response) {
-          showToast(error.response.data.message);
+          showToast(error.response.message);
         } else if (error.request) {
           showToast('Oops, unable to update, due to poor network');
         }
@@ -90,7 +90,7 @@ export default function ProductScreen({navigation}: Props) {
     (state: RootState) => state.storeProfile,
   );
   useEffect(() => {
-    getAllProductsRequest({storeId: storeProfile.data._id})
+    getAllProductsRequest({storeId: storeProfile._id})
       .then((response: any) => {
         const {products} = response.data.data;
         console.log('products', products);

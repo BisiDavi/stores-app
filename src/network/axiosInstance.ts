@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {getAuthtoken} from '../utils/authToken';
+import {getAuthtoken} from '@/utils/authToken';
 import {CLOUDMALL_BASE_API} from '@/secrets';
 
 const axiosInstance = axios.create({

@@ -43,8 +43,8 @@ export async function loginUser(
       return token;
     })
     .catch(error => {
-      showToast(error.response.data?.message);
-      console.log('error', error.response.data.message);
+      showToast(error.response.message);
+      console.log('error', error.response.message);
       token = null;
       return token;
     });

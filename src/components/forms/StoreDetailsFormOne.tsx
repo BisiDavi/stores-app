@@ -43,9 +43,9 @@ export default function StoreDetailsFormOne() {
       })
       .catch(error => {
         if (error.response) {
-          showToast(error.response.data);
+          showToast(error.response.message);
         } else if (error.request) {
-          showToast(error.request);
+          showToast('Oops an error occured');
         }
       });
 

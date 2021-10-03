@@ -14,6 +14,10 @@ export default async function postStoreRequest(store: any) {
       }
     })
     .catch(error => {
-      showToast(error.response.data);
+      if (error.response) {
+        showToast(error.response.message);
+      } else if (error.request) {
+        showToast('oops,poor network');
+      }
     });
 }
