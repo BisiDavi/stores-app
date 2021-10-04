@@ -2,6 +2,10 @@ import {StyleSheet} from 'react-native';
 import colors from '@/utils/colors';
 
 export const styles = StyleSheet.create({
+  view: {
+    flex: 1,
+    backgroundColor: colors.neutralWhite,
+  },
   container: {
     flex: 1,
     justifyContent: 'flex-start',

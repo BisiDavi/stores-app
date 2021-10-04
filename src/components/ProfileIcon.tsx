@@ -1,7 +1,8 @@
 import React from 'react';
 import {Image} from 'react-native-elements';
-import {useSelector} from 'react-redux';
-import {View, Text, StyleSheet} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import {View, Text} from 'react-native';
 import {
   DrawerContentScrollView,
   DrawerItem,
@@ -11,20 +12,28 @@ import {
 import JollofRice from '@/assets/jollofRice.png';
 import colors from '@/utils/colors';
 import {RootState} from '@/store/RootReducer';
+import {styles} from '@/styles/ProfileIcon.style';
+import {ToggleWithdrawalModalAction} from '@/store/actions/SetupStoreAction';
 
 export default function ProfileIcon(props: any) {
+  const dispatch = useDispatch();
   const {storeDetails} = useSelector((state: RootState) => state.storeDetails);
   const {storeProfile}: any = useSelector(
     (state: RootState) => state.storeProfile,
   );
   const {name}: any | string = storeDetails;
   const storeName = name.length === 0 ? storeProfile.name : name;
-
+  function toggleModal() {
+    dispatch(ToggleWithdrawalModalAction());
+  }
   return (
     <DrawerContentScrollView style={styles.drawerScrollView} {...props}>
       <View style={styles.profileIconView}>
-        <Image source={JollofRice} style={styles.avatar} />
-        <Text style={styles.userName}>{storeName}</Text>
+        <TouchableOpacity style={styles.profileIcon} onPress={toggleModal}>
+          <Image source={JollofRice} style={styles.avatar} />
+          <Text style={styles.userName}>{storeName}</Text>
+          <Text style={styles.balanceText}>N 0.00</Text>
+        </TouchableOpacity>
       </View>
 
       <DrawerItemList {...props} />
@@ -37,33 +46,3 @@ export default function ProfileIcon(props: any) {
     </DrawerContentScrollView>
   );
 }
-const styles = StyleSheet.create({
-  avatar: {
-    height: 50,
-    width: 50,
-  },
-  userName: {
-    color: colors.mallBlue5,
-    fontFamily: 'Roboto-Bold',
-    fontSize: 16,
-  },
-  sidebarText: {
-    color: 'black',
-  },
-  drawerItem: {
-    fontFamily: 'Roboto-Bold',
-    fontSize: 16,
-    color: 'black',
-  },
-  profileIconView: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 40,
-  },
-  drawerItemList: {
-    color: colors.neutralWhite,
-  },
-  drawerScrollView: {
-    backgroundColor: colors.neutralWhite,
-  },
-});

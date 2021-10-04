@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {View, Text} from 'react-native';
 import {ListItem, Image} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import {Button} from 'react-native-elements';
 
 import profileJson from '@/json/profile.json';
@@ -35,8 +34,8 @@ export default function ProfileScreen() {
   }, []);
 
   return (
-    <ScrollView>
-      <SafeAreaView style={styles.container}>
+    <ScrollView style={styles.view}>
+      <View style={styles.container}>
         <View style={styles.profileDetails}>
           <Image style={styles.profileImage} source={JollofRice} />
           <View>
@@ -58,7 +57,7 @@ export default function ProfileScreen() {
             </ListItem>
           ))}
         </View>
-      </SafeAreaView>
+      </View>
     </ScrollView>
   );
 }

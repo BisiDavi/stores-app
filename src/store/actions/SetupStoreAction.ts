@@ -5,6 +5,7 @@ import {
   USER_LOGGED_IN,
   USER_SIGNED_IN,
   ONBOARDING_COMPLETED,
+  TOGGLE_WITHDRAWAL_MODAL,
 } from '../constant';
 
 export const SetupStoreScreenAction =
@@ -22,6 +23,13 @@ export const CloseWelcomeModalAction =
   () => (dispatch: (arg0: {type: string}) => void) => {
     dispatch({
       type: CLOSE_WELCOME_MODAL,
+    });
+  };
+
+export const ToggleWithdrawalModalAction =
+  () => (dispatch: (arg0: {type: string}) => void) => {
+    dispatch({
+      type: TOGGLE_WITHDRAWAL_MODAL,
     });
   };
 

@@ -1,11 +1,16 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {StyleSheet, View, Text, Image} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import Modal from 'react-native-modal';
 import HandWave from '@/assets/hand-wave.png';
-import {colors} from '@/utils/.';
 import {RootState} from '@/store/RootReducer';
 import {StoreDetailsStateType} from '@/customTypes/storeDetailsTypes';
+import {styles} from '@/styles/WelcomeModal.style';
+
+interface AppModalProps {
+  closeModal: () => void;
+  visible: boolean;
+}
 
 export default function WelcomeModal({closeModal, visible}: AppModalProps) {
   const {storeDetails}: StoreDetailsStateType = useSelector(
@@ -42,59 +47,3 @@ export default function WelcomeModal({closeModal, visible}: AppModalProps) {
     </Modal>
   );
 }
-
-interface AppModalProps {
-  closeModal: () => void;
-  visible: boolean;
-}
-
-const styles = StyleSheet.create({
-  modal: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modalView: {
-    backgroundColor: colors.neutralWhite,
-    height: 180,
-    borderRadius: 10,
-    padding: 20,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
-  modalTitle: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  userNameView: {
-    borderRadius: 50,
-    borderWidth: 1,
-    height: 40,
-    width: 40,
-    borderColor: colors.mallBlue5,
-    margin: 10,
-    padding: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  userName: {
-    color: 'black',
-    fontSize: 24,
-    fontFamily: 'MontserratBold',
-    lineHeight: 32,
-    textAlign: 'center',
-  },
-  welcome: {
-    fontSize: 14,
-    fontFamily: 'MontserratBold',
-    lineHeight: 16,
-    color: colors.textColor,
-  },
-  modalContent: {
-    fontSize: 14,
-    fontFamily: 'RobotoRegular',
-    lineHeight: 20,
-    color: colors.textColor,
-    marginTop: 10,
-  },
-});

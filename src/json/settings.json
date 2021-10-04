@@ -1,0 +1,24 @@
+{
+  "list": [
+    {
+      "title": "Name",
+      "input": {"name": "ownerName"}
+    },
+    {
+      "title": "Store's Name",
+      "input": {"name": "storeName"}
+    },
+    {
+      "title": "Address",
+      "input": {"name": "address"}
+    },
+    {
+      "title": "Store Type",
+      "input": {"name": "storeType"}
+    },
+    {
+      "title": "Store opening time",
+      "input": {"name": "openingTime"}
+    }
+  ]
+}
