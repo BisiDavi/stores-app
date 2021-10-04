@@ -1,12 +1,13 @@
 import React from 'react';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {DrawerStackParamList} from '../customTypes/.';
-import colors from '../utils/colors';
 import {View, Text, StyleSheet} from 'react-native';
+import {StackNavigationProp} from '@react-navigation/stack';
 import {Button} from 'react-native-elements';
 
+import {BottomTabParamList} from '@/customTypes/.';
+import colors from '@/utils/colors';
+
 type PaymentApprovedNavigationProps = StackNavigationProp<
-  DrawerStackParamList,
+  BottomTabParamList,
   'PaymentApprovedScreen'
 >;
 

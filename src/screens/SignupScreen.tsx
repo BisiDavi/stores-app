@@ -1,19 +1,17 @@
 import React from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {
-  StyleSheet,
   KeyboardAvoidingView,
   ScrollView,
   Platform,
   View,
   Text,
-  Dimensions,
 } from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {RootStackParamList} from 'customTypes';
-import SignupForm from '../components/forms/SignupForm';
-import colors from '../utils/colors';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import SignupForm from '@/components/forms/SignupForm';
+import {styles} from '@/styles/SignupScreen.style';
 
 type SignupScreenNavigationProps = StackNavigationProp<
   RootStackParamList,
@@ -47,34 +45,3 @@ export default function SignupScreen({navigation}: signupScreenProps) {
     </SafeAreaView>
   );
 }
-const styles = StyleSheet.create({
-  view: {
-    flex: 1,
-  },
-  container: {
-    width: '100%',
-    height: Dimensions.get('window').height,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    flex: 1,
-    paddingTop: 10,
-    backgroundColor: colors.neutralWhite,
-  },
-  title: {
-    color: colors.cloudOrange5,
-    fontFamily: 'Montserrat-Bold',
-    fontSize: 18,
-    lineHeight: 28,
-  },
-  textView: {
-    margin: 30,
-    marginTop: 20,
-    marginBottom: 0,
-  },
-  text: {
-    fontFamily: 'Roboto-Medium',
-    fontSize: 14,
-    lineHeight: 20,
-  },
-});

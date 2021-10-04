@@ -1,15 +1,10 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {
-  StyleSheet,
-  View,
-  Platform,
-  KeyboardAvoidingView,
-  ScrollView,
-  Dimensions,
-} from 'react-native';
-import ProgressIndicator from '../components/ProgressIndicator';
-import SettlementDetailsForm from '../components/forms/SettlementDetailsForm';
+import {View, Platform, KeyboardAvoidingView, ScrollView} from 'react-native';
+
+import ProgressIndicator from '@/components/ProgressIndicator';
+import SettlementDetailsForm from '@/components/forms/SettlementDetailsForm';
+import {styles} from '@/styles/SettlementDetailsScreen.style';
 
 export default function SettlementDetailsScreen() {
   return (
@@ -34,20 +29,3 @@ export default function SettlementDetailsScreen() {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  view: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    flexDirection: 'column',
-    margin: 20,
-    width: Dimensions.get('window').width * 0.95,
-    alignItems: 'center',
-  },
-  indicator: {
-    marginLeft: -20,
-  },
-});

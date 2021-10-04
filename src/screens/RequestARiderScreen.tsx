@@ -1,11 +1,12 @@
 import React from 'react';
-import {View, Text, ScrollView, StyleSheet} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import {Input} from 'react-native-elements';
 import {StackScreenProps} from '@react-navigation/stack';
-import RequestRiderForm from '../components/forms/RequestRiderForm';
-import colors from '../utils/colors';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {DrawerStackParamList} from '../customTypes/.';
+
+import RequestRiderForm from '@/components/forms/RequestRiderForm';
+import {DrawerStackParamList} from '@/customTypes/.';
+import {styles} from '@/styles/RequestARiderScreen.style';
 
 export default function RequestARiderScreen({
   navigation,
@@ -32,38 +33,3 @@ export default function RequestARiderScreen({
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    margin: 15,
-    justifyContent: 'flex-start',
-  },
-  unitView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 20,
-    marginBottom: 20,
-    justifyContent: 'space-between',
-  },
-  inputStyle: {
-    width: 100,
-  },
-  spaceUp: {
-    marginBottom: 50,
-  },
-  link: {
-    color: colors.mallBlue5,
-    fontFamily: 'Roboto-Bold',
-    fontSize: 20,
-    lineHeight: 24,
-    marginLeft: 10,
-    marginBottom: 5,
-  },
-  text: {
-    marginLeft: 10,
-    color: colors.black,
-    fontFamily: 'Roboto-Regular',
-    fontSize: 17,
-  },
-});

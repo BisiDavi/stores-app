@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {View, ScrollView, StyleSheet, Text, Dimensions} from 'react-native';
+import {View, ScrollView, Text} from 'react-native';
 import {useSelector} from 'react-redux';
 import {ListItem, Switch, Image} from 'react-native-elements';
 import {DrawerStackParamList} from '@/customTypes/.';
@@ -14,6 +14,7 @@ import {
 } from '@/network/postRequest';
 import {RootState} from '@/store/RootReducer';
 import ProductLoader from '@/components/loader/ProductLoader';
+import {styles} from '@/styles/ProductScreen.style';
 
 type ProductScreenNavigationProps = StackNavigationProp<
   DrawerStackParamList,
@@ -86,6 +87,7 @@ function ProductListView({products}: productType) {
 
 export default function ProductScreen({navigation}: Props) {
   const [storeProducts, setStoreProducts] = useState<null | []>(null);
+  const [netError, setNetError] = useState(false);
   const {storeProfile}: any = useSelector(
     (state: RootState) => state.storeProfile,
   );
@@ -95,8 +97,12 @@ export default function ProductScreen({navigation}: Props) {
         console.log('response.data', response.data);
         const {products} = response.data.data;
         setStoreProducts(products);
+        setNetError(false);
       })
       .catch((error: any) => {
+        if (error) {
+          setNetError(true);
+        }
         console.log('getAllProductsRequest error', error);
       });
   }, [storeProfile]);
@@ -107,13 +113,19 @@ export default function ProductScreen({navigation}: Props) {
         <View style={styles.productView}>
           {storeProducts !== null && storeProducts?.length > 0 ? (
             <ProductListView products={storeProducts} />
-          ) : storeProducts !== null && storeProducts?.length === 0 ? (
+          ) : storeProducts !== null &&
+            !netError &&
+            storeProducts?.length === 0 ? (
             <Text style={styles.indicator}>
               No Product available, you can add products, by clicking on the
               plus button
             </Text>
-          ) : (
+          ) : !netError ? (
             <ProductLoader />
+          ) : (
+            <Text style={styles.error}>
+              Oops, unable to fetch your Products, due to poor network
+            </Text>
           )}
         </View>
       </ScrollView>
@@ -123,50 +135,3 @@ export default function ProductScreen({navigation}: Props) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    backgroundColor: colors.neutralWhite,
-    flexDirection: 'column',
-    textAlign: 'center',
-    padding: 15,
-    width: Dimensions.get('window').width,
-  },
-  meal: {
-    width: 100,
-  },
-  indicator: {
-    marginTop: 0,
-    fontFamily: 'Roboto-Medium',
-  },
-  edit: {
-    color: colors.mallBlue5,
-  },
-  switch: {
-    display: 'flex',
-  },
-  editIcon: {
-    height: 15,
-    width: 15,
-  },
-  listItem: {
-    width: Dimensions.get('window').width,
-  },
-  listViewContent: {
-    alignItems: 'flex-start',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: Dimensions.get('window').width * 0.85,
-  },
-  fabView: {
-    height: 70,
-  },
-  productView: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-  },
-});
