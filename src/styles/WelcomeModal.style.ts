@@ -33,19 +33,19 @@ export const styles = StyleSheet.create({
   userName: {
     color: 'black',
     fontSize: 24,
-    fontFamily: 'MontserratBold',
+    fontFamily: 'Montserrat-Bold',
     lineHeight: 32,
     textAlign: 'center',
   },
   welcome: {
     fontSize: 14,
-    fontFamily: 'MontserratBold',
+    fontFamily: 'Montserrat-Bold',
     lineHeight: 16,
     color: colors.textColor,
   },
   modalContent: {
     fontSize: 14,
-    fontFamily: 'RobotoRegular',
+    fontFamily: 'Roboto-Regular',
     lineHeight: 20,
     color: colors.textColor,
     marginTop: 10,

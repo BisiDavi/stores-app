@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 import {colors} from '@/utils';
 
 export const styles = StyleSheet.create({
@@ -33,21 +33,31 @@ export const styles = StyleSheet.create({
   userName: {
     color: 'black',
     fontSize: 24,
-    fontFamily: 'MontserratBold',
+    fontFamily: 'Montserrat-Bold',
     lineHeight: 32,
     textAlign: 'center',
   },
-  welcome: {
+  title: {
     fontSize: 14,
-    fontFamily: 'MontserratBold',
+    fontFamily: 'Montserrat-Bold',
     lineHeight: 16,
     color: colors.textColor,
   },
   modalContent: {
     fontSize: 14,
-    fontFamily: 'RobotoRegular',
+    fontFamily: 'Roboto-Regular',
     lineHeight: 20,
     color: colors.textColor,
     marginTop: 10,
+    alignItems: 'center',
+    width: Dimensions.get('window').width * 0.8,
+  },
+  input: {
+    width: Dimensions.get('window').width * 0.75,
+  },
+  button: {
+    width: 200,
+    alignItems: 'center',
+    backgroundColor: colors.mallBlue5,
   },
 });
