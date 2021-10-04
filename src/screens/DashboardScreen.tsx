@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {StackNavigationProp} from '@react-navigation/stack';
 import React, {useEffect} from 'react';
 import {
@@ -45,7 +46,7 @@ export default function DashboardScreen({navigation}: Props) {
   useEffect(() => {
     dashboardContent.card[0].content[0].amount = `${storeProfile.wallet} Naira`;
     dashboardContent.card[0].content[1].amount = `${storeProfile.wallet} Naira`;
-  }, [storeProfile]);
+  }, []);
 
   function navigateToStatisticsScreen() {
     return navigation.navigate(StatisticsScreenRoute);

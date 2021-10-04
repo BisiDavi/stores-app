@@ -98,9 +98,6 @@
     "setupFiles": [
       "./jest.setup.js"
     ],
-    "setupFilesAfterEnv": [
-      "<rootDir>src/setupTests.js"
-    ],
     "timers": "fake",
     "testEnvironment": "jsdom",
     "transformIgnorePatterns": [

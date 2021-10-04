@@ -8,7 +8,7 @@ import {Button} from 'react-native-elements';
 import {RootStackParamList} from '../../customTypes/.';
 import InputField from '../InputField';
 import colors from '../../utils/colors';
-import loginSchema from './LoginSchema';
+import loginSchema from '../schemas/LoginSchema';
 import AuthContext from '../../context/AuthContext';
 import PasswordInput from './PasswordInput';
 

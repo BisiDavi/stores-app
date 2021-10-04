@@ -8,7 +8,7 @@ import colors from '../../utils/colors';
 
 import {RootStackParamList} from 'customTypes';
 import InputField from '../InputField';
-import registrationSchema from './SignupSchema';
+import registrationSchema from '../schemas/SignupSchema';
 import AuthContext from '../../context/AuthContext';
 import PasswordInput from './PasswordInput';
 

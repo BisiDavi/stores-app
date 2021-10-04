@@ -4,7 +4,7 @@ import {View, StyleSheet} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {Button} from 'react-native-elements';
 
-import addNewProductSchema from '@/components/forms/AddNewProductSchema';
+import addNewProductSchema from '@/components/schemas/AddNewProductSchema';
 import {DisplayFormElements} from '@/components/forms/DisplayFormElements';
 import addFreshProductContent from '@/json/add-fresh-food.json';
 import colors from '@/utils/colors';

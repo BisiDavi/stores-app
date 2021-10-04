@@ -10,7 +10,7 @@ import {useFormValues, useStoreSetupNavigation} from '@/hooks/.';
 import {colors, showToast} from '@/utils/.';
 import settlementDetails from '@/json/settlement-details.json';
 import {DisplayFormElements} from './DisplayFormElements';
-import {storeSettlementDetailsSchema} from './StoreDetailsSchema';
+import {storeSettlementDetailsSchema} from '../schemas/StoreDetailsSchema';
 import {StoreSettlementAction} from '@/store/actions/StoreDetailsAction';
 import {postStoreDetailsRequest} from '@/network/postRequest';
 import {RootState} from '@/store/RootReducer';

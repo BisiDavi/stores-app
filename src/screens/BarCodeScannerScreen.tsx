@@ -10,11 +10,10 @@ import {
 import {RNCamera} from 'react-native-camera';
 import {Icon} from 'react-native-elements';
 import Spinner from 'react-native-loading-spinner-overlay';
-import {colors, showToast} from '@/utils';
+import {colors} from '@/utils';
 
 export default function BarCodeScannerScreen() {
   const [showFlashMode, setShowFlashMode] = useState(false);
-  //const [showPermission, set];
 
   async function takePermissions() {
     await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.CAMERA, {
@@ -29,14 +28,19 @@ export default function BarCodeScannerScreen() {
     takePermissions();
   }, []);
 
+  const flashlightStyle = showFlashMode && styles.flashLightMode;
+  const flashlightIconStyle = showFlashMode
+    ? colors.neutralWhite
+    : colors.black;
+
   async function takePicture(camera: any) {
     if (camera) {
       try {
         const options = {quality: 0.5, base64: true};
         const data = await camera.takePictureAsync(options);
-        Alert.alert('Success, ISBN Captured successfully');
         console.log('takePicture', data.uri);
-      } catch (errro) {
+      } catch (error) {
+        console.log('error', error);
         Alert.alert('Error, Error reading ISBN');
       }
     }
@@ -59,21 +63,14 @@ export default function BarCodeScannerScreen() {
             ? RNCamera.Constants.FlashMode.on
             : RNCamera.Constants.FlashMode.off
         }
-        androidCameraPermissionOptions={{
-          title: 'Permission to use camera',
-          message: 'We need your permission to use your camera',
-          buttonPositive: 'Ok',
-          buttonNegative: 'Cancel',
-        }}
         onBarCodeRead={event => {
-          console.log('onBarCodeReadbarcodes', event);
+          console.log('event', event);
+          //Alert.alert('barCode Data', JSON.stringify(event.data));
         }}
       >
         {({camera, status}) => {
           if (status !== 'READY') {
             return <Spinner color={colors.cloudOrange5} />;
-          } else {
-            showToast('Hello, your permission is required to approve payment');
           }
           return (
             <View style={styles.snapView}>
@@ -85,9 +82,13 @@ export default function BarCodeScannerScreen() {
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={flashModeHandler}
-                style={styles.capture}
+                style={{...styles.capture, ...flashlightStyle}}
               >
-                <Icon name="flashlight" type="entypo" />
+                <Icon
+                  name="flashlight"
+                  color={flashlightIconStyle}
+                  type="entypo"
+                />
               </TouchableOpacity>
             </View>
           );
@@ -125,5 +126,14 @@ const styles = StyleSheet.create({
     left: 0,
     zIndex: 200,
     width: Dimensions.get('window').width,
+  },
+  flashLightMode: {
+    backgroundColor: colors.mallBlue5,
+  },
+  flashLighIconOn: {
+    color: colors.neutralWhite,
+  },
+  flashLighIconOff: {
+    color: colors.black,
   },
 });

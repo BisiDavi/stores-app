@@ -1,7 +1,7 @@
-export {default as addProductSchema} from './AddProductSchema';
-export {default as loginSchema} from './LoginSchema';
-export {default as registrationSchema} from './SignupSchema';
+export {default as addProductSchema} from '../schemas/AddProductSchema';
+export {default as loginSchema} from '../schemas/LoginSchema';
+export {default as registrationSchema} from '../schemas/SignupSchema';
 export {
   storeDetailsScreenOneSchema,
   storeDetailsScreenTwoSchema,
-} from './StoreDetailsSchema';
+} from '../schemas/StoreDetailsSchema';

@@ -7,7 +7,7 @@ import {Button} from 'react-native-elements';
 import {useSelector} from 'react-redux';
 
 import {DisplayFormElements} from '@/components/forms/DisplayFormElements';
-import addExtraSchema from '@/components/forms/addExtraSchema';
+import addExtraSchema from '@/components/schemas/addExtraSchema';
 import formContent from '@/json/add-extra.json';
 import colors from '@/utils/colors';
 import {addExtrasRequest} from '@/network/postRequest';

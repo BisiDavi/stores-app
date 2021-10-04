@@ -2,7 +2,7 @@ import React from 'react';
 import {Formik} from 'formik';
 import {Button} from 'react-native-elements';
 import {View, StyleSheet, Dimensions} from 'react-native';
-import requestRiderSchema from './RequestRiderSchema';
+import requestRiderSchema from '../schemas/RequestRiderSchema';
 import {DisplayFormElements} from './DisplayFormElements';
 import requestRiderContent from '../../json/request-rider.json';
 import colors from '../../utils/colors';
