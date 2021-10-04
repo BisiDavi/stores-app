@@ -1,10 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
 import {ScrollView} from 'react-native-gesture-handler';
-import {StyleSheet, View, Text} from 'react-native';
+import {View, Text} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import Spinner from 'react-native-loading-spinner-overlay';
-import {RouteProp} from '@react-navigation/native';
 import {Image} from 'react-native-elements';
 
 import FreshFoodProductForm from '@/components/forms/FreshFoodProductForm';
@@ -13,19 +12,14 @@ import {colors, showToast} from '@/utils/.';
 import {ProgressIndicator, Fab} from '@/components/.';
 import {uploadProductImageRequest} from '@/network/postRequest';
 import {DrawerStackParamList} from '@/customTypes/.';
+import {styles} from '@/styles/FreshFoodProductScreen.style';
 
 type FreshFoodProductScreenNavigationProps = StackNavigationProp<
   DrawerStackParamList,
   'FreshFoodProductScreen'
 >;
 
-type FreshFoodProductScreenRouteProps = RouteProp<
-  DrawerStackParamList,
-  'FreshFoodProductScreen'
->;
-
 type Props = {
-  route: FreshFoodProductScreenRouteProps;
   navigation: FreshFoodProductScreenNavigationProps;
 };
 
@@ -103,74 +97,3 @@ export default function FreshFoodProductScreen({navigation}: Props) {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    padding: 15,
-    paddingTop: 0,
-  },
-  progressIndicatorView: {
-    marginLeft: 15,
-  },
-  productImage: {
-    height: 150,
-    width: 200,
-    marginBottom: 20,
-  },
-  progressIndicator: {
-    margin: 5,
-    marginLeft: 0,
-    marginBottom: 20,
-    marginTop: 0,
-  },
-  title: {
-    fontFamily: 'MontserratBold',
-    fontSize: 16,
-    marginTop: 0,
-    margin: 10,
-    marginLeft: 0,
-    textAlign: 'center',
-  },
-  uploadProductImage: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 20,
-  },
-  fabContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 50,
-    width: 70,
-    marginTop: 30,
-  },
-  FabView: {
-    height: 160,
-    width: 160,
-    backgroundColor: colors.neutral3,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 5,
-  },
-  inputLabel: {
-    padding: 0,
-    marginTop: -5,
-  },
-  inputContainer: {
-    padding: 0,
-    height: 35,
-    marginBottom: 0,
-  },
-  input: {
-    padding: 0,
-  },
-});
-
-type productType = {
-  label: string;
-  name: string;
-  type: string;
-};

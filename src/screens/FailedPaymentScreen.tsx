@@ -1,9 +1,9 @@
 import React from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {BottomTabParamList} from '@/customTypes/.';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text} from 'react-native';
 import {Button} from 'react-native-elements';
-import colors from '@/utils/colors';
+import {styles} from '@/styles/FailedPaymentScreen.style';
 
 type FailedPaymentNavigationProps = StackNavigationProp<
   BottomTabParamList,
@@ -36,31 +36,3 @@ export default function FailedPaymentScreen({navigation}: Props) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-  },
-  status: {
-    color: colors.accentRed,
-    fontFamily: 'Montserrat-Bold',
-    fontSize: 20,
-    lineHeight: 24,
-  },
-  buttonView: {
-    position: 'absolute',
-    bottom: 20,
-  },
-  textStyle: {
-    marginTop: 50,
-    fontFamily: 'Montserrat-Regular',
-    fontSize: 18,
-    lineHeight: 28,
-    textAlign: 'center',
-  },
-  buttonStyle: {
-    color: colors.mallBlue5,
-  },
-});
