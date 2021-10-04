@@ -1,14 +1,9 @@
 import React from 'react';
-import {
-  StyleSheet,
-  KeyboardAvoidingView,
-  ScrollView,
-  Platform,
-  View,
-} from 'react-native';
+import {KeyboardAvoidingView, ScrollView, Platform, View} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {DrawerStackParamList} from '@/customTypes/.';
 import AddExtraForm from '@/components/forms/AddExtraForm';
+import {styles} from '@/styles/AddExtraScreen.style';
 
 export type AddProductScreenNavigationProps = StackNavigationProp<
   DrawerStackParamList,
@@ -34,12 +29,3 @@ export default function AddExtraScreen({navigation}: Props) {
     </KeyboardAvoidingView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-  },
-  view: {
-    flex: 1,
-  },
-});

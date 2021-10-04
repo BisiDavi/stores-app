@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 import {Button} from 'react-native-elements';
+
 import colors from '@/utils/colors';
 import InputField from '@/components/InputField';
 import {addProductsCategories} from '@/network/postRequest';
 import {showToast} from '@/utils';
+import {styles} from '@/styles/AddProductCategoryScreen.style';
 
 export default function AddProductCategoryScreen() {
   const [productCategory, setProductCategory] = useState('');
@@ -55,27 +57,3 @@ export default function AddProductCategoryScreen() {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    flex: 1,
-  },
-  buttonStyle: {
-    backgroundColor: colors.mallBlue5,
-    width: '100%',
-  },
-  input: {
-    height: 50,
-  },
-  buttonViewStyle: {},
-  buttonText: {
-    color: colors.neutralWhite,
-  },
-  form: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginTop: 10,
-  },
-});
