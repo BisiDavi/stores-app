@@ -1,11 +1,11 @@
 import React from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text} from 'react-native';
 import {Button} from 'react-native-elements';
 
 import InputField from '@/components/InputField';
 import {BottomTabParamList} from '@/customTypes/.';
-import colors from '@/utils/colors';
+import {styles} from '@/styles/ConfirmPaymentScreen.style';
 
 export type confirmPaymentNavProps = StackNavigationProp<
   BottomTabParamList,
@@ -39,33 +39,3 @@ export default function ConfirmPaymentScreen({navigation}: Props) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  buttonStyle: {
-    backgroundColor: colors.mallBlue5,
-    width: '100%',
-  },
-  buttonViewStyle: {
-    position: 'absolute',
-    bottom: 20,
-  },
-  buttonText: {
-    color: colors.neutralWhite,
-  },
-  labelStyle: {
-    fontFamily: 'Montserrat-Bold',
-    fontSize: 18,
-    lineHeight: 28,
-    marginTop: 50,
-    marginBottom: 25,
-  },
-  inputField: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

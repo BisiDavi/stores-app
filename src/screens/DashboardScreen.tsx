@@ -2,14 +2,12 @@
 import {StackNavigationProp} from '@react-navigation/stack';
 import React, {useEffect} from 'react';
 import {
-  StyleSheet,
   View,
   KeyboardAvoidingView,
   ScrollView,
   Text,
   TouchableOpacity,
   Platform,
-  Dimensions,
 } from 'react-native';
 import {useSelector} from 'react-redux';
 
@@ -17,10 +15,10 @@ import DashboardCard from '@/components/DashboardCard';
 import dashboardContent from '@/json/dashboard.json';
 import {BottomTabParamList} from '@/customTypes';
 import DashboardChart from '@/components/DashboardChart';
-import colors from '@/utils/colors';
 import SelectField from '@/components/SelectField';
 import selectContent from '@/json/dasboard-select.json';
 import {RootState} from '@/store/RootReducer';
+import {styles} from '@/styles/DashboardScreen.style';
 
 export type DashboardScreenNavProps = StackNavigationProp<
   BottomTabParamList,
@@ -90,53 +88,3 @@ export default function DashboardScreen({navigation}: Props) {
     </KeyboardAvoidingView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'flex-end',
-    backgroundColor: colors.neutralWhite,
-    padding: 20,
-    paddingTop: 0,
-    position: 'relative',
-  },
-  view: {
-    flex: 1,
-  },
-  selectField: {
-    width: Dimensions.get('window').width * 0.4,
-    marginTop: 0,
-    marginBottom: 0,
-    padding: 0,
-  },
-  row: {
-    display: 'flex',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    margin: 0,
-    width: Dimensions.get('window').width * 0.875,
-  },
-  dashboardCards: {
-    display: 'flex',
-    alignItems: 'flex-start',
-  },
-  categoryText: {
-    fontFamily: 'Montserrat-Bold',
-    fontSize: 14,
-    lineHeight: 16,
-    marginBottom: 10,
-  },
-  chartTitle: {
-    fontFamily: 'Roboto-Regular',
-    fontSize: 12,
-    lineHeight: 16,
-    marginBottom: 10,
-  },
-  category: {
-    margin: 0,
-    marginBottom: 30,
-    display: 'flex',
-    alignItems: 'flex-start',
-  },
-});

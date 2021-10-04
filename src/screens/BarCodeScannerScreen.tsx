@@ -1,16 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  Dimensions,
-  Alert,
-  PermissionsAndroid,
-} from 'react-native';
+import {View, TouchableOpacity, Alert, PermissionsAndroid} from 'react-native';
 import {RNCamera} from 'react-native-camera';
 import {Icon} from 'react-native-elements';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {colors} from '@/utils';
+import {styles} from '@/styles/BarCodeScannerScreen.style';
 
 export default function BarCodeScannerScreen() {
   const [showFlashMode, setShowFlashMode] = useState(false);
@@ -97,43 +91,3 @@ export default function BarCodeScannerScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: 'black',
-  },
-  preview: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  capture: {
-    flex: 0,
-    backgroundColor: '#fff',
-    borderRadius: 100,
-    padding: 15,
-    alignSelf: 'center',
-    margin: 10,
-  },
-  snapView: {
-    flex: 0,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    position: 'absolute',
-    left: 0,
-    zIndex: 200,
-    width: Dimensions.get('window').width,
-  },
-  flashLightMode: {
-    backgroundColor: colors.mallBlue5,
-  },
-  flashLighIconOn: {
-    color: colors.neutralWhite,
-  },
-  flashLighIconOff: {
-    color: colors.black,
-  },
-});

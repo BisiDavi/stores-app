@@ -1,7 +1,19 @@
 import React, {useCallback} from 'react';
-import {StyleSheet, View, Text, FlatList, Dimensions} from 'react-native';
+import {View, Text, FlatList} from 'react-native';
 import {ListItem} from 'react-native-elements';
 import amountPaidContent from '@/json/amount-paid.json';
+import {styles} from '@/styles/AmountPaidScreen.style';
+
+type ItemType = {
+  item: amountPaidType;
+};
+
+type amountPaidType = {
+  id: number;
+  price: string;
+  duration: string;
+  method: string;
+};
 
 export default function AmountPaidScreen() {
   const amountPaid = useCallback(function renderItem({item}: ItemType) {
@@ -34,47 +46,3 @@ export default function AmountPaidScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  row: {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  amountPaid: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    width: Dimensions.get('window').width * 0.9,
-  },
-  column1: {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  column2: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-    flexDirection: 'column',
-  },
-  category: {
-    fontWeight: 'bold',
-  },
-});
-
-type ItemType = {
-  item: amountPaidType;
-};
-
-type amountPaidType = {
-  id: number;
-  price: string;
-  duration: string;
-  method: string;
-};

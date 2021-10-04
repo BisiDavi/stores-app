@@ -1,7 +1,19 @@
 import React, {useCallback} from 'react';
-import {StyleSheet, View, Text, FlatList, Dimensions} from 'react-native';
+import {View, Text, FlatList} from 'react-native';
 import {ListItem} from 'react-native-elements';
 import availableBalanceContent from '@/json/available-balance.json';
+import {styles} from '@/styles/AvailableBalanceScreen.style';
+
+type ItemType = {
+  item: AvailableBalanceType;
+};
+
+type AvailableBalanceType = {
+  id: number;
+  name: string;
+  price: string;
+  duration: string;
+};
 
 export default function AvailableBalanceScreen() {
   const availableBalance = useCallback(function renderItem({item}: ItemType) {
@@ -34,46 +46,3 @@ export default function AvailableBalanceScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  availableBalance: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    width: Dimensions.get('window').width * 0.9,
-  },
-  column1: {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  column2: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-    flexDirection: 'column',
-  },
-  category: {
-    fontWeight: 'bold',
-  },
-  price: {
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-});
-
-type ItemType = {
-  item: AvailableBalanceType;
-};
-
-type AvailableBalanceType = {
-  id: number;
-  name: string;
-  price: string;
-  duration: string;
-};
