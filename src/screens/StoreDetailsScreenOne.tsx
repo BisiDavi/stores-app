@@ -1,14 +1,10 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Platform,
-  KeyboardAvoidingView,
-  ScrollView,
-} from 'react-native';
-import ProgressIndicator from '../components/ProgressIndicator';
-import StoreDetailsFormOne from '../components/forms/StoreDetailsFormOne';
+import {View, Platform, KeyboardAvoidingView, ScrollView} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+
+import ProgressIndicator from '@/components/ProgressIndicator';
+import StoreDetailsFormOne from '@/components/forms/StoreDetailsFormOne';
+import {styles} from '@/styles/StoreDetailsScreenOne.style';
 
 export default function StoreDetailsScreenOne() {
   return (
@@ -28,16 +24,3 @@ export default function StoreDetailsScreenOne() {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  view: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'column',
-    margin: 15,
-    alignItems: 'center',
-  },
-});
