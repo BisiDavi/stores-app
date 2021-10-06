@@ -38,9 +38,9 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
   title: {
-    fontSize: 14,
+    fontSize: 18,
     fontFamily: 'Montserrat-Bold',
-    lineHeight: 16,
+    lineHeight: 24,
     color: colors.textColor,
   },
   modalContent: {

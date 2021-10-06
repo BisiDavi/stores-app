@@ -1,8 +1,9 @@
 import React from 'react';
 import Modal from 'react-native-modal';
 import {View, Text} from 'react-native';
-import {styles} from '@/styles/WithdrawalModal.style';
 import {Button} from 'react-native-elements';
+
+import {styles} from '@/styles/WithdrawalModal.style';
 import {InputField} from '.';
 interface AppModalProps {
   closeModal: () => void;
