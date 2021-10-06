@@ -1,7 +1,9 @@
 import React from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {View, Text, Dimensions} from 'react-native';
 import {LineChart} from 'react-native-chart-kit';
-import colors from '../utils/colors';
+
+import colors from '@/utils/colors';
+import {styles} from './DashboardChart.style';
 
 export default function DashboardChart() {
   return (
@@ -18,14 +20,14 @@ export default function DashboardChart() {
                 },
               ],
             }}
-            width={Dimensions.get('window').width * 0.8} // from react-native
+            width={Dimensions.get('window').width * 0.8}
             height={220}
-            yAxisInterval={10} // optional, defaults to 1
+            yAxisInterval={10}
             chartConfig={{
               backgroundColor: '#000',
               backgroundGradientFrom: colors.mallBlue5,
               backgroundGradientTo: colors.mallBlue3,
-              decimalPlaces: 2, // optional, defaults to 2dp
+              decimalPlaces: 2,
               color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
               labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
               style: {
@@ -38,7 +40,6 @@ export default function DashboardChart() {
                 stroke: '#ffa726',
               },
             }}
-            // bezier
             style={styles.lineChartStyle}
           />
         </View>
@@ -47,45 +48,3 @@ export default function DashboardChart() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  dashboardChart: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginBottom: 15,
-  },
-  lineChartStyle: {
-    marginVertical: 8,
-    borderRadius: 16,
-    marginLeft: 20,
-  },
-  chart: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    position: 'relative',
-  },
-  yAxis: {
-    display: 'flex',
-    flexDirection: 'column',
-    transform: [{rotate: '270deg'}],
-    margin: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 0,
-    height: 200,
-    top: 20,
-    position: 'absolute',
-    left: 35,
-    fontFamily: 'Roboto-Regular',
-    fontSize: 16,
-    lineHeight: 16,
-  },
-  xAxis: {
-    fontFamily: 'Roboto-Regular',
-    fontSize: 16,
-    lineHeight: 16,
-  },
-});

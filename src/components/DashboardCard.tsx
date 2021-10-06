@@ -1,12 +1,16 @@
 import React from 'react';
 import {Card} from 'react-native-elements';
-import {
-  View,
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-  Dimensions,
-} from 'react-native';
+import {View, TouchableOpacity, Text} from 'react-native';
+import {styles} from './DashboardCard.style';
+
+interface DashboardCardProps {
+  content: {
+    title: string;
+    amount: string;
+    link?: string | undefined;
+  };
+  navigation: any;
+}
 
 export default function DashboardCard({
   content,
@@ -28,45 +32,4 @@ export default function DashboardCard({
       )}
     </View>
   );
-}
-
-const styles = StyleSheet.create({
-  dashboardCard: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    margin: 0,
-    justifyContent: 'flex-start',
-    padding: 0,
-  },
-  card: {
-    height: 80,
-    width: Dimensions.get('window').width * 0.38,
-    display: 'flex',
-    margin: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 0,
-  },
-  cardText: {
-    fontFamily: 'Montserrat-Bold',
-    fontSize: 14,
-    lineHeight: 16,
-  },
-  title: {
-    fontWeight: '500',
-    fontFamily: 'Roboto-Regular',
-    fontSize: 14,
-    lineHeight: 20,
-    marginBottom: 10,
-  },
-});
-
-interface DashboardCardProps {
-  content: {
-    title: string;
-    amount: string;
-    link?: string | undefined;
-  };
-  navigation: any;
 }
