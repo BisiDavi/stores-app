@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
+
 import SelectField from './SelectField';
+import {styles} from './SelectGroup.style';
 
 interface SelectGroupProps {
   selectedValue: any;
@@ -50,25 +52,3 @@ export default function SelectGroup(props: SelectGroupProps) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  selectGroup: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-    alignItems: 'flex-start',
-    marginTop: 5,
-  },
-  select: {
-    width: 130,
-    borderWidth: 1,
-  },
-  error: {
-    color: 'red',
-    fontSize: 13,
-    marginTop: -15,
-  },
-  selectView: {
-    display: 'none',
-  },
-});

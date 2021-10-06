@@ -15,7 +15,7 @@ import DashboardCard from '@/components/DashboardCard';
 import dashboardContent from '@/json/dashboard.json';
 import {BottomTabParamList} from '@/customTypes';
 import DashboardChart from '@/components/DashboardChart';
-import SelectField from '@/components/SelectField';
+import SelectField from '@/components/FormElements/Select/SelectField';
 import selectContent from '@/json/dasboard-select.json';
 import {RootState} from '@/store/RootReducer';
 import {styles} from '@/styles/DashboardScreen.style';

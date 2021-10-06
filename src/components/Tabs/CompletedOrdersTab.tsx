@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {FlatList, TouchableOpacity, View, Text} from 'react-native';
 import {useSelector} from 'react-redux';
 
-import OrdersListItem from '@/components/OrdersListItem';
+import OrdersListItem from '@/components/Tabs/OrdersListItem';
 import {getCompletedOrdersRequest} from '@/network/postRequest';
 import {RootState} from '@/store/RootReducer';
 import {styles} from './CompletedOrdersTab.style';

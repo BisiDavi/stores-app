@@ -1,19 +1,20 @@
 import React, {useState} from 'react';
 import {Formik} from 'formik';
 import {Switch} from 'react-native-elements';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {View, Text} from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {Button} from 'react-native-elements';
 import {useSelector} from 'react-redux';
 
 import {DisplayFormElements} from '@/components/Forms/DisplayFormElements';
-import addExtraSchema from '@/components/Schemas/addExtraSchema';
+import addExtraSchema from '@/schemas/addExtraSchema';
 import formContent from '@/json/add-extra.json';
 import colors from '@/utils/colors';
 import {addExtrasRequest} from '@/network/postRequest';
 import {RootState} from '@/store/RootReducer';
 import showToast from '@/utils/showToast';
 import AddExtrasModal from '../AddExtraModal/AddExtrasModal';
+import {styles} from './AddExtraForm.style';
 
 export default function AddExtraForm({navigation: {goBack}}: any) {
   const [loading, setLoading] = useState(false);
@@ -127,58 +128,3 @@ export default function AddExtraForm({navigation: {goBack}}: any) {
     </>
   );
 }
-const styles = StyleSheet.create({
-  formContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
-  },
-  formInputs: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  nextButton: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    display: 'flex',
-    width: 100,
-    borderRadius: 10,
-    backgroundColor: colors.mallBlue5,
-  },
-  backButton: {
-    borderWidth: 1,
-    borderColor: colors.mallBlue5,
-    backgroundColor: 'transparent',
-    width: 100,
-    borderRadius: 10,
-  },
-  backButtonTitle: {
-    color: colors.mallBlue5,
-  },
-  buttonGroup: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '90%',
-    margin: 10,
-    marginTop: 10,
-  },
-  switchView: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    margin: 10,
-    width: Dimensions.get('window').width * 0.85,
-    alignItems: 'flex-start',
-  },
-  switchText: {
-    fontFamily: 'RobotoRegular',
-    fontSize: 17,
-    lineHeight: 20,
-  },
-  compulsory: {
-    color: 'red',
-  },
-  optional: {
-    color: 'green',
-  },
-});

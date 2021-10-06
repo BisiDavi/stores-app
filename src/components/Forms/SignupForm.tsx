@@ -4,13 +4,12 @@ import {RouteProp} from '@react-navigation/native';
 import {Formik} from 'formik';
 import {StyleSheet, View, Text} from 'react-native';
 import {Button} from 'react-native-elements';
-import colors from '../../utils/colors';
 
-import {RootStackParamList} from 'customTypes';
-import InputField from '../InputField';
-import registrationSchema from '../Schemas/SignupSchema';
-import AuthContext from '../../context/AuthContext';
-import PasswordInput from './PasswordInput';
+import colors from '@/utils/colors';
+import {RootStackParamList} from '@/customTypes';
+import registrationSchema from '@/schemas/SignupSchema';
+import AuthContext from '@/context/AuthContext';
+import {PasswordInput, InputField} from '../FormElements';
 
 type SignupFormNavigationProps = StackNavigationProp<
   RootStackParamList,

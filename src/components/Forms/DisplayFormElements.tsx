@@ -1,12 +1,14 @@
 import React, {memo, ChangeEvent} from 'react';
 import {Dimensions, KeyboardTypeOptions, StyleSheet} from 'react-native';
-import InputField from '../InputField';
-import RadioField from '../RadioField';
-import SelectField from '../SelectField';
+import {
+  InputField,
+  InputGroup,
+  RadioField,
+  SelectField,
+  SwitchfieldTimefield,
+} from '@/components/FormElements';
 import {displayAsset} from '@/utils/.';
-import InputGroup from '../InputGroup';
-import SwitchFields, {SwitchView} from '../SwitchFields';
-import SwitchfieldTimefield from './SwitchfieldTimefield';
+import SwitchFields, {SwitchView} from '../FormElements/Switch/SwitchFields';
 
 function FormElements(props: displayFormElementsProps) {
   const {formElement, toggleModal} = props;

@@ -1,7 +1,22 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
-import colors from '@/utils/colors';
+
+import {styles} from './SelectField.style';
+
+interface selectFieldProps {
+  content: {
+    label?: string;
+    options?: any;
+    value?: string;
+    optionName?: string;
+    placeholder?: string;
+  };
+  selectedValue?: any;
+  onValueChange?: any;
+  error?: string;
+  style?: any;
+}
 
 export default function SelectField({content, ...props}: selectFieldProps) {
   function getPickerValue(item: any) {
@@ -61,60 +76,3 @@ export default function SelectField({content, ...props}: selectFieldProps) {
     </>
   );
 }
-
-interface selectFieldProps {
-  content: {
-    label?: string;
-    options?: any;
-    value?: string;
-    optionName?: string;
-    placeholder?: string;
-  };
-  selectedValue?: any;
-  onValueChange?: any;
-  error?: string;
-  style?: any;
-}
-
-const styles = StyleSheet.create({
-  text: {
-    margin: 5,
-    marginLeft: 0,
-    fontWeight: '500',
-    fontSize: 14,
-    textAlign: 'left',
-    fontFamily: 'RobotoRegular',
-  },
-  textView: {
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-  },
-  pickerView: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  selectField: {
-    margin: 0,
-    padding: 0,
-    alignItems: 'flex-start',
-    flexDirection: 'column',
-  },
-  picker: {
-    height: 48,
-    margin: 0,
-    padding: 0,
-    borderColor: colors.mallBlue3,
-    borderWidth: 1,
-    borderRadius: 5,
-    justifyContent: 'center',
-  },
-  error: {
-    color: 'red',
-    margin: 5,
-    marginLeft: 5,
-    marginBottom: 0,
-    fontFamily: 'RobotoRegular',
-    fontSize: 12,
-    fontWeight: '600',
-  },
-});

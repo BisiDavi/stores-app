@@ -1,5 +1,5 @@
 import React, {useState, ChangeEvent} from 'react';
-import InputField from '../InputField';
+import InputField from './InputField';
 import {Icon} from 'react-native-elements';
 
 interface InputFieldProps {

@@ -28,9 +28,6 @@ export default function SelectOptions(props: SelectOptionsProps) {
   });
 
   function handleSelect(field: any, value: any) {
-    console.log('field.switch.label', field);
-    console.log('handleSelect value', value);
-
     setOpenDays((prevState: any) => {
       return {
         ...prevState,
@@ -41,7 +38,6 @@ export default function SelectOptions(props: SelectOptionsProps) {
       };
     });
   }
-  console.log('openDays', openDays);
 
   return (
     <SelectField

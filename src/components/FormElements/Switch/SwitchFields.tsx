@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {View, Text} from 'react-native';
 import {Switch} from 'react-native-elements';
+
 import colors from '@/utils/colors';
+import {styles} from './SwitchFields.style';
 
 interface SwitchViewProps {
   label: string;
@@ -40,28 +42,3 @@ export default function SwitchFields({content}: SwitchFieldsProps) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  switchView: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    margin: 10,
-    width: Dimensions.get('window').width * 0.85,
-    alignItems: 'flex-start',
-  },
-  SwitchFields: {
-    marginTop: 0,
-    margin: 10,
-  },
-  label: {
-    fontFamily: 'RobotoRegular',
-    fontSize: 14,
-    lineHeight: 20,
-    marginBottom: 10,
-  },
-  switchText: {
-    fontFamily: 'RobotoRegular',
-    fontSize: 17,
-    lineHeight: 20,
-  },
-});

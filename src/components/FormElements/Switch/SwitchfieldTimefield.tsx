@@ -1,11 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {View, Text} from 'react-native';
 import {Switch} from 'react-native-elements';
 import {useDispatch} from 'react-redux';
-import SelectGroup from '@/components/SelectGroup';
+
 import {StoreOpendaysAction} from '@/store/actions/StoreDetailsAction';
 import colors from '@/utils/colors';
+import SelectGroup from '../Select/SelectGroup';
+import {styles} from './SwitchfieldTimefield.style';
 
 type TimeAndSwitchFieldType = {
   switch: {
@@ -113,51 +115,3 @@ export default function SwitchfieldTimefield(props: SwitchFieldsProps) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  SwitchFields: {
-    marginTop: 0,
-    padding: 0,
-    alignItems: 'flex-start',
-    width: Dimensions.get('window').width * 0.85,
-  },
-  timeAndSwitchField: {
-    paddingTop: 5,
-    paddingBottom: 5,
-  },
-  selectField: {
-    width: Dimensions.get('window').width * 0.85,
-    alignItems: 'center',
-  },
-  switchView: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-    alignItems: 'center',
-  },
-  open: {
-    color: 'green',
-  },
-  close: {
-    color: colors.accentRed,
-  },
-
-  label: {
-    fontFamily: 'RobotoRegular',
-    fontSize: 14,
-    lineHeight: 18,
-    marginBottom: 10,
-  },
-  switchText: {
-    fontFamily: 'RobotoRegular',
-    fontSize: 17,
-    lineHeight: 19,
-  },
-  switchLabel: {
-    width: 100,
-  },
-  error: {
-    color: 'red',
-    fontSize: 13,
-  },
-});

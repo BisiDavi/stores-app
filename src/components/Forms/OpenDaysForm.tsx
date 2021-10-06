@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {View, Text} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {Switch} from 'react-native-elements';
 import colors from '@/utils/colors';
-import SwitchTimeSelectField from './SwitchTimeSelectField';
+
 import {StoreOpendaysStatusAction} from '@/store/actions/StoreDetailsAction';
+import SwitchTimeSelectField from '@/components/FormElements/Switch/SwitchTimeSelectField';
+import {styles} from './OpenDaysForm.style';
 
 type TimeAndSwitchFieldType = {
   switch: {
@@ -89,7 +91,7 @@ function TimeAndSwitchField({period}: TimeAndSwitchFieldProps) {
   );
 }
 
-export default function SwitchfieldTimefield() {
+export default function OpenDaysForm() {
   return (
     <View style={styles.SwitchFields}>
       <Text style={styles.label}>Open Days*</Text>
@@ -99,53 +101,3 @@ export default function SwitchfieldTimefield() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  SwitchFields: {
-    marginTop: 0,
-    padding: 0,
-    alignItems: 'flex-start',
-    width: Dimensions.get('window').width * 0.85,
-  },
-  timeAndSwitchField: {
-    paddingTop: 5,
-    paddingBottom: 5,
-  },
-  selectField: {
-    width: Dimensions.get('window').width * 0.85,
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  switchView: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-    alignItems: 'center',
-  },
-  open: {
-    color: 'green',
-  },
-  close: {
-    color: colors.accentRed,
-  },
-
-  label: {
-    fontFamily: 'RobotoRegular',
-    fontSize: 14,
-    lineHeight: 18,
-    marginBottom: 10,
-  },
-  switchText: {
-    fontFamily: 'RobotoRegular',
-    fontSize: 17,
-    lineHeight: 19,
-  },
-  switchLabel: {
-    width: 100,
-  },
-  error: {
-    color: 'red',
-    fontSize: 13,
-  },
-});

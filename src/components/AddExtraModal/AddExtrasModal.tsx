@@ -3,8 +3,9 @@ import {Text, View} from 'react-native';
 import {Button} from 'react-native-elements';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
-import AppModal, {AppModalProps} from '../Modal/AppModal';
+
 import addExtrasButtons from '@/json/add-extra-modal.json';
+import AppModal, {AppModalProps} from '@/components/Modal/AppModal';
 import {styles} from './AddExtrasModal.style';
 
 export default function AddExtrasModal({

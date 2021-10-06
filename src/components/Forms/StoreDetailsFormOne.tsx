@@ -3,8 +3,9 @@ import {Button} from 'react-native-elements';
 import {useDispatch} from 'react-redux';
 import {Formik} from 'formik';
 import Spinner from 'react-native-loading-spinner-overlay';
-import {Dimensions, StyleSheet, View} from 'react-native';
-import {storeDetailsScreenOneSchema} from '.';
+import {View} from 'react-native';
+
+import {storeDetailsScreenOneSchema} from '@/schemas';
 import {colors, showToast} from '@/utils/.';
 import storeDetailsFormOne from '@/json/storDetailsFormOneOne.json';
 import {StoreDetailsAction} from '@/store/actions/StoreDetailsAction';
@@ -14,8 +15,9 @@ import {
   getAvailableState,
   getStoreCategoriesRequest,
 } from '@/network/getRequest';
-import StoreTypeInfoModal from '@/components/StoreTypeInfoModal';
-import OpenDays from '../OpenDays';
+import StoreTypeInfoModal from '@/components/Modal/StoreTypeInfoModal';
+import OpenDaysForm from './OpenDaysForm';
+import {styles} from './StoreDetailsFormOne.style';
 
 export default function StoreDetailsFormOne() {
   const dispatch = useDispatch();
@@ -99,7 +101,7 @@ export default function StoreDetailsFormOne() {
                   toggleModal={toggleModal}
                 />
               ))}
-              <OpenDays />
+              <OpenDaysForm />
               <View style={styles.buttonView}>
                 <Button
                   buttonStyle={styles.buttonStyle}
@@ -115,34 +117,3 @@ export default function StoreDetailsFormOne() {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  form: {
-    marginTop: 10,
-    padding: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonStyle: {
-    width: Dimensions.get('window').width * 0.7,
-    alignItems: 'center',
-    backgroundColor: colors.mallBlue5,
-    justifyContent: 'center',
-  },
-  buttonView: {
-    alignItems: 'center',
-    marginTop: 20,
-    justifyContent: 'center',
-    marginBottom: 40,
-  },
-  title: {
-    fontSize: 20,
-    textAlign: 'left',
-    fontWeight: 'bold',
-    justifyContent: 'flex-start',
-    marginBottom: 0,
-    marginTop: 0,
-    width: '100%',
-    alignItems: 'flex-start',
-  },
-});

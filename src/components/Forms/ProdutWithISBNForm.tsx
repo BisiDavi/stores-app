@@ -2,7 +2,7 @@ import React from 'react';
 import {Formik} from 'formik';
 import {View, StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
-import addProductSchema from '../Schemas/AddProductSchema';
+import addProductSchema from '../../schemas/AddProductSchema';
 import {DisplayFormElements} from './DisplayFormElements';
 import formContent from '../../json/isbnProduct.json';
 import colors from '../../utils/colors';

@@ -1,16 +1,14 @@
 import React, {useContext} from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
-
 import {Formik} from 'formik';
 import {StyleSheet, View, Text} from 'react-native';
 import {Button} from 'react-native-elements';
 
-import {RootStackParamList} from '../../customTypes';
-import InputField from '../InputField';
-import colors from '../../utils/colors';
-import loginSchema from '../Schemas/LoginSchema';
-import AuthContext from '../../context/AuthContext';
-import PasswordInput from './PasswordInput';
+import {RootStackParamList} from '@/customTypes';
+import colors from '@/utils/colors';
+import loginSchema from '@/schemas/LoginSchema';
+import AuthContext from '@/context/AuthContext';
+import {PasswordInput, InputField} from '../FormElements';
 
 type LoginScreenNavigationProps = StackNavigationProp<
   RootStackParamList,

@@ -1,15 +1,15 @@
 import React from 'react';
 import {Formik} from 'formik';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {Button} from 'react-native-elements';
 
-import addNewProductSchema from '@/components/Schemas/AddNewProductSchema';
+import addNewProductSchema from '@/schemas/AddNewProductSchema';
 import {DisplayFormElements} from '@/components/Forms/DisplayFormElements';
 import addFreshProductContent from '@/json/add-fresh-food.json';
-import colors from '@/utils/colors';
 import {AddProductStep1Action} from '@/store/actions/addProductAction';
 import {checkObjectKey} from '@/utils/checkExistingStore';
+import {styles} from './FreshFoodProductForm.style';
 
 export default function FreshFoodProductForm({navigation}: any) {
   const dispatch = useDispatch();
@@ -83,63 +83,3 @@ export default function FreshFoodProductForm({navigation}: any) {
     </Formik>
   );
 }
-
-const styles = StyleSheet.create({
-  nextButton: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    display: 'flex',
-    width: 100,
-    borderRadius: 10,
-    backgroundColor: colors.mallBlue5,
-  },
-  backButton: {
-    borderWidth: 1,
-    borderColor: colors.mallBlue5,
-    backgroundColor: 'transparent',
-    width: 100,
-    borderRadius: 10,
-  },
-  backButtonTitle: {
-    color: colors.mallBlue5,
-  },
-  buttonGroup: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '92%',
-    margin: 10,
-    marginTop: 10,
-  },
-  formView: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  uploadProductImage: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 20,
-  },
-  fabContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 50,
-    width: 70,
-    marginTop: 30,
-  },
-  productImage: {
-    height: 150,
-    width: 200,
-    marginBottom: 20,
-  },
-  FabView: {
-    height: 160,
-    width: 160,
-    backgroundColor: colors.neutral3,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 5,
-  },
-});

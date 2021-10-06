@@ -1,7 +1,7 @@
 import React from 'react';
 import {Formik} from 'formik';
 import {View, StyleSheet, Dimensions} from 'react-native';
-import addNewProductSchema from '../Schemas/AddNewProductSchema';
+import addNewProductSchema from '../../schemas/AddNewProductSchema';
 import {DisplayFormElements} from './DisplayFormElements';
 import promoTagContent from '../../json/add-promo-tag.json';
 

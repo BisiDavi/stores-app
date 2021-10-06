@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux';
 
 import {RootState} from '@/store/RootReducer';
 //import NewOrdersList from '@/json/new-order.json';
-import OrdersListItem from '@/components/OrdersListItem';
+import OrdersListItem from '@/components/Tabs/OrdersListItem';
 import {getPendingOrdersRequest} from '@/network/postRequest';
 import {styles} from './NewOrdersTab.style';
 

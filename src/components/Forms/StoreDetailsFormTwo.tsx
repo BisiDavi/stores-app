@@ -3,20 +3,22 @@ import {Button} from 'react-native-elements';
 import {useDispatch} from 'react-redux';
 import {Formik} from 'formik';
 import Spinner from 'react-native-loading-spinner-overlay';
-import {StyleSheet, Dimensions, View} from 'react-native';
+import {View} from 'react-native';
+
 import {useStoreSetupNavigation, useFormValues} from '@/hooks/.';
 import storeDetailsFormTwo from '@/json/storeDetailsFormTwo.json';
-import {storeDetailsScreenTwoSchema} from '.';
+import {storeDetailsScreenTwoSchema} from '@/schemas';
 import {DisplayFormElements} from './DisplayFormElements';
 import {StoreOwnerAction} from '@/store/actions/StoreDetailsAction';
 import {colors} from '@/utils/.';
+import {styles} from './StoreDetailsFormTwo.style';
 
 export default function StoreDetailsFormTwo() {
   const [loading, setLoading] = useState(false);
   const {onBoardingNextScreen} = useStoreSetupNavigation();
   const dispatch = useDispatch();
   const {formTwoMainValues} = useFormValues();
-  console.log('formTwoMainValues', formTwoMainValues);
+
   return (
     <>
       <Spinner visible={loading} color={colors.cloudOrange5} />
@@ -24,7 +26,6 @@ export default function StoreDetailsFormTwo() {
         validationSchema={storeDetailsScreenTwoSchema}
         initialValues={formTwoMainValues}
         onSubmit={values => {
-          console.log('values', values);
           setLoading(true);
           dispatch(StoreOwnerAction(values));
           setLoading(false);
@@ -66,28 +67,3 @@ export default function StoreDetailsFormTwo() {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  form: {
-    marginTop: 10,
-  },
-  buttonStyle: {
-    width: Dimensions.get('window').width * 0.7,
-    alignItems: 'center',
-    backgroundColor: colors.mallBlue5,
-  },
-  buttonView: {
-    alignItems: 'center',
-    marginTop: 20,
-  },
-  title: {
-    fontSize: 20,
-    textAlign: 'left',
-    fontWeight: 'bold',
-    justifyContent: 'flex-start',
-    marginBottom: 0,
-    marginTop: 0,
-    width: '100%',
-    alignItems: 'flex-start',
-  },
-});

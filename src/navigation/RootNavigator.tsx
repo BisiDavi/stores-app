@@ -2,6 +2,7 @@ import React, {useContext, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import Spinner from 'react-native-loading-spinner-overlay';
+
 import AuthContext from '@/context/AuthContext';
 import {setClientToken} from '@/network/axiosInstance';
 import {RootState} from '@/store/RootReducer';

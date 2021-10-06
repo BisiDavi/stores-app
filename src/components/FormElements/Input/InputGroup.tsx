@@ -2,6 +2,19 @@ import React, {ChangeEvent} from 'react';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import InputField from './InputField';
 
+interface InputGroupProps {
+  inputGroup: {
+    label?: string;
+    name: string;
+    type: string;
+    inputs?: {placeholder: string; name: string; type: string}[];
+  };
+  value?: any;
+  onChangeText?: any;
+  onBlur?: (e: string | ChangeEvent<any>) => void | undefined;
+  errorMessage?: any;
+}
+
 export default function InputGroup({inputGroup, ...props}: InputGroupProps) {
   return (
     <View style={styles.inputGroup}>
@@ -22,19 +35,6 @@ export default function InputGroup({inputGroup, ...props}: InputGroupProps) {
       </View>
     </View>
   );
-}
-
-interface InputGroupProps {
-  inputGroup: {
-    label?: string;
-    name: string;
-    type: string;
-    inputs?: {placeholder: string; name: string; type: string}[];
-  };
-  value: any;
-  onChangeText?: any;
-  onBlur?: (e: string | ChangeEvent<any>) => void | undefined;
-  errorMessage?: any;
 }
 
 const styles = StyleSheet.create({

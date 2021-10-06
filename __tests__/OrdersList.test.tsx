@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import OrdersListItem from '@/components/OrdersListItem';
+import OrdersListItem from '@/components/Tabs/OrdersListItem';
 
 describe('Testing the OrdersListItem component', () => {
   const item = {
