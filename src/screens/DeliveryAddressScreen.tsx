@@ -3,8 +3,8 @@ import {useSelector} from 'react-redux';
 import {View, KeyboardAvoidingView, Platform, FlatList} from 'react-native';
 import {Button, Text} from 'react-native-elements';
 
-import GoogleAutoCompleteInput from '@/components/GoogleAutoCompleteInput';
-import Map from '@/components/Map';
+import GoogleAutoCompleteInput from '@/components/Map/GoogleAutoCompleteInput';
+import Map from '@/components/Map/Map';
 import {RootState} from '@/store/RootReducer';
 import {styles} from '@/styles/DeliveryAddressScreen.style';
 

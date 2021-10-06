@@ -5,10 +5,10 @@ import {SafeAreaView, View} from 'react-native';
 import {Tab, TabView} from 'react-native-elements';
 import {useDispatch, useSelector} from 'react-redux';
 
-import NewOrdersTab from '@/components/NewOrdersTab';
-import CompletedOrdersTab from '@/components/CompletedOrdersTab';
+import NewOrdersTab from '@/components/Tabs/NewOrdersTab';
+import CompletedOrdersTab from '@/components/Tabs/CompletedOrdersTab';
 import {RootState} from '@/store/RootReducer';
-import WelcomeModal from '@/components/WelcomeModal';
+import WelcomeModal from '@/components/Modal/WelcomeModal';
 import {CloseWelcomeModalAction} from '@/store/actions/SetupStoreAction';
 import {colors} from '@/utils/.';
 import {DrawerStackParamList} from '@/customTypes/.';
@@ -33,7 +33,9 @@ export default function OrdersScreen({navigation}: Props) {
   const {completed, isWelcomeModalShown, authMethod} = useSelector(
     (state: RootState) => state.setupStore,
   );
-
+  const {storeProfile: storeProfileRedux} = useSelector(
+    (state: RootState) => state.storeProfile,
+  );
   function closeModal() {
     return setWelcomeModal(false);
   }
@@ -53,14 +55,24 @@ export default function OrdersScreen({navigation}: Props) {
 
   useEffect(() => {
     let renderOnce = true;
-    renderOnce &&
+    if (renderOnce && storeProfileRedux === null) {
       getStoreDetailsRequest()
         .then(response => {
-          dispatch(StoreProfileActions(response.data.data));
+          console.log(
+            'storeProfileData response.data.data',
+            response.data.data,
+          );
+          const {storeProfile} = response.data.data;
+          const storeProfileData = {
+            id: storeProfile.id,
+            name: storeProfile.name,
+          };
+          dispatch(StoreProfileActions(storeProfileData));
         })
         .catch(error => {
           console.log('error', error);
         });
+    }
     return () => {
       renderOnce = false;
     };

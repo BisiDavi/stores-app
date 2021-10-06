@@ -1,9 +1,9 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {FAB} from 'react-native-elements';
-import colors from '../utils/colors';
+import colors from '@/utils/colors';
 
-const Fab = ({onPress}: FabProps) => {
+export default function Fab({onPress}: FabProps) {
   return (
     <FAB
       color={colors.mallBlue3}
@@ -14,9 +14,7 @@ const Fab = ({onPress}: FabProps) => {
       placement="right"
     />
   );
-};
-
-export default Fab;
+}
 
 const styles = StyleSheet.create({
   fab: {

@@ -12,7 +12,6 @@ import {
 import {setClientToken} from '@/network/axiosInstance';
 import getExistingStoreProfile from '@/utils/getExistingStoreProfile';
 import {
-  AuthTokenAction,
   UserLoggedinAction,
   UserOnboardingCompletedAction,
   UserSignedinAction,
@@ -43,7 +42,6 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
         dispatch({type: 'LOADING'});
         const loginInToken: any = await loginUser(email, password);
         !loginInToken && dispatch({type: 'STOP_LOADING'});
-        dispatchRedux(AuthTokenAction(loginInToken));
         if (loginInToken) {
           saveAuthtoken(loginInToken);
           setClientToken(loginInToken);
@@ -86,7 +84,6 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
         dispatch({type: 'LOADING'});
         await signupUser(email, password)
           .then(response => {
-            console.log('response from signupToken', response);
             setClientToken(response);
             dispatchRedux(UserSignedinAction());
             saveAuthtoken(response);
@@ -94,6 +91,11 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
           })
           .catch(error => {
             console.log('error from signupToken', error);
+            if (error.response) {
+              showToast(error.response.data.message);
+            } else if (error.request) {
+              showToast('Oops, an error occured, unable to sign up');
+            }
             dispatch({type: 'STOP_LOADING'});
           });
       },

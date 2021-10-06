@@ -3,8 +3,8 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {View, ScrollView} from 'react-native';
 
-import ProgressIndicator from '@/components/ProgressIndicator';
-import AddProductOtherDetailsForm from '@/components/forms/AddProductOtherDetailsForm';
+import ProgressIndicator from '@/components/ProgressIndicator/ProgressIndicator';
+import AddProductOtherDetailsForm from '@/components/Forms/AddProductOtherDetailsForm';
 import {DrawerStackParamList} from '@/customTypes';
 import {styles} from '@/styles/AddFreshFoodOtherDetailsScreen.style';
 

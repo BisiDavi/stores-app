@@ -8,7 +8,7 @@ import drawerJson from '@/json/drawer.json';
 import {displayAsset, colors} from '@/utils';
 import displayNavigators from '@/utils/displayNavigators';
 import ProfileIcon from '@/components/ProfileIcon';
-import WithdrawalModal from '@/components/WithdrawalModal';
+import WithdrawalModal from '@/components/Modal/WithdrawalModal';
 import {RootState} from '@/store/RootReducer';
 import {ToggleWithdrawalModalAction} from '@/store/actions/SetupStoreAction';
 

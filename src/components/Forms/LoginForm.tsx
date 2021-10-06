@@ -1,39 +1,36 @@
-import {StackNavigationProp} from '@react-navigation/stack';
 import React, {useContext} from 'react';
-import {RouteProp} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+
 import {Formik} from 'formik';
 import {StyleSheet, View, Text} from 'react-native';
 import {Button} from 'react-native-elements';
-import colors from '../../utils/colors';
 
-import {RootStackParamList} from 'customTypes';
+import {RootStackParamList} from '../../customTypes';
 import InputField from '../InputField';
-import registrationSchema from '../schemas/SignupSchema';
+import colors from '../../utils/colors';
+import loginSchema from '../Schemas/LoginSchema';
 import AuthContext from '../../context/AuthContext';
 import PasswordInput from './PasswordInput';
 
-type SignupFormNavigationProps = StackNavigationProp<
+type LoginScreenNavigationProps = StackNavigationProp<
   RootStackParamList,
-  'SignupScreen'
+  'LoginScreen'
 >;
 
-type SignupFormRouteProps = RouteProp<RootStackParamList, 'SignupScreen'>;
-
-type signupFormProps = {
-  route?: SignupFormRouteProps;
-  navigation: SignupFormNavigationProps;
+type loginFormProps = {
+  navigation: LoginScreenNavigationProps;
 };
 
-export default function SignupForm({navigation}: signupFormProps) {
+export default function LoginForm({navigation}: loginFormProps) {
   const {authContext} = useContext(AuthContext);
 
   return (
     <Formik
-      validationSchema={registrationSchema}
-      initialValues={{email: '', password: '', confirmPassword: ''}}
-      onSubmit={values => {
+      validationSchema={loginSchema}
+      initialValues={{email: '', password: ''}}
+      onSubmit={async values => {
         const {email, password} = values;
-        authContext.signUp(email, password);
+        authContext.loginIn(email, password, navigation);
       }}
     >
       {({
@@ -65,32 +62,20 @@ export default function SignupForm({navigation}: signupFormProps) {
               errors.password && touched.password && errors.password
             }
           />
-          <PasswordInput
-            label="Re-enter Password"
-            textContentType="password"
-            values={values.confirmPassword}
-            onChangeText={handleChange('confirmPassword')}
-            onBlur={handleBlur('confirmPassword')}
-            errorMessage={
-              errors.confirmPassword &&
-              touched.confirmPassword &&
-              errors.confirmPassword
-            }
-          />
           <Button
             type="solid"
             onPress={handleSubmit}
+            title="Login"
             disabled={!isValid}
-            title="Create Account"
-            buttonStyle={styles.createAccount}
+            buttonStyle={styles.login}
           />
           <View style={styles.withAccount}>
-            <Text>Already have an account? </Text>
+            <Text>Don't have an account? </Text>
             <Button
-              onPress={() => navigation.navigate('LoginScreen')}
-              buttonStyle={styles.login}
+              onPress={() => navigation.navigate('SignupScreen')}
+              buttonStyle={styles.signup}
               type="clear"
-              title="Login in"
+              title="Sign up"
             />
           </View>
         </View>
@@ -100,6 +85,13 @@ export default function SignupForm({navigation}: signupFormProps) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    height: '100%',
+    width: '100%',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
   form: {
     justifyContent: 'space-around',
     marginTop: 20,
@@ -107,12 +99,6 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     alignItems: 'center',
-  },
-
-  label: {
-    color: 'black',
-    marginTop: 5,
-    marginBottom: 5,
   },
   text: {
     fontSize: 18,
@@ -126,11 +112,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     backgroundColor: 'black',
   },
-  createAccount: {
+  login: {
+    alignItems: 'center',
     marginTop: 20,
-    marginBottom: 10,
+    display: 'flex',
+    marginBottom: 20,
     width: 250,
     borderRadius: 8,
+    justifyContent: 'center',
     backgroundColor: colors.mallBlue5,
   },
   withAccount: {
@@ -138,7 +127,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     flexDirection: 'row',
   },
-  login: {
+  signup: {
     marginTop: 0,
   },
 });

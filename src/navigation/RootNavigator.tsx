@@ -50,8 +50,10 @@ export default function RootNavigator() {
         <StoreDetailsNavigation />
       ) : !tokenExpiry && completed ? (
         <DrawerNavigation />
-      ) : (
+      ) : tokenExpiry && !completed ? (
         <PublicNavigation />
+      ) : (
+        <Spinner color={colors.cloudOrange5} />
       )}
     </>
   );

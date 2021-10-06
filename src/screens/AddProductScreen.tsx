@@ -7,7 +7,7 @@ import {Image} from 'react-native-elements';
 import {useSelector} from 'react-redux';
 
 import useUploadImage from '@/hooks/useUploadImage';
-import AddNewProductForm from '@/components/forms/AddNewProductForm';
+import AddNewProductForm from '@/components/Forms/AddNewProductForm';
 import {colors, showToast} from '@/utils/.';
 import {ProgressIndicator, Fab} from '@/components/.';
 import {uploadProductImageRequest} from '@/network/postRequest';

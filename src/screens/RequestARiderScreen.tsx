@@ -4,7 +4,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {Input} from 'react-native-elements';
 import {StackScreenProps} from '@react-navigation/stack';
 
-import RequestRiderForm from '@/components/forms/RequestRiderForm';
+import RequestRiderForm from '@/components/Forms/RequestRiderForm';
 import {DrawerStackParamList} from '@/customTypes/.';
 import {styles} from '@/styles/RequestARiderScreen.style';
 

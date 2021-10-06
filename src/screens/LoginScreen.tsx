@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import {RootStackParamList} from '@/customTypes';
-import LoginForm from '@/components/forms/LoginForm';
+import LoginForm from '@/components/Forms/LoginForm';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {styles} from '@/styles/LoginScreen.style';
 

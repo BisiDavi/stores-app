@@ -13,7 +13,7 @@ import {
   toggleSpecificationStatusRequest,
 } from '@/network/postRequest';
 import {RootState} from '@/store/RootReducer';
-import ProductLoader from '@/components/loader/ProductLoader';
+import ProductLoader from '@/components/Loader/ProductLoader';
 import {styles} from '@/styles/ProductScreen.style';
 
 type ProductScreenNavigationProps = StackNavigationProp<

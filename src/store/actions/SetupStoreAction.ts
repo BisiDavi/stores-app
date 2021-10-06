@@ -1,5 +1,4 @@
 import {
-  AUTH_TOKEN,
   CLOSE_WELCOME_MODAL,
   STOREDETAILS_PAGE,
   USER_LOGGED_IN,
@@ -30,19 +29,6 @@ export const ToggleWithdrawalModalAction =
   () => (dispatch: (arg0: {type: string}) => void) => {
     dispatch({
       type: TOGGLE_WITHDRAWAL_MODAL,
-    });
-  };
-
-export const AuthTokenAction =
-  (token: string | null) =>
-  (
-    dispatch: (arg0: {type: string; payload: {token: string | null}}) => void,
-  ) => {
-    dispatch({
-      type: AUTH_TOKEN,
-      payload: {
-        token,
-      },
     });
   };
 

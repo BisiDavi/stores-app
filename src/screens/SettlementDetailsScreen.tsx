@@ -2,8 +2,8 @@ import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {View, Platform, KeyboardAvoidingView, ScrollView} from 'react-native';
 
-import ProgressIndicator from '@/components/ProgressIndicator';
-import SettlementDetailsForm from '@/components/forms/SettlementDetailsForm';
+import ProgressIndicator from '@/components/ProgressIndicator/ProgressIndicator';
+import SettlementDetailsForm from '@/components/Forms/SettlementDetailsForm';
 import {styles} from '@/styles/SettlementDetailsScreen.style';
 
 export default function SettlementDetailsScreen() {

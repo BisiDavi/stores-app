@@ -2,8 +2,8 @@ import React from 'react';
 import {View, Platform, KeyboardAvoidingView, ScrollView} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-import ProgressIndicator from '@/components/ProgressIndicator';
-import StoreDetailsFormOne from '@/components/forms/StoreDetailsFormOne';
+import ProgressIndicator from '@/components/ProgressIndicator/ProgressIndicator';
+import StoreDetailsFormOne from '@/components/Forms/StoreDetailsFormOne';
 import {styles} from '@/styles/StoreDetailsScreenOne.style';
 
 export default function StoreDetailsScreenOne() {

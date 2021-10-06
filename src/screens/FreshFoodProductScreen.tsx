@@ -6,7 +6,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {Image} from 'react-native-elements';
 
-import FreshFoodProductForm from '@/components/forms/FreshFoodProductForm';
+import FreshFoodProductForm from '@/components/Forms/FreshFoodProductForm';
 import useUploadImage from '@/hooks/useUploadImage';
 import {colors, showToast} from '@/utils/.';
 import {ProgressIndicator, Fab} from '@/components/.';

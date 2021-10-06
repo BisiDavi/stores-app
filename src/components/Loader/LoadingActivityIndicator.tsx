@@ -1,6 +1,6 @@
 import React from 'react';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
-import colors from '../utils/colors';
+import colors from '@/utils/colors';
 
 export default function LoadingActivityIndicator() {
   return (

@@ -2,9 +2,9 @@ import React from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-import ProgressIndicator from '@/components/ProgressIndicator';
+import ProgressIndicator from '@/components/ProgressIndicator/ProgressIndicator';
 import {View, ScrollView} from 'react-native';
-import AddProductOtherDetailsForm from '@/components/forms/AddProductOtherDetailsForm';
+import AddProductOtherDetailsForm from '@/components/Forms/AddProductOtherDetailsForm';
 import {DrawerStackParamList} from '@/customTypes';
 import {styles} from '@/styles/AddProductOtherDetailsScreen.style';
 

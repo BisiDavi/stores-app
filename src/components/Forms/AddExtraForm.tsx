@@ -6,14 +6,14 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import {Button} from 'react-native-elements';
 import {useSelector} from 'react-redux';
 
-import {DisplayFormElements} from '@/components/forms/DisplayFormElements';
-import addExtraSchema from '@/components/schemas/addExtraSchema';
+import {DisplayFormElements} from '@/components/Forms/DisplayFormElements';
+import addExtraSchema from '@/components/Schemas/addExtraSchema';
 import formContent from '@/json/add-extra.json';
 import colors from '@/utils/colors';
 import {addExtrasRequest} from '@/network/postRequest';
 import {RootState} from '@/store/RootReducer';
 import showToast from '@/utils/showToast';
-import AddExtrasModal from '../AddExtrasModal';
+import AddExtrasModal from '../AddExtraModal/AddExtrasModal';
 
 export default function AddExtraForm({navigation: {goBack}}: any) {
   const [loading, setLoading] = useState(false);

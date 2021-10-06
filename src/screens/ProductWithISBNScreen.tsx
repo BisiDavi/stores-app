@@ -3,7 +3,7 @@ import {View, Text} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {ScrollView} from 'react-native-gesture-handler';
 
-import AddNewProductForm from '@/components/forms/AddNewProductForm';
+import AddNewProductForm from '@/components/Forms/AddNewProductForm';
 import {DrawerStackParamList} from '@/customTypes/.';
 import Fab from '@/components/Fab';
 import {styles} from '@/styles/ProductWithISBNScreen.style';

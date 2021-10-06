@@ -9,7 +9,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import useStoreSetupNavigation from '@/hooks/useStoreSetupNavigation';
 import UploadIcon from '@/assets/upload.png';
 import {colors, showToast} from '@/utils/.';
-import ProgressIndicator from '@/components/ProgressIndicator';
+import ProgressIndicator from '@/components/ProgressIndicator/ProgressIndicator';
 import {StoreLogoUploadAction} from '@/store/actions/StoreDetailsAction';
 import {uploadStoreLogoRequest} from '@/network/postRequest';
 import useUploadImage from '@/hooks/useUploadImage';

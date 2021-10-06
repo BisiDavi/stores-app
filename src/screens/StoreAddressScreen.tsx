@@ -5,8 +5,8 @@ import {Button, Text} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {View, KeyboardAvoidingView, Platform, FlatList} from 'react-native';
 
-import Map from '@/components/Map';
-import GoogleAutoCompleteInput from '@/components/GoogleAutoCompleteInput';
+import Map from '@/components/Map/Map';
+import GoogleAutoCompleteInput from '@/components/Map/GoogleAutoCompleteInput';
 import {RootState} from '@/store/RootReducer';
 import useStoreSetupNavigation from '@/hooks/useStoreSetupNavigation';
 import {styles} from '@/styles/StoreAddressScreen.style';

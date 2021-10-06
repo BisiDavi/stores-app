@@ -4,8 +4,8 @@ import {View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {Button} from 'react-native-elements';
 
-import addNewProductSchema from '@/components/schemas/AddNewProductSchema';
-import {DisplayFormElements} from '@/components/forms/DisplayFormElements';
+import addNewProductSchema from '@/components/Schemas/AddNewProductSchema';
+import {DisplayFormElements} from '@/components/Forms/DisplayFormElements';
 import addproductContent from '@/json/add-product.json';
 import {AddProductStep1Action} from '@/store/actions/addProductAction';
 import {getProductsCategories} from '@/network/getRequest';

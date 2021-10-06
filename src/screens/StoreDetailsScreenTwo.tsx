@@ -2,8 +2,8 @@ import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {View, Platform, KeyboardAvoidingView, ScrollView} from 'react-native';
 
-import ProgressIndicator from '@/components/ProgressIndicator';
-import StoreDetailsFormTwo from '@/components/forms/StoreDetailsFormTwo';
+import ProgressIndicator from '@/components/ProgressIndicator/ProgressIndicator';
+import StoreDetailsFormTwo from '@/components/Forms/StoreDetailsFormTwo';
 import {styles} from '@/styles/StoreDetailsScreenTwo.style';
 
 export default function StoreDetailsScreenTwo() {

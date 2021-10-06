@@ -5,7 +5,7 @@ import Modal from 'react-native-modal';
 import HandWave from '@/assets/hand-wave.png';
 import {RootState} from '@/store/RootReducer';
 import {StoreDetailsStateType} from '@/customTypes/storeDetailsTypes';
-import {styles} from '@/styles/WelcomeModal.style';
+import {styles} from './WelcomeModal.style';
 
 interface AppModalProps {
   closeModal: () => void;

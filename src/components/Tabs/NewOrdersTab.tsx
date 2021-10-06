@@ -1,12 +1,13 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {FlatList, View, Text, StyleSheet} from 'react-native';
+import {FlatList, View, Text} from 'react-native';
 import {useSelector} from 'react-redux';
 
 import {RootState} from '@/store/RootReducer';
 //import NewOrdersList from '@/json/new-order.json';
 import OrdersListItem from '@/components/OrdersListItem';
 import {getPendingOrdersRequest} from '@/network/postRequest';
+import {styles} from './NewOrdersTab.style';
 
 export default function NewOrdersTab({navigation}: any) {
   const [newOrders, setNewOrders] = useState([]);
@@ -54,16 +55,3 @@ export default function NewOrdersTab({navigation}: any) {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    textAlign: 'center',
-    fontFamily: 'Roboto-Bold',
-    fontSize: 16,
-  },
-});

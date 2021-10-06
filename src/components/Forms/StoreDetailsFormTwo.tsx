@@ -6,7 +6,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import {StyleSheet, Dimensions, View} from 'react-native';
 import {useStoreSetupNavigation, useFormValues} from '@/hooks/.';
 import storeDetailsFormTwo from '@/json/storeDetailsFormTwo.json';
-import {storeDetailsScreenTwoSchema} from '../forms';
+import {storeDetailsScreenTwoSchema} from '.';
 import {DisplayFormElements} from './DisplayFormElements';
 import {StoreOwnerAction} from '@/store/actions/StoreDetailsAction';
 import {colors} from '@/utils/.';

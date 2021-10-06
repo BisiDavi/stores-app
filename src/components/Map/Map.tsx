@@ -1,15 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import useCurrentLocation from '@/hooks/useCurrentLocation';
-import getDeviceDimensions from '@/utils/getDeviceDimensions';
-import LoadingActivityIndicator from './LoadingActivityIndicator';
+import LoadingActivityIndicator from '../Loader/LoadingActivityIndicator';
 import {GetUserCoordinateAction} from '@/store/actions/UserCoordinateAction';
 import {RootState} from '@/store/RootReducer';
-
-const {deviceHeight, deviceWidth} = getDeviceDimensions();
+import {styles} from './Map.style';
 
 const Map = () => {
   const {location, getLocation}: any = useCurrentLocation();
@@ -70,17 +68,5 @@ const Map = () => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  map: {
-    width: deviceWidth,
-    backgroundColor: '#C4C4C4',
-    flex: 1,
-    height: deviceHeight * 0.5,
-  },
-  loadingView: {
-    height: deviceHeight * 0.6,
-  },
-});
 
 export default Map;

@@ -10,7 +10,7 @@ import {
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {RootStackParamList} from 'customTypes';
-import SignupForm from '@/components/forms/SignupForm';
+import SignupForm from '@/components/Forms/SignupForm';
 import {styles} from '@/styles/SignupScreen.style';
 
 type SignupScreenNavigationProps = StackNavigationProp<

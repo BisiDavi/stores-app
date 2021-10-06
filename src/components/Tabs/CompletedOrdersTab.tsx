@@ -1,11 +1,11 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {FlatList, TouchableOpacity, View, Text, StyleSheet} from 'react-native';
+import {FlatList, TouchableOpacity, View, Text} from 'react-native';
 import {useSelector} from 'react-redux';
 
-//import CompletedOrdersList from '@/json/completed-order.json';
 import OrdersListItem from '@/components/OrdersListItem';
 import {getCompletedOrdersRequest} from '@/network/postRequest';
 import {RootState} from '@/store/RootReducer';
+import {styles} from './CompletedOrdersTab.style';
 
 export default function CompletedOrdersTab({navigation}: any) {
   const [completedOrder, setCompletedOrder] = useState([]);
@@ -52,16 +52,3 @@ export default function CompletedOrdersTab({navigation}: any) {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    textAlign: 'center',
-    fontFamily: 'Roboto-Bold',
-    fontSize: 16,
-  },
-});

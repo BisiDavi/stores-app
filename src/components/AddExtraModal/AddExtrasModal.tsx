@@ -1,11 +1,11 @@
 import React from 'react';
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import {Button} from 'react-native-elements';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
-import AppModal, {AppModalProps} from './AppModal';
+import AppModal, {AppModalProps} from '../Modal/AppModal';
 import addExtrasButtons from '@/json/add-extra-modal.json';
-import {colors} from '@/utils';
+import {styles} from './AddExtrasModal.style';
 
 export default function AddExtrasModal({
   visible,
@@ -44,27 +44,3 @@ export default function AddExtrasModal({
     </AppModal>
   );
 }
-
-const styles = StyleSheet.create({
-  text: {
-    fontFamily: 'Roboto-Bold',
-    color: colors.black,
-    textAlign: 'center',
-  },
-  buttonGroup: {
-    marginTop: 30,
-  },
-  buttonText: {
-    fontFamily: 'Roboto-Light',
-    textAlign: 'center',
-  },
-  modalView: {
-    backgroundColor: colors.neutralWhite,
-    height: 180,
-    borderRadius: 10,
-    padding: 20,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    width: Dimensions.get('window').width * 0.5,
-  },
-});
