@@ -38,23 +38,19 @@ export default function SettlementDetailsForm() {
     return setTransactionModal(!transactionModal);
   }
 
-  console.log('storeDetails', storeDetails);
-
   useEffect(() => {
     let postSettlementDetails = true;
     if (submitForm) {
-      console.log('running request');
       postStoreDetailsRequest(storeDetails)
         .then(response => {
-          console.log('response postStoreDetailsRequest', response.data);
           setLoading(false);
           if (postSettlementDetails) {
             showToast(response.data.message);
             onBoardingNextScreen(4, false);
           }
+          setSubmitForm(false);
         })
         .catch(error => {
-          console.log('error postStoreDetailsRequest', error);
           setLoading(false);
           let errorMessage;
           if (error.request) {

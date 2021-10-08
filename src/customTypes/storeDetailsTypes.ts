@@ -27,6 +27,7 @@ export type StoreDetailsStateType = {
     ownerName: string;
     ownerPhone: string;
     ownerEmail: string;
+    transactionPin: string;
     openDays: {
       weekDays: {
         status: boolean;

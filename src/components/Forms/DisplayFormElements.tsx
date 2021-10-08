@@ -24,6 +24,7 @@ function FormElements(props: displayFormElementsProps) {
           onBlur={props?.handleBlur(formElement.name)}
           value={props.values[formElement.name]}
           keyboardType={formElement?.keyboardType}
+          helperText={formElement.helperText}
           rightIcon={displayAsset(formElement.iconName, toggleModal)}
           errorMessage={
             props.errors[formElement.name] &&
@@ -90,6 +91,7 @@ interface displayFormElementsProps {
     options?: any;
     iconName?: string;
     inputs?: {placeholder: string; name: string; type: string}[];
+    helperText?: string;
     textContentType?:
       | 'password'
       | 'emailAddress'

@@ -995,7 +995,6 @@
     "type": "input",
     "iconName": "infoIcon",
     "icon": true,
-    "action": "showTransactionModal",
     "placeholder": "Transaction pin",
     "name": "transactionPin",
     "textContentType": "telephoneNumber",

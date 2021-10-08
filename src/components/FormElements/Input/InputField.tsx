@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from 'react';
 import {Input} from 'react-native-elements';
-import {StyleSheet, KeyboardTypeOptions, Dimensions} from 'react-native';
+import {Text, View, KeyboardTypeOptions} from 'react-native';
 import colors from '@/utils/colors';
+import {inputStyles} from './InputField.style';
 
 export default function InputField({
   onChangeText,
@@ -14,53 +15,29 @@ export default function InputField({
   ...props
 }: InputFieldProps) {
   return (
-    <Input
-      {...props}
-      label={label}
-      placeholder={props.placeholder}
-      inputContainerStyle={[inputStyles.inputContainer, props.styleContainer]}
-      labelStyle={[inputStyles.label, props.styleLabel]}
-      inputStyle={[inputStyles.input, props.styleInput]}
-      keyboardType={keyboardType}
-      value={value}
-      placeholderTextColor={colors.neutral4}
-      errorMessage={errorMessage}
-      onChangeText={onChangeText}
-      secureTextEntry={secureTextEntry}
-      rightIcon={rightIcon}
-      rightIconContainerStyle={inputStyles.rightIconStyle}
-    />
+    <View style={inputStyles.inputView}>
+      <Input
+        {...props}
+        label={label}
+        placeholder={props.placeholder}
+        inputContainerStyle={[inputStyles.inputContainer, props.styleContainer]}
+        labelStyle={[inputStyles.label, props.styleLabel]}
+        inputStyle={[inputStyles.input, props.styleInput]}
+        keyboardType={keyboardType}
+        value={value}
+        placeholderTextColor={colors.neutral4}
+        errorMessage={errorMessage}
+        onChangeText={onChangeText}
+        secureTextEntry={secureTextEntry}
+        rightIcon={rightIcon}
+        rightIconContainerStyle={inputStyles.rightIconStyle}
+      />
+      {!errorMessage && (
+        <Text style={inputStyles.helperText}>{props.helperText}</Text>
+      )}
+    </View>
   );
 }
-
-const inputStyles = StyleSheet.create({
-  inputContainer: {
-    width: Dimensions.get('window').width * 0.85,
-    margin: 0,
-    height: 48,
-    borderColor: colors.mallBlue3,
-    borderWidth: 1,
-    borderRadius: 5,
-  },
-  input: {
-    height: 48,
-    padding: 10,
-    margin: 0,
-    fontSize: 14,
-    fontFamily: 'Roboto',
-  },
-  label: {
-    color: 'black',
-    marginTop: 5,
-    marginBottom: 5,
-    fontWeight: '500',
-    fontSize: 14,
-    fontFamily: 'Roboto-Regular',
-  },
-  rightIconStyle: {
-    width: 30,
-  },
-});
 
 interface InputFieldProps {
   onChangeText?: any;
@@ -74,6 +51,7 @@ interface InputFieldProps {
   styleContainer?: any;
   styleLabel?: any;
   styleInput?: any;
+  helperText?: string;
   placeholder?: string;
   onBlur?: (e: string | ChangeEvent<any>) => void | undefined;
   textContentType?:

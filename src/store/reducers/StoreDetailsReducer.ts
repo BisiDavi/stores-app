@@ -36,6 +36,7 @@ export function StoreDetailsReducer(
       ownerName: '',
       ownerPhone: '',
       state: '',
+      transactionPin: '',
       ownerEmail: '',
       settlementPlan: '',
       bankName: '',

@@ -25,27 +25,32 @@ export default function UploadStoreLogoScreen() {
   const {onBoardingNextScreen} = useStoreSetupNavigation();
   const dispatch = useDispatch();
 
+  const isFormDataStateEmpty = Object.values(formDataState);
+
   async function uploadImage() {
-    dispatch(StoreLogoUploadAction(formDataState));
-    setLoading(true);
-    await uploadStoreLogoRequest(formDataState)
-      .then(response => {
-        console.log('response', response.data.message);
-        setLoading(false);
-        showToast(response.data.message);
-        onBoardingNextScreen(5, false);
-      })
-      .catch(error => {
-        console.log('uploadImage error', error);
-        let errorMessage;
-        if (error.request) {
-          console.log('error.request', error.request);
-          errorMessage = error.request._response;
-        }
-        showToast(errorMessage);
-        setLoading(false);
-      });
-    return;
+    if (isFormDataStateEmpty.length === 0) {
+      showToast('No logo selected, Please select a logo');
+    } else {
+      dispatch(StoreLogoUploadAction(formDataState));
+      setLoading(true);
+      await uploadStoreLogoRequest(formDataState)
+        .then(response => {
+          console.log('response', response.data.message);
+          setLoading(false);
+          showToast(response.data.message);
+          onBoardingNextScreen(5, false);
+        })
+        .catch(error => {
+          console.log('uploadImage error', error);
+          let errorMessage;
+          if (error.request) {
+            console.log('error.request', error.request);
+            errorMessage = error.request._response;
+          }
+          showToast(errorMessage);
+          setLoading(false);
+        });
+    }
   }
 
   async function skipImage() {
@@ -64,13 +69,13 @@ export default function UploadStoreLogoScreen() {
             </Text>
             {!storeLogo ? (
               <>
-                <View style={styles.imageView}>
-                  <TouchableOpacity onPress={pickImage}>
+                <TouchableOpacity onPress={pickImage}>
+                  <View style={styles.imageView}>
                     <Image style={styles.uploadIcon} source={UploadIcon} />
-                  </TouchableOpacity>
-                </View>
+                  </View>
+                </TouchableOpacity>
                 <Text style={styles.error}>
-                  please upload your logo, click on the icon above
+                  to upload your logo, click on the icon above
                 </Text>
               </>
             ) : (

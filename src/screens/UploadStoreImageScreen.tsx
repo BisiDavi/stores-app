@@ -23,21 +23,26 @@ export default function UploadStoreImageScreen() {
     setLoading,
     'background',
   );
+  const isFormDataStateEmpty = Object.values(formDataState);
 
   async function uploadImage() {
-    setLoading(true);
-    dispatch(StoreImageUploadAction(formDataState));
-    return uploadStoreBackgroundRequest(formDataState)
-      .then(response => {
-        setLoading(false);
-        showToast(response.data.message);
-        onBoardingNextScreen(6, true);
-      })
-      .catch(error => {
-        setLoading(false);
-        showToast('Oops,unable to upload image, an error occured');
-        console.log('error', error);
-      });
+    if (isFormDataStateEmpty.length === 0) {
+      showToast('No image selected, Please select an image');
+    } else {
+      setLoading(true);
+      dispatch(StoreImageUploadAction(formDataState));
+      return uploadStoreBackgroundRequest(formDataState)
+        .then(response => {
+          setLoading(false);
+          showToast(response.data.message);
+          onBoardingNextScreen(6, true);
+        })
+        .catch(error => {
+          setLoading(false);
+          showToast('Oops,unable to upload image, an error occured');
+          console.log('error', error);
+        });
+    }
   }
 
   async function skipImage() {
@@ -56,13 +61,13 @@ export default function UploadStoreImageScreen() {
             </Text>
             {!image ? (
               <>
-                <View style={styles.imageView}>
-                  <TouchableOpacity onPress={pickImage}>
+                <TouchableOpacity style={styles.imageView} onPress={pickImage}>
+                  <View style={styles.imageView}>
                     <Image style={styles.uploadIcon} source={UploadIcon} />
-                  </TouchableOpacity>
-                </View>
+                  </View>
+                </TouchableOpacity>
                 <Text style={styles.error}>
-                  please upload an image, click on the icon above
+                  to upload an image, click on the icon above
                 </Text>
               </>
             ) : (
