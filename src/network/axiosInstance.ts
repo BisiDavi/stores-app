@@ -30,7 +30,6 @@ axiosInstance.interceptors.request.use(
   config => {
     if (savedToken) {
       config.headers.Authorization = 'Bearer ' + savedToken;
-      console.log('savedToken', savedToken);
     }
     return config;
   },

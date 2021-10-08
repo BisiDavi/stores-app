@@ -9,6 +9,7 @@ import {RootStackParamList} from '@/customTypes/.';
 import onboardingScreenJson from '@/json/onboarding.json';
 import displayAsset from '@/utils/displayAsset';
 import {styles} from '@/styles/OnboardingScreen.style';
+import {colors} from '@/utils';
 
 type itemTypes = {
   key: number;
@@ -50,7 +51,7 @@ export default function OnboardingScreen({
           source={item.image}
           style={styles.image}
           PlaceholderContent={
-            <ActivityIndicator size="large" color="#0000ff" />
+            <ActivityIndicator size="large" color={colors.cloudOrange5} />
           }
         />
       </View>

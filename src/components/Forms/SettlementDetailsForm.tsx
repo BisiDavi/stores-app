@@ -4,7 +4,7 @@ import {Button} from 'react-native-elements';
 import {useDispatch, useSelector} from 'react-redux';
 import {Formik} from 'formik';
 import Spinner from 'react-native-loading-spinner-overlay';
-import {Dimensions, StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 
 import {useFormValues, useStoreSetupNavigation} from '@/hooks/.';
 import {colors, showToast} from '@/utils/.';
@@ -15,14 +15,8 @@ import {StoreSettlementAction} from '@/store/actions/StoreDetailsAction';
 import {postStoreDetailsRequest} from '@/network/postRequest';
 import {RootState} from '@/store/RootReducer';
 import TransactionPinModal from '../Modal/TransactionPinModal';
-
-interface formValuesState {
-  settlementPlan: string;
-  bankName: string;
-  bankCode: string;
-  accountNumber: string;
-  accountName: string;
-}
+import StoreProfileActions from '@/store/actions/storeProfileActions';
+import {styles} from './SettlementDetailsForm.style';
 
 export default function SettlementDetailsForm() {
   const [loading, setLoading] = useState(false);
@@ -45,6 +39,13 @@ export default function SettlementDetailsForm() {
         .then(response => {
           setLoading(false);
           if (postSettlementDetails) {
+            const {data} = response.data;
+            const storeProfileData = {
+              id: data._id,
+              name: data.name,
+            };
+            console.log('storeProfileData', storeProfileData);
+            dispatch(StoreProfileActions(storeProfileData));
             showToast(response.data.message);
             onBoardingNextScreen(4, false);
           }
@@ -65,8 +66,6 @@ export default function SettlementDetailsForm() {
       postSettlementDetails = false;
     };
   }, [submitForm]);
-
-  console.log('formThreeMainValues', formThreeMainValues);
 
   const settlementOptions: any = settlementDetails[1].options;
 
@@ -132,54 +131,3 @@ export default function SettlementDetailsForm() {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  form: {
-    padding: 20,
-    paddingTop: 10,
-    paddingLeft: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-  },
-  nextButtonStyle: {
-    width: Dimensions.get('window').width * 0.3,
-    alignItems: 'center',
-    color: colors.neutralWhite,
-    backgroundColor: colors.mallBlue5,
-    fontFamily: 'Roboto-Bold',
-  },
-  skipButtonStyle: {
-    width: Dimensions.get('window').width * 0.3,
-    alignItems: 'center',
-    backgroundColor: 'transparent',
-    borderColor: colors.mallBlue5,
-    borderWidth: 1,
-    fontFamily: 'Roboto-Bold',
-  },
-  skipTextStyle: {
-    color: colors.mallBlue5,
-  },
-  nextTextStyle: {
-    color: colors.neutralWhite,
-  },
-  buttonView: {
-    alignItems: 'center',
-    marginTop: 10,
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    padding: 10,
-    paddingTop: 0,
-    width: '80%',
-  },
-  title: {
-    fontSize: 20,
-    textAlign: 'left',
-    fontWeight: 'bold',
-    justifyContent: 'flex-start',
-    marginBottom: 0,
-    marginTop: 0,
-    width: '100%',
-    alignItems: 'flex-start',
-  },
-});

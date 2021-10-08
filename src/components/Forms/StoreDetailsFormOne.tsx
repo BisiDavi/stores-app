@@ -47,7 +47,7 @@ export default function StoreDetailsFormOne() {
         if (error.response) {
           showToast(error.response.data.message);
         } else if (error.request) {
-          showToast('Oops an error occured');
+          showToast('Oops, network error, unable to fetch store categories');
         }
       });
 
