@@ -22,7 +22,7 @@ export default function ProfileIcon(props: any) {
     (state: RootState) => state.storeProfile,
   );
   const {name}: any | string = storeDetails;
-  const storeName = name.length === 0 ? storeProfile.name : name;
+  const storeName = name.length === 0 ? storeProfile?.name : name;
   function toggleModal() {
     dispatch(ToggleWithdrawalModalAction());
   }

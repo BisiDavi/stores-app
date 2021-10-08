@@ -21,7 +21,7 @@ export default function WelcomeModal({closeModal, visible}: AppModalProps) {
   );
   const {name}: any | string = storeDetails;
 
-  const storeName = name.length === 0 ? storeProfile.name : name;
+  const storeName = name.length === 0 ? storeProfile?.name : name;
 
   const storeFirstLetter = storeName.split('')[0];
 

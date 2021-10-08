@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Image, Button} from 'react-native-elements';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 import useStoreSetupNavigation from '@/hooks/useStoreSetupNavigation';
@@ -11,8 +11,11 @@ import UploadIcon from '@/assets/upload.png';
 import {colors, showToast} from '@/utils/.';
 import ProgressIndicator from '@/components/ProgressIndicator/ProgressIndicator';
 import {StoreLogoUploadAction} from '@/store/actions/StoreDetailsAction';
+import StoreProfileActions from '@/store/actions/storeProfileActions';
+import {getStoreDetailsRequest} from '@/network/getRequest';
 import {uploadStoreLogoRequest} from '@/network/postRequest';
 import useUploadImage from '@/hooks/useUploadImage';
+import {RootState} from '@/store/RootReducer';
 import {styles} from '@/styles/UploadStoreLogoScreen.style';
 
 export default function UploadStoreLogoScreen() {
@@ -25,7 +28,29 @@ export default function UploadStoreLogoScreen() {
   const {onBoardingNextScreen} = useStoreSetupNavigation();
   const dispatch = useDispatch();
 
+  const {storeProfile} = useSelector((state: RootState) => state.storeProfile);
   const isFormDataStateEmpty = Object.values(formDataState);
+
+  useEffect(() => {
+    let renderOnce = true;
+    if (renderOnce && storeProfile === null) {
+      getStoreDetailsRequest()
+        .then(response => {
+          const {data} = response.data;
+          const storeProfileData = {
+            id: data._id,
+            name: data.name,
+          };
+          dispatch(StoreProfileActions(storeProfileData));
+        })
+        .catch(error => {
+          console.log('error', error);
+        });
+    }
+    return () => {
+      renderOnce = false;
+    };
+  }, [dispatch, storeProfile]);
 
   async function uploadImage() {
     if (isFormDataStateEmpty.length === 0) {

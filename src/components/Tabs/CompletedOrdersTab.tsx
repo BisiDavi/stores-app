@@ -13,9 +13,14 @@ export default function CompletedOrdersTab({navigation}: any) {
   const {storeProfile}: any = useSelector(
     (state: RootState) => state.storeProfile,
   );
+  console.log('storeProfile', storeProfile);
+  const {storeDetails}: any = useSelector(
+    (state: RootState) => state.storeDetails,
+  );
+  const storesName = storeDetails.name;
   useEffect(() => {
     let once = true;
-    getCompletedOrdersRequest({storeId: storeProfile._id}).then(response => {
+    getCompletedOrdersRequest({storeId: storeProfile?._id}).then(response => {
       if (once) {
         setCompletedOrder(response.data.data);
       }
@@ -44,8 +49,7 @@ export default function CompletedOrdersTab({navigation}: any) {
       ) : (
         <View style={styles.container}>
           <Text style={styles.text}>
-            Hello {storeProfile.name}, you currently don't have any completed
-            orders
+            Hello {storesName}, you currently don't have any completed orders
           </Text>
         </View>
       )}

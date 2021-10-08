@@ -61,11 +61,12 @@ export default function SettlementDetailsForm() {
           showToast(errorMessage);
         });
     }
-    //cancel subscription to useEffect
     return () => {
       postSettlementDetails = false;
     };
   }, [submitForm]);
+
+  console.log('formThreeMainValues', formThreeMainValues);
 
   const settlementOptions: any = settlementDetails[1].options;
 

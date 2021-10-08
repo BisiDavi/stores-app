@@ -15,9 +15,16 @@ export default function NewOrdersTab({navigation}: any) {
   const {storeProfile}: any = useSelector(
     (state: RootState) => state.storeProfile,
   );
+
+  const {storeDetails}: any = useSelector(
+    (state: RootState) => state.storeDetails,
+  );
+
+  const storesName = storeDetails.name;
+
   useEffect(() => {
     let once = true;
-    getPendingOrdersRequest({storeId: storeProfile._id}).then(response => {
+    getPendingOrdersRequest({storeId: storeProfile?._id}).then(response => {
       if (once) {
         setNewOrders(response.data.data);
       }
@@ -48,7 +55,7 @@ export default function NewOrdersTab({navigation}: any) {
       ) : (
         <View style={styles.container}>
           <Text style={styles.text}>
-            Hello {storeProfile.name}, you currently don't have any new orders
+            Hello {storesName}, you currently don't have any new orders
           </Text>
         </View>
       )}
