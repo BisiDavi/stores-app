@@ -53,7 +53,7 @@ export default function SelectField({content, ...props}: selectFieldProps) {
                       : item.name;
                     return (
                       <Picker.Item
-                        fontFamily="RobotoRegular"
+                        fontFamily="Roboto-Regular"
                         key={`${item.name}-${index}`}
                         label={labelName}
                         value={getPickerValue(item)}
@@ -62,7 +62,7 @@ export default function SelectField({content, ...props}: selectFieldProps) {
                   })
                 ) : (
                   <Picker.Item
-                    fontFamily="RobotoRegular"
+                    fontFamily="Roboto-Regular"
                     label="Loading ..."
                     value="loading"
                   />

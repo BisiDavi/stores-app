@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "761501501406",
+    "project_id": "cloudmall-store-app",
+    "storage_bucket": "cloudmall-store-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:761501501406:android:21d379282e720cb6843f4f",
+        "android_client_info": {
+          "package_name": "com.rnts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "761501501406-u7qhp2hvns4sng1ughd9juuu6ekg4kt1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARjcizon5m9i1JPomveDNUK-Jj0XWavFU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "761501501406-u7qhp2hvns4sng1ughd9juuu6ekg4kt1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -46,7 +46,7 @@ const GoogleAutoCompleteInput = ({
       nearbyPlacesAPI="GooglePlacesSearch"
       query={{
         language: 'en',
-        key: 'AIzaSyDU7mH3j8xLd9I2u8p5u5LYt7e8gKRGXx0',
+        key: 'AIzaSyAeRHBl4lGET6wuGDXwW-EGnOhsof8xGr8',
         components: 'country:ng',
       }}
       onFail={error => console.error('GoogleAutoCompleteInput error', error)}

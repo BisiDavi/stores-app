@@ -1,5 +1,6 @@
 import React, {memo, ChangeEvent} from 'react';
 import {Dimensions, KeyboardTypeOptions, StyleSheet} from 'react-native';
+
 import {
   InputField,
   InputGroup,
@@ -23,7 +24,7 @@ function FormElements(props: displayFormElementsProps) {
           onBlur={props?.handleBlur(formElement.name)}
           value={props.values[formElement.name]}
           keyboardType={formElement?.keyboardType}
-          rightIcon={displayAsset(formElement.iconName)}
+          rightIcon={displayAsset(formElement.iconName, toggleModal)}
           errorMessage={
             props.errors[formElement.name] &&
             props.touched[formElement.name] &&

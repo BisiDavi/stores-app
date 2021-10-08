@@ -14,6 +14,7 @@ import {storeSettlementDetailsSchema} from '@/schemas/StoreDetailsSchema';
 import {StoreSettlementAction} from '@/store/actions/StoreDetailsAction';
 import {postStoreDetailsRequest} from '@/network/postRequest';
 import {RootState} from '@/store/RootReducer';
+import TransactionPinModal from '../Modal/TransactionPinModal';
 
 interface formValuesState {
   settlementPlan: string;
@@ -26,10 +27,16 @@ interface formValuesState {
 export default function SettlementDetailsForm() {
   const [loading, setLoading] = useState(false);
   const [submitForm, setSubmitForm] = useState(false);
+  const [transactionModal, setTransactionModal] = useState(false);
+
   const {onBoardingNextScreen} = useStoreSetupNavigation();
   const dispatch = useDispatch();
   const {storeDetails} = useSelector((state: RootState) => state.storeDetails);
   const {formThreeMainValues} = useFormValues();
+
+  function toggleTransactionModal() {
+    return setTransactionModal(!transactionModal);
+  }
 
   console.log('storeDetails', storeDetails);
 
@@ -69,6 +76,10 @@ export default function SettlementDetailsForm() {
   return (
     <>
       <Spinner visible={loading} color={colors.cloudOrange5} />
+      <TransactionPinModal
+        visible={transactionModal}
+        closeModal={toggleTransactionModal}
+      />
       <View style={styles.form}>
         <Formik
           validationSchema={storeSettlementDetailsSchema}
@@ -105,6 +116,7 @@ export default function SettlementDetailsForm() {
                   values={values}
                   errors={errors}
                   touched={touched}
+                  toggleModal={toggleTransactionModal}
                 />
               ))}
               <View style={styles.buttonView}>

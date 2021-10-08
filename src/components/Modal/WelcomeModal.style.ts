@@ -50,4 +50,9 @@ export const styles = StyleSheet.create({
     color: colors.textColor,
     marginTop: 10,
   },
+  note: {
+    fontFamily: 'Roboto-Bold',
+    fontSize: 14,
+    color: colors.textColor,
+  },
 });

@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import {View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+
 import useCurrentLocation from '@/hooks/useCurrentLocation';
 import LoadingActivityIndicator from '../Loader/LoadingActivityIndicator';
 import {GetUserCoordinateAction} from '@/store/actions/UserCoordinateAction';

@@ -36,6 +36,11 @@ export const storeAddressSchema = yup.object().shape({
 export const storeSettlementDetailsSchema = yup.object().shape({
   settlementPlan: yup.string().required('settlement plan is required'),
   bankCode: yup.string().required('bank name  is required'),
+  transactionPin: yup
+    .string()
+    .required('transaction pin is required')
+    .min(4, 'transaction pin must be four digits')
+    .max(4, 'transaction pin must be four digits'),
   accountNumber: yup
     .string()
     .required('account number is required')

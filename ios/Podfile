@@ -30,6 +30,8 @@ target 'RNTS' do
 
   pod 'react-native-camera', :path => '../node_modules/react-native-camera'
 
+  pod 'RNFBMessaging', :path => '../node_modules/@react-native-firebase/messaging'
+
   target 'RNTSTests' do
     inherit! :complete
     # Pods for testing

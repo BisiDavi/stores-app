@@ -4,7 +4,7 @@ import {View} from 'react-native';
 import {Button} from 'react-native-elements';
 
 import colors from '@/utils/colors';
-import InputField from '@/components/InputField';
+import {InputField} from '@/components/FormElements/Input';
 import {addProductsCategories} from '@/network/postRequest';
 import {showToast} from '@/utils';
 import {styles} from '@/styles/AddProductCategoryScreen.style';

@@ -993,11 +993,14 @@
   {
     "label": "Transaction pin (4 digits)*",
     "type": "input",
+    "iconName": "infoIcon",
+    "icon": true,
+    "action": "showTransactionModal",
     "placeholder": "Transaction pin",
     "name": "transactionPin",
     "textContentType": "telephoneNumber",
     "keyboardType": "numeric",
-    "helperText": "this is required to successful withdraw your funds"
+    "helperText": "it's required to successful withdraw from your store wallet"
   },
   {
     "label": "Account Name*",
