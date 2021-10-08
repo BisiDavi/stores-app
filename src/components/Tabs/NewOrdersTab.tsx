@@ -1,41 +1,40 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback} from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {useQuery} from 'react-query';
 import {FlatList, View, Text} from 'react-native';
 import {useSelector} from 'react-redux';
 
 import {RootState} from '@/store/RootReducer';
 import OrdersListItem from '@/components/Tabs/OrdersListItem';
+import LoadingActivityIndicator from '@/components/Loader/LoadingActivityIndicator';
 import {getPendingOrdersRequest} from '@/network/postRequest';
 import {styles} from './NewOrdersTab.style';
+import {showToast} from '@/utils';
 
 export default function NewOrdersTab({navigation}: any) {
-  const [newOrders, setNewOrders] = useState([]);
-  const keyExtractor = useCallback(item => item.id.toString(), []);
   const {storeProfile}: any = useSelector(
     (state: RootState) => state.storeProfile,
   );
+  const {data: newOrders, status} = useQuery('newOrders', async () => {
+    const {data} = await getPendingOrdersRequest({storeId: storeProfile.id});
+    return data;
+  });
 
   const {storeDetails}: any = useSelector(
     (state: RootState) => state.storeDetails,
   );
 
-  const storesName = storeDetails.name;
+  const keyExtractor = useCallback(item => item.id.toString(), []);
 
-  useEffect(() => {
-    let once = true;
-    getPendingOrdersRequest({storeId: storeProfile._id}).then(response => {
-      if (once) {
-        setNewOrders(response.data.data);
-      }
-    });
-    return () => {
-      once = false;
-    };
-  }, [storeProfile]);
+  const storesName = storeProfile.name ? storeProfile.name : storeDetails.name;
 
   return (
     <>
-      {newOrders.length > 0 ? (
+      {status === 'error' ? (
+        showToast('Unable to fetch new orders')
+      ) : status === 'loading' ? (
+        <LoadingActivityIndicator />
+      ) : newOrders.data.llength > 0 ? (
         <FlatList
           data={newOrders}
           renderItem={({item}) => {

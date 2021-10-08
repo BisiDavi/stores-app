@@ -3,6 +3,7 @@ import {Image} from 'react-native-elements';
 import {StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+
 import {DrawerStackParamList} from '@/customTypes/.';
 import drawerJson from '@/json/drawer.json';
 import {displayAsset, colors} from '@/utils';

@@ -1,5 +1,6 @@
 import React, {PropsWithChildren, useState, useMemo, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
+
 import useAuthReducer from '@/hooks/useAuthReducer';
 import AuthContext from './AuthContext';
 import {
@@ -41,6 +42,7 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
       loginIn: async (email: string, password: string) => {
         dispatch({type: 'LOADING'});
         const loginInToken: any = await loginUser(email, password);
+        console.log('loginToken', loginInToken);
         !loginInToken && dispatch({type: 'STOP_LOADING'});
         if (loginInToken) {
           saveAuthtoken(loginInToken);

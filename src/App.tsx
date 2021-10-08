@@ -26,8 +26,8 @@ export default function App() {
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
             <AuthProvider>
-              <Navigation />
               <StatusBar />
+              <Navigation />
             </AuthProvider>
           </PersistGate>
         </Provider>

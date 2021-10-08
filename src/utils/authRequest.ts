@@ -38,7 +38,7 @@ export async function loginUser(
   await axiosInstance
     .post('/api/store/login', {email, password})
     .then(response => {
-      showToast(response?.data.message);
+      showToast(response.data.message);
       token = response.data.token;
       return token;
     })

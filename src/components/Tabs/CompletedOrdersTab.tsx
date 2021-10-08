@@ -1,14 +1,33 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {FlatList, TouchableOpacity, View, Text} from 'react-native';
+import React, {useCallback} from 'react';
+import {FlatList, TouchableOpacity, View, LogBox, Text} from 'react-native';
 import {useSelector} from 'react-redux';
+import {useQuery} from 'react-query';
 
 import OrdersListItem from '@/components/Tabs/OrdersListItem';
 import {getCompletedOrdersRequest} from '@/network/postRequest';
 import {RootState} from '@/store/RootReducer';
 import {styles} from './CompletedOrdersTab.style';
+import LoadingActivityIndicator from '@/components/Loader/LoadingActivityIndicator';
+import {showToast} from '@/utils';
 
 export default function CompletedOrdersTab({navigation}: any) {
-  const [completedOrder, setCompletedOrder] = useState([]);
+  const {data: completedOrders, status} = useQuery(
+    'completedOrders',
+    async () => {
+      const {data} = await getCompletedOrdersRequest({
+        storeId: storeProfile.id,
+      });
+      return data;
+    },
+  );
+
+  LogBox.ignoreLogs(['Setting a timer']);
+
+  //useEffect(() => {
+  //  if (status === 'success' && showOnce) {
+  //  }
+  //}, [status]);
+
   const keyExtractor = useCallback(item => item.id.toString(), []);
   const {storeProfile}: any = useSelector(
     (state: RootState) => state.storeProfile,
@@ -17,24 +36,18 @@ export default function CompletedOrdersTab({navigation}: any) {
   const {storeDetails}: any = useSelector(
     (state: RootState) => state.storeDetails,
   );
-  const storesName = storeDetails.name;
-  useEffect(() => {
-    let once = true;
-    getCompletedOrdersRequest({storeId: storeProfile?._id}).then(response => {
-      if (once) {
-        setCompletedOrder(response.data.data);
-      }
-    });
-    return () => {
-      once = false;
-    };
-  }, [storeProfile]);
+
+  const storesName = storeProfile.name ? storeProfile.name : storeDetails.name;
 
   return (
     <>
-      {completedOrder.length > 0 ? (
+      {status === 'error' ? (
+        showToast('Unable to fetch completed orders')
+      ) : status === 'loading' ? (
+        <LoadingActivityIndicator />
+      ) : completedOrders.data.length > 0 ? (
         <FlatList
-          data={completedOrder}
+          data={completedOrders.data}
           renderItem={({item}) => (
             <TouchableOpacity
               onPressIn={() => navigation.navigate('ViewOrderScreen', item)}
