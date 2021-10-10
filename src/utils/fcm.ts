@@ -5,8 +5,6 @@ export async function getFCMToken() {
   const token = await messaging().getToken();
 
   if (token) {
-    console.log('token fcm', token);
+    saveToStorage('fcm_token', token);
   }
-
-  saveToStorage('fcm_token', token);
 }

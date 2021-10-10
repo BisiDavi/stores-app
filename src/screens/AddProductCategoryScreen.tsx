@@ -22,7 +22,8 @@ export default function AddProductCategoryScreen() {
     addProductsCategories({name: productCategory})
       .then(response => {
         setLoading(false);
-        showToast(response.data.message);
+        showToast(`${productCategory},  ${response.data.message}`);
+        setProductCategory('');
       })
       .catch(error => {
         setLoading(false);

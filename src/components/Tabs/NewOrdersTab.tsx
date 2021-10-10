@@ -10,6 +10,7 @@ import LoadingActivityIndicator from '@/components/Loader/LoadingActivityIndicat
 import {getPendingOrdersRequest} from '@/network/postRequest';
 import {styles} from './NewOrdersTab.style';
 import {showToast} from '@/utils';
+import {getStoreDetailsRequest} from '@/network/getRequest';
 
 export default function NewOrdersTab({navigation}: any) {
   const {storeProfile}: any = useSelector(
@@ -19,6 +20,14 @@ export default function NewOrdersTab({navigation}: any) {
     const {data} = await getPendingOrdersRequest({storeId: storeProfile.id});
     return data;
   });
+
+  const {data: storeProducts, status: storeProductsStatus} = useQuery(
+    'storeProducts',
+    async () => {
+      const {data} = await getStoreDetailsRequest();
+      return data;
+    },
+  );
 
   const {storeDetails}: any = useSelector(
     (state: RootState) => state.storeDetails,
