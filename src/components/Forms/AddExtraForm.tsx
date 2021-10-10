@@ -21,7 +21,7 @@ export default function AddExtraForm({navigation: {goBack}}: any) {
   const [submitForm, setSubmitForm] = useState(false);
   const [isCompulsory, setIsCompulsory] = useState(false);
 
-  function toggleAddExtrasModal() {
+  function closeAddExtrasModal() {
     setSubmitForm(!submitForm);
   }
 
@@ -37,6 +37,7 @@ export default function AddExtraForm({navigation: {goBack}}: any) {
       .then(response => {
         setLoading(false);
         showToast(response.data.message);
+        setSubmitForm(true);
       })
       .catch(error => {
         setLoading(false);
@@ -52,7 +53,7 @@ export default function AddExtraForm({navigation: {goBack}}: any) {
       <Spinner visible={loading} color={colors.cloudOrange5} />
       <AddExtrasModal
         visible={submitForm}
-        toggleOverlay={toggleAddExtrasModal}
+        toggleOverlay={closeAddExtrasModal}
       />
       <Formik
         validationSchema={addExtraSchema}
@@ -66,7 +67,7 @@ export default function AddExtraForm({navigation: {goBack}}: any) {
             ...values,
             isAvailable: true,
             isCompulsory: isCompulsory,
-            storeId: storeProfile._id,
+            storeId: storeProfile.id,
             price: Number(values.price),
           };
           addExtras(formValues);

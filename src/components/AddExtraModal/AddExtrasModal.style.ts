@@ -14,13 +14,21 @@ export const styles = StyleSheet.create({
     fontFamily: 'Roboto-Light',
     textAlign: 'center',
   },
+  buttonStyle: {
+    backgroundColor: colors.mallBlue5,
+    marginBottom: 10,
+  },
   modalView: {
     backgroundColor: colors.neutralWhite,
-    height: 180,
+    height: 170,
     borderRadius: 10,
     padding: 20,
-    justifyContent: 'flex-start',
+    margin: 0,
+    justifyContent: 'center',
     alignItems: 'center',
-    width: Dimensions.get('window').width * 0.5,
+    width: Dimensions.get('window').width * 0.8,
+  },
+  modal: {
+    alignItems: 'center',
   },
 });

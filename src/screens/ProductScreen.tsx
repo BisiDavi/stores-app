@@ -1,9 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {View, ScrollView, Text} from 'react-native';
 import {useSelector} from 'react-redux';
 import {ListItem, Switch, Image} from 'react-native-elements';
+import {useQuery} from 'react-query';
+
 import {DrawerStackParamList} from '@/customTypes/.';
 import {colors, showToast} from '@/utils/.';
 import Fab from '@/components/Fab';
@@ -86,45 +88,35 @@ function ProductListView({products}: productType) {
 }
 
 export default function ProductScreen({navigation}: Props) {
-  const [storeProducts, setStoreProducts] = useState<null | []>(null);
-  const [netError, setNetError] = useState(false);
   const {storeProfile}: any = useSelector(
     (state: RootState) => state.storeProfile,
   );
-  useEffect(() => {
-    getAllProductsRequest({storeId: storeProfile._id})
-      .then((response: any) => {
-        console.log('response.data', response.data);
-        const {products} = response.data.data;
-        setStoreProducts(products);
-        setNetError(false);
-      })
-      .catch((error: any) => {
-        if (error) {
-          setNetError(true);
-        }
-        console.log('getAllProductsRequest error', error);
-      });
-  }, [storeProfile]);
+  async function fetchAllProducts() {
+    const {data} = await getAllProductsRequest({storeId: storeProfile.id});
+    const products = data.data.products;
+    return products;
+  }
+  const {status, data: storeProducts} = useQuery(
+    'allProducts',
+    fetchAllProducts,
+  );
 
   return (
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.productView}>
-          {storeProducts !== null && storeProducts?.length > 0 ? (
+          {status === 'error' ? (
+            <Text style={styles.error}>
+              Oops, unable to fetch your Products, due to poor network
+            </Text>
+          ) : status === 'loading' ? (
+            <ProductLoader />
+          ) : storeProducts.length > 0 ? (
             <ProductListView products={storeProducts} />
-          ) : storeProducts !== null &&
-            !netError &&
-            storeProducts?.length === 0 ? (
+          ) : (
             <Text style={styles.indicator}>
               No Product available, you can add products, by clicking on the
               plus button
-            </Text>
-          ) : !netError ? (
-            <ProductLoader />
-          ) : (
-            <Text style={styles.error}>
-              Oops, unable to fetch your Products, due to poor network
             </Text>
           )}
         </View>

@@ -24,6 +24,7 @@ let savedToken: string | null;
 
 getAuthtoken().then(response => {
   savedToken = response;
+  console.log('savedToken', savedToken);
 });
 
 axiosInstance.interceptors.request.use(

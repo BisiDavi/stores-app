@@ -14,7 +14,11 @@ export default function AddExtrasModal({
 }: AppModalProps) {
   const navigation: any = useNavigation();
   return (
-    <AppModal visible={visible} toggleOverlay={toggleOverlay}>
+    <AppModal
+      style={styles.modal}
+      visible={visible}
+      toggleOverlay={toggleOverlay}
+    >
       <View style={styles.modalView}>
         <TouchableOpacity>
           <Text style={styles.text}>Done</Text>
@@ -25,6 +29,7 @@ export default function AddExtrasModal({
               return (
                 <Button
                   title={button.text}
+                  key={button.text}
                   titleStyle={styles.buttonText}
                   onPress={() => navigation.navigate(button.link)}
                   type="clear"
@@ -35,6 +40,8 @@ export default function AddExtrasModal({
                 <Button
                   titleStyle={styles.buttonText}
                   onPress={toggleOverlay}
+                  key={button.text}
+                  buttonStyle={styles.buttonStyle}
                   title={button.text}
                 />
               );

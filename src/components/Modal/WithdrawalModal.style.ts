@@ -60,10 +60,17 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.mallBlue5,
   },
+  buttonAmt: {
+    width: 120,
+    alignItems: 'center',
+    backgroundColor: colors.mallBlue5,
+  },
   buttonGroup: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
+    flexDirection: 'row',
+    width: '100%',
   },
   inputView: {
     position: 'relative',

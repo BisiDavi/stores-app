@@ -38,7 +38,6 @@ export default function NewOrdersTab({navigation}: any) {
         <FlatList
           data={newOrders}
           renderItem={({item}) => {
-            console.log('FlatList item', item);
             return (
               <TouchableOpacity
                 onPressIn={() => navigation.navigate('ViewOrderScreen', item)}

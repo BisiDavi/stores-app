@@ -7,20 +7,23 @@ import {styles} from '@/components/Modal/WithdrawalModal.style';
 import {InputField} from '@/components/FormElements/Input';
 import {UIWithdrawalModalAction} from '@/store/actions/UIActions';
 
-export default function displayWithdrawalModalContent(stage: string) {
+export default function displayWithdrawalModalContent(
+  stage: string,
+  closeModal: any,
+) {
   switch (stage) {
     case 'pin': {
       return <TransactionPin />;
     }
     case 'withdawAmount': {
-      return <AmountToWithdraw />;
+      return <AmountToWithdraw closeModal={closeModal} />;
     }
     default:
       return null;
   }
 }
 
-function AmountToWithdraw() {
+function AmountToWithdraw({closeModal}: any) {
   const [amount, setAmount] = useState('');
 
   return (
@@ -34,8 +37,12 @@ function AmountToWithdraw() {
         keyboardType="number-pad"
       />
       <View style={styles.buttonGroup}>
-        <Button buttonStyle={styles.button} title="Exit" />
-        <Button buttonStyle={styles.button} title="Proceed" />
+        <Button
+          buttonStyle={styles.buttonAmt}
+          onPress={closeModal}
+          title="Exit"
+        />
+        <Button buttonStyle={styles.buttonAmt} title="Proceed" />
       </View>
     </View>
   );

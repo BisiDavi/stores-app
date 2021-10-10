@@ -130,7 +130,7 @@ export default function AddProductOtherDetailsForm({navigation}: any) {
       takeAwayPrice: Number(product.takeAwayPrice),
       quantity: 1,
       price: Number(product.price),
-      storeId: storeProfile._id,
+      storeId: storeProfile.id,
     });
     setSubmitAddProduct(true);
   }

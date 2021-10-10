@@ -24,7 +24,7 @@ export default function WithdrawalModal({closeModal, visible}: AppModalProps) {
         <View style={styles.modalTitle}>
           <Text style={styles.title}>Withdraw from Wallet</Text>
         </View>
-        {displayWithdrawalModalContent(withdrawalModal)}
+        {displayWithdrawalModalContent(withdrawalModal, closeModal)}
       </View>
     </Modal>
   );
