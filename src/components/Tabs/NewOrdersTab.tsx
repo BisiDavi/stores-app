@@ -1,34 +1,32 @@
 import React, {useCallback} from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {useQuery} from 'react-query';
 import {FlatList, View, Text} from 'react-native';
+import {useQuery} from 'react-query';
 import {useSelector} from 'react-redux';
 
 import {RootState} from '@/store/RootReducer';
 import OrdersListItem from '@/components/Tabs/OrdersListItem';
 import LoadingActivityIndicator from '@/components/Loader/LoadingActivityIndicator';
-import {getPendingOrdersRequest} from '@/network/postRequest';
 import {styles} from './NewOrdersTab.style';
 import {showToast} from '@/utils';
-import {getStoreDetailsRequest} from '@/network/getRequest';
+import useRequest from '@/hooks/useRequest';
+import {formatOrders} from '@/utils/formatProduct';
 
 export default function NewOrdersTab({navigation}: any) {
   const {storeProfile}: any = useSelector(
     (state: RootState) => state.storeProfile,
   );
-  const {data: newOrders, status} = useQuery('newOrders', async () => {
-    const {data} = await getPendingOrdersRequest({storeId: storeProfile.id});
-    return data;
-  });
+  const {fetchPendingOrders, fetchAllProducts, fetchAllStoreExtras} =
+    useRequest();
 
-  const {data: storeProducts, status: storeProductsStatus} = useQuery(
-    'storeProducts',
-    async () => {
-      const {data} = await getStoreDetailsRequest();
-      return data;
-    },
+  const {data: newOrders, status} = useQuery('newOrders', fetchPendingOrders);
+
+  const {data: allProducts} = useQuery('allProducts', fetchAllProducts);
+  const {data: allStoreExtras} = useQuery(
+    'allStoreExtras',
+    fetchAllStoreExtras,
   );
-
+  const newOrdersData = formatOrders(allProducts, newOrders, allStoreExtras);
   const {storeDetails}: any = useSelector(
     (state: RootState) => state.storeDetails,
   );
@@ -43,13 +41,15 @@ export default function NewOrdersTab({navigation}: any) {
         showToast('Unable to fetch new orders')
       ) : status === 'loading' ? (
         <LoadingActivityIndicator />
-      ) : newOrders.data.llength > 0 ? (
+      ) : newOrders.data.length > 0 ? (
         <FlatList
-          data={newOrders}
-          renderItem={({item}) => {
+          data={newOrdersData}
+          renderItem={({item}: any) => {
             return (
               <TouchableOpacity
-                onPressIn={() => navigation.navigate('ViewOrderScreen', item)}
+                onPressIn={() =>
+                  navigation.navigate('ViewOrderScreen', item.extras)
+                }
               >
                 <OrdersListItem item={item} />
               </TouchableOpacity>

@@ -4,35 +4,40 @@ import {useSelector} from 'react-redux';
 import {useQuery} from 'react-query';
 
 import OrdersListItem from '@/components/Tabs/OrdersListItem';
-import {getCompletedOrdersRequest} from '@/network/postRequest';
 import {RootState} from '@/store/RootReducer';
 import {styles} from './CompletedOrdersTab.style';
 import LoadingActivityIndicator from '@/components/Loader/LoadingActivityIndicator';
 import {showToast} from '@/utils';
+import useRequest from '@/hooks/useRequest';
+import {formatOrders} from '@/utils/formatProduct';
 
 export default function CompletedOrdersTab({navigation}: any) {
+  const {fetchCompletedOrders, fetchAllProducts, fetchAllStoreExtras} =
+    useRequest();
+
   const {data: completedOrders, status} = useQuery(
     'completedOrders',
-    async () => {
-      const {data} = await getCompletedOrdersRequest({
-        storeId: storeProfile.id,
-      });
-      return data;
-    },
+    fetchCompletedOrders,
+  );
+  const {data: allProducts} = useQuery('allProducts', fetchAllProducts);
+  const {data: allStoreExtras} = useQuery(
+    'allStoreExtras',
+    fetchAllStoreExtras,
   );
 
   LogBox.ignoreLogs(['Setting a timer']);
 
-  //useEffect(() => {
-  //  if (status === 'success' && showOnce) {
-  //  }
-  //}, [status]);
+  const completedOrdersData = formatOrders(
+    allProducts,
+    completedOrders,
+    allStoreExtras,
+  );
 
   const keyExtractor = useCallback(item => item.id.toString(), []);
   const {storeProfile}: any = useSelector(
     (state: RootState) => state.storeProfile,
   );
-  console.log('storeProfile', storeProfile);
+
   const {storeDetails}: any = useSelector(
     (state: RootState) => state.storeDetails,
   );
@@ -45,10 +50,10 @@ export default function CompletedOrdersTab({navigation}: any) {
         showToast('Unable to fetch completed orders')
       ) : status === 'loading' ? (
         <LoadingActivityIndicator />
-      ) : completedOrders.data.length > 0 ? (
+      ) : completedOrders.length > 0 ? (
         <FlatList
-          data={completedOrders.data}
-          renderItem={({item}) => (
+          data={completedOrdersData}
+          renderItem={({item}: any) => (
             <TouchableOpacity
               onPressIn={() => navigation.navigate('ViewOrderScreen', item)}
             >

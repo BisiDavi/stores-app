@@ -4,17 +4,28 @@ import {ListItem, Image} from 'react-native-elements';
 import colors from '@/utils/colors';
 import displayAsset from '@/utils/displayAsset';
 
+interface OrdersViewProps {
+  item: {
+    id: number;
+    name: string;
+    code?: string;
+    time: string;
+    status: string;
+    image: string;
+  };
+}
+
 function OrdersListItem({item}: OrdersViewProps) {
   const statusStyle =
-    item.status === 'New'
+    item.status === 'NEW'
       ? styles.new
-      : item.status === 'Pending'
+      : item.status === 'PENDING'
       ? styles.pending
       : styles.completed;
 
   return (
     <ListItem style={styles.listItem} bottomDivider>
-      <Image source={displayAsset(item.image)} style={styles.avatar} />
+      <Image source={displayAsset(item?.image)} style={styles.avatar} />
       <ListItem.Content style={styles.listItemContent}>
         <View style={styles.row}>
           <Text>{item?.name}</Text>
@@ -30,17 +41,6 @@ function OrdersListItem({item}: OrdersViewProps) {
 }
 
 export default memo(OrdersListItem);
-
-interface OrdersViewProps {
-  item: {
-    id: number;
-    name: string;
-    code: string;
-    time: string;
-    status: string;
-    image: string;
-  };
-}
 
 const styles = StyleSheet.create({
   completed: {

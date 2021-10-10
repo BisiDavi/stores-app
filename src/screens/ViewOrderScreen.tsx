@@ -1,9 +1,10 @@
 import React, {useState, memo} from 'react';
+import {useNavigation} from '@react-navigation/core';
 import {View, Text, TextInput} from 'react-native';
 import {Button, Image} from 'react-native-elements';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
+
 import displayAsset from '@/utils/displayAsset';
-import {useNavigation} from '@react-navigation/core';
 import {styles} from '@/styles/ViewOrderScreen.style';
 
 function ViewOrderScreen({route}: any) {
@@ -18,7 +19,7 @@ function ViewOrderScreen({route}: any) {
           <Text>2 Packs</Text>
         </View>
         <View style={styles.orderGroup}>
-          {userOrders.orders.map((order: any, index: number) => (
+          {userOrders.map((order: any, index: number) => (
             <TouchableOpacity
               key={index}
               onPress={() => navigation.navigate('ProductReplacementScreen')}
@@ -26,11 +27,11 @@ function ViewOrderScreen({route}: any) {
               <View style={styles.orderView}>
                 <Image
                   style={styles.image}
-                  source={displayAsset(userOrders.image)}
+                  source={displayAsset(userOrders?.image)}
                 />
                 <View style={styles.foodDescription}>
-                  <Text>{order.name}</Text>
-                  <Text>N{order.amount}</Text>
+                  <Text>{order?.name}</Text>
+                  <Text>N{order?.amount}</Text>
                 </View>
               </View>
             </TouchableOpacity>
