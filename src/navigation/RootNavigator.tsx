@@ -23,11 +23,9 @@ export default function RootNavigator() {
     (storeState: RootState) => storeState.setupStore,
   );
 
-  const {storeDetails} = useSelector(
-    (storeState: RootState) => storeState.storeDetails,
-  );
-
-  console.log('storeDetails', storeDetails);
+  //const {storeDetails} = useSelector(
+  //  (storeState: RootState) => storeState.storeDetails,
+  //);
 
   const navigation = useNavigation();
   const tokenExpiry = hasTokenExpired(state.userToken);

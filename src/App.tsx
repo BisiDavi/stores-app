@@ -10,11 +10,13 @@ import {Provider} from 'react-redux';
 import Navigation from '@/navigation/index';
 import AuthProvider from '@/context/AuthProvider';
 import configureStore from '@/store/Store';
+import {getFCMToken} from '@/utils/fcm';
 
 export default function App() {
   const {persistor, store} = configureStore();
 
   useEffect(() => {
+    getFCMToken();
     SplashScreen.hide();
   }, []);
 

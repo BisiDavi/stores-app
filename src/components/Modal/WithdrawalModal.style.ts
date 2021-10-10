@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   },
   modalView: {
     backgroundColor: colors.neutralWhite,
-    height: 180,
+    height: 225,
     borderRadius: 10,
     padding: 20,
     justifyContent: 'flex-start',
@@ -59,5 +59,20 @@ export const styles = StyleSheet.create({
     width: 200,
     alignItems: 'center',
     backgroundColor: colors.mallBlue5,
+  },
+  buttonGroup: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  inputView: {
+    position: 'relative',
+  },
+  error: {
+    color: colors.accentRed,
+    fontSize: 13,
+    position: 'absolute',
+    left: 10,
+    bottom: 5,
   },
 });

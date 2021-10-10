@@ -1,16 +1,19 @@
 import React from 'react';
 import Modal from 'react-native-modal';
+import {useSelector} from 'react-redux';
 import {View, Text} from 'react-native';
-import {Button} from 'react-native-elements';
 
 import {styles} from '@/components/Modal/WithdrawalModal.style';
-import {InputField} from '@/components/FormElements/Input';
+import displayWithdrawalModalContent from './WithdrawalModalContent';
+import {RootState} from '@/store/RootReducer';
 
 interface AppModalProps {
   closeModal: () => void;
   visible: boolean;
 }
 export default function WithdrawalModal({closeModal, visible}: AppModalProps) {
+  const {withdrawalModal} = useSelector((state: RootState) => state.ui);
+
   return (
     <Modal
       style={styles.modal}
@@ -21,13 +24,7 @@ export default function WithdrawalModal({closeModal, visible}: AppModalProps) {
         <View style={styles.modalTitle}>
           <Text style={styles.title}>Withdraw from Wallet</Text>
         </View>
-        <View style={styles.modalContent}>
-          <InputField
-            styleContainer={styles.input}
-            placeholder="How much do you want to withdraw ?"
-          />
-          <Button buttonStyle={styles.button} title="Proceed" />
-        </View>
+        {displayWithdrawalModalContent(withdrawalModal)}
       </View>
     </Modal>
   );
