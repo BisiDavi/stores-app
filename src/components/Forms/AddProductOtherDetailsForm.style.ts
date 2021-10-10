@@ -69,4 +69,13 @@ export const styles = StyleSheet.create({
   productAvailabiltyButtonGroup: {
     marginTop: 5,
   },
+  noExtra: {
+    fontSize: 12,
+    marginLeft: 12,
+    color: colors.accentRed,
+    fontFamily: 'Roboto-Medium',
+  },
+  promoTagView: {
+    marginBottom: 10,
+  },
 });

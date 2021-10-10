@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {useQueryClient} from 'react-query';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {Button} from 'react-native-elements';
-import {useQuery} from 'react-query';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 import colors from '@/utils/colors';
@@ -13,34 +13,17 @@ import {RootState} from '@/store/RootReducer';
 import {addProductsRequest} from '@/network/postRequest';
 import showToast from '@/utils/showToast';
 import {SubmitProductAction} from '@/store/actions/addProductAction';
-import {getAllStoreExtrasRequest} from '@/network/getRequest';
 import {styles} from './AddProductOtherDetailsForm.style';
 import DisplayStoreExtras from './DisplayStoreExtras';
-
-type storeExtrasType = {
-  name: string;
-  isCompulsory: boolean;
-  _id: string;
-  price: string;
-}[];
-
-async function fetchStoreExtras() {
-  const {data} = await getAllStoreExtrasRequest();
-  const extras = data.data;
-  return extras;
-}
 
 export default function AddProductOtherDetailsForm({navigation}: any) {
   const [loading, setLoading] = useState(false);
   const [submitAddProduct, setSubmitAddProduct] = useState(false);
-  const {data: storesExtras, status: storeExtrasStatus} = useQuery(
-    'productExtras',
-    fetchStoreExtras,
-  );
+  const queryClient = useQueryClient();
   const [showPromoTag, setShowPromoTag] = useState(false);
   const [productFields, setProductFields] = useState<any>({});
   const [isProductAvailable, setIsProductAvailable] = useState<any>({
-    isAvailable: null,
+    isAvailable: true,
     duration: {
       from: 0,
       to: 0,
@@ -62,6 +45,7 @@ export default function AddProductOtherDetailsForm({navigation}: any) {
           console.log('product added', response.data.message);
           setSubmitAddProduct(false);
           dispatch(SubmitProductAction(false));
+          queryClient.invalidateQueries('allProducts');
           navigation.navigate('ProductScreen');
         })
         .catch(error => {
@@ -79,14 +63,7 @@ export default function AddProductOtherDetailsForm({navigation}: any) {
           }
         });
     }
-  }, [navigation, productFields, dispatch, submitAddProduct]);
-
-  function getExtra(extras: any[], status: boolean) {
-    const filteredExtra = extras.filter(
-      filteredextra => filteredextra.isCompulsory === status,
-    );
-    return filteredExtra;
-  }
+  }, [navigation, productFields, dispatch, submitAddProduct, queryClient]);
 
   const {from} = isProductAvailable.duration;
 
@@ -177,7 +154,7 @@ export default function AddProductOtherDetailsForm({navigation}: any) {
             </View>
           )}
         </View>
-        <View>
+        <View style={styles.promoTagView}>
           <TouchableOpacity onPress={promoTagFormHandler}>
             <Text style={styles.promoTagText}>Add Promo Tag</Text>
           </TouchableOpacity>

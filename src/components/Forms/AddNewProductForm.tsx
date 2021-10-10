@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Formik} from 'formik';
 import {View} from 'react-native';
 import {useDispatch} from 'react-redux';
@@ -16,22 +16,14 @@ import {useQuery} from 'react-query';
 async function fetchProductCategories() {
   const {data} = await getProductsCategories();
   const result = data.data;
+  addproductContent[1].options = result;
   return result;
 }
 
 export default function AddNewProductForm({navigation}: any) {
   const dispatch = useDispatch();
 
-  const {status, data: productCategories} = useQuery(
-    'fetchProductCategories',
-    fetchProductCategories,
-  );
-
-  useEffect(() => {
-    if (productCategories) {
-      addproductContent[1].options = productCategories;
-    }
-  }, [productCategories]);
+  const {status} = useQuery('fetchProductCategories', fetchProductCategories);
 
   function navigationHandler(handleSubmit: any) {
     handleSubmit();
@@ -65,9 +57,8 @@ export default function AddNewProductForm({navigation}: any) {
         isValid,
       }) => (
         <>
-          {status === 'error'
-            ? showToast('unable to fetch product categories')
-            : status === 'loading' && showToast('fetching product categories')}
+          {status === 'error' &&
+            showToast('unable to fetch product categories')}
           <View style={styles.formStyle}>
             {addproductContent.map((formElement, index) => (
               <DisplayFormElements

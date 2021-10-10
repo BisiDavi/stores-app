@@ -1,9 +1,10 @@
 import React from 'react';
 import {Formik} from 'formik';
 import {View, StyleSheet, Dimensions} from 'react-native';
-import addNewProductSchema from '../../schemas/AddNewProductSchema';
+
+import addNewProductSchema from '@/schemas/AddNewProductSchema';
 import {DisplayFormElements} from './DisplayFormElements';
-import promoTagContent from '../../json/add-promo-tag.json';
+import promoTagContent from '@/json/add-promo-tag.json';
 
 export default function PromoTagForm() {
   return (
@@ -43,6 +44,6 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     padding: 0,
     margin: 0,
-    marginTop: 30,
+    marginTop: 0,
   },
 });

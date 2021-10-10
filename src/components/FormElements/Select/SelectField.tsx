@@ -27,7 +27,6 @@ export default function SelectField({content, ...props}: selectFieldProps) {
       : item.name;
     return pickerValue;
   }
-  console.log('content.options.length ', content?.options?.length);
   return (
     <>
       {content.options !== null ? (

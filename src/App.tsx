@@ -20,7 +20,14 @@ export default function App() {
     SplashScreen.hide();
   }, []);
 
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnMount: true,
+        refetchOnReconnect: false,
+      },
+    },
+  });
 
   return (
     <SafeAreaProvider>

@@ -59,6 +59,7 @@ function FormElements(props: displayFormElementsProps) {
       return (
         <InputGroup
           inputGroup={formElement}
+          value={props.values[formElement.name]}
           onChangeText={props?.handleChange(formElement.name)}
           onBlur={props?.handleBlur(formElement.name)}
           errorMessage={

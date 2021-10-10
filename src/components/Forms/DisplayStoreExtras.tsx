@@ -42,15 +42,17 @@ export default function DisplayStoreExtras({name}: DisplayStoreExtrasProps) {
       {status === 'error' ? (
         <Text>Unable to fetch {name} Extras</Text>
       ) : status === 'loading' ? (
-        <Text>Fetching main extras</Text>
+        <Text>Fetching main extras...</Text>
       ) : (
         <View style={styles.checkboxView}>
-          {storesExtras.length > 0 ? (
+          {getExtra(filterStoreType).length > 0 ? (
             getExtra(filterStoreType).map(extra => (
               <DisplayCheckbox key={extra._id} title={extra} />
             ))
           ) : (
-            <Text>There is no {name} extra</Text>
+            <Text style={styles.noExtra}>
+              There is no {name.toLowerCase()} extra
+            </Text>
           )}
         </View>
       )}
