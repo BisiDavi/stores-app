@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {CheckBox} from 'react-native-elements';
 import {useDispatch, useSelector} from 'react-redux';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {Button} from 'react-native-elements';
+import {useQuery} from 'react-query';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 import colors from '@/utils/colors';
@@ -15,15 +15,7 @@ import showToast from '@/utils/showToast';
 import {SubmitProductAction} from '@/store/actions/addProductAction';
 import {getAllStoreExtrasRequest} from '@/network/getRequest';
 import {styles} from './AddProductOtherDetailsForm.style';
-
-interface DisplayCheckboxProps {
-  title: {
-    name: string;
-    isCompulsory: boolean;
-    _id: string;
-    price: string;
-  };
-}
+import DisplayStoreExtras from './DisplayStoreExtras';
 
 type storeExtrasType = {
   name: string;
@@ -32,21 +24,19 @@ type storeExtrasType = {
   price: string;
 }[];
 
-function DisplayCheckbox({title}: DisplayCheckboxProps) {
-  const [addExtra, setAddExtra] = useState(false);
-  const extrasTitle = `${title.name} (${title.price})`;
-  function toggleCheckBox() {
-    return setAddExtra(!addExtra);
-  }
-  return (
-    <CheckBox checked={addExtra} title={extrasTitle} onPress={toggleCheckBox} />
-  );
+async function fetchStoreExtras() {
+  const {data} = await getAllStoreExtrasRequest();
+  const extras = data.data;
+  return extras;
 }
 
 export default function AddProductOtherDetailsForm({navigation}: any) {
   const [loading, setLoading] = useState(false);
   const [submitAddProduct, setSubmitAddProduct] = useState(false);
-  const [storesExtras, setStoresExtras] = useState<storeExtrasType>([]);
+  const {data: storesExtras, status: storeExtrasStatus} = useQuery(
+    'productExtras',
+    fetchStoreExtras,
+  );
   const [showPromoTag, setShowPromoTag] = useState(false);
   const [productFields, setProductFields] = useState<any>({});
   const [isProductAvailable, setIsProductAvailable] = useState<any>({
@@ -64,36 +54,18 @@ export default function AddProductOtherDetailsForm({navigation}: any) {
   const {productAvailabilty} = productExtras;
 
   useEffect(() => {
-    let renderOnce = true;
-    getAllStoreExtrasRequest()
-      .then(response => {
-        if (renderOnce) {
-          setStoresExtras(response.data.data);
-        }
-      })
-      .catch(error => {
-        if (error.request) {
-          showToast('oops, an error occurred, unable to fetch stores extras');
-        } else if (error.response) {
-          showToast(error.response?.data?.message);
-        }
-      });
-    return () => {
-      renderOnce = false;
-    };
-  }, []);
-
-  useEffect(() => {
     if (submitAddProduct) {
       addProductsRequest(productFields)
         .then(response => {
           setLoading(false);
           showToast(response.data.message);
+          console.log('product added', response.data.message);
           setSubmitAddProduct(false);
           dispatch(SubmitProductAction(false));
           navigation.navigate('ProductScreen');
         })
         .catch(error => {
+          console.log('error', error);
           setLoading(false);
           setSubmitAddProduct(false);
           dispatch(SubmitProductAction(false));
@@ -109,12 +81,12 @@ export default function AddProductOtherDetailsForm({navigation}: any) {
     }
   }, [navigation, productFields, dispatch, submitAddProduct]);
 
-  const mainExtras = storesExtras.filter(
-    extras => extras.isCompulsory === true,
-  );
-  const secondaryExtras = storesExtras.filter(
-    extras => extras.isCompulsory === false,
-  );
+  function getExtra(extras: any[], status: boolean) {
+    const filteredExtra = extras.filter(
+      filteredextra => filteredextra.isCompulsory === status,
+    );
+    return filteredExtra;
+  }
 
   const {from} = isProductAvailable.duration;
 
@@ -153,23 +125,8 @@ export default function AddProductOtherDetailsForm({navigation}: any) {
     <>
       <Spinner visible={loading} color={colors.cloudOrange5} />
       <View style={styles.form}>
-        <View>
-          <Text style={styles.extra}>Main Extras</Text>
-          <View style={styles.checkboxView}>
-            {mainExtras.map(extra => (
-              <DisplayCheckbox key={extra._id} title={extra} />
-            ))}
-          </View>
-        </View>
-        <View>
-          <Text style={styles.extra}>Secondary Extras</Text>
-
-          <View style={styles.checkboxView}>
-            {secondaryExtras.map(extra => (
-              <DisplayCheckbox key={extra._id} title={extra} />
-            ))}
-          </View>
-        </View>
+        <DisplayStoreExtras name="Main" />
+        <DisplayStoreExtras name="Secondary" />
         <View>
           <Text style={styles.promoTagText}>
             Is {product.name} always available?

@@ -27,6 +27,7 @@ export default function SelectField({content, ...props}: selectFieldProps) {
       : item.name;
     return pickerValue;
   }
+  console.log('content.options.length ', content?.options?.length);
   return (
     <>
       {content.options !== null ? (
@@ -46,7 +47,7 @@ export default function SelectField({content, ...props}: selectFieldProps) {
                 {content.placeholder && (
                   <Picker.Item label={content.placeholder} value="" />
                 )}
-                {content.options.length > 0 ? (
+                {content.options && content.options?.length > 0 ? (
                   content.options.map((item: any, index: number) => {
                     const labelName = content.optionName
                       ? item[content.optionName]

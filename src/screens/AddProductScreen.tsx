@@ -42,6 +42,7 @@ export default function AddProductScreen({navigation}: Props) {
       async function uploadImage() {
         return await uploadProductImageRequest(formDataState)
           .then(response => {
+            console.log('uploadProductImageRequest', response.data.message);
             setLoading(false);
             showToast(response.data.message);
           })

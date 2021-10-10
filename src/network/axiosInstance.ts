@@ -40,8 +40,11 @@ axiosInstance.interceptors.request.use(
 
 axiosImageInstance.interceptors.request.use(
   config => {
+    const authToken = getAuthtoken();
+    console.log('authToken', authToken);
     if (savedToken) {
       config.headers.Authorization = 'Bearer ' + savedToken;
+      //console.log('savedToken', saveToken);
     }
     return config;
   },
