@@ -7,10 +7,13 @@ export const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     padding: 10,
+    flexDirection: 'column',
     width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height * 0.85,
   },
   content: {
     alignItems: 'flex-start',
+    flex: 1,
   },
   methods: {
     flexDirection: 'row',
@@ -34,5 +37,16 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 24,
     textAlign: 'center',
+  },
+  snackView: {
+    position: 'relative',
+    width: Dimensions.get('window').width,
+  },
+  snackbar: {
+    backgroundColor: colors.mallBlue5,
+    marginBottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontFamily: 'Roboto-Bold',
   },
 });
