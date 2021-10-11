@@ -36,7 +36,9 @@ type dashboardContentType = {
 export default function DashboardScreen({navigation}: Props) {
   const StatisticsScreenRoute: any = 'StatisticsScreen';
   const {fetchAnalytics} = useRequest();
-  const {status, data} = useQuery('storeAnalytics', fetchAnalytics);
+  const {status, data} = useQuery('storeAnalytics', fetchAnalytics, {
+    staleTime: Infinity,
+  });
 
   useEffect(() => {
     if (status === 'success') {

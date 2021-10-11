@@ -82,4 +82,15 @@ export const styles = StyleSheet.create({
     left: 10,
     bottom: 5,
   },
+  pinErrorView: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  pinError: {
+    marginLeft: 10,
+    marginRight: 5,
+    color: colors.accentRed,
+    fontFamily: 'Roboto-Bold',
+    fontSize: 25,
+  },
 });
