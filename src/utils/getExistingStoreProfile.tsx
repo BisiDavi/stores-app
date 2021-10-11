@@ -1,7 +1,7 @@
-import {getStoreDetailsRequest} from '@/network/getRequest';
+import {getStoreProfileRequest} from '@/network/getRequest';
 
 export default async function getExistingStoreProfile() {
-  return await getStoreDetailsRequest()
+  return await getStoreProfileRequest()
     .then(response => {
       const {data} = response.data;
       const isBankRegisted = Object.keys(data).includes('bank');

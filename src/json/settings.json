@@ -1,24 +1,74 @@
-{
-  "list": [
-    {
-      "title": "Name",
-      "input": {"name": "ownerName"}
-    },
-    {
-      "title": "Store's Name",
-      "input": {"name": "storeName"}
-    },
-    {
-      "title": "Address",
-      "input": {"name": "address"}
-    },
-    {
-      "title": "Store Type",
-      "input": {"name": "storeType"}
-    },
-    {
-      "title": "Store opening time",
-      "input": {"name": "openingTime"}
-    }
-  ]
-}
+[
+  {
+    "title": "Store's name",
+    "type": "input",
+    "name": "name",
+    "input": {"placeholder": "store name"}
+  },
+  {
+    "title": "Store's Email",
+    "type": "input",
+    "name": "storeEmail",
+    "input": {"placeholder": "store email"}
+  },
+  {
+    "title": "Slogan",
+    "type": "input",
+    "name": "slogan",
+    "input": {"placeholder": "slogan"}
+  },
+  {
+    "title": "Store's Owner name",
+    "type": "input",
+    "name": "ownerName",
+    "input": {"placeholder": "store's name"}
+  },
+  {
+    "title": "Store's Owner email",
+    "type": "input",
+    "name": "email",
+    "input": {"placeholder": "your email"}
+  },
+  {
+    "title": "Store's Owner phone",
+    "type": "input",
+    "name": "phone",
+    "input": {"placeholder": "store's owner phone number"}
+  },
+  {
+    "title": "Address",
+    "type": "input",
+    "name": "address",
+    "input": {"placeholder": "address"}
+  },
+  {
+    "title": "Store Type",
+    "type": "select",
+    "name": "storeType",
+    "select": ["PICK UP", "IN STORE"]
+  },
+  {
+    "title": "Store opening time",
+    "type": "select",
+    "name": "storeOpeningTime",
+    "input": {"placeholder": "openingTime"}
+  },
+  {
+    "title": "Store closing time",
+    "type": "select",
+    "name": "storeClosingTime",
+    "input": {"placeholder": "closingTime"}
+  },
+  {
+    "title": "Settlement Plan",
+    "type": "select",
+    "name": "settlementPlan",
+    "select": ["Daily", "Weekly", "Monthly"]
+  },
+  {
+    "title": "Settlement Plan",
+    "type": "select",
+    "name": "settlementPlan",
+    "select": ["Daily", "Weekly", "Monthly"]
+  }
+]

@@ -8,15 +8,18 @@ import {
   DrawerItem,
   DrawerItemList,
 } from '@react-navigation/drawer';
+import {useNavigation} from '@react-navigation/core';
 
 import JollofRice from '@/assets/jollofRice.png';
 import colors from '@/utils/colors';
 import {RootState} from '@/store/RootReducer';
 import {styles} from '@/styles/ProfileIcon.style';
 import {ToggleWithdrawalModalAction} from '@/store/actions/SetupStoreAction';
+import {removeToken} from '@/network/axiosInstance';
 
 export default function ProfileIcon(props: any) {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const {storeDetails} = useSelector((state: RootState) => state.storeDetails);
   const {storeProfile}: any = useSelector(
     (state: RootState) => state.storeProfile,
@@ -26,6 +29,13 @@ export default function ProfileIcon(props: any) {
   function toggleModal() {
     dispatch(ToggleWithdrawalModalAction());
   }
+
+  function logout() {
+    removeToken();
+    const loginRoute: any = 'LoginScreen';
+    navigation.navigate(loginRoute);
+  }
+
   return (
     <DrawerContentScrollView style={styles.drawerScrollView} {...props}>
       <View style={styles.profileIconView}>
@@ -40,7 +50,7 @@ export default function ProfileIcon(props: any) {
       <DrawerItem
         labelStyle={styles.drawerItem}
         activeTintColor={colors.neutralWhite}
-        onPress={() => {}}
+        onPress={logout}
         label="Logout"
       />
     </DrawerContentScrollView>
