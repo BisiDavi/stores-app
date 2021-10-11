@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import {ListItem} from 'react-native-elements';
+import {View, Text, StyleSheet} from 'react-native';
+import {ListItem, Icon} from 'react-native-elements';
 
 const ourContact = [
   {medium: 'Whatsapp', content: '07023415678', icon: 'whatsapp'},
@@ -10,19 +10,48 @@ const ourContact = [
 
 export default function HelpScreen() {
   return (
-    <View>
-      <Text>Experiencing any issue? </Text>
-      <Text>Reach us via: </Text>
+    <View style={styles.container}>
+      <View style={styles.textView}>
+        <Text style={styles.text}>Experiencing any issue? </Text>
+        <Text style={styles.text}>Reach us via: </Text>
+      </View>
       {ourContact.map((contact, index) => (
         <ListItem bottomDivider key={index}>
-          <ListItem.Content>
-            <ListItem.Title>{contact.icon}</ListItem.Title>
-            <ListItem.Subtitle>
+          <ListItem.Content style={styles.content}>
+            <ListItem.Title style={styles.icon}>
+              <Icon type="materialcommunityicons" name={contact.icon} />
+            </ListItem.Title>
+            <ListItem.Title style={styles.title}>
               {contact.medium}: {contact.content}
-            </ListItem.Subtitle>
+            </ListItem.Title>
           </ListItem.Content>
         </ListItem>
       ))}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  textView: {
+    display: 'flex',
+  },
+  text: {
+    fontFamily: 'Roboto-Bold',
+    fontSize: 14,
+  },
+  content: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  icon: {
+    marginLeft: 10,
+    marginRight: 20,
+  },
+  title: {
+    display: 'flex',
+    alignItems: 'flex-start',
+  },
+});
