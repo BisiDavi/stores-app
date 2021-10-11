@@ -52,12 +52,13 @@ export default function SettlementDetailsForm() {
           setSubmitForm(false);
         })
         .catch(error => {
+          console.log('error', error);
           setLoading(false);
           let errorMessage;
-          if (error.request) {
-            errorMessage = 'Oops, poor network, try again';
-          } else if (error.response) {
+          if (error.response) {
             errorMessage = error.response.data.message;
+          } else if (error.request) {
+            errorMessage = 'Oops, poor network, try again';
           }
           showToast(errorMessage);
         });

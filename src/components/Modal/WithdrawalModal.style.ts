@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   },
   modalView: {
     backgroundColor: colors.neutralWhite,
-    height: 225,
+    height: 240,
     borderRadius: 10,
     padding: 20,
     justifyContent: 'flex-start',
@@ -85,6 +85,9 @@ export const styles = StyleSheet.create({
   pinErrorView: {
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    width: '60%',
   },
   pinError: {
     marginLeft: 10,
@@ -92,5 +95,10 @@ export const styles = StyleSheet.create({
     color: colors.accentRed,
     fontFamily: 'Roboto-Bold',
     fontSize: 25,
+  },
+  modalPinView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
   },
 });

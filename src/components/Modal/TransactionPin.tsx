@@ -27,7 +27,7 @@ export default function TransactionPin() {
     !pinError && dispatch(UIWithdrawalModalAction());
   }
   return (
-    <View>
+    <View style={styles.modalPinView}>
       {pinError && (
         <View style={styles.pinErrorView}>
           <Icon
