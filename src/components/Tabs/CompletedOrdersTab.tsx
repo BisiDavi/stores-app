@@ -27,11 +27,9 @@ export default function CompletedOrdersTab({navigation}: any) {
 
   LogBox.ignoreLogs(['Setting a timer']);
 
-  const completedOrdersData = formatOrders(
-    allProducts,
-    completedOrders,
-    allStoreExtras,
-  );
+  const completedOrdersData =
+    completedOrders &&
+    formatOrders(allProducts, completedOrders, allStoreExtras);
 
   const keyExtractor = useCallback(item => item.id.toString(), []);
   const {storeProfile}: any = useSelector(

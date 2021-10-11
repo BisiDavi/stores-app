@@ -26,7 +26,8 @@ export default function NewOrdersTab({navigation}: any) {
     'allStoreExtras',
     fetchAllStoreExtras,
   );
-  const newOrdersData = formatOrders(allProducts, newOrders, allStoreExtras);
+  const newOrdersData =
+    newOrders && formatOrders(allProducts, newOrders, allStoreExtras);
   const {storeDetails}: any = useSelector(
     (state: RootState) => state.storeDetails,
   );
@@ -41,7 +42,7 @@ export default function NewOrdersTab({navigation}: any) {
         showToast('Unable to fetch new orders')
       ) : status === 'loading' ? (
         <LoadingActivityIndicator />
-      ) : newOrders.data.length > 0 ? (
+      ) : newOrders.length > 0 ? (
         <FlatList
           data={newOrdersData}
           renderItem={({item}: any) => {

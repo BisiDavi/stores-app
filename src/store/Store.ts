@@ -9,7 +9,6 @@ const middleware = [thunk];
 const config = {
   key: 'root',
   storage: AsyncStorage,
-  blackList: ['addProducts', 'storeDetails'],
 };
 
 const reducer = persistReducer(config, RootReducer);

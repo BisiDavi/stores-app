@@ -23,12 +23,9 @@ export default function RootNavigator() {
     (storeState: RootState) => storeState.setupStore,
   );
 
-  //const {storeDetails} = useSelector(
-  //  (storeState: RootState) => storeState.storeDetails,
-  //);
-
   const navigation = useNavigation();
   const tokenExpiry = hasTokenExpired(state.userToken);
+  console.log('completed', completed, 'tokenExpiry', tokenExpiry);
 
   useEffect(() => {
     if (state.userToken && !completed) {

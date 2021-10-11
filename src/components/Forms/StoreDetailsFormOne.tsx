@@ -1,9 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {Button} from 'react-native-elements';
 import {useDispatch} from 'react-redux';
 import {Formik} from 'formik';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {View} from 'react-native';
+import {useQuery} from 'react-query';
 
 import {storeDetailsScreenOneSchema} from '@/schemas';
 import {colors, showToast} from '@/utils/.';
@@ -19,53 +20,49 @@ import StoreTypeInfoModal from '@/components/Modal/StoreTypeInfoModal';
 import OpenDaysForm from './OpenDaysForm';
 import {styles} from './StoreDetailsFormOne.style';
 
+async function fetchStoreCategories() {
+  const {data} = await getStoreCategoriesRequest();
+  const result = data.data;
+  return result;
+}
+
+async function fetchAvailableState() {
+  const {data} = await getAvailableState();
+  const result = data.data;
+  return result;
+}
+
 export default function StoreDetailsFormOne() {
   const dispatch = useDispatch();
+  const {status: storeCategoryStatus, data: storeCategoryData} = useQuery(
+    'storeCategories',
+    fetchStoreCategories,
+  );
+  const {status: availableStateStatus, data: availableStateData} = useQuery(
+    'availableState',
+    fetchAvailableState,
+  );
+
+  storeDetailsFormOne[4].options = availableStateData;
+  storeDetailsFormOne[5].options = storeCategoryData;
+
   const {onBoardingNextScreen} = useStoreSetupNavigation();
   const [loading, setLoading] = useState(false);
   const [infoModal, setInfoModal] = useState(false);
-  const [storeCategory, setStoreCategory] = useState([]);
-  const [availableStates, setAvailableState] = useState([]);
-  const {formOneMainValues} = useFormValues();
 
-  storeDetailsFormOne[4].options = availableStates;
-  storeDetailsFormOne[5].options = storeCategory;
+  const {formOneMainValues} = useFormValues();
 
   function toggleModal() {
     return setInfoModal(!infoModal);
   }
 
-  useEffect(() => {
-    let useEffectRendered = true;
-    getStoreCategoriesRequest()
-      .then(response => {
-        if (useEffectRendered) {
-          setStoreCategory(response.data.data);
-        }
-      })
-      .catch(error => {
-        if (error.response) {
-          showToast(error.response.data.message);
-        } else if (error.request) {
-          showToast('Oops, network error, unable to fetch store categories');
-        }
-      });
-
-    getAvailableState()
-      .then(response => {
-        if (useEffectRendered) {
-          setAvailableState(response.data.data);
-        }
-      })
-      .catch(error => console.log('error', error));
-
-    return () => {
-      useEffectRendered = false;
-    };
-  }, []);
-
   return (
     <>
+      {storeCategoryStatus === 'error' &&
+        showToast('unable to fetch store categories')}
+      {availableStateStatus === 'error' &&
+        showToast('unable to fetch available state')}
+
       <Spinner visible={loading} color={colors.cloudOrange5} />
       <StoreTypeInfoModal modal={infoModal} toggleModal={toggleModal} />
       <View style={styles.form}>

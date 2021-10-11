@@ -5,18 +5,19 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 import {PersistGate} from 'redux-persist/integration/react';
 import {QueryClient, QueryClientProvider} from 'react-query';
-
 import {Provider} from 'react-redux';
+
 import Navigation from '@/navigation/index';
 import AuthProvider from '@/context/AuthProvider';
 import configureStore from '@/store/Store';
-import {getFCMToken} from '@/utils/fcm';
+import {fcm} from '@/utils/fcm';
 
 export default function App() {
   const {persistor, store} = configureStore();
 
   useEffect(() => {
-    getFCMToken();
+    fcm.requestUserPermission();
+    fcm.getFCMToken();
     SplashScreen.hide();
   }, []);
 
@@ -28,6 +29,12 @@ export default function App() {
       },
     },
   });
+
+  if (__DEV__) {
+    import('react-query-native-devtools').then(({addPlugin}) => {
+      addPlugin({queryClient});
+    });
+  }
 
   return (
     <SafeAreaProvider>

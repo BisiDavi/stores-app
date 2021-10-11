@@ -13,7 +13,7 @@ import {styles} from '@/styles/ProfileScreen.style';
 export default function ProfileScreen() {
   const queryClient = useQueryClient();
 
-  const storeProfile = queryClient.fetchQuery('storeProducts');
+  const storeProfile = queryClient.getQueryData('storeProfile');
 
   console.log('storeProfileData', storeProfile);
 

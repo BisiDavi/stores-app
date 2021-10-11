@@ -1,21 +1,22 @@
 import {getStoreDetailsRequest} from '@/network/getRequest';
+import {QueryClient} from 'react-query';
 
-export default async function getExistingStoreProfile() {
+export default async function getExistingStoreProfile(
+  queryClient: QueryClient,
+) {
   return await getStoreDetailsRequest()
     .then(response => {
       const {data} = response.data;
-      console.log('response getStoreDetailsRequest', data);
       const isBankRegisted = Object.keys(data).includes('bank');
-      console.log('isBankRegisted', isBankRegisted);
+      if (isBankRegisted) {
+        queryClient.setQueryData('storeProfile', data);
+        queryClient.setQueryDefaults('storeProfile', {
+          staleTime: Infinity,
+        });
+      }
       return {bank: isBankRegisted, name: data.name, id: data._id};
     })
-    .catch(error => {
-      if (error.response) {
-        console.log('getStoreDetailsRequest error response', error.response);
-        return null;
-      } else if (error.request) {
-        console.log('getStoreDetailsRequest error request', error.request);
-        return null;
-      }
+    .catch(() => {
+      return null;
     });
 }

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import {getAuthtoken} from '@/utils/authToken';
 import {CLOUDMALL_BASE_API} from '@/secrets';
 
 const axiosInstance = axios.create({
@@ -20,41 +19,10 @@ export const axiosImageInstance = axios.create({
   },
 });
 
-let savedToken: string | null;
-
-getAuthtoken().then(response => {
-  savedToken = response;
-});
-
-axiosInstance.interceptors.request.use(
-  config => {
-    if (savedToken) {
-      config.headers.Authorization = 'Bearer ' + savedToken;
-    }
-    return config;
-  },
-  error => {
-    Promise.reject(error);
-  },
-);
-
-axiosImageInstance.interceptors.request.use(
-  config => {
-    const authToken = getAuthtoken();
-    console.log('authToken', authToken);
-    if (savedToken) {
-      config.headers.Authorization = 'Bearer ' + savedToken;
-      //console.log('savedToken', saveToken);
-    }
-    return config;
-  },
-  error => {
-    Promise.reject(error);
-  },
-);
-
 export const setClientToken = (token: any) => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
+  axiosImageInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
 export default axiosInstance;

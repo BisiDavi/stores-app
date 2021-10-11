@@ -17,13 +17,15 @@ import {
   UserOnboardingCompletedAction,
   UserSignedinAction,
 } from '@/store/actions/SetupStoreAction';
-import {saveToStorage} from '@/utils/authToken';
 import StoreProfileActions from '@/store/actions/storeProfileActions';
+import {useQueryClient} from 'react-query';
 
 export default function AuthProvider({children}: PropsWithChildren<{}>) {
   const {state, dispatch} = useAuthReducer();
   const dispatchRedux = useDispatch();
   const [authToken, setAuthToken] = useState<string | null>(null);
+
+  const queryClient = useQueryClient();
 
   async function storedToken() {
     const token = await getAuthtoken();
@@ -42,44 +44,32 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
       loginIn: async (email: string, password: string) => {
         dispatch({type: 'LOADING'});
         const loginInToken: any = await loginUser(email, password);
-        console.log('loginToken', loginInToken);
-        !loginInToken && dispatch({type: 'STOP_LOADING'});
-        if (loginInToken) {
+        if (loginInToken !== null) {
           saveAuthtoken(loginInToken);
           setClientToken(loginInToken);
-        }
-        loginInToken && dispatchRedux(UserLoggedinAction());
-        let bankStatus: boolean;
-        loginInToken &&
-          getExistingStoreProfile()
+          dispatchRedux(UserLoggedinAction());
+          dispatch({type: 'LOADING'});
+          showToast('fetching your store ...');
+          getExistingStoreProfile(queryClient)
             .then((response: any) => {
-              response !== null && dispatchRedux(StoreProfileActions(response));
-              bankStatus = response.bank;
-              saveToStorage('registrationCompleted', response.bank);
+              if (response === null) {
+                return;
+              }
               if (response.bank) {
+                dispatchRedux(StoreProfileActions(response));
                 showToast(`Welcome, ${response.name}`);
                 dispatchRedux(UserOnboardingCompletedAction());
                 dispatch({
-                  type: 'HAS_ACCOUNT',
-                  ownsAccount: response.bank,
+                  type: 'SIGN_IN',
+                  token: loginInToken,
                 });
               }
-
-              dispatch({
-                type: 'SIGN_IN',
-                token: loginInToken,
-              });
             })
             .catch(() => {
-              dispatch({
-                type: 'SIGN_IN',
-                token: loginInToken,
-              });
-              dispatch({
-                type: 'HAS_ACCOUNT',
-                ownsAccount: bankStatus,
-              });
+              showToast('complete your onboarding process');
             });
+        }
+        dispatch({type: 'STOP_LOADING'});
       },
       signOut: () => dispatch({type: 'SIGN_OUT'}),
       signUp: async (email: string, password: string) => {
@@ -102,7 +92,7 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
           });
       },
     }),
-    [dispatch, dispatchRedux],
+    [dispatch, dispatchRedux, queryClient],
   );
 
   return (
