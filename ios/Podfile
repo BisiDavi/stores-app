@@ -32,6 +32,8 @@ target 'RNTS' do
 
   pod 'RNFBMessaging', :path => '../node_modules/@react-native-firebase/messaging'
 
+  pod 'RNFBApp', :path => '../node_modules/@react-native-firebase/app'
+
   target 'RNTSTests' do
     inherit! :complete
     # Pods for testing
