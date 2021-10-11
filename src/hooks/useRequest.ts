@@ -8,6 +8,7 @@ import {
 import {
   getAllStoreExtrasRequest,
   getStoreAnalytics,
+  getWithdrawalTransaction,
 } from '@/network/getRequest';
 
 export default function useRequest() {
@@ -44,11 +45,16 @@ export default function useRequest() {
     return data;
   }
 
+  async function fetchWithdrawals() {
+    const {data} = await getWithdrawalTransaction();
+    return data;
+  }
   return {
     fetchPendingOrders,
     fetchAllProducts,
     fetchAllStoreExtras,
     fetchCompletedOrders,
     fetchAnalytics,
+    fetchWithdrawals,
   };
 }

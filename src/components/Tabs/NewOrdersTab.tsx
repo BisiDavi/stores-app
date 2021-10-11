@@ -11,6 +11,7 @@ import {styles} from './NewOrdersTab.style';
 import {showToast} from '@/utils';
 import useRequest from '@/hooks/useRequest';
 import {formatOrders} from '@/utils/formatProduct';
+import SnackbarView from '../Loader/SnackbarView';
 
 export default function NewOrdersTab({navigation}: any) {
   const {storeProfile}: any = useSelector(
@@ -66,6 +67,7 @@ export default function NewOrdersTab({navigation}: any) {
           </Text>
         </View>
       )}
+      {status === 'loading' && <SnackbarView text="Fetching new orders..." />}
     </>
   );
 }

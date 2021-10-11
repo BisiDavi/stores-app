@@ -10,6 +10,7 @@ import LoadingActivityIndicator from '@/components/Loader/LoadingActivityIndicat
 import {showToast} from '@/utils';
 import useRequest from '@/hooks/useRequest';
 import {formatOrders} from '@/utils/formatProduct';
+import SnackbarView from '../Loader/SnackbarView';
 
 export default function CompletedOrdersTab({navigation}: any) {
   const {fetchCompletedOrders, fetchAllProducts, fetchAllStoreExtras} =
@@ -69,6 +70,7 @@ export default function CompletedOrdersTab({navigation}: any) {
           </Text>
         </View>
       )}
+      {status === 'loading' && <SnackbarView text="Fetching new orders..." />}
     </>
   );
 }

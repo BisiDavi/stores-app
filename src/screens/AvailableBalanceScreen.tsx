@@ -3,6 +3,7 @@ import {View, Text, FlatList} from 'react-native';
 import {ListItem} from 'react-native-elements';
 import availableBalanceContent from '@/json/available-balance.json';
 import {styles} from '@/styles/AvailableBalanceScreen.style';
+import {useQueryClient} from 'react-query';
 
 type ItemType = {
   item: AvailableBalanceType;
@@ -16,6 +17,11 @@ type AvailableBalanceType = {
 };
 
 export default function AvailableBalanceScreen() {
+  const queryClient = useQueryClient();
+  const storeAnalytics = queryClient.getQueryData('storeAnalytics');
+
+  console.log('AvailableBalanceScreen storeAnalytics', storeAnalytics);
+
   const availableBalance = useCallback(function renderItem({item}: ItemType) {
     return (
       <ListItem key={item?.id} bottomDivider>
@@ -33,6 +39,7 @@ export default function AvailableBalanceScreen() {
       </ListItem>
     );
   }, []);
+
   return (
     <View style={styles.container}>
       <FlatList

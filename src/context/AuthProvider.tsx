@@ -18,15 +18,12 @@ import {
   UserSignedinAction,
 } from '@/store/actions/SetupStoreAction';
 import StoreProfileActions from '@/store/actions/storeProfileActions';
-import {useQueryClient} from 'react-query';
 import {saveToStorage} from '@/utils/authToken';
 
 export default function AuthProvider({children}: PropsWithChildren<{}>) {
   const {state, dispatch} = useAuthReducer();
   const dispatchRedux = useDispatch();
   const [authToken, setAuthToken] = useState<string | null>(null);
-
-  const queryClient = useQueryClient();
 
   async function storedToken() {
     const token = await getAuthtoken();
@@ -51,7 +48,7 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
           dispatchRedux(UserLoggedinAction());
           dispatch({type: 'LOADING'});
           showToast('fetching your store ...');
-          getExistingStoreProfile(queryClient)
+          getExistingStoreProfile()
             .then((response: any) => {
               if (response === null) {
                 saveToStorage('onboardingCompleted', false);
@@ -96,7 +93,7 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
           });
       },
     }),
-    [dispatch, dispatchRedux, queryClient],
+    [dispatch, dispatchRedux],
   );
 
   return (

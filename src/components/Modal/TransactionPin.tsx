@@ -1,9 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {Icon} from 'react-native-elements';
 import {View, Text} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {Button} from 'react-native-elements';
-import {useQueryClient} from 'react-query';
 
 import {styles} from '@/components/Modal/WithdrawalModal.style';
 import {InputField} from '@/components/FormElements/Input';
@@ -17,13 +16,6 @@ export default function TransactionPin() {
   const disableBtnState = pin.length !== 4 ? true : false;
   const dispatch = useDispatch();
   const {storeDetails} = useSelector((state: RootState) => state.storeDetails);
-  const queryClient = useQueryClient();
-
-  const walletDetails = queryClient.getQueryData('storeAnalytics');
-
-  console.log('walletDetails', walletDetails);
-
-  useEffect(() => {}, []);
 
   const {transactionPin} = storeDetails;
 
