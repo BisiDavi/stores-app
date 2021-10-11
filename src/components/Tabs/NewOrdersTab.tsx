@@ -34,7 +34,7 @@ export default function NewOrdersTab({navigation}: any) {
 
   const keyExtractor = useCallback(item => item.id.toString(), []);
 
-  const storesName = storeProfile.name ? storeProfile.name : storeDetails.name;
+  const storesName = storeProfile ? storeProfile?.name : storeDetails.name;
 
   return (
     <>

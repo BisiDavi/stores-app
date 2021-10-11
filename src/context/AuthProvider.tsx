@@ -19,6 +19,7 @@ import {
 } from '@/store/actions/SetupStoreAction';
 import StoreProfileActions from '@/store/actions/storeProfileActions';
 import {useQueryClient} from 'react-query';
+import {saveToStorage} from '@/utils/authToken';
 
 export default function AuthProvider({children}: PropsWithChildren<{}>) {
   const {state, dispatch} = useAuthReducer();
@@ -53,11 +54,13 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
           getExistingStoreProfile(queryClient)
             .then((response: any) => {
               if (response === null) {
+                saveToStorage('onboardingCompleted', false);
                 return;
               }
               if (response.bank) {
                 dispatchRedux(StoreProfileActions(response));
                 showToast(`Welcome, ${response.name}`);
+                saveToStorage('onboardingCompleted', true);
                 dispatchRedux(UserOnboardingCompletedAction());
                 dispatch({
                   type: 'SIGN_IN',
@@ -78,6 +81,7 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
           .then(response => {
             setClientToken(response);
             dispatchRedux(UserSignedinAction());
+            saveToStorage('onboardingCompleted', false);
             saveAuthtoken(response);
             dispatch({type: 'SIGN_UP', token: response});
           })

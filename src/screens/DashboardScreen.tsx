@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import {StackNavigationProp} from '@react-navigation/stack';
 import React, {useEffect} from 'react';
 import {
@@ -9,7 +8,7 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native';
-import {useSelector} from 'react-redux';
+import {useQuery} from 'react-query';
 
 import DashboardCard from '@/components/DashboardCard';
 import dashboardContent from '@/json/dashboard.json';
@@ -17,8 +16,8 @@ import {BottomTabParamList} from '@/customTypes';
 import DashboardChart from '@/components/DashboardChart';
 import SelectField from '@/components/FormElements/Select/SelectField';
 import selectContent from '@/json/dasboard-select.json';
-import {RootState} from '@/store/RootReducer';
 import {styles} from '@/styles/DashboardScreen.style';
+import useRequest from '@/hooks/useRequest';
 
 export type DashboardScreenNavProps = StackNavigationProp<
   BottomTabParamList,
@@ -36,15 +35,17 @@ type dashboardContentType = {
 
 export default function DashboardScreen({navigation}: Props) {
   const StatisticsScreenRoute: any = 'StatisticsScreen';
-
-  const {storeProfile}: any = useSelector(
-    (state: RootState) => state.storeProfile,
-  );
+  const {fetchAnalytics} = useRequest();
+  const {status, data} = useQuery('storeAnalytics', fetchAnalytics);
 
   useEffect(() => {
-    dashboardContent.card[0].content[0].amount = `${storeProfile.wallet} Naira`;
-    dashboardContent.card[0].content[1].amount = `${storeProfile.wallet} Naira`;
-  }, []);
+    if (status === 'success') {
+      dashboardContent.card[0].content[0].amount = `${data.walletBalance} Naira`;
+      dashboardContent.card[0].content[1].amount = `${data.totalReveue} Naira`;
+      dashboardContent.card[1].content[0].amount = `${data.allCompletedOrders.length}`;
+      dashboardContent.card[1].content[1].amount = `${data.completedOrdersCount}`;
+    }
+  }, [status, data]);
 
   function navigateToStatisticsScreen() {
     return navigation.navigate(StatisticsScreenRoute);
@@ -58,22 +59,33 @@ export default function DashboardScreen({navigation}: Props) {
       <ScrollView style={styles.view}>
         <View style={styles.container}>
           <SelectField style={styles.selectField} content={selectContent} />
-          <View style={styles.dashboardCards}>
-            {dashboardContent.card.map((item: dashboardContentType, index) => (
-              <View style={styles.category} key={`${item.category}-${index}`}>
-                <Text style={styles.categoryText}>{item.category}</Text>
-                <View style={styles.row}>
-                  {item.content.map((content, contentIndex) => (
-                    <DashboardCard
-                      key={contentIndex}
-                      navigation={navigation}
-                      content={content}
-                    />
-                  ))}
-                </View>
-              </View>
-            ))}
-          </View>
+          {status === 'error' ? (
+            <Text>error</Text>
+          ) : status === 'loading' ? (
+            <Text>Loading</Text>
+          ) : (
+            <View style={styles.dashboardCards}>
+              {dashboardContent.card.map(
+                (item: dashboardContentType, index) => (
+                  <View
+                    style={styles.category}
+                    key={`${item.category}-${index}`}
+                  >
+                    <Text style={styles.categoryText}>{item.category}</Text>
+                    <View style={styles.row}>
+                      {item.content.map((content, contentIndex) => (
+                        <DashboardCard
+                          key={contentIndex}
+                          navigation={navigation}
+                          content={content}
+                        />
+                      ))}
+                    </View>
+                  </View>
+                ),
+              )}
+            </View>
+          )}
           <View>
             <Text style={styles.categoryText}>Statistics</Text>
             <Text style={styles.chartTitle}>

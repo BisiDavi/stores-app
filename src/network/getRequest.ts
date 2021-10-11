@@ -28,10 +28,10 @@ export async function getProductsCategories() {
   return await axiosInstance.get('/api/store/product-categories');
 }
 
-export async function getDashboardAnalytics() {
-  return await axiosInstance.get('/api/store/get-analytics');
+export async function getStoreAnalytics() {
+  return await axiosInstance.get('/api/store/get-store-analytics');
 }
 
 export async function getWithdrawalTransaction() {
-  return await axiosInstance.get('/api/store/withdrawal-transactions');
+  return await axiosInstance.get('/api/store/get-withdrawals');
 }

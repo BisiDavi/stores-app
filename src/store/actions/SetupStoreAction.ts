@@ -48,7 +48,6 @@ export const UserSignedinAction =
 
 export const UserOnboardingCompletedAction =
   () => (dispatch: (arg0: {type: 'ONBOARDING_COMPLETED'}) => void) => {
-    console.log('UserOnboardingCompletedAction was  launched');
     dispatch({
       type: ONBOARDING_COMPLETED,
     });

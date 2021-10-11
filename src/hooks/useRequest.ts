@@ -5,7 +5,10 @@ import {
   getCompletedOrdersRequest,
   getPendingOrdersRequest,
 } from '@/network/postRequest';
-import {getAllStoreExtrasRequest} from '@/network/getRequest';
+import {
+  getAllStoreExtrasRequest,
+  getStoreAnalytics,
+} from '@/network/getRequest';
 
 export default function useRequest() {
   const {storeProfile}: any = useSelector(
@@ -35,10 +38,17 @@ export default function useRequest() {
     const extras = data.data;
     return extras;
   }
+
+  async function fetchAnalytics() {
+    const {data} = await getStoreAnalytics();
+    return data;
+  }
+
   return {
     fetchPendingOrders,
     fetchAllProducts,
     fetchAllStoreExtras,
     fetchCompletedOrders,
+    fetchAnalytics,
   };
 }

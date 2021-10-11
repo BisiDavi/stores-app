@@ -40,7 +40,7 @@ export default function CompletedOrdersTab({navigation}: any) {
     (state: RootState) => state.storeDetails,
   );
 
-  const storesName = storeProfile.name ? storeProfile.name : storeDetails.name;
+  const storesName = storeProfile ? storeProfile.name : storeDetails.name;
 
   return (
     <>
