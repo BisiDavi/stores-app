@@ -30,23 +30,17 @@ export default function App() {
     },
   });
 
-  if (__DEV__) {
-    import('react-query-native-devtools').then(({addPlugin}) => {
-      addPlugin({queryClient});
-    });
-  }
-
   return (
     <SafeAreaProvider>
       <QueryClientProvider client={queryClient}>
-        <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
+        <PersistGate loading={null} persistor={persistor}>
+          <Provider store={store}>
             <AuthProvider>
               <StatusBar />
               <Navigation />
             </AuthProvider>
-          </PersistGate>
-        </Provider>
+          </Provider>
+        </PersistGate>
       </QueryClientProvider>
     </SafeAreaProvider>
   );

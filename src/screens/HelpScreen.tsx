@@ -12,14 +12,13 @@ export default function HelpScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.textView}>
-        <Text style={styles.text}>Experiencing any issue? </Text>
-        <Text style={styles.text}>Reach us via: </Text>
+        <Text style={styles.text}>Experiencing any issue, Reach us via </Text>
       </View>
       {ourContact.map((contact, index) => (
         <ListItem bottomDivider key={index}>
           <ListItem.Content style={styles.content}>
             <ListItem.Title style={styles.icon}>
-              <Icon type="materialcommunityicons" name={contact.icon} />
+              <Icon type="fontawesome" name={contact.icon} />
             </ListItem.Title>
             <ListItem.Title style={styles.title}>
               {contact.medium}: {contact.content}
@@ -39,8 +38,9 @@ const styles = StyleSheet.create({
     display: 'flex',
   },
   text: {
-    fontFamily: 'Roboto-Bold',
+    fontFamily: 'Roboto-Medium',
     fontSize: 14,
+    margin: 20,
   },
   content: {
     display: 'flex',
@@ -53,5 +53,7 @@ const styles = StyleSheet.create({
   title: {
     display: 'flex',
     alignItems: 'flex-start',
+    fontFamily: 'Roboto-Medium',
+    fontSize: 14,
   },
 });

@@ -2,7 +2,6 @@ import React, {useContext, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import Spinner from 'react-native-loading-spinner-overlay';
-import {View} from 'react-native';
 
 import AuthContext from '@/context/AuthContext';
 import {setClientToken} from '@/network/axiosInstance';
@@ -16,7 +15,6 @@ import {
 import DrawerNavigation from './DrawerNavigation';
 import PublicNavigation from './PublicNavigation';
 import StoreDetailsNavigation from './StoreDetailsNavigation';
-import {StyleSheet} from 'react-native';
 
 export default function RootNavigator() {
   const {state} = useContext(AuthContext);
