@@ -1,6 +1,5 @@
 import 'react-native-gesture-handler';
 import React, {useEffect} from 'react';
-import {StatusBar} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 import {PersistGate} from 'redux-persist/integration/react';
@@ -32,16 +31,15 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <Provider store={store}>
+          <QueryClientProvider client={queryClient}>
             <AuthProvider>
-              <StatusBar />
               <Navigation />
             </AuthProvider>
-          </Provider>
+          </QueryClientProvider>
         </PersistGate>
-      </QueryClientProvider>
+      </Provider>
     </SafeAreaProvider>
   );
 }

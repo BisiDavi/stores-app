@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import messaging from '@react-native-firebase/messaging';
 
@@ -46,6 +47,7 @@ export default function Navigation() {
 
   return (
     <NavigationContainer fallback={<LoadingActivityIndicator />}>
+      <StatusBar />
       <RootNavigator />
     </NavigationContainer>
   );

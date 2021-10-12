@@ -14,18 +14,20 @@ export default function HelpScreen() {
       <View style={styles.textView}>
         <Text style={styles.text}>Experiencing any issue, Reach us via </Text>
       </View>
-      {ourContact.map((contact, index) => (
-        <ListItem bottomDivider key={index}>
-          <ListItem.Content style={styles.content}>
-            <ListItem.Title style={styles.icon}>
-              <Icon type="fontawesome" name={contact.icon} />
-            </ListItem.Title>
-            <ListItem.Title style={styles.title}>
-              {contact.medium}: {contact.content}
-            </ListItem.Title>
-          </ListItem.Content>
-        </ListItem>
-      ))}
+      <View style={styles.contactView}>
+        {ourContact.map((contact, index) => (
+          <ListItem bottomDivider key={index}>
+            <ListItem.Content style={styles.content}>
+              <ListItem.Title style={styles.icon}>
+                <Icon type="material-community" name={contact.icon} />
+              </ListItem.Title>
+              <ListItem.Title style={styles.title}>
+                {contact.medium}: {contact.content}
+              </ListItem.Title>
+            </ListItem.Content>
+          </ListItem>
+        ))}
+      </View>
     </View>
   );
 }
@@ -42,9 +44,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     margin: 20,
   },
+  contactView: {
+    alignItems: 'flex-start',
+  },
   content: {
-    display: 'flex',
-    flexDirection: 'row',
+    alignItems: 'flex-start',
   },
   icon: {
     marginLeft: 10,

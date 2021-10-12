@@ -20,7 +20,7 @@ function ListItemView({item, data}: ListItemViewProps) {
         <View style={styles.contentView}>
           <Text style={styles.title}>{item.title}</Text>
           <View style={styles.settings}>
-            <Text>{data[item.name]}</Text>{' '}
+            <Text>{data[item.name]}</Text>
             <Icon type="antdesign" name="edit" color={colors.mallBlue5} />
           </View>
         </View>
