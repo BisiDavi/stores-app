@@ -45,7 +45,8 @@ export default function NewOrdersTab({navigation}: any) {
   return (
     <>
       {status === 'error' ? (
-        showToast('Unable to fetch new orders')
+        //showToast('Unable to fetch new orders')
+        ''
       ) : status === 'loading' ? (
         <LoadingActivityIndicator />
       ) : newOrders.length > 0 ? (

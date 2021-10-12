@@ -50,7 +50,8 @@ export default function CompletedOrdersTab({navigation}: any) {
   return (
     <>
       {status === 'error' ? (
-        showToast('Unable to fetch completed orders')
+        //showToast('Unable to fetch completed orders')
+        ''
       ) : status === 'loading' ? (
         <LoadingActivityIndicator />
       ) : completedOrders.length > 0 ? (

@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Button} from 'react-native-elements';
+import {useSelector} from 'react-redux';
 
 import {BottomTabParamList} from '@/customTypes/.';
 import colors from '@/utils/colors';
@@ -19,6 +20,7 @@ export default function PaymentApprovedScreen({navigation}: Props) {
   function nextScreen() {
     navigation.navigate('FailedPaymentScreen');
   }
+  const {amount} = useSelector((state: RootState) => state.order);
   return (
     <View style={styles.container}>
       <Text style={styles.status}>Payment Approved</Text>
