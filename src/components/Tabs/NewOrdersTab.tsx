@@ -8,56 +8,41 @@ import {RootState} from '@/store/RootReducer';
 import OrdersListItem from '@/components/Tabs/OrdersListItem';
 import LoadingActivityIndicator from '@/components/Loader/LoadingActivityIndicator';
 import {styles} from './NewOrdersTab.style';
-import {showToast} from '@/utils';
 import useRequest from '@/hooks/useRequest';
-import {formatOrders} from '@/utils/formatProduct';
 import SnackbarView from '../Loader/SnackbarView';
 
 export default function NewOrdersTab({navigation}: any) {
   const {storeProfile}: any = useSelector(
     (state: RootState) => state.storeProfile,
   );
-  const {fetchPendingOrders, fetchAllProducts, fetchAllStoreExtras} =
-    useRequest();
+  const {fetchPendingOrders} = useRequest();
 
   const {data: newOrders, status} = useQuery('newOrders', fetchPendingOrders, {
     refetchInterval: 1000,
     refetchIntervalInBackground: true,
   });
 
-  console.log('newOrders', newOrders);
-
-  const {data: allProducts} = useQuery('allProducts', fetchAllProducts);
-  const {data: allStoreExtras} = useQuery(
-    'allStoreExtras',
-    fetchAllStoreExtras,
-  );
-  const newOrdersData =
-    newOrders && formatOrders(allProducts, newOrders, allStoreExtras);
   const {storeDetails}: any = useSelector(
     (state: RootState) => state.storeDetails,
   );
 
-  const keyExtractor = useCallback(item => item.id.toString(), []);
+  const keyExtractor = useCallback(item => item._id.toString(), []);
 
   const storesName = storeProfile ? storeProfile?.name : storeDetails.name;
 
   return (
     <>
       {status === 'error' ? (
-        //showToast('Unable to fetch new orders')
         ''
       ) : status === 'loading' ? (
         <LoadingActivityIndicator />
       ) : newOrders.length > 0 ? (
         <FlatList
-          data={newOrdersData}
+          data={newOrders}
           renderItem={({item}: any) => {
             return (
               <TouchableOpacity
-                onPressIn={() =>
-                  navigation.navigate('ViewOrderScreen', item.extras)
-                }
+                onPressIn={() => navigation.navigate('ViewOrderScreen', item)}
               >
                 <OrdersListItem item={item} />
               </TouchableOpacity>

@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 import {colors} from '@/utils';
 
 export const styles = StyleSheet.create({
@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   },
   modalView: {
     backgroundColor: colors.neutralWhite,
-    height: 180,
+    height: 200,
     borderRadius: 10,
     padding: 20,
     justifyContent: 'flex-start',
@@ -54,5 +54,18 @@ export const styles = StyleSheet.create({
     fontFamily: 'Roboto-Bold',
     fontSize: 14,
     color: colors.textColor,
+  },
+  buttonView: {
+    width: Dimensions.get('window').width * 0.8,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    margin: 10,
+    alignItems: 'center',
+  },
+  button: {
+    width: 100,
+    backgroundColor: colors.mallBlue5,
+    //height: 50,
   },
 });

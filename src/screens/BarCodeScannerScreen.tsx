@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
-import {View, Alert, PermissionsAndroid} from 'react-native';
+import {View, PermissionsAndroid} from 'react-native';
 //import BarcodeMask from '@nartc/react-native-barcode-mask';
 import BarcodeMask from 'react-native-barcode-mask';
 import {RNCamera} from 'react-native-camera';
@@ -24,7 +24,7 @@ export default function BarCodeScannerScreen() {
   const successRoute: any = 'PaymentApprovedScreen';
   const failedRoute: any = 'FailedPaymentScreen';
   const navigation = useNavigation();
-  const [visible, setModalVisible] = useState(true);
+  const [visible, setModalVisible] = useState(false);
 
   const {data, status} = useQuery('storeProfile', fetchStoreProfile);
 
@@ -68,6 +68,7 @@ export default function BarCodeScannerScreen() {
           totalPrice: scannedResult.totalPrice,
           storeId: scannedResult.storeId,
         });
+        setModalVisible(true);
         setIsAmountAccurate(true);
         navigation.navigate(successRoute);
       } else {
@@ -85,7 +86,6 @@ export default function BarCodeScannerScreen() {
         text={modalText}
       />
       <View style={styles.container}>
-        ;
         <RNCamera
           ref={ref => ref?._cameraRef}
           style={styles.preview}
@@ -98,7 +98,8 @@ export default function BarCodeScannerScreen() {
           captureAudio={false}
           onBarCodeRead={event => {
             console.log('event', event.data);
-            Alert.alert('barCode Data', JSON.stringify(event.data));
+            //Alert.alert('barCode Data', JSON.stringify(event.data));
+
             setScannedResult(event.data);
           }}
         >

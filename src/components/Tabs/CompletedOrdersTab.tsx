@@ -7,7 +7,7 @@ import OrdersListItem from '@/components/Tabs/OrdersListItem';
 import {RootState} from '@/store/RootReducer';
 import {styles} from './CompletedOrdersTab.style';
 import LoadingActivityIndicator from '@/components/Loader/LoadingActivityIndicator';
-import {showToast} from '@/utils';
+//import {showToast} from '@/utils';
 import useRequest from '@/hooks/useRequest';
 import {formatOrders} from '@/utils/formatProduct';
 import SnackbarView from '../Loader/SnackbarView';
@@ -36,7 +36,7 @@ export default function CompletedOrdersTab({navigation}: any) {
     completedOrders &&
     formatOrders(allProducts, completedOrders, allStoreExtras);
 
-  const keyExtractor = useCallback(item => item.id.toString(), []);
+  const keyExtractor = useCallback(item => item._id.toString(), []);
   const {storeProfile}: any = useSelector(
     (state: RootState) => state.storeProfile,
   );

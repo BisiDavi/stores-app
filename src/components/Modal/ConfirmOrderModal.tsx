@@ -1,8 +1,9 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {View, Text, Button, Image} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import Modal from 'react-native-modal';
 import HandWave from '@/assets/hand-wave.png';
+import {Button} from 'react-native-elements';
 import {RootState} from '@/store/RootReducer';
 import {StoreDetailsStateType} from '@/customTypes/storeDetailsTypes';
 import {styles} from './WelcomeModal.style';
@@ -53,9 +54,13 @@ export default function ConfirmOrderModal({
           Please, has this order been packed and ready for pickup by the
           shopper?
         </Text>
-        <View>
-          <Button onPress={acceptOrder} title="Accept" />
-          <Button onPress={closeModal} title="Reject" />
+        <View style={styles.buttonView}>
+          <Button
+            buttonStyle={styles.button}
+            onPress={acceptOrder}
+            title="Yes"
+          />
+          <Button buttonStyle={styles.button} onPress={closeModal} title="No" />
         </View>
       </View>
     </Modal>

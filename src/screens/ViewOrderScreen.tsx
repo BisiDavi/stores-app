@@ -16,9 +16,13 @@ function ViewOrderScreen({route}: any) {
   const userOrders = route.params;
   const navigation: any = useNavigation();
 
+  console.log('userOrders', userOrders);
+
   function toggleModal() {
     setConfirmOrderModal(!confirmOrderModal);
   }
+
+  console.log('userOrders.product.extras', userOrders.product.extras);
 
   function recommendReplacementHandler() {
     setRecommendReplacement(true);
@@ -29,10 +33,27 @@ function ViewOrderScreen({route}: any) {
       <View style={styles.container}>
         <View style={styles.packView}>
           <Text>Number of Packs</Text>
-          <Text>2 Packs</Text>
+          <Text>
+            {userOrders.quantity}
+            {Number(userOrders.quantity) === 1 ? ' Pack' : ' Packs'}
+          </Text>
         </View>
         <View style={styles.orderGroup}>
-          {userOrders.map((order: any, index: number) => (
+          <TouchableOpacity
+            onPress={() => navigation.navigate('ProductReplacementScreen')}
+          >
+            <View style={styles.orderView}>
+              <Image
+                style={styles.image}
+                source={displayAsset(userOrders?.image)}
+              />
+              <View style={styles.foodDescription}>
+                <Text>{userOrders.product.name}</Text>
+                <Text>N{userOrders?.product.price}</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+          {/*{userOrders.product.extras.map((order: any, index: number) => (
             <TouchableOpacity
               key={index}
               onPress={() => navigation.navigate('ProductReplacementScreen')}
@@ -48,10 +69,10 @@ function ViewOrderScreen({route}: any) {
                 </View>
               </View>
             </TouchableOpacity>
-          ))}
+          ))}*/}
           <View style={{...styles.orderView, ...styles.totalView}}>
             <Text style={styles.totalText}>Total Amount</Text>
-            <Text style={styles.totalText}>N1200</Text>
+            <Text style={styles.totalText}>N {userOrders.product.price}</Text>
           </View>
           <View style={styles.note}>
             <TextInput

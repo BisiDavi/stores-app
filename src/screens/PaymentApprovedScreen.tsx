@@ -6,6 +6,7 @@ import {useSelector} from 'react-redux';
 
 import {BottomTabParamList} from '@/customTypes/.';
 import colors from '@/utils/colors';
+import {RootState} from '@/store/RootReducer';
 
 type PaymentApprovedNavigationProps = StackNavigationProp<
   BottomTabParamList,
@@ -25,7 +26,7 @@ export default function PaymentApprovedScreen({navigation}: Props) {
     <View style={styles.container}>
       <Text style={styles.status}>Payment Approved</Text>
       <Text style={styles.textStyle}>
-        N7,000 has been transferred to your account
+        N ${amount} has been transferred to your account
       </Text>
       <View style={styles.buttonView}>
         <Button

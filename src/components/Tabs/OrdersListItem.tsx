@@ -9,11 +9,17 @@ import {RootState} from '@/store/RootReducer';
 
 interface OrdersViewProps {
   item: {
+    product: {
+      image: string;
+      name: string;
+      price: number;
+    };
     id: number;
     name: string;
     code?: string;
     time: string;
-    status: string;
+    delivery_time: string;
+    order_status: string;
     image: string;
   };
 }
@@ -22,25 +28,31 @@ function OrdersListItem({item}: OrdersViewProps) {
   const {order} = useSelector((state: RootState) => state.order);
 
   const orderStatus =
-    order === null ? item?.status.toLowerCase() : order && 'Ready';
+    item.order_status === 'RECEIVED'
+      ? 'NEW'
+      : item.order_status === 'PROCESSING'
+      ? 'PENDING'
+      : item.order_status === 'ENROUTE'
+      ? 'COMPLETED'
+      : '';
 
   const statusStyle =
-    item.status === 'NEW'
+    orderStatus === 'NEW'
       ? styles.new
-      : item.status === 'PENDING'
+      : orderStatus === 'PENDING'
       ? styles.pending
       : styles.completed;
 
   return (
     <ListItem style={styles.listItem} bottomDivider>
-      <Image source={displayAsset(item?.image)} style={styles.avatar} />
+      <Image source={displayAsset(item?.product.image)} style={styles.avatar} />
       <ListItem.Content style={styles.listItemContent}>
         <View style={styles.row}>
-          <Text>{item?.name}</Text>
-          <Text>{item?.code}</Text>
+          <Text>{item?.product.name}</Text>
+          {/*<Text>{itemorder}</Text>*/}
         </View>
         <View style={styles.row}>
-          <Text>{item?.time}</Text>
+          <Text>{item?.delivery_time}</Text>
           <Text style={{...styles.status, ...statusStyle}}>{orderStatus}</Text>
         </View>
       </ListItem.Content>
