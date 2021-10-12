@@ -1,8 +1,11 @@
 import React, {memo} from 'react';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import {ListItem, Image} from 'react-native-elements';
+import {useSelector} from 'react-redux';
+
 import colors from '@/utils/colors';
 import displayAsset from '@/utils/displayAsset';
+import {RootState} from '@/store/RootReducer';
 
 interface OrdersViewProps {
   item: {
@@ -16,6 +19,11 @@ interface OrdersViewProps {
 }
 
 function OrdersListItem({item}: OrdersViewProps) {
+  const {order} = useSelector((state: RootState) => state.order);
+
+  const orderStatus =
+    order === null ? item?.status.toLowerCase() : order && 'Ready';
+
   const statusStyle =
     item.status === 'NEW'
       ? styles.new
@@ -33,7 +41,7 @@ function OrdersListItem({item}: OrdersViewProps) {
         </View>
         <View style={styles.row}>
           <Text>{item?.time}</Text>
-          <Text style={{...styles.status, ...statusStyle}}>{item?.status}</Text>
+          <Text style={{...styles.status, ...statusStyle}}>{orderStatus}</Text>
         </View>
       </ListItem.Content>
     </ListItem>
@@ -44,7 +52,7 @@ export default memo(OrdersListItem);
 
 const styles = StyleSheet.create({
   completed: {
-    backgroundColor: colors.mallBlue5,
+    backgroundColor: 'green',
   },
   pending: {
     backgroundColor: colors.cloudOrange5,

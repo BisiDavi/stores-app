@@ -35,6 +35,7 @@ export default function HelpScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
   },
   textView: {
     display: 'flex',
@@ -45,10 +46,12 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   contactView: {
-    alignItems: 'flex-start',
+    //alignItems: 'flex-start',
   },
   content: {
     alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    flexDirection: 'row',
   },
   icon: {
     marginLeft: 10,

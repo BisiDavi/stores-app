@@ -19,6 +19,10 @@ export default function CompletedOrdersTab({navigation}: any) {
   const {data: completedOrders, status} = useQuery(
     'completedOrders',
     fetchCompletedOrders,
+    {
+      refetchInterval: 5000,
+      refetchIntervalInBackground: true,
+    },
   );
   const {data: allProducts} = useQuery('allProducts', fetchAllProducts);
   const {data: allStoreExtras} = useQuery(

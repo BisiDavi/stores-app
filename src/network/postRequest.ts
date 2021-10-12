@@ -93,3 +93,7 @@ export async function addExtrasRequest(extra: any) {
 export async function addProductsCategories(category: {name: string}) {
   return await axiosInstance.post('/api/store/add-product-category', category);
 }
+
+export async function postScanResponse(result: any) {
+  return await axiosInstance.post('/api/store/send-scan-response', result);
+}

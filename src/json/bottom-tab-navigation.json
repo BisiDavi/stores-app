@@ -14,6 +14,7 @@
     {"name": "ConfirmPayment", "title": "Confirm Payment"},
     {"name": "PaymentApprovedScreen", "title": "Make Payment"},
     {"name": "FailedPaymentScreen", "title": "Failed Payment"},
-    {"name": "BarCodeScannerScreen", "title": "Scan Product's Barcode"}
+    {"name": "BarCodeScannerScreen", "title": "Scan Product's Barcode"},
+    {"name": "Scanner", "title": "Scan Product's Barcode"}
   ]
 }

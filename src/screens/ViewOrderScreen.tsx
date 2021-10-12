@@ -6,13 +6,26 @@ import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 
 import displayAsset from '@/utils/displayAsset';
 import {styles} from '@/styles/ViewOrderScreen.style';
+import ConfirmOrderModal from '@/components/Modal/ConfirmOrderModal';
+import SnackbarView from '@/components/Loader/SnackbarView';
 
 function ViewOrderScreen({route}: any) {
+  const [confirmOrderModal, setConfirmOrderModal] = useState(false);
+  const [recommendReplacement, setRecommendReplacement] = useState(false);
   const [note, setNote] = useState('');
   const userOrders = route.params;
   const navigation: any = useNavigation();
+
+  function toggleModal() {
+    setConfirmOrderModal(!confirmOrderModal);
+  }
+
+  function recommendReplacementHandler() {
+    setRecommendReplacement(true);
+  }
   return (
     <ScrollView style={styles.view}>
+      <ConfirmOrderModal visible={confirmOrderModal} closeModal={toggleModal} />
       <View style={styles.container}>
         <View style={styles.packView}>
           <Text>Number of Packs</Text>
@@ -59,12 +72,20 @@ function ViewOrderScreen({route}: any) {
             <Button
               buttonStyle={styles.outlineButton}
               type="outline"
+              onPress={recommendReplacementHandler}
               titleStyle={styles.outlineTitle}
               title="Recommend Replacement"
             />
-            <Button buttonStyle={styles.buttonStyle} title="Accept Order" />
+            <Button
+              buttonStyle={styles.buttonStyle}
+              onPress={toggleModal}
+              title="Accept Order"
+            />
           </View>
         </View>
+        {recommendReplacement && (
+          <SnackbarView text="This feature is coming in the next release" />
+        )}
       </View>
     </ScrollView>
   );

@@ -20,7 +20,12 @@ export default function NewOrdersTab({navigation}: any) {
   const {fetchPendingOrders, fetchAllProducts, fetchAllStoreExtras} =
     useRequest();
 
-  const {data: newOrders, status} = useQuery('newOrders', fetchPendingOrders);
+  const {data: newOrders, status} = useQuery('newOrders', fetchPendingOrders, {
+    refetchInterval: 1000,
+    refetchIntervalInBackground: true,
+  });
+
+  console.log('newOrders', newOrders);
 
   const {data: allProducts} = useQuery('allProducts', fetchAllProducts);
   const {data: allStoreExtras} = useQuery(

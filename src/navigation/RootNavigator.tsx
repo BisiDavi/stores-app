@@ -18,18 +18,31 @@ import StoreDetailsNavigation from './StoreDetailsNavigation';
 
 export default function RootNavigator() {
   const {state} = useContext(AuthContext);
-
+  const navigation = useNavigation();
   const {completed, formPage} = useSelector(
     (storeState: RootState) => storeState.setupStore,
   );
 
+  const loginRoute: any = 'LoginScreen';
   const {storeProfile} = useSelector(
     (storeState: RootState) => storeState.storeProfile,
   );
 
   console.log('storeProfile', storeProfile);
 
-  const navigation = useNavigation();
+  console.log(
+    'state.userToken',
+    state.userToken,
+    'state.isSignout',
+    state.isSignout,
+  );
+
+  useEffect(() => {
+    if (state.isSignout && state.userToken === null) {
+      navigation.navigate(loginRoute);
+    }
+  }, [navigation, state.isSignout, state.userToken]);
+
   const tokenExpiry = hasTokenExpired(state.userToken);
   console.log('completed', completed, 'tokenExpiry', tokenExpiry);
 

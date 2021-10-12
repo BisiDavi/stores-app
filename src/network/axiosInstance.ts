@@ -1,6 +1,5 @@
 import axios from 'axios';
 import {CLOUDMALL_BASE_API} from '@/secrets';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const axiosInstance = axios.create({
   baseURL: CLOUDMALL_BASE_API,
@@ -30,7 +29,6 @@ export function removeToken() {
   axios.defaults.headers.common.Authorization = null;
   axiosInstance.defaults.headers.common.Authorization = null;
   axiosImageInstance.defaults.headers.common.Authorization = null;
-  AsyncStorage.setItem('secure_auth_token', '');
 }
 
 export default axiosInstance;

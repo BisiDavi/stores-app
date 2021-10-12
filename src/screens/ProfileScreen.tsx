@@ -3,19 +3,18 @@ import {View, Text} from 'react-native';
 import {ListItem, Image} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
 import {Button} from 'react-native-elements';
-import {useQueryClient} from 'react-query';
+import {useQuery} from 'react-query';
 
 import profileJson from '@/json/profile.json';
 import JollofRice from '@/assets/jollofRice.png';
-
 import {styles} from '@/styles/ProfileScreen.style';
+import useRequest from '@/hooks/useRequest';
 
 export default function ProfileScreen() {
-  const queryClient = useQueryClient();
+  const {fetchStoreProfile} = useRequest();
+  const {data, status} = useQuery('storeProfile', fetchStoreProfile);
 
-  const storeProfile = queryClient.getQueryData('storeProfile');
-
-  console.log('storeProfileData', storeProfile);
+  console.log('storeProfileData', data);
 
   return (
     <>

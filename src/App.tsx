@@ -31,15 +31,15 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
             <AuthProvider>
               <Navigation />
             </AuthProvider>
-          </QueryClientProvider>
-        </PersistGate>
-      </Provider>
+          </PersistGate>
+        </Provider>
+      </QueryClientProvider>
     </SafeAreaProvider>
   );
 }

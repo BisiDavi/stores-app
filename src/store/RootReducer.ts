@@ -5,6 +5,7 @@ import StoreProfileReducer from './reducers/StoreProfileReducer';
 import UserCoordinateReducer from './reducers/UserCoordinateReducer';
 import {AddProductReducer} from './reducers/AddProductReducer';
 import UIReducer from './reducers/UIReducer';
+import {OrderReducer} from './reducers/OrderReducer';
 
 export const RootReducer = combineReducers({
   setupStore: SetupStoreReducer,
@@ -13,6 +14,7 @@ export const RootReducer = combineReducers({
   storeProfile: StoreProfileReducer,
   addProduct: AddProductReducer,
   ui: UIReducer,
+  order: OrderReducer,
 });
 
 export type RootState = ReturnType<typeof RootReducer>;

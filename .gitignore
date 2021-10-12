@@ -64,3 +64,5 @@ AndroidManifest.xml
 /ios/Pods/
 
 secrets.ts
+
+/android

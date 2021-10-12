@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, ScrollView, StyleSheet} from 'react-native';
+import {Text, View, ScrollView, StyleSheet, Dimensions} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {ListItem} from 'react-native-elements';
 import {useQuery} from 'react-query';
@@ -80,5 +80,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    width: Dimensions.get('window').width * 0.9,
   },
 });
