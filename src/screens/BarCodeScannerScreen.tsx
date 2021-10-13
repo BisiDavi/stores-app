@@ -21,6 +21,7 @@ export default function BarCodeScannerScreen() {
   const [isAmountAccurate, setIsAmountAccurate] = useState<null | boolean>(
     null,
   );
+  const [isValidStore, setIsValidStore] = useState<null | boolean>(null);
   const successRoute: any = 'PaymentApprovedScreen';
   const failedRoute: any = 'FailedPaymentScreen';
   const navigation = useNavigation();
@@ -49,11 +50,18 @@ export default function BarCodeScannerScreen() {
 
   function closeModal() {
     setModalVisible(false);
+    if (isValidStore && isAmountAccurate) {
+      navigation.navigate(successRoute);
+    } else if (!isAmountAccurate) {
+      navigation.navigate(failedRoute);
+    }
   }
 
   const modalText =
-    isAmountAccurate !== null && isAmountAccurate
+    isAmountAccurate !== null && isAmountAccurate && isValidStore
       ? 'Payment Successful!'
+      : !isValidStore
+      ? 'Payment barcode is not meant for this store'
       : 'Payment not successful!';
 
   useEffect(() => {
@@ -69,11 +77,15 @@ export default function BarCodeScannerScreen() {
           storeId: scannedResult.storeId,
         });
         setModalVisible(true);
+        setIsValidStore(true);
         setIsAmountAccurate(true);
-        navigation.navigate(successRoute);
-      } else {
+      } else if (data.storeId !== scannedResult.storeId) {
+        setIsValidStore(false);
+      } else if (
+        Number(scannedResult.totalPrice) !== Number(amount) &&
+        data.storeId === scannedResult.storeId
+      ) {
         setIsAmountAccurate(false);
-        navigation.navigate(failedRoute);
       }
     }
   }, [scannedResult, status]);
@@ -109,5 +121,3 @@ export default function BarCodeScannerScreen() {
     </>
   );
 }
-
-//payment barcode is not meant for this store

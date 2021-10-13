@@ -2,7 +2,7 @@ import {ACCEPT_ORDER, PAYMENT_AMOUNT, REJECT_ORDER} from '../constant';
 
 export function OrderReducer(
   state: stateType = {
-    order: null,
+    order: [],
     amount: null,
   },
   action: {type: actionType; payload: payloadType},
@@ -13,7 +13,7 @@ export function OrderReducer(
     case ACCEPT_ORDER:
       return {
         ...state,
-        order: true,
+        order: [...state.order, payload],
       };
     case REJECT_ORDER:
       return {
@@ -32,7 +32,7 @@ export function OrderReducer(
 type actionType = 'ACCEPT_ORDER' | 'REJECT_ORDER' | 'PAYMENT_AMOUNT';
 
 type stateType = {
-  order: null | boolean;
+  order: string[];
   amount: null | number;
 };
 

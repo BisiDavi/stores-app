@@ -42,7 +42,7 @@ export default function NewOrdersTab({navigation}: any) {
           renderItem={({item}: any) => {
             return (
               <TouchableOpacity
-                onPressIn={() => navigation.navigate('ViewOrderScreen', item)}
+                onPressIn={() => navigation.navigate('OrdersViewScreen', item)}
               >
                 <OrdersListItem item={item} />
               </TouchableOpacity>

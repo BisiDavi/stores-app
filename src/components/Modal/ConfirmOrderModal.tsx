@@ -9,15 +9,17 @@ import {StoreDetailsStateType} from '@/customTypes/storeDetailsTypes';
 import {styles} from './WelcomeModal.style';
 import {AcceptOrderAction} from '@/store/actions/OrderAction';
 
-interface AppModalProps {
+interface ConfirmOrderModalProps {
   closeModal: () => void;
   visible: boolean;
+  orderId: string;
 }
 
 export default function ConfirmOrderModal({
   closeModal,
   visible,
-}: AppModalProps) {
+  orderId,
+}: ConfirmOrderModalProps) {
   const {storeDetails}: StoreDetailsStateType = useSelector(
     (state: RootState) => state.storeDetails,
   );
@@ -27,7 +29,7 @@ export default function ConfirmOrderModal({
   const dispatch = useDispatch();
 
   function acceptOrder() {
-    dispatch(AcceptOrderAction());
+    dispatch(AcceptOrderAction(orderId));
     closeModal();
   }
   const {name}: any | string = storeDetails;

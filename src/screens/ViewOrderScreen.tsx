@@ -29,7 +29,11 @@ function ViewOrderScreen({route}: any) {
   }
   return (
     <ScrollView style={styles.view}>
-      <ConfirmOrderModal visible={confirmOrderModal} closeModal={toggleModal} />
+      <ConfirmOrderModal
+        visible={confirmOrderModal}
+        orderId={userOrders._id}
+        closeModal={toggleModal}
+      />
       <View style={styles.container}>
         <View style={styles.packView}>
           <Text>Number of Packs</Text>

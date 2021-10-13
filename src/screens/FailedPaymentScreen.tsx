@@ -15,8 +15,9 @@ type Props = {
 };
 
 export default function FailedPaymentScreen({navigation}: Props) {
-  const orderScreen: keyof BottomTabParamList = 'OrdersScreen';
-  function nextScreen() {
+  const orderScreen: keyof BottomTabParamList = 'BarCodeScannerScreen';
+
+  function goBackHandler() {
     navigation.navigate(orderScreen);
   }
   return (
@@ -29,7 +30,7 @@ export default function FailedPaymentScreen({navigation}: Props) {
         <Button
           titleStyle={styles.buttonStyle}
           type="clear"
-          onPress={nextScreen}
+          onPress={goBackHandler}
           title="Back"
         />
       </View>

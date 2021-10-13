@@ -1,9 +1,11 @@
 import {ACCEPT_ORDER, PAYMENT_AMOUNT} from '../constant';
 
 export const AcceptOrderAction =
-  () => (dispatch: (arg0: {type: 'ACCEPT_ORDER'}) => void) => {
+  (payload: string) =>
+  (dispatch: (arg0: {type: 'ACCEPT_ORDER'; payload: string}) => void) => {
     dispatch({
       type: ACCEPT_ORDER,
+      payload,
     });
   };
 
