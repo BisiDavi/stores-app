@@ -1,11 +1,11 @@
 import {ACCEPT_ORDER, PAYMENT_AMOUNT, REJECT_ORDER} from '../constant';
 
 export function OrderReducer(
-  state = {
+  state: stateType = {
     order: null,
     amount: null,
   },
-  action: {type: any},
+  action: {type: actionType; payload: payloadType},
 ) {
   const {type, payload} = action;
 
@@ -29,3 +29,13 @@ export function OrderReducer(
       return state;
   }
 }
+type actionType = 'ACCEPT_ORDER' | 'REJECT_ORDER' | 'PAYMENT_AMOUNT';
+
+type stateType = {
+  order: null | boolean;
+  amount: null | number;
+};
+
+type payloadType = {
+  amount: boolean;
+};

@@ -27,6 +27,8 @@ interface OrdersViewProps {
 function OrdersListItem({item}: OrdersViewProps) {
   const {order} = useSelector((state: RootState) => state.order);
 
+  console.log('order', order);
+
   const orderStatus =
     item.order_status === 'RECEIVED'
       ? 'NEW'
