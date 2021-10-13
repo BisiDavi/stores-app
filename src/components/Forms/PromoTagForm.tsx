@@ -22,8 +22,8 @@ export default function PromoTagForm() {
     >
       {formik => (
         <View style={styles.promoTag}>
-          {promoTagContent.map((formElement, index) =>
-            displayFormElements(index, formElement, formik),
+          {promoTagContent.map(formElement =>
+            displayFormElements(formElement, formik),
           )}
         </View>
       )}

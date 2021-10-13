@@ -52,8 +52,8 @@ export default function AddNewProductForm({navigation}: any) {
           {status === 'error' &&
             showToast('unable to fetch product categories')}
           <View style={styles.formStyle}>
-            {addproductContent.map((formElement, index) =>
-              displayFormElements(index, formElement, formik),
+            {addproductContent.map(formElement =>
+              displayFormElements(formElement, formik),
             )}
             <View style={styles.buttonGroup}>
               <Button

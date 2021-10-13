@@ -17,7 +17,7 @@ import {
   UserOnboardingCompletedAction,
   UserSignedinAction,
 } from '@/store/actions/SetupStoreAction';
-import StoreProfileActions from '@/store/actions/storeProfileActions';
+import {StoreProfileIdActions} from '@/store/actions/storeProfileActions';
 import {saveToStorage} from '@/utils/authToken';
 
 export default function AuthProvider({children}: PropsWithChildren<{}>) {
@@ -54,8 +54,9 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
                 saveToStorage('onboardingCompleted', false);
                 return;
               }
+              console.log('response', response);
               if (response.bank) {
-                dispatchRedux(StoreProfileActions(response));
+                dispatchRedux(StoreProfileIdActions(response));
                 showToast(`Welcome, ${response.name}`);
                 saveToStorage('onboardingCompleted', true);
                 dispatchRedux(UserOnboardingCompletedAction());

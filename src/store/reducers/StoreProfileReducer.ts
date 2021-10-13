@@ -1,17 +1,32 @@
-import {UPDATE_STORE_PROFILE} from '../constant';
+import {UPDATE_STORE_PROFILE_NAME, UPDATE_STORE_PROFILE_ID} from '../constant';
 
 export default function StoreProfileReducer(
   state = {
-    storeProfile: null,
+    storeProfile: {
+      id: null,
+      name: null,
+    },
   },
   actions: StoreProfileActionsType,
 ) {
   const {payload, type} = actions;
   switch (type) {
-    case UPDATE_STORE_PROFILE: {
+    case UPDATE_STORE_PROFILE_ID: {
       return {
         ...state,
-        storeProfile: payload,
+        storeProfile: {
+          ...state.storeProfile,
+          id: payload,
+        },
+      };
+    }
+    case UPDATE_STORE_PROFILE_NAME: {
+      return {
+        ...state,
+        storeProfile: {
+          ...state.storeProfile,
+          name: payload,
+        },
       };
     }
     default:
@@ -21,5 +36,5 @@ export default function StoreProfileReducer(
 
 type StoreProfileActionsType = {
   payload: unknown;
-  type: 'UPDATE_STORE_PROFILE';
+  type: 'UPDATE_STORE_PROFILE_NAME' | 'UPDATE_STORE_PROFILE_ID';
 };

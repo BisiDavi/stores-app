@@ -11,14 +11,12 @@ type actionType = {
 type stateType = {
   latitude: number;
   longitude: number;
-  landmark: string | null;
 };
 
 export default function UserCoordinateReducer(
   state: stateType = {
     latitude: 0,
     longitude: 0,
-    landmark: null,
   },
   action: actionType,
 ) {

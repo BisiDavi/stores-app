@@ -5,7 +5,6 @@ import {Button} from 'react-native-elements';
 
 import addProductSchema from '@/schemas/AddProductSchema';
 import displayFormElements from './displayFormElements';
-
 import formContent from '@/json/isbnProduct.json';
 import colors from '@/utils/colors';
 
@@ -27,8 +26,8 @@ export default function ProdutWithISBNForm({navigation: {goBack}}: any) {
     >
       {formik => (
         <View>
-          {formContent.map((formElement, index) =>
-            displayFormElements(index, formElement, formik),
+          {formContent.map(formElement =>
+            displayFormElements(formElement, formik),
           )}
           <View style={styles.buttonGroup}>
             <Button

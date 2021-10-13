@@ -26,7 +26,7 @@ const Map = () => {
   useEffect(() => {
     getLocation();
     if (location) {
-      dispatch(GetUserCoordinateAction(location?.coords));
+      dispatch(GetUserCoordinateAction(coordinate));
       setCoordinate({
         ...coordinate,
         latitude: location.coords.latitude,
@@ -43,9 +43,10 @@ const Map = () => {
           style={styles.map}
           initialRegion={coordinate}
           showsUserLocation={true}
-          onRegionChangeComplete={userCoordinate =>
-            setCoordinate({...userCoordinate})
-          }
+          onRegionChangeComplete={userCoordinate => {
+            console.log('userCoordinate', userCoordinate);
+            setCoordinate({...userCoordinate});
+          }}
         >
           <Marker
             draggable

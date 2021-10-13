@@ -78,11 +78,9 @@ export default function StoreDetailsFormOne() {
         >
           {formik => (
             <>
-              {storeDetailsFormOne.map((formElement, index) => (
-                <>
-                  {displayFormElements(index, formElement, formik, toggleModal)}
-                </>
-              ))}
+              {storeDetailsFormOne.map(formElement =>
+                displayFormElements(formElement, formik, toggleModal),
+              )}
               <OpenDaysForm />
               <View style={styles.buttonView}>
                 <Button

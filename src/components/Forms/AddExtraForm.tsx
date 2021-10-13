@@ -77,8 +77,8 @@ export default function AddExtraForm({navigation: {goBack}}: any) {
           return (
             <View style={styles.formContainer}>
               <View style={styles.formInputs}>
-                {formContent.map((formElement, index) =>
-                  displayFormElements(index, formElement, formik),
+                {formContent.map(formElement =>
+                  displayFormElements(formElement, formik),
                 )}
                 <View style={styles.switchView}>
                   <Text style={styles.switchText}>

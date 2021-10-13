@@ -34,8 +34,8 @@ export default function StoreDetailsFormTwo() {
       >
         {formik => (
           <View style={styles.form}>
-            {storeDetailsFormTwo.map((formElement, index: number) =>
-              displayFormElements(index, formElement, formik),
+            {storeDetailsFormTwo.map(formElement =>
+              displayFormElements(formElement, formik),
             )}
             <View style={styles.buttonView}>
               <Button

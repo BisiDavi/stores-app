@@ -24,8 +24,8 @@ export default function RequestRiderForm() {
     >
       {formik => (
         <>
-          {requestRiderContent.map((formElement, index) =>
-            displayFormElements(index, formElement, formik),
+          {requestRiderContent.map(formElement =>
+            displayFormElements(formElement, formik),
           )}
           <View style={styles.buttonGroup}>
             <Button

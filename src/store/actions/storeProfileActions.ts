@@ -1,14 +1,32 @@
-import {UPDATE_STORE_PROFILE} from '@/store/constant';
+import {
+  UPDATE_STORE_PROFILE_ID,
+  UPDATE_STORE_PROFILE_NAME,
+} from '@/store/constant';
 
-const StoreProfileActions =
-  (payload: unknown) =>
+export const StoreProfileIdActions =
+  (payload: string) =>
   (
-    dispatch: (arg0: {type: 'UPDATE_STORE_PROFILE'; payload: unknown}) => void,
+    dispatch: (arg0: {
+      type: 'UPDATE_STORE_PROFILE_ID';
+      payload: string;
+    }) => void,
   ) => {
     dispatch({
-      type: UPDATE_STORE_PROFILE,
+      type: UPDATE_STORE_PROFILE_ID,
       payload,
     });
   };
 
-export default StoreProfileActions;
+export const StoreProfileNameActions =
+  (payload: string) =>
+  (
+    dispatch: (arg0: {
+      type: 'UPDATE_STORE_PROFILE_NAME';
+      payload: string;
+    }) => void,
+  ) => {
+    dispatch({
+      type: UPDATE_STORE_PROFILE_NAME,
+      payload,
+    });
+  };

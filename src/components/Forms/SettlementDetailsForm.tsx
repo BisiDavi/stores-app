@@ -15,7 +15,7 @@ import {StoreSettlementAction} from '@/store/actions/StoreDetailsAction';
 import {postStoreDetailsRequest} from '@/network/postRequest';
 import {RootState} from '@/store/RootReducer';
 import TransactionPinModal from '../Modal/TransactionPinModal';
-import StoreProfileActions from '@/store/actions/storeProfileActions';
+import {StoreProfileNameActions} from '@/store/actions/storeProfileActions';
 import {styles} from './SettlementDetailsForm.style';
 
 export default function SettlementDetailsForm() {
@@ -39,15 +39,8 @@ export default function SettlementDetailsForm() {
         .then(response => {
           setLoading(false);
           if (postSettlementDetails) {
-            console.log('rresponse data', response);
-            const {data} = response.data;
-            console.log('data', data);
-            const storeProfileData = {
-              id: data.id,
-              name: data.name,
-            };
-            console.log('storeProfileData', storeProfileData);
-            dispatch(StoreProfileActions(storeProfileData));
+            console.log('response.data', response.data);
+            dispatch(StoreProfileNameActions(response.data.name));
             showToast(response.data.message);
             onBoardingNextScreen(4, false);
           }
@@ -98,8 +91,8 @@ export default function SettlementDetailsForm() {
         >
           {formik => (
             <>
-              {settlementDetails.map((formElement, index: number) =>
-                displayFormElements(index, formElement, formik),
+              {settlementDetails.map(formElement =>
+                displayFormElements(formElement, formik),
               )}
               <View style={styles.buttonView}>
                 <Button

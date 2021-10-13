@@ -42,8 +42,8 @@ export default function FreshFoodProductForm({navigation}: any) {
         const isFormFilled = checkObjectKey('errors');
         return (
           <View style={styles.formView}>
-            {addFreshProductContent.map((formElement, index) =>
-              displayFormElements(index, formElement, formik),
+            {addFreshProductContent.map(formElement =>
+              displayFormElements(formElement, formik),
             )}
             <View style={styles.buttonGroup}>
               <Button

@@ -12,7 +12,6 @@ import {displayAsset} from '@/utils/.';
 import SwitchFields, {SwitchView} from '../FormElements/Switch/SwitchFields';
 
 export default function displayFormElements(
-  index: number,
   formElement: formElement,
   formikValues: formikValuesType,
   toggleModal?: (() => void) | undefined,
@@ -21,7 +20,7 @@ export default function displayFormElements(
     case 'input': {
       return (
         <InputField
-          key={index}
+          key={formElement.name}
           label={formElement.label}
           placeholder={formElement.placeholder}
           textContentType={formElement?.textContentType}
@@ -42,7 +41,7 @@ export default function displayFormElements(
     case 'radio': {
       return (
         <RadioField
-          key={index}
+          key={formElement.name}
           content={formElement}
           toggleModal={toggleModal}
         />
@@ -54,6 +53,7 @@ export default function displayFormElements(
     case 'select': {
       return (
         <SelectField
+          key={formElement.name}
           content={formElement}
           style={styles.selectField}
           onValueChange={formikValues.handleChange(formElement.name)}
@@ -69,6 +69,7 @@ export default function displayFormElements(
     case 'input-group': {
       return (
         <InputGroup
+          key={formElement.name}
           inputGroup={formElement}
           value={formikValues.values[formElement.name]}
           onChangeText={formikValues?.handleChange(formElement.name)}
@@ -82,10 +83,12 @@ export default function displayFormElements(
       );
     }
     case 'switch': {
-      return <SwitchFields key={index} content={formElement} />;
+      return <SwitchFields key={formElement.name} content={formElement} />;
     }
     case 'switch&Time': {
-      return <SwitchfieldTimefield key={index} content={formElement} />;
+      return (
+        <SwitchfieldTimefield key={formElement.name} content={formElement} />
+      );
     }
     default:
       return null;
