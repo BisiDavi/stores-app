@@ -2,6 +2,7 @@
   "orders": [
     {"name": "OrderScreen", "title": "Dashboard"},
     {"name": "ViewOrderScreen", "title": "Order details"},
+    {"name": "OrdersViewScreen", "title": "Order's list"},
     {"name": "ProductReplacementScreen", "title": "Product Replacement"},
     {"name": "LoginScreen", "title": "Login Screen"}
   ],

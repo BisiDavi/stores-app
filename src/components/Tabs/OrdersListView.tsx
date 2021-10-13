@@ -13,7 +13,9 @@ interface OrdersListItemViewProps {
 }
 
 export default function OrdersListItemView({item}: OrdersListItemViewProps) {
-  const {order}: string[] = useSelector((state: RootState) => state.order);
+  const {order}: any = useSelector((state: RootState) => state.order);
+
+  console.log('order', order);
 
   const acceptedOrder = order.includes(item.id);
 
