@@ -6,7 +6,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import {Button} from 'react-native-elements';
 import {useSelector} from 'react-redux';
 
-import {DisplayFormElements} from '@/components/Forms/DisplayFormElements';
+import displayFormElements from './displayFormElements';
 import addExtraSchema from '@/schemas/addExtraSchema';
 import formContent from '@/json/add-extra.json';
 import colors from '@/utils/colors';
@@ -73,58 +73,46 @@ export default function AddExtraForm({navigation: {goBack}}: any) {
           addExtras(formValues);
         }}
       >
-        {({
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          values,
-          errors,
-          touched,
-          isValid,
-        }) => (
-          <View style={styles.formContainer}>
-            <View style={styles.formInputs}>
-              {formContent.map((formElement, index) => (
-                <DisplayFormElements
-                  key={index}
-                  formElement={formElement}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  values={values}
-                  errors={errors}
-                  touched={touched}
+        {formik => {
+          return (
+            <View style={styles.formContainer}>
+              <View style={styles.formInputs}>
+                {formContent.map((formElement, index) =>
+                  displayFormElements(index, formElement, formik),
+                )}
+                <View style={styles.switchView}>
+                  <Text style={styles.switchText}>
+                    Is this extra compulsory
+                  </Text>
+                  <Switch
+                    color={colors.mallBlue5}
+                    value={isCompulsory}
+                    onValueChange={() => setIsCompulsory(!isCompulsory)}
+                  />
+                  <Text style={{...styles.switchText, ...switchTextStyle}}>
+                    {isCompulsory ? 'Compulsory' : 'Optional'}
+                  </Text>
+                </View>
+              </View>
+              <View style={styles.buttonGroup}>
+                <Button
+                  title="Back"
+                  type="solid"
+                  titleStyle={styles.backButtonTitle}
+                  onPress={() => goBack()}
+                  buttonStyle={styles.backButton}
                 />
-              ))}
-              <View style={styles.switchView}>
-                <Text style={styles.switchText}>Is this extra compulsory</Text>
-                <Switch
-                  color={colors.mallBlue5}
-                  value={isCompulsory}
-                  onValueChange={() => setIsCompulsory(!isCompulsory)}
+                <Button
+                  disabled={!formik.isValid}
+                  title="Submit"
+                  type="solid"
+                  onPress={formik.handleSubmit}
+                  buttonStyle={styles.nextButton}
                 />
-                <Text style={{...styles.switchText, ...switchTextStyle}}>
-                  {isCompulsory ? 'Compulsory' : 'Optional'}
-                </Text>
               </View>
             </View>
-            <View style={styles.buttonGroup}>
-              <Button
-                title="Back"
-                type="solid"
-                titleStyle={styles.backButtonTitle}
-                onPress={() => goBack()}
-                buttonStyle={styles.backButton}
-              />
-              <Button
-                disabled={!isValid}
-                title="Submit"
-                type="solid"
-                onPress={handleSubmit}
-                buttonStyle={styles.nextButton}
-              />
-            </View>
-          </View>
-        )}
+          );
+        }}
       </Formik>
     </>
   );

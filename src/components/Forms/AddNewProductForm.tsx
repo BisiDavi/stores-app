@@ -2,16 +2,16 @@ import React from 'react';
 import {Formik} from 'formik';
 import {View} from 'react-native';
 import {useDispatch} from 'react-redux';
+import {useQuery} from 'react-query';
 import {Button} from 'react-native-elements';
 
 import addNewProductSchema from '@/schemas/AddNewProductSchema';
-import {DisplayFormElements} from '@/components/Forms/DisplayFormElements';
+import displayFormElements from './displayFormElements';
 import addproductContent from '@/json/add-product.json';
 import {AddProductStep1Action} from '@/store/actions/addProductAction';
 import {getProductsCategories} from '@/network/getRequest';
 import {showToast} from '@/utils';
 import {styles} from '@/styles/AddNewProductForm.style';
-import {useQuery} from 'react-query';
 
 async function fetchProductCategories() {
   const {data} = await getProductsCategories();
@@ -47,30 +47,14 @@ export default function AddNewProductForm({navigation}: any) {
         dispatch(AddProductStep1Action(values));
       }}
     >
-      {({
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        values,
-        errors,
-        touched,
-        isValid,
-      }) => (
+      {formik => (
         <>
           {status === 'error' &&
             showToast('unable to fetch product categories')}
           <View style={styles.formStyle}>
-            {addproductContent.map((formElement, index) => (
-              <DisplayFormElements
-                key={index}
-                formElement={formElement}
-                handleChange={handleChange}
-                handleBlur={handleBlur}
-                values={values}
-                errors={errors}
-                touched={touched}
-              />
-            ))}
+            {addproductContent.map((formElement, index) =>
+              displayFormElements(index, formElement, formik),
+            )}
             <View style={styles.buttonGroup}>
               <Button
                 title="Back"
@@ -80,10 +64,10 @@ export default function AddNewProductForm({navigation}: any) {
                 buttonStyle={styles.backButton}
               />
               <Button
-                disabled={!isValid}
+                disabled={!formik.isValid}
                 title="Next"
                 type="solid"
-                onPress={() => navigationHandler(handleSubmit)}
+                onPress={() => navigationHandler(formik.handleSubmit)}
                 buttonStyle={styles.nextButton}
               />
             </View>

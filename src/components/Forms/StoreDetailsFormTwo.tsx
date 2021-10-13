@@ -8,7 +8,7 @@ import {View} from 'react-native';
 import {useStoreSetupNavigation, useFormValues} from '@/hooks/.';
 import storeDetailsFormTwo from '@/json/storeDetailsFormTwo.json';
 import {storeDetailsScreenTwoSchema} from '@/schemas';
-import {DisplayFormElements} from './DisplayFormElements';
+import displayFormElements from './displayFormElements';
 import {StoreOwnerAction} from '@/store/actions/StoreDetailsAction';
 import {colors} from '@/utils/.';
 import {styles} from './StoreDetailsFormTwo.style';
@@ -32,32 +32,16 @@ export default function StoreDetailsFormTwo() {
           onBoardingNextScreen(3, false);
         }}
       >
-        {({
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          values,
-          errors,
-          touched,
-          isValid,
-        }) => (
+        {formik => (
           <View style={styles.form}>
-            {storeDetailsFormTwo.map((formElement, index: number) => (
-              <DisplayFormElements
-                key={index}
-                formElement={formElement}
-                handleChange={handleChange}
-                handleBlur={handleBlur}
-                values={values}
-                errors={errors}
-                touched={touched}
-              />
-            ))}
+            {storeDetailsFormTwo.map((formElement, index: number) =>
+              displayFormElements(index, formElement, formik),
+            )}
             <View style={styles.buttonView}>
               <Button
                 buttonStyle={styles.buttonStyle}
-                onPress={handleSubmit}
-                disabled={!isValid}
+                onPress={formik.handleSubmit}
+                disabled={!formik.isValid}
                 title="Next"
               />
             </View>

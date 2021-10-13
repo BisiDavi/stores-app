@@ -9,7 +9,7 @@ import {View} from 'react-native';
 import {useFormValues, useStoreSetupNavigation} from '@/hooks/.';
 import {colors, showToast} from '@/utils/.';
 import settlementDetails from '@/json/settlement-details.json';
-import {DisplayFormElements} from './DisplayFormElements';
+import displayFormElements from './displayFormElements';
 import {storeSettlementDetailsSchema} from '@/schemas/StoreDetailsSchema';
 import {StoreSettlementAction} from '@/store/actions/StoreDetailsAction';
 import {postStoreDetailsRequest} from '@/network/postRequest';
@@ -39,9 +39,11 @@ export default function SettlementDetailsForm() {
         .then(response => {
           setLoading(false);
           if (postSettlementDetails) {
+            console.log('rresponse data', response);
             const {data} = response.data;
+            console.log('data', data);
             const storeProfileData = {
-              id: data._id,
+              id: data.id,
               name: data.name,
             };
             console.log('storeProfileData', storeProfileData);
@@ -94,34 +96,17 @@ export default function SettlementDetailsForm() {
             setSubmitForm(true);
           }}
         >
-          {({
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            values,
-            errors,
-            touched,
-            isValid,
-          }) => (
+          {formik => (
             <>
-              {settlementDetails.map((formElement, index: number) => (
-                <DisplayFormElements
-                  key={index}
-                  formElement={formElement}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  values={values}
-                  errors={errors}
-                  touched={touched}
-                  toggleModal={toggleTransactionModal}
-                />
-              ))}
+              {settlementDetails.map((formElement, index: number) =>
+                displayFormElements(index, formElement, formik),
+              )}
               <View style={styles.buttonView}>
                 <Button
                   buttonStyle={styles.nextButtonStyle}
-                  onPress={handleSubmit}
+                  onPress={formik.handleSubmit}
                   titleStyle={styles.nextTextStyle}
-                  disabled={!isValid}
+                  disabled={!formik.isValid}
                   title="Next"
                 />
               </View>

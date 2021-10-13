@@ -25,7 +25,7 @@ export default function useFormValues() {
     settlementPlan: '',
     bankName: '',
     bankCode: '',
-    transactionPin: 0,
+    transactionPin: '',
     accountNumber: '',
     accountName: '',
   };
@@ -49,7 +49,7 @@ export default function useFormValues() {
     settlementPlan: storeDetails.settlementPlan,
     bankName: storeDetails.bankName,
     bankCode: storeDetails.bankCode,
-    transactionPin: storeDetails.transactionPin,
+    transactionPin: Number(storeDetails.transactionPin),
     accountNumber: storeDetails.accountNumber,
     accountName: storeDetails.accountName,
   };

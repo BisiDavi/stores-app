@@ -10,7 +10,7 @@ import {storeDetailsScreenOneSchema} from '@/schemas';
 import {colors, showToast} from '@/utils/.';
 import storeDetailsFormOne from '@/json/storDetailsFormOneOne.json';
 import {StoreDetailsAction} from '@/store/actions/StoreDetailsAction';
-import {DisplayFormElements} from './DisplayFormElements';
+import displayFormElements from './displayFormElements';
 import {useStoreSetupNavigation, useFormValues} from '@/hooks';
 import {
   getAvailableState,
@@ -76,34 +76,19 @@ export default function StoreDetailsFormOne() {
             onBoardingNextScreen(1, false);
           }}
         >
-          {({
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            values,
-            errors,
-            touched,
-            isValid,
-          }) => (
+          {formik => (
             <>
               {storeDetailsFormOne.map((formElement, index) => (
-                <DisplayFormElements
-                  key={index}
-                  formElement={formElement}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  values={values}
-                  errors={errors}
-                  touched={touched}
-                  toggleModal={toggleModal}
-                />
+                <>
+                  {displayFormElements(index, formElement, formik, toggleModal)}
+                </>
               ))}
               <OpenDaysForm />
               <View style={styles.buttonView}>
                 <Button
                   buttonStyle={styles.buttonStyle}
-                  onPress={handleSubmit}
-                  disabled={!isValid}
+                  onPress={formik.handleSubmit}
+                  disabled={!formik.isValid}
                   title="Next"
                 />
               </View>

@@ -2,10 +2,11 @@ import React from 'react';
 import {Formik} from 'formik';
 import {Button} from 'react-native-elements';
 import {View, StyleSheet, Dimensions} from 'react-native';
-import requestRiderSchema from '../../schemas/RequestRiderSchema';
-import {DisplayFormElements} from './DisplayFormElements';
-import requestRiderContent from '../../json/request-rider.json';
-import colors from '../../utils/colors';
+
+import requestRiderSchema from '@/schemas/RequestRiderSchema';
+import displayFormElements from './displayFormElements';
+import requestRiderContent from '@/json/request-rider.json';
+import colors from '@/utils/colors';
 
 export default function RequestRiderForm() {
   return (
@@ -21,24 +22,16 @@ export default function RequestRiderForm() {
         console.log('values', values);
       }}
     >
-      {({handleChange, handleBlur, handleSubmit, values, errors, touched}) => (
+      {formik => (
         <>
-          {requestRiderContent.map((formElement, index) => (
-            <DisplayFormElements
-              key={index}
-              formElement={formElement}
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-              values={values}
-              errors={errors}
-              touched={touched}
-            />
-          ))}
+          {requestRiderContent.map((formElement, index) =>
+            displayFormElements(index, formElement, formik),
+          )}
           <View style={styles.buttonGroup}>
             <Button
               title="Proceed to Payment"
               type="solid"
-              onPress={handleSubmit}
+              onPress={formik.handleSubmit}
               titleStyle={styles.buttonTitle}
               buttonStyle={styles.button}
             />

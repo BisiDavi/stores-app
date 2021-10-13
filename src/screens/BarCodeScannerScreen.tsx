@@ -54,7 +54,7 @@ export default function BarCodeScannerScreen() {
   const modalText =
     isAmountAccurate !== null && isAmountAccurate
       ? 'Payment Successful!'
-      : 'Payment Successful!';
+      : 'Payment not successful!';
 
   useEffect(() => {
     if (scannedResult !== null && status === 'success') {
@@ -109,3 +109,5 @@ export default function BarCodeScannerScreen() {
     </>
   );
 }
+
+//payment barcode is not meant for this store

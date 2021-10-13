@@ -3,7 +3,7 @@ import {Formik} from 'formik';
 import {View, StyleSheet, Dimensions} from 'react-native';
 
 import addNewProductSchema from '@/schemas/AddNewProductSchema';
-import {DisplayFormElements} from './DisplayFormElements';
+import displayFormElements from './displayFormElements';
 import promoTagContent from '@/json/add-promo-tag.json';
 
 export default function PromoTagForm() {
@@ -20,19 +20,11 @@ export default function PromoTagForm() {
         console.log('values', values);
       }}
     >
-      {({handleChange, handleBlur, values, errors, touched}) => (
+      {formik => (
         <View style={styles.promoTag}>
-          {promoTagContent.map((formElement, index) => (
-            <DisplayFormElements
-              key={index}
-              formElement={formElement}
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-              values={values}
-              errors={errors}
-              touched={touched}
-            />
-          ))}
+          {promoTagContent.map((formElement, index) =>
+            displayFormElements(index, formElement, formik),
+          )}
         </View>
       )}
     </Formik>

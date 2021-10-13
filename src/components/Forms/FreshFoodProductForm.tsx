@@ -5,7 +5,7 @@ import {useDispatch} from 'react-redux';
 import {Button} from 'react-native-elements';
 
 import addNewProductSchema from '@/schemas/AddNewProductSchema';
-import {DisplayFormElements} from '@/components/Forms/DisplayFormElements';
+import displayFormElements from './displayFormElements';
 import addFreshProductContent from '@/json/add-fresh-food.json';
 import {AddProductStep1Action} from '@/store/actions/addProductAction';
 import {checkObjectKey} from '@/utils/checkExistingStore';
@@ -38,29 +38,13 @@ export default function FreshFoodProductForm({navigation}: any) {
         dispatch(AddProductStep1Action(values));
       }}
     >
-      {({
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        values,
-        errors,
-        touched,
-        isValid,
-      }) => {
+      {formik => {
         const isFormFilled = checkObjectKey('errors');
         return (
           <View style={styles.formView}>
-            {addFreshProductContent.map((formElement, index) => (
-              <DisplayFormElements
-                key={index}
-                formElement={formElement}
-                handleChange={handleChange}
-                handleBlur={handleBlur}
-                values={values}
-                errors={errors}
-                touched={touched}
-              />
-            ))}
+            {addFreshProductContent.map((formElement, index) =>
+              displayFormElements(index, formElement, formik),
+            )}
             <View style={styles.buttonGroup}>
               <Button
                 title="Back"
@@ -70,10 +54,12 @@ export default function FreshFoodProductForm({navigation}: any) {
                 buttonStyle={styles.backButton}
               />
               <Button
-                disabled={!isValid}
+                disabled={!formik.isValid}
                 title="Next"
                 type="solid"
-                onPress={() => navigationHandler(handleSubmit, isFormFilled)}
+                onPress={() =>
+                  navigationHandler(formik.handleSubmit, isFormFilled)
+                }
                 buttonStyle={styles.nextButton}
               />
             </View>

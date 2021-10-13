@@ -2,10 +2,12 @@ import React from 'react';
 import {Formik} from 'formik';
 import {View, StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
-import addProductSchema from '../../schemas/AddProductSchema';
-import {DisplayFormElements} from './DisplayFormElements';
-import formContent from '../../json/isbnProduct.json';
-import colors from '../../utils/colors';
+
+import addProductSchema from '@/schemas/AddProductSchema';
+import displayFormElements from './displayFormElements';
+
+import formContent from '@/json/isbnProduct.json';
+import colors from '@/utils/colors';
 
 export default function ProdutWithISBNForm({navigation: {goBack}}: any) {
   return (
@@ -23,27 +25,11 @@ export default function ProdutWithISBNForm({navigation: {goBack}}: any) {
         console.log('values', values);
       }}
     >
-      {({
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        values,
-        errors,
-        touched,
-        isValid,
-      }) => (
+      {formik => (
         <View>
-          {formContent.map((formElement, index) => (
-            <DisplayFormElements
-              key={index}
-              formElement={formElement}
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-              values={values}
-              errors={errors}
-              touched={touched}
-            />
-          ))}
+          {formContent.map((formElement, index) =>
+            displayFormElements(index, formElement, formik),
+          )}
           <View style={styles.buttonGroup}>
             <Button
               title="Back"
@@ -53,10 +39,10 @@ export default function ProdutWithISBNForm({navigation: {goBack}}: any) {
               buttonStyle={styles.backButton}
             />
             <Button
-              disabled={!isValid}
+              disabled={!formik.isValid}
               title="Submit"
               type="solid"
-              onPress={handleSubmit}
+              onPress={formik.handleSubmit}
               buttonStyle={styles.nextButton}
             />
           </View>

@@ -27,7 +27,7 @@ export type StoreDetailsStateType = {
     ownerName: string;
     ownerPhone: string;
     ownerEmail: string;
-    transactionPin: number;
+    transactionPin: string;
     openDays: {
       weekDays: {
         status: boolean;
@@ -98,7 +98,7 @@ export type StoreDetailsPayloadType = {
   bankName: string;
   bankCode: string;
   accountNumber: string;
-  transactionPin: number;
+  transactionPin: string;
   accountName: string;
   storeImage: string;
   storeLogo: string;
