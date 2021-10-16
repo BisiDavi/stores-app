@@ -23,7 +23,6 @@ export type BottomTabParamList = {
   PaymentApprovedScreen: undefined;
   OrdersScreen: undefined;
   FailedPaymentScreen: undefined;
-  Scanner: undefined;
 };
 
 export type DrawerStackParamList = {

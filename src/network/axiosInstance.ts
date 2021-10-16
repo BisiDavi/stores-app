@@ -23,6 +23,10 @@ export const setClientToken = (token: any) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
   axiosImageInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
+  console.log(
+    'axios.defaults.headers.common.Authorization',
+    axios.defaults.headers.common.Authorization,
+  );
 };
 
 export function removeToken() {

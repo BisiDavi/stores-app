@@ -25,6 +25,7 @@ export const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     backgroundColor: colors.neutral3,
     flexDirection: 'column',
+    height: Dimensions.get('window').height * 0.5,
     alignItems: 'center',
   },
   inputView: {

@@ -1,10 +1,11 @@
 import React, {useCallback} from 'react';
 import {View, Text, FlatList} from 'react-native';
 import {ListItem} from 'react-native-elements';
+import {useQuery, useQueryClient} from 'react-query';
+
+import useRequest from '@/hooks/useRequest';
 //import amountPaidContent from '@/json/amount-paid.json';
 import {styles} from '@/styles/AmountPaidScreen.style';
-import useRequest from '@/hooks/useRequest';
-import {useQuery} from 'react-query';
 
 type ItemType = {
   item: amountPaidType;
@@ -17,9 +18,18 @@ type amountPaidType = {
   method: string;
 };
 
+type storeAnalyticsType = {
+  walletBalance: string | any;
+};
+
 export default function AmountPaidScreen() {
   const {fetchWithdrawals} = useRequest();
   const {status, data} = useQuery('storeWithdrawals', fetchWithdrawals);
+  const queryClient = useQueryClient();
+  const storeAnalytics: storeAnalyticsType | any =
+    queryClient.getQueryData('storeAnalytics');
+
+  console.log('data storeWithdrawals', data, 'storeAnalytics', storeAnalytics);
 
   const amountPaid = useCallback(function renderItem({item}: ItemType) {
     return (
@@ -54,7 +64,7 @@ export default function AmountPaidScreen() {
           }}
         />
       ) : (
-        <Text>N0.0, amount paid</Text>
+        <Text style={styles.zeroBalance}>N0.00, amount paid</Text>
       )}
     </View>
   );

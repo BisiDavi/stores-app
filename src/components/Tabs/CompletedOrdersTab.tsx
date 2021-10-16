@@ -9,12 +9,10 @@ import {styles} from './CompletedOrdersTab.style';
 import LoadingActivityIndicator from '@/components/Loader/LoadingActivityIndicator';
 //import {showToast} from '@/utils';
 import useRequest from '@/hooks/useRequest';
-import {formatOrders} from '@/utils/formatProduct';
 import SnackbarView from '../Loader/SnackbarView';
 
 export default function CompletedOrdersTab({navigation}: any) {
-  const {fetchCompletedOrders, fetchAllProducts, fetchAllStoreExtras} =
-    useRequest();
+  const {fetchCompletedOrders} = useRequest();
 
   const {data: completedOrders, status} = useQuery(
     'completedOrders',
@@ -24,17 +22,10 @@ export default function CompletedOrdersTab({navigation}: any) {
       refetchIntervalInBackground: true,
     },
   );
-  const {data: allProducts} = useQuery('allProducts', fetchAllProducts);
-  const {data: allStoreExtras} = useQuery(
-    'allStoreExtras',
-    fetchAllStoreExtras,
-  );
+
+  console.log('completedOrders', JSON.stringify(completedOrders));
 
   LogBox.ignoreLogs(['Setting a timer']);
-
-  const completedOrdersData =
-    completedOrders &&
-    formatOrders(allProducts, completedOrders, allStoreExtras);
 
   const keyExtractor = useCallback(item => item._id.toString(), []);
   const {storeProfile}: any = useSelector(
@@ -51,12 +42,12 @@ export default function CompletedOrdersTab({navigation}: any) {
     <>
       {status === 'error' ? (
         //showToast('Unable to fetch completed orders')
-        ''
+        <Text>''</Text>
       ) : status === 'loading' ? (
         <LoadingActivityIndicator />
       ) : completedOrders.length > 0 ? (
         <FlatList
-          data={completedOrdersData}
+          data={completedOrders}
           renderItem={({item}: any) => (
             <TouchableOpacity
               onPressIn={() => navigation.navigate('ViewOrderScreen', item)}
@@ -75,7 +66,9 @@ export default function CompletedOrdersTab({navigation}: any) {
           </Text>
         </View>
       )}
-      {status === 'loading' && <SnackbarView text="Fetching new orders..." />}
+      {status === 'loading' && (
+        <SnackbarView text="Fetching completed orders..." />
+      )}
     </>
   );
 }

@@ -94,7 +94,7 @@ export const styles = StyleSheet.create({
     marginRight: 5,
     color: colors.accentRed,
     fontFamily: 'Roboto-Bold',
-    fontSize: 25,
+    fontSize: 20,
   },
   modalPinView: {
     justifyContent: 'center',

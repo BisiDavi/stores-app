@@ -1,4 +1,5 @@
 import {StyleSheet, Dimensions} from 'react-native';
+import {colors} from '@/utils';
 
 export const styles = StyleSheet.create({
   container: {
@@ -29,5 +30,11 @@ export const styles = StyleSheet.create({
   price: {
     fontWeight: 'bold',
     marginBottom: 10,
+  },
+  zeroBalance: {
+    color: colors.accentRed,
+    textAlign: 'center',
+    fontFamily: 'Montserrat-Bold',
+    fontSize: 16,
   },
 });

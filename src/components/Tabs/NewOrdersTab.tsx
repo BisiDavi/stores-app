@@ -33,7 +33,7 @@ export default function NewOrdersTab({navigation}: any) {
   return (
     <>
       {status === 'error' ? (
-        ''
+        <Text>''</Text>
       ) : status === 'loading' ? (
         <LoadingActivityIndicator />
       ) : newOrders.length > 0 ? (

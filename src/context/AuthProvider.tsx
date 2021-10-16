@@ -17,7 +17,10 @@ import {
   UserOnboardingCompletedAction,
   UserSignedinAction,
 } from '@/store/actions/SetupStoreAction';
-import {StoreProfileIdActions} from '@/store/actions/storeProfileActions';
+import {
+  StoreProfileIdActions,
+  StoreProfileNameActions,
+} from '@/store/actions/storeProfileActions';
 import {saveToStorage} from '@/utils/authToken';
 
 export default function AuthProvider({children}: PropsWithChildren<{}>) {
@@ -56,7 +59,8 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
               }
               console.log('response', response);
               if (response.bank) {
-                dispatchRedux(StoreProfileIdActions(response));
+                dispatchRedux(StoreProfileIdActions(response.id));
+                dispatchRedux(StoreProfileNameActions(response.name));
                 showToast(`Welcome, ${response.name}`);
                 saveToStorage('onboardingCompleted', true);
                 dispatchRedux(UserOnboardingCompletedAction());
@@ -76,7 +80,7 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
       signUp: async (email: string, password: string) => {
         dispatch({type: 'LOADING'});
         await signupUser(email, password)
-          .then(response => {
+          .then((response: any) => {
             setClientToken(response);
             dispatchRedux(UserSignedinAction());
             saveToStorage('onboardingCompleted', false);

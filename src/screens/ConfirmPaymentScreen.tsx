@@ -23,7 +23,6 @@ export default function ConfirmPaymentScreen({navigation}: Props) {
   const [toScan, setToScan] = useState(false);
   const barcodeScreen: keyof BottomTabParamList = 'BarCodeScannerScreen';
   const dispatch = useDispatch();
-  //const barcodeScreen: keyof BottomTabParamList = 'Scanner';
 
   console.log('amount', amount);
 

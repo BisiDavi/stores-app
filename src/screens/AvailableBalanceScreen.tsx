@@ -1,9 +1,11 @@
 import React, {useCallback} from 'react';
 import {View, Text, FlatList} from 'react-native';
+import {useQueryClient, useQuery} from 'react-query';
 import {ListItem} from 'react-native-elements';
+
+import useRequest from '@/hooks/useRequest';
 import availableBalanceContent from '@/json/available-balance.json';
 import {styles} from '@/styles/AvailableBalanceScreen.style';
-import {useQueryClient} from 'react-query';
 
 type ItemType = {
   item: AvailableBalanceType;
@@ -16,9 +18,16 @@ type AvailableBalanceType = {
   duration: string;
 };
 
+type storeAnalyticsType = {
+  walletBalance: string | any;
+};
+
 export default function AvailableBalanceScreen() {
   const queryClient = useQueryClient();
-  const storeAnalytics = queryClient.getQueryData('storeAnalytics');
+  const {fetchWithdrawals} = useRequest();
+  const storeAnalytics: storeAnalyticsType | any =
+    queryClient.getQueryData('storeAnalytics');
+  const {status, data} = useQuery('storeWithdrawals', fetchWithdrawals);
 
   console.log('AvailableBalanceScreen storeAnalytics', storeAnalytics);
 
@@ -42,14 +51,22 @@ export default function AvailableBalanceScreen() {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={availableBalanceContent}
-        renderItem={availableBalance}
-        initialNumToRender={7}
-        keyExtractor={function (item) {
-          return item.id.toString();
-        }}
-      />
+      {!storeAnalytics ? (
+        <Text>Loading ...</Text>
+      ) : Number(storeAnalytics.walletBalance) === 0 ? (
+        <Text style={styles.zeroBalance}>
+          Your available balance is N {storeAnalytics.walletBalance}
+        </Text>
+      ) : (
+        <FlatList
+          data={availableBalanceContent}
+          renderItem={availableBalance}
+          initialNumToRender={7}
+          keyExtractor={function (item) {
+            return item.id.toString();
+          }}
+        />
+      )}
     </View>
   );
 }

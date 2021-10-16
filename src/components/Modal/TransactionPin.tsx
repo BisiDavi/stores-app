@@ -1,28 +1,32 @@
 import React, {useState} from 'react';
 import {Icon} from 'react-native-elements';
 import {View, Text} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {Button} from 'react-native-elements';
+import {useQuery} from 'react-query';
 
 import {styles} from '@/components/Modal/WithdrawalModal.style';
 import {InputField} from '@/components/FormElements/Input';
 import {UIWithdrawalModalAction} from '@/store/actions/UIActions';
-import {RootState} from '@/store/RootReducer';
 import {colors} from '@/utils';
+import useRequest from '@/hooks/useRequest';
 
 export default function TransactionPin() {
   const [pin, setPin] = useState('');
   const [pinError, setPinError] = useState(false);
   const disableBtnState = pin.length !== 4 ? true : false;
   const dispatch = useDispatch();
-  const {storeDetails} = useSelector((state: RootState) => state.storeDetails);
 
-  const {transactionPin} = storeDetails;
+  const {fetchStoreProfile} = useRequest();
+  const {data} = useQuery('storeProfile', fetchStoreProfile);
+
+  console.log('data fetchStoreProfile', data);
+
+  console.log('transactionPin', data?.transactionPin);
 
   function nextStage() {
-    if (pin !== transactionPin) {
-      setPinError(true);
-      return;
+    if (pin !== data?.transactionPin && !data) {
+      return setPinError(true);
     }
     !pinError && dispatch(UIWithdrawalModalAction());
   }
