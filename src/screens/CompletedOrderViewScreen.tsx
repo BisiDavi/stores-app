@@ -1,10 +1,10 @@
 import React from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {SafeAreaView, View} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import {DrawerStackParamList} from '@/customTypes/.';
 import {styles} from '@/styles/OrdersScreen.style';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import OrdersListItemView from '@/components/Tabs/OrdersListView';
 
 type CompletedOrderViewScreenNavigationProps = StackNavigationProp<

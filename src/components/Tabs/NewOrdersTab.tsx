@@ -1,4 +1,5 @@
-import React, {useCallback} from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useCallback, useState, useEffect} from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {FlatList, View, Text} from 'react-native';
 import {useQuery} from 'react-query';
@@ -13,6 +14,7 @@ import SnackbarView from '../Loader/SnackbarView';
 import {batchOrderToCustomer} from '@/utils/processOrders';
 
 export default function NewOrdersTab({navigation}: any) {
+  const [processedNewOrders, setProcessedNewOrders] = useState(null);
   const {storeProfile}: any = useSelector(
     (state: RootState) => state.storeProfile,
   );
@@ -22,41 +24,48 @@ export default function NewOrdersTab({navigation}: any) {
     (state: RootState) => state.storeDetails,
   );
 
-  const keyExtractor = useCallback(item => item[0]._id.toString(), []);
+  const keyExtractor = useCallback(items => items[0]._id.toString(), []);
 
   const {data: newOrders, status} = useQuery('newOrders', fetchPendingOrders, {
     refetchInterval: 1000,
     refetchIntervalInBackground: true,
   });
 
-  let processedNewOrder;
-  if (status === 'success') {
-    processedNewOrder = batchOrderToCustomer(newOrders);
-    return processedNewOrder;
-  }
+  useEffect(() => {
+    if (status === 'success' && !processedNewOrders) {
+      const batchedOrders = batchOrderToCustomer(newOrders);
+      setProcessedNewOrders(batchedOrders);
+    }
+  }, [status]);
 
-  console.log('processedNewOrder NewOrder', processedNewOrder);
+  console.log('processedNewOrder NewOrder', processedNewOrders);
 
   const storesName = storeProfile ? storeProfile?.name : storeDetails.name;
-
+  let itemGroup: any = [];
   return (
     <>
       {status === 'error' ? (
         <Text>''</Text>
       ) : status === 'loading' ? (
         <LoadingActivityIndicator />
-      ) : newOrders.length > 0 ? (
+      ) : newOrders.length > 0 && processedNewOrders ? (
         <FlatList
-          data={processedNewOrder}
-          renderItem={({items}: any) =>
-            items.map((item: any[]) => (
+          data={processedNewOrders}
+          renderItem={({items}: any) => {
+            itemGroup = [...itemGroup, items];
+            return itemGroup.map((item: any) => (
               <TouchableOpacity
-                onPressIn={() => navigation.navigate('OrdersViewScreen', items)}
+                onPressIn={() =>
+                  navigation.navigate('OrdersViewScreen', item.item)
+                }
               >
-                <OrdersListItem orderLength={items.length} item={item[0]} />
+                <OrdersListItem
+                  orderLength={item.item.length}
+                  item={item.item[0]}
+                />
               </TouchableOpacity>
-            ))
-          }
+            ));
+          }}
           initialNumToRender={5}
           keyExtractor={keyExtractor}
         />
