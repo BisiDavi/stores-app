@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {View, Text, Image} from 'react-native';
 import Modal from 'react-native-modal';
 import HandWave from '@/assets/hand-wave.png';
 import {Button} from 'react-native-elements';
+
 import {RootState} from '@/store/RootReducer';
 import {StoreDetailsStateType} from '@/customTypes/storeDetailsTypes';
 import {styles} from './WelcomeModal.style';
@@ -13,13 +14,16 @@ interface ConfirmOrderModalProps {
   closeModal: () => void;
   visible: boolean;
   orderId: string;
+  navigation: any;
 }
 
 export default function ConfirmOrderModal({
   closeModal,
   visible,
   orderId,
+  navigation,
 }: ConfirmOrderModalProps) {
+  const [accepted, setAccepted] = useState(false);
   const {storeDetails}: StoreDetailsStateType = useSelector(
     (state: RootState) => state.storeDetails,
   );
@@ -28,9 +32,19 @@ export default function ConfirmOrderModal({
   );
   const dispatch = useDispatch();
 
+  console.log('orderId', orderId);
+
+  useEffect(() => {
+    if (accepted) {
+      navigation.goBack();
+    }
+    setAccepted(false);
+  }, [navigation, accepted]);
+
   function acceptOrder() {
     dispatch(AcceptOrderAction(orderId));
     closeModal();
+    setAccepted(true);
   }
   const {name}: any | string = storeDetails;
 

@@ -20,10 +20,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: Dimensions.get('window').width,
-    height: 120,
+    marginTop: 5,
+    marginBottom: 5,
   },
   listItemContent: {
-    width: Dimensions.get('window').width,
+    //width: Dimensions.get('window').width,
+    //height: 100,
   },
   row: {
     flexDirection: 'row',

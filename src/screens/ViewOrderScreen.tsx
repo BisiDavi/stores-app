@@ -2,21 +2,28 @@ import React, {useState, memo} from 'react';
 import {useNavigation} from '@react-navigation/core';
 import {View, Text, TextInput} from 'react-native';
 import {Button, Image} from 'react-native-elements';
+import {useSelector} from 'react-redux';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 
 import displayAsset from '@/utils/displayAsset';
 import {styles} from '@/styles/ViewOrderScreen.style';
 import ConfirmOrderModal from '@/components/Modal/ConfirmOrderModal';
 import SnackbarView from '@/components/Loader/SnackbarView';
+import {RootState} from '@/store/RootReducer';
 
 function ViewOrderScreen({route}: any) {
   const [confirmOrderModal, setConfirmOrderModal] = useState(false);
   const [recommendReplacement, setRecommendReplacement] = useState(false);
   const [note, setNote] = useState('');
-  const userOrders = route.params;
+  const userOrders = route.params.item;
+  const completed = route.params?.completed;
   const navigation: any = useNavigation();
-
+  const {order: ordersAccepted}: any = useSelector(
+    (state: RootState) => state.order,
+  );
   console.log('userOrders', userOrders);
+
+  const acceptedOrder = ordersAccepted.includes(userOrders._id);
 
   function toggleModal() {
     setConfirmOrderModal(!confirmOrderModal);
@@ -31,6 +38,7 @@ function ViewOrderScreen({route}: any) {
     <ScrollView style={styles.view}>
       <ConfirmOrderModal
         visible={confirmOrderModal}
+        navigation={navigation}
         orderId={userOrders._id}
         closeModal={toggleModal}
       />
@@ -57,7 +65,7 @@ function ViewOrderScreen({route}: any) {
               </View>
             </View>
           </TouchableOpacity>
-          {/*{userOrders.product.extras.map((order: any, index: number) => (
+          {userOrders.product.extras.map((order: any, index: number) => (
             <TouchableOpacity
               key={index}
               onPress={() => navigation.navigate('ProductReplacementScreen')}
@@ -73,40 +81,45 @@ function ViewOrderScreen({route}: any) {
                 </View>
               </View>
             </TouchableOpacity>
-          ))}*/}
+          ))}
           <View style={{...styles.orderView, ...styles.totalView}}>
             <Text style={styles.totalText}>Total Amount</Text>
             <Text style={styles.totalText}>N {userOrders.product.price}</Text>
           </View>
-          <View style={styles.note}>
-            <TextInput
-              multiline={true}
-              numberOfLines={3}
-              onChangeText={text => setNote(text)}
-              value={note}
-              placeholder="Dont put plenty oil in the beans"
-            />
-          </View>
-          <View style={styles.note}>
-            <Text>
-              Accept the order if all the products are available. Recommend
-              Replacement for unavailable products
-            </Text>
-          </View>
-          <View style={styles.buttonView}>
-            <Button
-              buttonStyle={styles.outlineButton}
-              type="outline"
-              onPress={recommendReplacementHandler}
-              titleStyle={styles.outlineTitle}
-              title="Recommend Replacement"
-            />
-            <Button
-              buttonStyle={styles.buttonStyle}
-              onPress={toggleModal}
-              title="Accept Order"
-            />
-          </View>
+          {!completed && (
+            <>
+              <View style={styles.note}>
+                <TextInput
+                  multiline={true}
+                  numberOfLines={3}
+                  onChangeText={text => setNote(text)}
+                  value={note}
+                  placeholder="Dont put plenty oil in the beans"
+                />
+              </View>
+              <View style={styles.note}>
+                <Text>
+                  Accept the order if all the products are available. Recommend
+                  Replacement for unavailable products
+                </Text>
+              </View>
+              <View style={styles.buttonView}>
+                <Button
+                  buttonStyle={styles.outlineButton}
+                  type="outline"
+                  onPress={recommendReplacementHandler}
+                  titleStyle={styles.outlineTitle}
+                  title="Recommend Replacement"
+                />
+                <Button
+                  buttonStyle={styles.buttonStyle}
+                  onPress={toggleModal}
+                  disabled={acceptedOrder}
+                  title="Accept Order"
+                />
+              </View>
+            </>
+          )}
         </View>
         {recommendReplacement && (
           <SnackbarView text="This feature is coming in the next release" />

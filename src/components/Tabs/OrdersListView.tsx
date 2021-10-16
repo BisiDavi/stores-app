@@ -15,9 +15,7 @@ interface OrdersListItemViewProps {
 export default function OrdersListItemView({item}: OrdersListItemViewProps) {
   const {order}: any = useSelector((state: RootState) => state.order);
 
-  console.log('order', order);
-
-  const acceptedOrder = order.includes(item.id);
+  const acceptedOrder = order.includes(item._id);
 
   return (
     <View>
@@ -32,7 +30,9 @@ export default function OrdersListItemView({item}: OrdersListItemViewProps) {
           </View>
           <View style={styles.row}>
             <Text>{item?.delivery_time}</Text>
-            {acceptedOrder && <Icon name="checkcircleo" type="antdesign" />}
+            {acceptedOrder && (
+              <Icon name="checkcircleo" color="green" type="antdesign" />
+            )}
           </View>
         </ListItem.Content>
       </ListItem>

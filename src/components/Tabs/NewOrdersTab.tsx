@@ -27,7 +27,7 @@ export default function NewOrdersTab({navigation}: any) {
   const keyExtractor = useCallback(items => items[0]._id.toString(), []);
 
   const {data: newOrders, status} = useQuery('newOrders', fetchPendingOrders, {
-    refetchInterval: 1000,
+    refetchInterval: 5000,
     refetchIntervalInBackground: true,
   });
 
@@ -38,7 +38,7 @@ export default function NewOrdersTab({navigation}: any) {
     }
   }, [status]);
 
-  console.log('processedNewOrder NewOrder', processedNewOrders);
+  //console.log('processedNewOrder NewOrder', processedNewOrders);
 
   const storesName = storeProfile ? storeProfile?.name : storeDetails.name;
   let itemGroup: any = [];

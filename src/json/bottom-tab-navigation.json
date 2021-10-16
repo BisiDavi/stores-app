@@ -2,6 +2,7 @@
   "tabOne": [
     {"name": "OrderScreen", "title": "Orders"},
     {"name": "ViewOrderScreen", "title": "Order details"},
+    {"name": "CompletedOrderViewScreen", "title": "Completed Order's"},
     {"name": "ProductReplacementScreen", "title": "Product Replacement"}
   ],
   "tabTwo": [

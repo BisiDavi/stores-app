@@ -18,15 +18,14 @@ type Props = {
 };
 
 export default function OrdersViewScreen({navigation, route}: Props) {
-  console.log('route', route);
   const content = route.params;
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
-        {content.map((item: any) => (
+        {content.map((item: any, index: number) => (
           <TouchableOpacity
-            onPress={() => navigation.navigate('ViewOrderScreen')}
-            key={item}
+            onPress={() => navigation.navigate('ViewOrderScreen', item)}
+            key={index}
           >
             <OrdersListItemView item={item} />
           </TouchableOpacity>
