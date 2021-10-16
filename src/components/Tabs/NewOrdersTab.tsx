@@ -10,6 +10,7 @@ import LoadingActivityIndicator from '@/components/Loader/LoadingActivityIndicat
 import {styles} from './NewOrdersTab.style';
 import useRequest from '@/hooks/useRequest';
 import SnackbarView from '../Loader/SnackbarView';
+import {batchOrderToCustomer} from '@/utils/processOrders';
 
 export default function NewOrdersTab({navigation}: any) {
   const {storeProfile}: any = useSelector(
@@ -17,16 +18,24 @@ export default function NewOrdersTab({navigation}: any) {
   );
   const {fetchPendingOrders} = useRequest();
 
+  const {storeDetails}: any = useSelector(
+    (state: RootState) => state.storeDetails,
+  );
+
+  const keyExtractor = useCallback(item => item[0]._id.toString(), []);
+
   const {data: newOrders, status} = useQuery('newOrders', fetchPendingOrders, {
     refetchInterval: 1000,
     refetchIntervalInBackground: true,
   });
 
-  const {storeDetails}: any = useSelector(
-    (state: RootState) => state.storeDetails,
-  );
+  let processedNewOrder;
+  if (status === 'success') {
+    processedNewOrder = batchOrderToCustomer(newOrders);
+    return processedNewOrder;
+  }
 
-  const keyExtractor = useCallback(item => item._id.toString(), []);
+  console.log('processedNewOrder NewOrder', processedNewOrder);
 
   const storesName = storeProfile ? storeProfile?.name : storeDetails.name;
 
@@ -38,16 +47,16 @@ export default function NewOrdersTab({navigation}: any) {
         <LoadingActivityIndicator />
       ) : newOrders.length > 0 ? (
         <FlatList
-          data={newOrders}
-          renderItem={({item}: any) => {
-            return (
+          data={processedNewOrder}
+          renderItem={({items}: any) =>
+            items.map((item: any[]) => (
               <TouchableOpacity
-                onPressIn={() => navigation.navigate('OrdersViewScreen', item)}
+                onPressIn={() => navigation.navigate('OrdersViewScreen', items)}
               >
-                <OrdersListItem item={item} />
+                <OrdersListItem orderLength={items.length} item={item[0]} />
               </TouchableOpacity>
-            );
-          }}
+            ))
+          }
           initialNumToRender={5}
           keyExtractor={keyExtractor}
         />

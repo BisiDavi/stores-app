@@ -8,6 +8,7 @@ import {RootState} from '@/store/RootReducer';
 import {styles} from './OrdersListItem.style';
 
 interface OrdersViewProps {
+  orderLength: number;
   item: {
     product: {
       image: string;
@@ -24,7 +25,7 @@ interface OrdersViewProps {
   };
 }
 
-function OrdersListItem({item}: OrdersViewProps) {
+function OrdersListItem({item, orderLength}: OrdersViewProps) {
   const {order} = useSelector((state: RootState) => state.order);
 
   console.log('order', order);
@@ -45,12 +46,16 @@ function OrdersListItem({item}: OrdersViewProps) {
       ? styles.pending
       : styles.completed;
 
+  const moreIndicator = orderLength > 1 ? `  and ${orderLength - 1} more` : '';
+
   return (
     <ListItem style={styles.listItem} bottomDivider>
       <Image source={displayAsset(item?.product.image)} style={styles.avatar} />
       <ListItem.Content style={styles.listItemContent}>
         <View style={styles.row}>
-          <Text>{item?.product.name}</Text>
+          <Text>
+            {item?.product.name} {moreIndicator}
+          </Text>
           {/*<Text>{itemorder}</Text>*/}
         </View>
         <View style={styles.row}>
