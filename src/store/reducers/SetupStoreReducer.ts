@@ -4,6 +4,7 @@ import {
   USER_LOGGED_IN,
   USER_SIGNED_IN,
   ONBOARDING_COMPLETED,
+  STORES_EMAIL,
   TOGGLE_WITHDRAWAL_MODAL,
 } from '../constant';
 
@@ -14,6 +15,7 @@ export function SetupStoreReducer(
     isWelcomeModalShown: false,
     authMethod: '',
     withdrawalModal: false,
+    email: null,
   },
   action: actionType,
 ) {
@@ -56,6 +58,12 @@ export function SetupStoreReducer(
         completed: true,
       };
     }
+    case STORES_EMAIL: {
+      return {
+        ...state,
+        email: payload,
+      };
+    }
     default:
       return state;
   }
@@ -68,7 +76,8 @@ type actionType = {
     | 'USER_SIGNED_IN'
     | 'USER_LOGGED_IN'
     | 'ONBOARDING_COMPLETED'
-    | 'TOGGLE_WITHDRAWAL_MODAL';
+    | 'TOGGLE_WITHDRAWAL_MODAL'
+    | 'STORES_EMAIL';
   payload: {
     status: boolean;
     page: number;

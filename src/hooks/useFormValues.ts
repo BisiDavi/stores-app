@@ -7,9 +7,12 @@ export default function useFormValues() {
   const {storeDetails}: StoreDetailsStateType = useSelector(
     (state: RootState) => state.storeDetails,
   );
+  const setupStore: {email: string} = useSelector(
+    (state: RootState) => state.setupStore,
+  );
   const formOneInitialValues = {
     name: '',
-    email: '',
+    email: setupStore.email,
     phone: '',
     address: '',
     state: '',
@@ -32,7 +35,7 @@ export default function useFormValues() {
 
   const formOneValues = {
     name: storeDetails.name,
-    email: storeDetails.email,
+    email: setupStore.email,
     phone: storeDetails.phone,
     address: storeDetails.address,
     state: storeDetails.state,

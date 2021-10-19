@@ -26,9 +26,14 @@ export default function NewOrdersTab({navigation}: any) {
 
   const keyExtractor = useCallback(items => items[0]._id.toString(), []);
 
-  const {data: newOrders, status} = useQuery('newOrders', fetchPendingOrders, {
+  const {
+    data: newOrders,
+    error,
+    status,
+  } = useQuery('newOrders', fetchPendingOrders, {
     refetchInterval: 5000,
     refetchIntervalInBackground: true,
+    refetchOnMount: true,
   });
 
   useEffect(() => {
@@ -45,7 +50,7 @@ export default function NewOrdersTab({navigation}: any) {
   return (
     <>
       {status === 'error' ? (
-        <Text>''</Text>
+        <Text>{error?.message}</Text>
       ) : status === 'loading' ? (
         <LoadingActivityIndicator />
       ) : newOrders.length > 0 && processedNewOrders ? (

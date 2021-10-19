@@ -26,6 +26,8 @@ export default function InputField({
         keyboardType={keyboardType}
         value={value}
         placeholderTextColor={colors.neutral4}
+        autoFocus={true}
+				edi
         errorMessage={errorMessage}
         onChangeText={onChangeText}
         secureTextEntry={secureTextEntry}

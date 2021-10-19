@@ -6,13 +6,19 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     flex: 1,
+    flexDirection: 'column',
   },
   buttonStyle: {
     backgroundColor: colors.mallBlue5,
     width: '100%',
   },
   input: {
-    height: 50,
+    //height: 50,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    //width: '100%',
+    margin: 30,
   },
   buttonViewStyle: {},
   buttonText: {
@@ -22,5 +28,8 @@ export const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     marginTop: 10,
+  },
+  view: {
+    flex: 1,
   },
 });

@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useState, useEffect} from 'react';
 import {Button} from 'react-native-elements';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Formik} from 'formik';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {View} from 'react-native';
@@ -19,6 +20,9 @@ import {
 import StoreTypeInfoModal from '@/components/Modal/StoreTypeInfoModal';
 import OpenDaysForm from './OpenDaysForm';
 import {styles} from './StoreDetailsFormOne.style';
+import useRequest from '@/hooks/useRequest';
+import {StoreProfileIdActions} from '@/store/actions/storeProfileActions';
+import {RootState} from '@/store/RootReducer';
 
 async function fetchStoreCategories() {
   const {data} = await getStoreCategoriesRequest();
@@ -34,6 +38,10 @@ async function fetchAvailableState() {
 
 export default function StoreDetailsFormOne() {
   const dispatch = useDispatch();
+  const {storeProfile}: any = useSelector(
+    (state: RootState) => state.storeProfile,
+  );
+  const {fetchStoreProfile} = useRequest();
   const {status: storeCategoryStatus, data: storeCategoryData} = useQuery(
     'storeCategories',
     fetchStoreCategories,
@@ -42,6 +50,13 @@ export default function StoreDetailsFormOne() {
     'availableState',
     fetchAvailableState,
   );
+  const {data, status} = useQuery('storeProfile', fetchStoreProfile);
+
+  useEffect(() => {
+    if (status === 'success' && storeProfile.id === null) {
+      dispatch(StoreProfileIdActions(data._id));
+    }
+  }, [status, dispatch]);
 
   storeDetailsFormOne[4].options = availableStateData;
   storeDetailsFormOne[5].options = storeCategoryData;

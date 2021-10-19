@@ -8,11 +8,20 @@ import addExtrasButtons from '@/json/add-extra-modal.json';
 import AppModal, {AppModalProps} from '@/components/Modal/AppModal';
 import {styles} from './AddExtrasModal.style';
 
+interface AddExtrasModalProps extends AppModalProps {
+  noText?: boolean;
+}
+
 export default function AddExtrasModal({
   visible,
   toggleOverlay,
-}: AppModalProps) {
+  noText,
+}: AddExtrasModalProps) {
   const navigation: any = useNavigation();
+
+  if (noText) {
+    addExtrasButtons[0] = {noText: ''};
+  }
   return (
     <AppModal
       style={styles.modal}
@@ -35,7 +44,7 @@ export default function AddExtrasModal({
                   type="clear"
                 />
               );
-            } else {
+            } else if (button.text) {
               return (
                 <Button
                   titleStyle={styles.buttonText}

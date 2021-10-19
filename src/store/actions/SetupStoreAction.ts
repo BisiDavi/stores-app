@@ -4,6 +4,7 @@ import {
   USER_LOGGED_IN,
   USER_SIGNED_IN,
   ONBOARDING_COMPLETED,
+  STORES_EMAIL,
   TOGGLE_WITHDRAWAL_MODAL,
 } from '../constant';
 
@@ -52,6 +53,16 @@ export const UserOnboardingCompletedAction =
       type: ONBOARDING_COMPLETED,
     });
   };
+export const persistStoresEmail =
+  (payload: string) =>
+  (dispatch: (arg0: {type: 'STORES_EMAIL'; payload: string}) => void) => {
+    dispatch({
+      type: STORES_EMAIL,
+      payload,
+    });
+  };
+
+//
 
 export type setupStorePayloadType = {
   page: number;

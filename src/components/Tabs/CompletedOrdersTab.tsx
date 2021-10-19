@@ -8,7 +8,6 @@ import OrdersListItem from '@/components/Tabs/OrdersListItem';
 import {RootState} from '@/store/RootReducer';
 import {styles} from './CompletedOrdersTab.style';
 import LoadingActivityIndicator from '@/components/Loader/LoadingActivityIndicator';
-//import {showToast} from '@/utils';
 import useRequest from '@/hooks/useRequest';
 import SnackbarView from '../Loader/SnackbarView';
 import {batchOrderToCustomer} from '@/utils/processOrders';
@@ -17,14 +16,14 @@ export default function CompletedOrdersTab({navigation}: any) {
   const {fetchCompletedOrders} = useRequest();
   const [processedOrders, setProcessedOrders] = useState(null);
 
-  const {data: completedOrders, status} = useQuery(
-    'completedOrders',
-    fetchCompletedOrders,
-    {
-      refetchInterval: 5000,
-      refetchIntervalInBackground: true,
-    },
-  );
+  const {
+    data: completedOrders,
+    error,
+    status,
+  }: any = useQuery('completedOrders', fetchCompletedOrders, {
+    refetchInterval: 5000,
+    refetchIntervalInBackground: true,
+  });
 
   const keyExtractor = useCallback(items => items[0]._id.toString(), []);
 
@@ -50,8 +49,7 @@ export default function CompletedOrdersTab({navigation}: any) {
   return (
     <>
       {status === 'error' ? (
-        //showToast('Unable to fetch completed orders')
-        <Text>''</Text>
+        <Text>{error.message}</Text>
       ) : status === 'loading' ? (
         <LoadingActivityIndicator />
       ) : completedOrders.length > 0 && processedOrders ? (

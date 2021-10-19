@@ -2,12 +2,16 @@
   {
     "content": [
       {"name": "Food Product", "link": "FoodCategoryScreen"},
-      {"name": "Isbn Product", "link": "ProductWithISBNScreen"}
+      {
+        "name": "Isbn Product",
+        "method": "notAvailable",
+        "linked": "ProductWithISBNScreen"
+      }
     ]
   },
   {
     "content": [
-      {"name": "Fresh Food Product", "link": "FoodCategoryScreen"},
+      {"name": "Fresh Food Product","method": "notAvailable", "linked": "FoodCategoryScreen"},
       {"name": "Scan to Upload", "method": "notAvailable"}
     ]
   },

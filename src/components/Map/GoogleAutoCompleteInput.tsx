@@ -59,6 +59,10 @@ const GoogleAutoCompleteInput = ({
           margin: 10,
           marginBottom: 0,
         },
+        textInput: {
+          color: 'black',
+          fontFamily: 'RobotoMedium',
+        },
         listView: {
           borderWidth: 1,
           borderColor: '#ddd',

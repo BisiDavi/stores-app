@@ -31,13 +31,14 @@ export default function AddExtraForm({navigation: {goBack}}: any) {
     (state: RootState) => state.storeProfile,
   );
 
-  function addExtras(data: any) {
+  function addExtras(data: any, resetForm: any) {
     setLoading(true);
     addExtrasRequest(data)
       .then(response => {
         setLoading(false);
         showToast(response.data.message);
         setSubmitForm(true);
+        resetForm();
       })
       .catch(error => {
         setLoading(false);
@@ -62,7 +63,7 @@ export default function AddExtraForm({navigation: {goBack}}: any) {
           price: '',
           quantity: 1,
         }}
-        onSubmit={(values: any) => {
+        onSubmit={(values: any, {resetForm}) => {
           const formValues = {
             ...values,
             isAvailable: true,
@@ -70,49 +71,45 @@ export default function AddExtraForm({navigation: {goBack}}: any) {
             storeId: storeProfile.id,
             price: Number(values.price),
           };
-          addExtras(formValues);
+          addExtras(formValues, resetForm);
         }}
       >
-        {formik => {
-          return (
-            <View style={styles.formContainer}>
-              <View style={styles.formInputs}>
-                {formContent.map(formElement =>
-                  displayFormElements(formElement, formik),
-                )}
-                <View style={styles.switchView}>
-                  <Text style={styles.switchText}>
-                    Is this extra compulsory
-                  </Text>
-                  <Switch
-                    color={colors.mallBlue5}
-                    value={isCompulsory}
-                    onValueChange={() => setIsCompulsory(!isCompulsory)}
-                  />
-                  <Text style={{...styles.switchText, ...switchTextStyle}}>
-                    {isCompulsory ? 'Compulsory' : 'Optional'}
-                  </Text>
-                </View>
-              </View>
-              <View style={styles.buttonGroup}>
-                <Button
-                  title="Back"
-                  type="solid"
-                  titleStyle={styles.backButtonTitle}
-                  onPress={() => goBack()}
-                  buttonStyle={styles.backButton}
+        {formik => (
+          <View style={styles.formContainer}>
+            <View style={styles.formInputs}>
+              {formContent.map(formElement =>
+                displayFormElements(formElement, formik),
+              )}
+              <View style={styles.switchView}>
+                <Text style={styles.switchText}>Is this extra compulsory</Text>
+                <Switch
+                  color={colors.mallBlue5}
+                  value={isCompulsory}
+                  onValueChange={() => setIsCompulsory(!isCompulsory)}
                 />
-                <Button
-                  disabled={!formik.isValid}
-                  title="Submit"
-                  type="solid"
-                  onPress={formik.handleSubmit}
-                  buttonStyle={styles.nextButton}
-                />
+                <Text style={{...styles.switchText, ...switchTextStyle}}>
+                  {isCompulsory ? 'Compulsory' : 'Optional'}
+                </Text>
               </View>
             </View>
-          );
-        }}
+            <View style={styles.buttonGroup}>
+              <Button
+                title="Back"
+                type="solid"
+                titleStyle={styles.backButtonTitle}
+                onPress={() => goBack()}
+                buttonStyle={styles.backButton}
+              />
+              <Button
+                disabled={!formik.isValid}
+                title="Submit"
+                type="solid"
+                onPress={formik.handleSubmit}
+                buttonStyle={styles.nextButton}
+              />
+            </View>
+          </View>
+        )}
       </Formik>
     </>
   );

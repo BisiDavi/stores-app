@@ -15,10 +15,6 @@ import {StoreSettlementAction} from '@/store/actions/StoreDetailsAction';
 import {postStoreDetailsRequest} from '@/network/postRequest';
 import {RootState} from '@/store/RootReducer';
 import TransactionPinModal from '../Modal/TransactionPinModal';
-import {
-  StoreProfileIdActions,
-  StoreProfileNameActions,
-} from '@/store/actions/storeProfileActions';
 import {styles} from './SettlementDetailsForm.style';
 
 export default function SettlementDetailsForm() {
@@ -42,9 +38,6 @@ export default function SettlementDetailsForm() {
         .then(response => {
           setLoading(false);
           if (postSettlementDetails) {
-            console.log('response.data', response.data);
-            dispatch(StoreProfileIdActions(response.data._id));
-            dispatch(StoreProfileNameActions(response.data.name));
             showToast(response.data.message);
             onBoardingNextScreen(4, false);
           }
