@@ -98,7 +98,7 @@ def enableSeparateBuildPerCPUArchitecture = true
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
  */
-def enableProguardInReleaseBuilds =true
+def enableProguardInReleaseBuilds = true
 
 /**
  * The preferred build flavor of JavaScriptCore.
@@ -120,7 +120,7 @@ def jscFlavor = 'org.webkit:android-jsc:+'
  * on project.ext.react, JavaScript will not be compiled to Hermes Bytecode
  * and the benefits of using Hermes will therefore be sharply reduced.
  */
-def enableHermes = project.ext.react.get("enableHermes", false);
+def enableHermes = project.ext.react.get("enableHermes", true);
 
 android {
     ndkVersion rootProject.ext.ndkVersion
@@ -132,6 +132,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+  	dexOptions {
+         javaMaxHeapSize "4g"
+    }
+
     defaultConfig {
         applicationId "com.rnts"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -140,12 +144,14 @@ android {
         versionName "1.0"
 				//react-native-camera config
 				missingDimensionStrategy 'react-native-camera', 'general' // <--- insert this line
+				multiDexEnabled true
     }
+
     splits {
         abi {
             reset()
             enable enableSeparateBuildPerCPUArchitecture
-            universalApk false  // If true, also generate a universal APK
+            universalApk true  // If true, also generate a universal APK
             include "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
         }
     }
@@ -156,6 +162,14 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+				release {
+					if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
+						storeFile file(MYAPP_UPLOAD_STORE_FILE)
+						storePassword MYAPP_UPLOAD_STORE_PASSWORD
+						keyAlias MYAPP_UPLOAD_KEY_ALIAS
+						keyPassword MYAPP_UPLOAD_KEY_PASSWORD
+						}
+					}
     }
     buildTypes {
         debug {
@@ -164,7 +178,8 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+						crunchPngs false
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
@@ -195,9 +210,10 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
  		// Import the Firebase BoM
-  	implementation platform('com.google.firebase:firebase-bom:28.4.2')
- 		implementation 'com.google.firebase:firebase-messaging'
-		implementation 'com.google.firebase:firebase-analytics'
+
+		implementation "com.google.firebase:firebase-analytics:17.5.0"
+
+		implementation "androidx.multidex:multidex:2.0.1"
 
 		implementation project(':react-native-svg')
 

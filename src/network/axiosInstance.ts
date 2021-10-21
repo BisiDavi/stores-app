@@ -19,7 +19,7 @@ export const axiosImageInstance = axios.create({
   },
 });
 
-export const setClientToken = (token: any) => {
+export function setClientToken(token: any) {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
   axiosImageInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -27,7 +27,7 @@ export const setClientToken = (token: any) => {
     'axios.defaults.headers.common.Authorization',
     axios.defaults.headers.common.Authorization,
   );
-};
+}
 
 export function removeToken() {
   axios.defaults.headers.common.Authorization = null;

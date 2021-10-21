@@ -15,7 +15,7 @@ export function SetupStoreReducer(
     isWelcomeModalShown: false,
     authMethod: '',
     withdrawalModal: false,
-    email: null,
+    email: '',
   },
   action: actionType,
 ) {

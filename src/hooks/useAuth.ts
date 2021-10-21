@@ -1,0 +1,108 @@
+import {useState, useEffect} from 'react';
+import {useDispatch} from 'react-redux';
+
+import useAuthReducer from '@/hooks/useAuthReducer';
+import {
+  getAuthtoken,
+  saveAuthtoken,
+  signupUser,
+  loginUser,
+  showToast,
+} from '@/utils/.';
+import {setClientToken} from '@/network/axiosInstance';
+import getExistingStoreProfile from '@/utils/getExistingStoreProfile';
+import {
+  UserLoggedinAction,
+  UserOnboardingCompletedAction,
+  UserSignedinAction,
+} from '@/store/actions/SetupStoreAction';
+import {
+  StoreProfileIdActions,
+  StoreProfileNameActions,
+} from '@/store/actions/storeProfileActions';
+import {saveToStorage} from '@/utils/authToken';
+
+export default function useAuth() {
+  const {dispatch} = useAuthReducer();
+  const dispatchRedux = useDispatch();
+  const [authToken, setAuthToken] = useState<string | null>(null);
+
+  async function storedToken() {
+    const token = await getAuthtoken();
+    setAuthToken(token);
+  }
+
+  useEffect(() => {
+    storedToken();
+    if (authToken !== null) {
+      dispatch({type: 'APP_LOAD', token: authToken});
+    }
+  }, [authToken, dispatch]);
+
+  async function login(email: string, password: string) {
+    dispatch({type: 'LOADING'});
+    const loginInToken: any = await loginUser(email, password);
+    if (loginInToken !== null) {
+      saveAuthtoken(loginInToken);
+      setClientToken(loginInToken);
+      dispatchRedux(UserLoggedinAction());
+      dispatch({type: 'LOADING'});
+      showToast('fetching your store ...');
+      getExistingStoreProfile()
+        .then((response: any) => {
+          if (response === null) {
+            saveToStorage('onboardingCompleted', false);
+            return;
+          }
+          console.log('response', response);
+          if (response.bank) {
+            dispatchRedux(StoreProfileIdActions(response.id));
+            dispatchRedux(StoreProfileNameActions(response.name));
+            showToast(`Welcome, ${response.name}`);
+            saveToStorage('onboardingCompleted', true);
+            dispatchRedux(UserOnboardingCompletedAction());
+            dispatch({
+              type: 'SIGN_IN',
+              token: loginInToken,
+            });
+          }
+        })
+        .catch(() => {
+          showToast('complete your onboarding process');
+        });
+    }
+    dispatch({type: 'STOP_LOADING'});
+  }
+
+  function signOut() {
+    return dispatch({type: 'SIGN_OUT'});
+  }
+
+  async function signUp(email: string, password: string) {
+    dispatch({type: 'LOADING'});
+    await signupUser(email, password)
+      .then((response: any) => {
+        setClientToken(response);
+        console.log('signupUser response', response);
+        dispatchRedux(UserSignedinAction());
+        saveToStorage('onboardingCompleted', false);
+        saveAuthtoken(response);
+        dispatch({type: 'SIGN_UP', token: response});
+      })
+      .catch(error => {
+        console.log('error from signupToken', error);
+        if (error.response) {
+          showToast(error.response.data.message);
+        } else if (error.request) {
+          showToast('Oops, an error occured, unable to sign up');
+        }
+        dispatch({type: 'STOP_LOADING'});
+      });
+  }
+
+  return {
+    signOut,
+    signUp,
+    login,
+  };
+}
