@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Formik} from 'formik';
 import {StyleSheet, View, Text} from 'react-native';
 import {Button} from 'react-native-elements';
 
+import AuthContext from '@/context/AuthContext';
 import {RootStackParamList} from '@/customTypes';
 import colors from '@/utils/colors';
 import loginSchema from '@/schemas/LoginSchema';
 import {PasswordInput, InputField} from '../FormElements';
-import useAuth from '@/hooks/useAuth';
 
 type LoginScreenNavigationProps = StackNavigationProp<
   RootStackParamList,
@@ -20,7 +20,7 @@ type loginFormProps = {
 };
 
 export default function LoginForm({navigation}: loginFormProps) {
-  const {login} = useAuth();
+  const {authContext} = useContext(AuthContext);
 
   return (
     <Formik
@@ -28,7 +28,7 @@ export default function LoginForm({navigation}: loginFormProps) {
       initialValues={{email: '', password: ''}}
       onSubmit={async values => {
         const {email, password} = values;
-        login(email, password);
+        authContext.loginIn(email, password, navigation);
       }}
     >
       {({
