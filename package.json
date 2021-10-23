@@ -25,6 +25,7 @@
     "@react-navigation/drawer": "^6.1.4",
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/stack": "^6.0.7",
+    "@sentry/react-native": "^3.1.1",
     "axios": "^0.21.4",
     "flipper-plugin-react-query-native-devtools": "^3.0.0",
     "formik": "^2.2.9",
