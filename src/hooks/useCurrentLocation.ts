@@ -2,8 +2,13 @@ import {useState} from 'react';
 import {Alert, PermissionsAndroid, Platform, ToastAndroid} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 
+import {GetUserCoordinateAction} from '@/store/actions/UserCoordinateAction';
+import {useDispatch} from 'react-redux';
+
 export default function useCurrentLocation() {
   const [location, setLocation] = useState(null);
+  const dispatch = useDispatch();
+
   const hasLocationPermission = async () => {
     if (Platform.OS === 'android' && Platform.Version < 23) {
       return true;
@@ -49,6 +54,7 @@ export default function useCurrentLocation() {
     Geolocation.getCurrentPosition(
       (position: any) => {
         setLocation(position);
+        dispatch(GetUserCoordinateAction(position?.coords));
       },
       error => {
         Alert.alert(`Code ${error.code}`, error.message);
