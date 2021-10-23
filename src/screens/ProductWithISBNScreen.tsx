@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {ScrollView} from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native';
 
 import AddNewProductForm from '@/components/Forms/AddNewProductForm';
 import {DrawerStackParamList} from '@/customTypes/.';

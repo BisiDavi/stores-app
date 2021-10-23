@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native';
 import MenuSvg from '../assets/MenuSvg';
 import NotificationSvg from '../assets/NotificationSvg';
 

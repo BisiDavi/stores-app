@@ -1,7 +1,7 @@
 import React from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {SafeAreaView, View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native';
 
 import OrdersListItemView from '@/components/Tabs/OrdersListView';
 import {DrawerStackParamList} from '@/customTypes/.';

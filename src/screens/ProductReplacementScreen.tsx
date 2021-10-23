@@ -1,7 +1,7 @@
 import React, {useState, memo} from 'react';
 import {View, Text} from 'react-native';
 import {Button, Image} from 'react-native-elements';
-import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
+import {ScrollView, TouchableOpacity} from 'react-native';
 import displayAsset from '@/utils/displayAsset';
 import {styles} from '@/styles/ProductReplacementScreen.style';
 

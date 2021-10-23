@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, ActivityIndicator, ImageSourcePropType} from 'react-native';
 import {Button, Image} from 'react-native-elements';
 import AppIntroSlider from 'react-native-app-intro-slider';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native';
 
 import {RootStackParamList} from '@/customTypes/.';
 import onboardingScreenJson from '@/json/onboarding.json';

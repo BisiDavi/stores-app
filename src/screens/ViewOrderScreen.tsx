@@ -3,7 +3,7 @@ import {useNavigation} from '@react-navigation/core';
 import {View, Text, TextInput} from 'react-native';
 import {Button, Image} from 'react-native-elements';
 import {useSelector} from 'react-redux';
-import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
+import {ScrollView, TouchableOpacity} from 'react-native';
 
 import displayAsset from '@/utils/displayAsset';
 import {styles} from '@/styles/ViewOrderScreen.style';

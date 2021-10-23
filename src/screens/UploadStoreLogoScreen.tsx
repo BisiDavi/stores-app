@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, ScrollView} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Image, Button} from 'react-native-elements';
 import {useDispatch} from 'react-redux';

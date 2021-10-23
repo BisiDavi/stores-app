@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {View, Text, ScrollView} from 'react-native';
 import {Snackbar} from 'react-native-paper';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native';
 
 import {DrawerStackParamList} from '@/customTypes/.';
 import addProductMethod from '@/json/add-product-method.json';

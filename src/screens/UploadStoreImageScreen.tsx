@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {View, Text, ScrollView} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native';
 import {Image, Button} from 'react-native-elements';
 import {useDispatch} from 'react-redux';
 import Spinner from 'react-native-loading-spinner-overlay';

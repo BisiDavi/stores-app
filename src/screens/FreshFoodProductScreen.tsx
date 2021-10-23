@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
-import {ScrollView} from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native';
 import {View, Text} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import Spinner from 'react-native-loading-spinner-overlay';

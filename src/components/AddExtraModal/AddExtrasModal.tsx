@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import {Button} from 'react-native-elements';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
 import addExtrasButtons from '@/json/add-extra-modal.json';

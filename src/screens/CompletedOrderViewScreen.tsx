@@ -1,6 +1,6 @@
 import React from 'react';
 import {SafeAreaView, View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native';
 
 import {styles} from '@/styles/OrdersScreen.style';
 import OrdersListItemView from '@/components/Tabs/OrdersListView';

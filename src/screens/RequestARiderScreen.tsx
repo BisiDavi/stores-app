@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, ScrollView} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native';
 import {Input} from 'react-native-elements';
 import {StackScreenProps} from '@react-navigation/stack';
 

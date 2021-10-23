@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useCallback, useState, useEffect} from 'react';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native';
 import {FlatList, View, Text} from 'react-native';
 import {useQuery} from 'react-query';
 import {useSelector} from 'react-redux';

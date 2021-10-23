@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {ListItem, Image} from 'react-native-elements';
-import {ScrollView} from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native';
 import {Button} from 'react-native-elements';
 import {useQuery} from 'react-query';
 
