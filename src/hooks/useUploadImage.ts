@@ -24,7 +24,7 @@ export default function useUploadImage(
       },
       response => {
         if (response.didCancel) {
-          showToast('We need you to upload your store logo');
+          showToast('your permission is need to upload an image');
         }
         if (response.assets) {
           let formData = formatUploadedImage(logoName, response.assets[0]);

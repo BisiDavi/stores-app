@@ -23,5 +23,11 @@
     "name": "quantity",
     "type": "input",
     "keyboardType": "numeric"
+  },
+  {
+    "label": "Unit",
+    "name": "unit",
+    "type": "select",
+    "options": ["Kilo", "Litre", "Kg", "gram",""]
   }
 ]

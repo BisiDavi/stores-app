@@ -3,7 +3,6 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, ActivityIndicator, ImageSourcePropType} from 'react-native';
 import {Button, Image} from 'react-native-elements';
 import AppIntroSlider from 'react-native-app-intro-slider';
-import {TouchableOpacity} from 'react-native';
 
 import {RootStackParamList} from '@/customTypes/.';
 import onboardingScreenJson from '@/json/onboarding.json';
@@ -60,11 +59,9 @@ export default function OnboardingScreen({
 
   function renderNextButton() {
     return (
-      <TouchableOpacity style={styles.nextButton}>
-        <View>
-          <Text style={styles.text}>Next</Text>
-        </View>
-      </TouchableOpacity>
+      <View style={styles.nextButton}>
+        <Text style={styles.text}>Next</Text>
+      </View>
     );
   }
 

@@ -22,7 +22,6 @@ async function fetchProductCategories() {
 
 export default function AddNewProductForm({navigation}: any) {
   const dispatch = useDispatch();
-
   const {status} = useQuery('fetchProductCategories', fetchProductCategories);
 
   function navigationHandler(handleSubmit: any) {

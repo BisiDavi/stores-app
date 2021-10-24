@@ -54,7 +54,8 @@ export default function useCurrentLocation() {
     Geolocation.getCurrentPosition(
       (position: any) => {
         setLocation(position);
-        dispatch(GetUserCoordinateAction(position?.coords));
+        console.log('position', position);
+        dispatch(GetUserCoordinateAction(position.coords));
       },
       error => {
         Alert.alert(`Code ${error.code}`, error.message);

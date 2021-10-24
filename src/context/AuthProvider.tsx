@@ -50,7 +50,6 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
           setClientToken(loginInToken);
           dispatchRedux(UserLoggedinAction());
           dispatch({type: 'LOADING'});
-          showToast('fetching your store ...');
           getExistingStoreProfile()
             .then((response: any) => {
               if (response === null) {
@@ -59,6 +58,7 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
               }
               console.log('response', response);
               if (response.bank) {
+                showToast('fetching your store ...');
                 dispatchRedux(StoreProfileIdActions(response.id));
                 dispatchRedux(StoreProfileNameActions(response.name));
                 showToast(`Welcome, ${response.name}`);
@@ -68,6 +68,8 @@ export default function AuthProvider({children}: PropsWithChildren<{}>) {
                   type: 'SIGN_IN',
                   token: loginInToken,
                 });
+              } else {
+                saveToStorage('onboardingCompleted', false);
               }
             })
             .catch(() => {

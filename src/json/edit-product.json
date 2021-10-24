@@ -1,0 +1,28 @@
+[
+  {"label": "Name of Product", "name": "name", "type": "input"},
+  {
+    "label": "Product Category",
+    "name": "categoryId",
+    "type": "select",
+    "placeholder": "Select Product Category",
+    "value": "_id",
+    "options": []
+  },
+  {
+    "label": "Product Description",
+    "name": "description",
+    "type": "input"
+  },
+  {
+    "label": "Product Price",
+    "name": "price",
+    "type": "input",
+		"keyboardType":"numeric"
+  },
+	{
+    "label": "Quantity",
+    "name": "quantity",
+    "type": "input",
+		"keyboardType":"numeric"
+  }
+]

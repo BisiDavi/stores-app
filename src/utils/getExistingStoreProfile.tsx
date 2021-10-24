@@ -7,7 +7,8 @@ export default async function getExistingStoreProfile() {
       const isBankRegisted = Object.keys(data).includes('bank');
       return {bank: isBankRegisted, name: data.name, id: data._id};
     })
-    .catch(() => {
-      return null;
+    .catch(error => {
+      console.log('error', error);
+      return {error, errorOccured: true};
     });
 }

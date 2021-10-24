@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
@@ -6,13 +6,12 @@ import {Formik} from 'formik';
 import {StyleSheet, View, Text} from 'react-native';
 import {Button} from 'react-native-elements';
 
-import AuthContext from '@/context/AuthContext';
 import colors from '@/utils/colors';
 import {RootStackParamList} from '@/customTypes';
 import registrationSchema from '@/schemas/SignupSchema';
 import {PasswordInput, InputField} from '../FormElements';
 import {persistStoresEmail} from '@/store/actions/SetupStoreAction';
-//import useAuth from '@/hooks/useAuth';
+import useAuth from '@/hooks/useAuth';
 
 type SignupFormNavigationProps = StackNavigationProp<
   RootStackParamList,
@@ -27,7 +26,7 @@ type signupFormProps = {
 };
 
 export default function SignupForm({navigation}: signupFormProps) {
-  const {authContext} = useContext(AuthContext);
+  const {signUp} = useAuth();
   const dispatch = useDispatch();
 
   return (
@@ -36,7 +35,7 @@ export default function SignupForm({navigation}: signupFormProps) {
       initialValues={{email: '', password: '', confirmPassword: ''}}
       onSubmit={values => {
         const {email, password} = values;
-        authContext.signUp(email, password);
+        signUp(email, password);
         dispatch(persistStoresEmail(email));
       }}
     >

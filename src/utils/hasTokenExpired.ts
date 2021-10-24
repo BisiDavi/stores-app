@@ -1,5 +1,6 @@
 import jwtDecode from 'jwt-decode';
 
+//true for expired token, false for valid token
 export default function hasTokenExpired(token: string | null) {
   if (token === null || token === undefined) {
     return true;

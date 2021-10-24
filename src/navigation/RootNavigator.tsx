@@ -1,9 +1,8 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-import AuthContext from '@/context/AuthContext';
 import {setClientToken} from '@/network/axiosInstance';
 import {RootState} from '@/store/RootReducer';
 import {
@@ -17,67 +16,63 @@ import PublicNavigation from './PublicNavigation';
 import StoreDetailsNavigation from './StoreDetailsNavigation';
 
 export default function RootNavigator() {
-  const {state} = useContext(AuthContext);
-  const navigation = useNavigation();
+  const {token, signOut, isAuthorized, loading} = useSelector(
+    (state: RootState) => state.auth,
+  );
   const {completed, formPage} = useSelector(
     (storeState: RootState) => storeState.setupStore,
   );
-
   const {storeDetails} = useSelector(
     (storeState: RootState) => storeState.storeDetails,
   );
+  const {storeProfile} = useSelector(
+    (storeState: RootState) => storeState.storeProfile,
+  );
+  const navigation = useNavigation();
 
   console.log('storeDetails', storeDetails);
 
   const loginRoute: any = 'LoginScreen';
-  const {storeProfile} = useSelector(
-    (storeState: RootState) => storeState.storeProfile,
-  );
 
   console.log('storeProfile', storeProfile);
 
-  console.log(
-    'state.userToken',
-    state.userToken,
-    'state.isSignout',
-    state.isSignout,
-  );
-
   useEffect(() => {
-    if (state.isSignout && state.userToken === null) {
+    if (signOut && !isAuthorized) {
       navigation.navigate(loginRoute);
     }
-  }, [navigation, state.isSignout, state.userToken]);
+  }, [isAuthorized, navigation, signOut]);
 
-  const tokenExpiry = hasTokenExpired(state.userToken);
-  console.log('completed', completed, 'tokenExpiry', tokenExpiry);
+  //"valid token" is false, "expired token" is true
+  const tokenHasExpired = hasTokenExpired(token);
+
+  console.log('completed', completed, 'tokenHasExpired', tokenHasExpired);
 
   useEffect(() => {
-    if (state.userToken && !completed) {
-      const userEmail = getsignedUserEmail(state.userToken);
-      if (userEmail && !tokenExpiry) {
-        setClientToken(state.userToken);
+    if (token && !completed) {
+      const userEmail = getsignedUserEmail(token);
+      if (userEmail && !tokenHasExpired) {
+        setClientToken(token);
         if (formPage !== 0) {
           screenNavigate(formPage, navigation);
         }
       }
     }
-  }, [completed, formPage, navigation, state.userToken, tokenExpiry]);
+  }, [completed, formPage, navigation, token, tokenHasExpired]);
 
   useEffect(() => {
-    if (!tokenExpiry) {
-      setClientToken(state.userToken);
+    if (!tokenHasExpired) {
+      setClientToken(token);
     }
-  }, [tokenExpiry, state.userToken]);
+  }, [tokenHasExpired, token]);
 
   return (
     <>
-      <Spinner visible={state.isLoading} color={colors.cloudOrange5} />
-      {!tokenExpiry && !completed ? (
+      <Spinner visible={loading} color={colors.cloudOrange5} />
+      {!tokenHasExpired && !completed ? (
         <StoreDetailsNavigation />
-      ) : !tokenExpiry && completed ? (
+      ) : !tokenHasExpired && completed ? (
         <DrawerNavigation />
-      ) : tokenExpiry && !completed ? (
+      ) : tokenHasExpired && !completed ? (
         <PublicNavigation />
       ) : (
         <Spinner visible={true} color={colors.cloudOrange5} />

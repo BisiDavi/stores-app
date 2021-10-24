@@ -34,6 +34,7 @@ export default function SettlementDetailsForm() {
   useEffect(() => {
     let postSettlementDetails = true;
     if (submitForm) {
+      setLoading(true);
       postStoreDetailsRequest(storeDetails)
         .then(response => {
           setLoading(false);
@@ -53,6 +54,7 @@ export default function SettlementDetailsForm() {
             errorMessage = 'Oops, poor network, try again';
           }
           showToast(errorMessage);
+          setSubmitForm(false);
         });
     }
     return () => {
@@ -81,7 +83,6 @@ export default function SettlementDetailsForm() {
               (bank: any) => bank.bank_name,
             );
             values.bankName = selectedBankArray[0];
-            setLoading(true);
             dispatch(StoreSettlementAction(values));
             setSubmitForm(true);
           }}
@@ -89,7 +90,11 @@ export default function SettlementDetailsForm() {
           {formik => (
             <>
               {settlementDetails.map(formElement =>
-                displayFormElements(formElement, formik),
+                displayFormElements(
+                  formElement,
+                  formik,
+                  toggleTransactionModal,
+                ),
               )}
               <View style={styles.buttonView}>
                 <Button

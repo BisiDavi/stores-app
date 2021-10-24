@@ -1,14 +1,6 @@
-import {useState, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 
-import useAuthReducer from '@/hooks/useAuthReducer';
-import {
-  getAuthtoken,
-  saveAuthtoken,
-  signupUser,
-  loginUser,
-  showToast,
-} from '@/utils/.';
+import {saveAuthtoken, signupUser, loginUser, showToast} from '@/utils/.';
 import {setClientToken} from '@/network/axiosInstance';
 import getExistingStoreProfile from '@/utils/getExistingStoreProfile';
 import {
@@ -21,88 +13,79 @@ import {
   StoreProfileNameActions,
 } from '@/store/actions/storeProfileActions';
 import {saveToStorage} from '@/utils/authToken';
+import {
+  AuthErrorAction,
+  AuthRequestAction,
+  AuthSigninAction,
+  AuthSignoutAction,
+  AuthSignupAction,
+} from '@/store/actions/authAction';
 
 export default function useAuth() {
-  const {dispatch} = useAuthReducer();
-  const dispatchRedux = useDispatch();
-  const [authToken, setAuthToken] = useState<string | null>(null);
+  const dispatch = useDispatch();
 
-  async function storedToken() {
-    const token = await getAuthtoken();
-    setAuthToken(token);
-  }
-
-  useEffect(() => {
-    storedToken();
-    if (authToken !== null) {
-      dispatch({type: 'APP_LOAD', token: authToken});
-    }
-  }, [authToken, dispatch]);
-
-  async function login(email: string, password: string) {
-    dispatch({type: 'LOADING'});
+  async function signIn(email: string, password: string) {
+    dispatch(AuthRequestAction());
     const loginInToken: any = await loginUser(email, password);
     if (loginInToken !== null) {
-      saveAuthtoken(loginInToken);
       setClientToken(loginInToken);
-      dispatchRedux(UserLoggedinAction());
-      dispatch({type: 'LOADING'});
-      showToast('fetching your store ...');
+      dispatch(UserLoggedinAction());
+      dispatch(AuthSigninAction(loginInToken));
       getExistingStoreProfile()
         .then((response: any) => {
-          if (response === null) {
+          if (response.errorOccured) {
             saveToStorage('onboardingCompleted', false);
+            console.log('response.errorOccured', response);
+            dispatch(AuthErrorAction());
             return;
           }
           console.log('response', response);
           if (response.bank) {
-            dispatchRedux(StoreProfileIdActions(response.id));
-            dispatchRedux(StoreProfileNameActions(response.name));
+            showToast('fetching your store ...');
+            dispatch(StoreProfileIdActions(response.id));
+            dispatch(StoreProfileNameActions(response.name));
             showToast(`Welcome, ${response.name}`);
             saveToStorage('onboardingCompleted', true);
-            dispatchRedux(UserOnboardingCompletedAction());
-            dispatch({
-              type: 'SIGN_IN',
-              token: loginInToken,
-            });
+            dispatch(UserOnboardingCompletedAction());
           }
         })
-        .catch(() => {
+        .catch(error => {
+          console.log('getExistingStoreProfile error', error);
           showToast('complete your onboarding process');
+          dispatch(AuthErrorAction());
         });
     }
-    dispatch({type: 'STOP_LOADING'});
   }
 
   function signOut() {
-    return dispatch({type: 'SIGN_OUT'});
+    return dispatch(AuthSignoutAction());
   }
 
   async function signUp(email: string, password: string) {
-    dispatch({type: 'LOADING'});
+    dispatch(AuthRequestAction());
     await signupUser(email, password)
       .then((response: any) => {
         setClientToken(response);
         console.log('signupUser response', response);
-        dispatchRedux(UserSignedinAction());
+        dispatch(UserSignedinAction());
         saveToStorage('onboardingCompleted', false);
         saveAuthtoken(response);
-        dispatch({type: 'SIGN_UP', token: response});
+        dispatch(AuthSignupAction(response));
       })
       .catch(error => {
         console.log('error from signupToken', error);
+        dispatch(AuthErrorAction());
         if (error.response) {
           showToast(error.response.data.message);
         } else if (error.request) {
           showToast('Oops, an error occured, unable to sign up');
         }
-        dispatch({type: 'STOP_LOADING'});
       });
   }
 
   return {
     signOut,
     signUp,
-    login,
+    signIn,
   };
 }

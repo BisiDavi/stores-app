@@ -10,11 +10,10 @@ import axiosInstance, {axiosImageInstance} from './axiosInstance';
 
 export async function postStoreDetailsRequest(data: any) {
   console.log('data', data);
-  let storeData = JSON.parse(data);
-  let openDays = JSON.stringify(storeData.openDays);
-  storeData.openDays = openDays;
-  const dataToPost = JSON.stringify(storeData);
-  return await axiosInstance.post('/api/storPuse/profile', dataToPost);
+  //let openDays = JSON.stringify(data.openDays);
+  //data.openDays = openDays;
+  const dataToPost = JSON.stringify(data);
+  return await axiosInstance.post('/api/store/profile', dataToPost);
 }
 
 export async function getAllProductsRequest(data: allProductType) {
