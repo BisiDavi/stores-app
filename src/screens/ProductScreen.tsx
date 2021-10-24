@@ -99,7 +99,7 @@ export default function ProductScreen({navigation}: Props) {
   const {status, data: storeProducts} = useQuery(
     'allProducts',
     fetchAllProducts,
-  );
+  );	
 
   return (
     <View style={styles.container}>

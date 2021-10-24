@@ -18,7 +18,6 @@ export type storeDetailsActionType = {
 export type StoreDetailsStateType = {
   storeDetails: {
     name: string;
-    email: string;
     phone: string;
     address: string;
     type: string;

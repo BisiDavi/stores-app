@@ -21,7 +21,6 @@ export function StoreDetailsReducer(
   state: StoreDetailsStateType = {
     storeDetails: {
       name: '',
-      email: '',
       phone: '',
       address: '',
       category: '',
@@ -108,7 +107,6 @@ export function StoreDetailsReducer(
         storeDetails: {
           ...state.storeDetails,
           name: payload.name,
-          email: payload.email,
           phone: payload.phone,
           address: payload.address,
           state: payload.state,
@@ -189,7 +187,6 @@ export function StoreDetailsReducer(
         storeDetails: {
           ...state.storeDetails,
           name: payload.name,
-          email: payload.email,
           phone: payload.phone,
           address: payload.address,
           category: payload.category,

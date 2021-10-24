@@ -61,7 +61,9 @@ export default function OnboardingScreen({
   function renderNextButton() {
     return (
       <TouchableOpacity style={styles.nextButton}>
-        <Text style={styles.text}>Next</Text>
+        <View>
+          <Text style={styles.text}>Next</Text>
+        </View>
       </TouchableOpacity>
     );
   }
@@ -84,9 +86,9 @@ export default function OnboardingScreen({
       keyExtractor={item => item.key.toString()}
       renderItem={RenderItem}
       showSkipButton={true}
+      renderDoneButton={renderDoneButton}
       renderNextButton={renderNextButton}
       renderSkipButton={renderSkipButton}
-      renderDoneButton={renderDoneButton}
       bottomButton
     />
   );
