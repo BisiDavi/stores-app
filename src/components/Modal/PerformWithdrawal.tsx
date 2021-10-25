@@ -19,7 +19,7 @@ export default function PerformWithdrawal({
 
   function exitModal() {
     closeModal();
-    dispatch(UIWithdrawalModalAction('pin'));
+    dispatch(UIWithdrawalModalAction('withdawAmount'));
   }
   return (
     <View>

@@ -10,7 +10,7 @@ export default function displayWithdrawalModalContent(
 ) {
   switch (stage) {
     case 'pin': {
-      return <TransactionPin closeModal={closeModal} />;
+      return <TransactionPin />;
     }
     case 'withdawAmount': {
       return <AmountToWithdraw closeModal={closeModal} />;

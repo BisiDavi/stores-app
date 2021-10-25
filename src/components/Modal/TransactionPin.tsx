@@ -14,7 +14,7 @@ interface TransactionPin {
   closeModal: () => void;
 }
 
-export default function TransactionPin({closeModal}: TransactionPin) {
+export default function TransactionPin() {
   const [pin, setPin] = useState('');
   const [checkPin, setCheckPin] = useState(false);
   const [pinError, setPinError] = useState(false);
@@ -24,9 +24,8 @@ export default function TransactionPin({closeModal}: TransactionPin) {
   const {fetchStoreProfile} = useRequest();
   const {data, status} = useQuery('storeProfile', fetchStoreProfile);
 
-  function exitModal() {
-    closeModal();
-    dispatch(UIWithdrawalModalAction('pin'));
+  function backStage() {
+    dispatch(UIWithdrawalModalAction('withdawAmount'));
   }
 
   function nextStage() {
@@ -83,8 +82,8 @@ export default function TransactionPin({closeModal}: TransactionPin) {
         <View style={styles.buttonGroup}>
           <Button
             buttonStyle={styles.buttonAmt}
-            onPress={exitModal}
-            title="Exit"
+            onPress={backStage}
+            title="Back"
           />
           <Button
             disabled={disableBtnState}

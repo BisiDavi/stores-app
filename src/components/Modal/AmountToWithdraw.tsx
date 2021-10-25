@@ -10,8 +10,10 @@ import {UIWithdrawalModalAction} from '@/store/actions/UIActions';
 import useRequest from '@/hooks/useRequest';
 
 export default function AmountToWithdraw({closeModal}: any) {
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState<string | any>('');
   const [proceed, setProceedAction] = useState(false);
+
+  const isAmountValid = amount.length > 0 ? true : false;
 
   const dispatch = useDispatch();
   const {fetchAnalytics} = useRequest();
@@ -21,15 +23,16 @@ export default function AmountToWithdraw({closeModal}: any) {
     fetchAnalytics,
   );
 
-  const walletBalance = walletDetails?.walletBalance;
+  const walletBalance = Number(walletDetails?.walletBalance);
 
   console.log('walletDetails', walletDetails);
 
   useEffect(() => {
-    if (amount <= walletBalance && proceed) {
+    if (Number(amount) <= walletBalance && proceed) {
       setProceedAction(false);
-    } else if (amount > walletBalance && proceed) {
-      dispatch(UIWithdrawalModalAction('pin'));
+    } else if (walletBalance >= Number(amount)) {
+      setProceedAction(true);
+      proceed && dispatch(UIWithdrawalModalAction('pin'));
     }
   }, [amount, dispatch, walletBalance, proceed]);
 
@@ -39,17 +42,19 @@ export default function AmountToWithdraw({closeModal}: any) {
 
   function exitModal() {
     closeModal();
-    dispatch(UIWithdrawalModalAction('pin'));
+    dispatch(UIWithdrawalModalAction('withdawAmount'));
   }
 
   const note =
-    status === 'success' && amount < walletDetails.walletBalance
-      ? `Your wallet balance is NGN ${walletDetails.walletBalance}, you can't perform this operation`
+    status === 'success' && walletBalance < Number(amount)
+      ? `Your wallet balance is NGN ${walletBalance.toFixed(
+          2,
+        )}, you can't perform this operation`
       : 'Proceed to enter your transaction pin';
 
   return (
     <View style={styles.modalContent}>
-      {proceed && <Text>{note}</Text>}
+      {proceed && <Text style={styles.note}>{note}</Text>}
       <InputField
         styleContainer={styles.input}
         value={amount}
@@ -66,6 +71,7 @@ export default function AmountToWithdraw({closeModal}: any) {
         />
         <Button
           onPress={nextStage}
+          disabled={!isAmountValid}
           buttonStyle={styles.buttonAmt}
           title="Proceed"
         />

@@ -119,4 +119,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  note: {
+    fontFamily: 'Roboto-Medium',
+    fontSize: 12,
+    color: colors.accentRed,
+  },
 });
