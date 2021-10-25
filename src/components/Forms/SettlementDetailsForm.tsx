@@ -12,7 +12,8 @@ import settlementDetails from '@/json/settlement-details.json';
 import displayFormElements from './displayFormElements';
 import {storeSettlementDetailsSchema} from '@/schemas/StoreDetailsSchema';
 import {StoreSettlementAction} from '@/store/actions/StoreDetailsAction';
-import {postStoreDetailsRequest} from '@/network/postRequest';
+import usePostRequest from '@/network/postRequest';
+
 import {RootState} from '@/store/RootReducer';
 import TransactionPinModal from '../Modal/TransactionPinModal';
 import {styles} from './SettlementDetailsForm.style';
@@ -21,6 +22,7 @@ export default function SettlementDetailsForm() {
   const [loading, setLoading] = useState(false);
   const [submitForm, setSubmitForm] = useState(false);
   const [transactionModal, setTransactionModal] = useState(false);
+  const {postStoreDetailsRequest} = usePostRequest();
 
   const {onBoardingNextScreen} = useStoreSetupNavigation();
   const dispatch = useDispatch();

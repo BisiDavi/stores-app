@@ -1,18 +1,24 @@
 import {useSelector} from 'react-redux';
 import {RootState} from '@/store/RootReducer';
-import {
-  getAllProductsRequest,
-  getCompletedOrdersRequest,
-  getPendingOrdersRequest,
-} from '@/network/postRequest';
-import {
-  getAllStoreExtrasRequest,
-  getStoreAnalytics,
-  getStoreProfileRequest,
-  getWithdrawalTransaction,
-} from '@/network/getRequest';
+import usePostRequest from '@/network/postRequest';
+import useGetRequest from '@/network/getRequest';
 
 export default function useRequest() {
+  const {
+    getAllProductsRequest,
+    getCompletedOrdersRequest,
+    getPendingOrdersRequest,
+  } = usePostRequest();
+
+  const {
+    getAllStoreExtrasRequest,
+    getStoreAnalytics,
+    getStoreProfileRequest,
+    getWithdrawalTransaction,
+    getAvailableState,
+    getStoreCategoriesRequest,
+  } = useGetRequest();
+
   const {storeProfile}: any = useSelector(
     (state: RootState) => state.storeProfile,
   );
@@ -51,9 +57,21 @@ export default function useRequest() {
     return data;
   }
 
+  async function fetchStoreCategories() {
+    const {data} = await getStoreCategoriesRequest();
+    const result = data.data;
+    return result;
+  }
+
   async function fetchStoreProfile() {
     const {data} = await getStoreProfileRequest();
     return data.data;
+  }
+
+  async function fetchAvailableState() {
+    const {data} = await getAvailableState();
+    const result = data.data;
+    return result;
   }
 
   return {
@@ -61,7 +79,9 @@ export default function useRequest() {
     fetchAllProducts,
     fetchAllStoreExtras,
     fetchCompletedOrders,
+    fetchStoreCategories,
     fetchAnalytics,
+    fetchAvailableState,
     fetchWithdrawals,
     fetchStoreProfile,
   };

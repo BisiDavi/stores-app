@@ -1,37 +1,59 @@
-import axiosInstance from './axiosInstance';
+import {RootState} from '@/store/RootReducer';
+import {useSelector} from 'react-redux';
+import axiosInstance, {setClientToken} from './axiosInstance';
 
-export async function getStoreCategoriesRequest() {
-  return await axiosInstance.get('/api/store/get-store-categories');
-}
+export default function useGetRequest() {
+  const {token} = useSelector((state: RootState) => state.auth);
 
-export async function getBanksRequest() {
-  return await axiosInstance.get('/api/store/get-all-banks');
-}
+  setClientToken(token);
 
-export async function getAvailableState() {
-  return await axiosInstance.get('/api/store/get-available-states');
-}
+  async function getStoreCategoriesRequest() {
+    return await axiosInstance.get('/api/store/get-store-categories');
+  }
 
-export async function getCatalogProductCategories() {
-  return await axiosInstance.get('/api/store/pull-catalog-product-categories');
-}
+  async function getBanksRequest() {
+    return await axiosInstance.get('/api/store/get-all-banks');
+  }
 
-export async function getStoreProfileRequest() {
-  return await axiosInstance.get('/api/store/profile');
-}
+  async function getAvailableState() {
+    return await axiosInstance.get('/api/store/get-available-states');
+  }
 
-export async function getAllStoreExtrasRequest() {
-  return await axiosInstance.get('/api/store/all-store-extras');
-}
+  async function getCatalogProductCategories() {
+    return await axiosInstance.get(
+      '/api/store/pull-catalog-product-categories',
+    );
+  }
 
-export async function getProductsCategories() {
-  return await axiosInstance.get('/api/store/product-categories');
-}
+  async function getStoreProfileRequest() {
+    return await axiosInstance.get('/api/store/profile');
+  }
 
-export async function getStoreAnalytics() {
-  return await axiosInstance.get('/api/store/get-store-analytics');
-}
+  async function getAllStoreExtrasRequest() {
+    return await axiosInstance.get('/api/store/all-store-extras');
+  }
 
-export async function getWithdrawalTransaction() {
-  return await axiosInstance.get('/api/store/get-withdrawals');
+  async function getProductsCategories() {
+    return await axiosInstance.get('/api/store/product-categories');
+  }
+
+  async function getStoreAnalytics() {
+    return await axiosInstance.get('/api/store/get-store-analytics');
+  }
+
+  async function getWithdrawalTransaction() {
+    return await axiosInstance.get('/api/store/get-withdrawals');
+  }
+
+  return {
+    getStoreCategoriesRequest,
+    getBanksRequest,
+    getAvailableState,
+    getCatalogProductCategories,
+    getStoreProfileRequest,
+    getAllStoreExtrasRequest,
+    getProductsCategories,
+    getStoreAnalytics,
+    getWithdrawalTransaction,
+  };
 }

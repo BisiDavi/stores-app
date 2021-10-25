@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useQueryClient} from 'react-query';
@@ -10,7 +11,7 @@ import productExtras from '@/json/add-product-extras.json';
 import PromoTagForm from './PromoTagForm';
 import {InputGroup} from '@/components/FormElements';
 import {RootState} from '@/store/RootReducer';
-import {addProductsRequest} from '@/network/postRequest';
+import usePostRequest from '@/network/postRequest';
 import showToast from '@/utils/showToast';
 import {SubmitProductAction} from '@/store/actions/addProductAction';
 import {styles} from './AddProductOtherDetailsForm.style';
@@ -33,6 +34,8 @@ export default function AddProductOtherDetailsForm({navigation}: any) {
   const {storeProfile}: any = useSelector(
     (state: RootState) => state.storeProfile,
   );
+  const {addProductsRequest} = usePostRequest();
+
   const dispatch = useDispatch();
   const {productAvailabilty} = productExtras;
 

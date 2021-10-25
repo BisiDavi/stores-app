@@ -20,6 +20,7 @@ export const axiosImageInstance = axios.create({
 });
 
 export function setClientToken(token: any) {
+  console.log('token setClient', token);
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
   axiosImageInstance.defaults.headers.common.Authorization = `Bearer ${token}`;

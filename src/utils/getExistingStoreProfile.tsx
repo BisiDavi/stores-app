@@ -1,6 +1,7 @@
-import {getStoreProfileRequest} from '@/network/getRequest';
+import useGetRequest from '@/network/getRequest';
 
-export default async function getExistingStoreProfile() {
+export default async function useGetExistingStoreProfile() {
+  const {getStoreProfileRequest} = useGetRequest();
   return await getStoreProfileRequest()
     .then(response => {
       const {data} = response.data;

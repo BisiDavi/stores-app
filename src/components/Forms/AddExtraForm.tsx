@@ -10,7 +10,7 @@ import displayFormElements from './displayFormElements';
 import addExtraSchema from '@/schemas/addExtraSchema';
 import formContent from '@/json/add-extra.json';
 import colors from '@/utils/colors';
-import {addExtrasRequest} from '@/network/postRequest';
+import usePostRequest from '@/network/postRequest';
 import {RootState} from '@/store/RootReducer';
 import showToast from '@/utils/showToast';
 import AddExtrasModal from '../AddExtraModal/AddExtrasModal';
@@ -18,6 +18,8 @@ import {styles} from './AddExtraForm.style';
 
 export default function AddExtraForm({navigation: {goBack}}: any) {
   const [loading, setLoading] = useState(false);
+  const {addExtrasRequest} = usePostRequest();
+
   const [submitForm, setSubmitForm] = useState(false);
   const [isCompulsory, setIsCompulsory] = useState(false);
 
@@ -42,6 +44,7 @@ export default function AddExtraForm({navigation: {goBack}}: any) {
       })
       .catch(error => {
         setLoading(false);
+        console.log('addExtras error', error);
         if (error.request) {
           showToast('Oops, an error occured');
         } else if (error.response) {

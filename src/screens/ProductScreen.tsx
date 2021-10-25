@@ -9,7 +9,7 @@ import {DrawerStackParamList} from '@/customTypes/.';
 import {colors, showToast} from '@/utils/.';
 import Fab from '@/components/Fab';
 import displayAsset from '@/utils/displayAsset';
-import {toggleSpecificationStatusRequest} from '@/network/postRequest';
+import usePostRequest from '@/network/postRequest';
 import ProductLoader from '@/components/Loader/ProductLoader';
 import {styles} from '@/styles/ProductScreen.style';
 import useRequest from '@/hooks/useRequest';
@@ -33,6 +33,7 @@ interface productType {
 
 function ListView({item, navigation}: any) {
   const [toggle, setToggle] = useState(false);
+  const {toggleSpecificationStatusRequest} = usePostRequest();
 
   function postSpecificationStatus() {
     toggleSpecificationStatusRequest({

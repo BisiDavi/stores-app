@@ -39,7 +39,6 @@ export default function TransactionPin() {
       setPinError(false);
       !pinError && dispatch(UIWithdrawalModalAction('performWithdrawal'));
     }
-    setCheckPin(false);
   }
 
   const pinColor = pinError ? colors.accentRed : 'green';
@@ -52,6 +51,13 @@ export default function TransactionPin() {
         <Text style={pinStyle}>{text}</Text>
       </>
     );
+  }
+
+  function onPinChange(value: string) {
+    if (Number(value) !== Number(data?.transactionPin)) {
+      setCheckPin(false);
+    }
+    setPin(value);
   }
 
   return (
@@ -69,7 +75,7 @@ export default function TransactionPin() {
             label="Please enter your transaction pin"
             styleContainer={styles.input}
             value={pin}
-            onChangeText={(value: string) => setPin(value)}
+            onChangeText={onPinChange}
             placeholder="Please enter your transaction pin"
             keyboardType="number-pad"
           />

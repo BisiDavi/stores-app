@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -9,7 +10,7 @@ import useUploadImage from '@/hooks/useUploadImage';
 import AddNewProductForm from '@/components/Forms/AddNewProductForm';
 import {colors, showToast} from '@/utils/.';
 import {ProgressIndicator, Fab} from '@/components/.';
-import {uploadProductImageRequest} from '@/network/postRequest';
+import usePostRequest from '@/network/postRequest';
 import {DrawerStackParamList} from '@/customTypes/.';
 import {RootState} from '@/store/RootReducer';
 import {styles} from '@/styles/AddProductScreen.style';
@@ -25,6 +26,8 @@ type Props = {
 
 export default function AddProductScreen({navigation}: Props) {
   const [loading, setLoading] = useState(false);
+  const {uploadProductImageRequest} = usePostRequest();
+
   const {submitProduct} = useSelector((state: RootState) => state.addProduct);
   const {
     formDataState,

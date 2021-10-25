@@ -7,7 +7,7 @@ import {RNCamera} from 'react-native-camera';
 import {useSelector} from 'react-redux';
 
 import {styles} from '@/styles/BarCodeScannerScreen.style';
-import {postScanResponse} from '@/network/postRequest';
+import usePostRequest from '@/network/postRequest';
 import {useNavigation} from '@react-navigation/core';
 
 import {RootState} from '@/store/RootReducer';
@@ -18,6 +18,8 @@ import BarcodeModal from '@/components/Modal/BarcodeModal';
 export default function BarCodeScannerScreen() {
   const [scannedResult, setScannedResult] = useState<any>(null);
   const {fetchStoreProfile} = useRequest();
+  const {postScanResponse} = usePostRequest();
+
   const [isAmountAccurate, setIsAmountAccurate] = useState<null | boolean>(
     null,
   );

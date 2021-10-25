@@ -20,6 +20,8 @@ export default function RootNavigator() {
   const {token, signOut, isAuthorized, loading} = useSelector(
     (state: RootState) => state.auth,
   );
+
+  console.log('token', token);
   const {completed, formPage} = useSelector(
     (storeState: RootState) => storeState.setupStore,
   );

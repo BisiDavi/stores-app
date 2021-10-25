@@ -6,7 +6,7 @@ import {Button} from 'react-native-elements';
 import {Input} from 'react-native-elements';
 
 import colors from '@/utils/colors';
-import {addProductsCategories} from '@/network/postRequest';
+import usePostRequest from '@/network/postRequest';
 import {showToast} from '@/utils';
 import {productCategorySchema} from '@/schemas/addExtraSchema';
 import {styles} from '@/styles/AddProductCategoryScreen.style';
@@ -15,6 +15,7 @@ import AddExtrasModal from '@/components/AddExtraModal/AddExtrasModal';
 export default function AddProductCategoryScreen() {
   const [loading, setLoading] = useState(false);
   const [submitForm, setSubmitForm] = useState(false);
+  const {addProductsCategories} = usePostRequest();
 
   function toggleModal() {
     setSubmitForm(!submitForm);

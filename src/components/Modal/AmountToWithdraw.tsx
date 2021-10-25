@@ -27,17 +27,20 @@ export default function AmountToWithdraw({closeModal}: any) {
 
   console.log('walletDetails', walletDetails);
 
+  console.log('cond', walletBalance >= Number(amount));
+
   useEffect(() => {
+    if (proceed) {
+      dispatch(UIWithdrawalModalAction('pin'));
+    }
+  }, [proceed, dispatch]);
+
+  function nextStage() {
     if (Number(amount) <= walletBalance && proceed) {
       setProceedAction(false);
     } else if (walletBalance >= Number(amount)) {
       setProceedAction(true);
-      proceed && dispatch(UIWithdrawalModalAction('pin'));
     }
-  }, [amount, dispatch, walletBalance, proceed]);
-
-  function nextStage() {
-    setProceedAction(true);
   }
 
   function exitModal() {
@@ -46,15 +49,15 @@ export default function AmountToWithdraw({closeModal}: any) {
   }
 
   const note =
-    status === 'success' && walletBalance < Number(amount)
-      ? `Your wallet balance is NGN ${walletBalance.toFixed(
-          2,
-        )}, you can't perform this operation`
-      : 'Proceed to enter your transaction pin';
+    status === 'success' &&
+    walletBalance < Number(amount) &&
+    `Your wallet balance is NGN ${walletBalance.toFixed(
+      2,
+    )}, you can't perform this operation`;
 
   return (
     <View style={styles.modalContent}>
-      {proceed && <Text style={styles.note}>{note}</Text>}
+      {<Text style={styles.note}>{note}</Text>}
       <InputField
         styleContainer={styles.input}
         value={amount}

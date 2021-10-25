@@ -13,10 +13,6 @@ import storeDetailsFormOne from '@/json/storDetailsFormOneOne.json';
 import {StoreDetailsAction} from '@/store/actions/StoreDetailsAction';
 import displayFormElements from './displayFormElements';
 import {useStoreSetupNavigation, useFormValues} from '@/hooks';
-import {
-  getAvailableState,
-  getStoreCategoriesRequest,
-} from '@/network/getRequest';
 import StoreTypeInfoModal from '@/components/Modal/StoreTypeInfoModal';
 import OpenDaysForm from './OpenDaysForm';
 import {styles} from './StoreDetailsFormOne.style';
@@ -24,19 +20,8 @@ import useRequest from '@/hooks/useRequest';
 import {StoreProfileIdActions} from '@/store/actions/storeProfileActions';
 import {RootState} from '@/store/RootReducer';
 
-async function fetchStoreCategories() {
-  const {data} = await getStoreCategoriesRequest();
-  const result = data.data;
-  return result;
-}
-
-async function fetchAvailableState() {
-  const {data} = await getAvailableState();
-  const result = data.data;
-  return result;
-}
-
 export default function StoreDetailsFormOne() {
+  const {fetchStoreCategories, fetchAvailableState} = useRequest();
   const dispatch = useDispatch();
   const {storeProfile}: any = useSelector(
     (state: RootState) => state.storeProfile,
@@ -46,6 +31,7 @@ export default function StoreDetailsFormOne() {
     'storeCategories',
     fetchStoreCategories,
   );
+
   const {status: availableStateStatus, data: availableStateData} = useQuery(
     'availableState',
     fetchAvailableState,

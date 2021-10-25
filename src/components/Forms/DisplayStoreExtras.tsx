@@ -4,7 +4,7 @@ import {useQuery} from 'react-query';
 
 import {DisplayCheckbox} from './DisplayCheckbox';
 import {styles} from './AddProductOtherDetailsForm.style';
-import {getAllStoreExtrasRequest} from '@/network/getRequest';
+import useRequest from '@/hooks/useRequest';
 
 interface DisplayStoreExtrasProps {
   name: 'Main' | 'Secondary';
@@ -17,15 +17,12 @@ type extrasType = {
   price: string;
 }[];
 
-async function fetchStoreExtras() {
-  const {data} = await getAllStoreExtrasRequest();
-  const extras = data.data;
-  return extras;
-}
 export default function DisplayStoreExtras({name}: DisplayStoreExtrasProps) {
+  const {fetchAllStoreExtras} = useRequest();
+
   const {data: storesExtras, status} = useQuery(
     'productExtras',
-    fetchStoreExtras,
+    fetchAllStoreExtras,
   );
   const filterStoreType = name === 'Main' ? true : false;
 

@@ -11,7 +11,7 @@ import UploadIcon from '@/assets/upload.png';
 import {colors, showToast} from '@/utils/.';
 import ProgressIndicator from '@/components/ProgressIndicator/ProgressIndicator';
 import {StoreLogoUploadAction} from '@/store/actions/StoreDetailsAction';
-import {uploadStoreLogoRequest} from '@/network/postRequest';
+import usePostRequest from '@/network/postRequest';
 import useUploadImage from '@/hooks/useUploadImage';
 import {styles} from '@/styles/UploadStoreLogoScreen.style';
 
@@ -24,6 +24,7 @@ export default function UploadStoreLogoScreen() {
   } = useUploadImage(setLoading, 'logo');
   const {onBoardingNextScreen} = useStoreSetupNavigation();
   const dispatch = useDispatch();
+  const {uploadStoreLogoRequest} = usePostRequest();
 
   const isFormDataStateEmpty = Object.values(formDataState);
 

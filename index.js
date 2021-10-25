@@ -10,6 +10,6 @@ messaging().setBackgroundMessageHandler(async remoteMessage => {
 
 AppRegistry.registerComponent(appName, () => App);
 
-Sentry.init({
-  dsn: 'https://f365ae1a61754d97a169a53d7a9b948c@o1048174.ingest.sentry.io/6030691',
-});
+//Sentry.init({
+//  dsn: 'https://f365ae1a61754d97a169a53d7a9b948c@o1048174.ingest.sentry.io/6030691',
+//});

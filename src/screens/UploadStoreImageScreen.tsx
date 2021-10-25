@@ -12,13 +12,15 @@ import ProgressIndicator from '@/components/ProgressIndicator/ProgressIndicator'
 import UploadIcon from '@/assets/upload.png';
 import {colors, showToast} from '@/utils/.';
 import {StoreImageUploadAction} from '@/store/actions/StoreDetailsAction';
-import {uploadStoreBackgroundRequest} from '@/network/postRequest';
 import {styles} from '@/styles/UploadStoreImageScreen.style';
+import usePostRequest from '@/network/postRequest';
 
 export default function UploadStoreImageScreen() {
   const [loading, setLoading] = useState(false);
   const {onBoardingNextScreen} = useStoreSetupNavigation();
   const dispatch = useDispatch();
+  const {uploadStoreBackgroundRequest} = usePostRequest();
+
   const {formDataState, image, pickImage} = useUploadImage(
     setLoading,
     'background',

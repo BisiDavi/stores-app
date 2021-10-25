@@ -10,9 +10,9 @@ import FreshFoodProductForm from '@/components/Forms/FreshFoodProductForm';
 import useUploadImage from '@/hooks/useUploadImage';
 import {colors, showToast} from '@/utils/.';
 import {ProgressIndicator, Fab} from '@/components/.';
-import {uploadProductImageRequest} from '@/network/postRequest';
 import {DrawerStackParamList} from '@/customTypes/.';
 import {styles} from '@/styles/FreshFoodProductScreen.style';
+import usePostRequest from '@/network/postRequest';
 
 type FreshFoodProductScreenNavigationProps = StackNavigationProp<
   DrawerStackParamList,
@@ -26,6 +26,8 @@ type Props = {
 export default function FreshFoodProductScreen({navigation}: Props) {
   const [loading, setLoading] = useState(false);
   const [uploadImageStatus, setUploadImageStatus] = useState(false);
+  const {uploadProductImageRequest} = usePostRequest();
+
   const {
     formDataState,
     image: productImage,
