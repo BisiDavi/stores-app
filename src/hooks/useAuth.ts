@@ -2,7 +2,7 @@ import {useDispatch} from 'react-redux';
 
 import {saveAuthtoken, signupUser, loginUser, showToast} from '@/utils/.';
 import {setClientToken} from '@/network/axiosInstance';
-import getExistingStoreProfile from '@/utils/getExistingStoreProfile';
+import useGetExistingStoreProfile from '@/utils/getExistingStoreProfile';
 import {
   UserLoggedinAction,
   UserOnboardingCompletedAction,
@@ -24,18 +24,21 @@ import {
 
 export default function useAuth() {
   const dispatch = useDispatch();
+  const {getStoreProfile} = useGetExistingStoreProfile();
 
   async function signIn(email: string, password: string) {
     dispatch(AuthRequestAction());
     const loginInToken: any = await loginUser(email, password);
     console.log('loginInToken', loginInToken);
+
     if (loginInToken !== null) {
       setClientToken(loginInToken);
       dispatch(UserLoggedinAction());
       dispatch(AuthSigninAction(loginInToken));
       dispatch(AuthRequestAction());
-      getExistingStoreProfile()
+      getStoreProfile()
         .then((response: any) => {
+          console.log('response getExistingStoreProfile', response);
           dispatch(stopAuthRequestAction());
           if (response.errorOccured) {
             saveToStorage('onboardingCompleted', false);

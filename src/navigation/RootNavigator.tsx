@@ -15,11 +15,17 @@ import {
 import DrawerNavigation from './DrawerNavigation';
 import PublicNavigation from './PublicNavigation';
 import StoreDetailsNavigation from './StoreDetailsNavigation';
+import {useQuery} from 'react-query';
+import useRequest from '@/hooks/useRequest';
 
 export default function RootNavigator() {
   const {token, signOut, isAuthorized, loading} = useSelector(
     (state: RootState) => state.auth,
   );
+  const {fetchStoreProfile} = useRequest();
+  const {data} = useQuery('fetchStoreProfile', fetchStoreProfile);
+
+  console.log('fetchStoreProfile', data);
 
   console.log('token', token);
   const {completed, formPage} = useSelector(
