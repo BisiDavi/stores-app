@@ -3,18 +3,19 @@ import {View, Text} from 'react-native';
 import {ListItem, Image} from 'react-native-elements';
 import {ScrollView} from 'react-native';
 import {Button} from 'react-native-elements';
-import {useQuery} from 'react-query';
 
-import profileJson from '@/json/profile.json';
 import JollofRice from '@/assets/jollofRice.png';
 import {styles} from '@/styles/ProfileScreen.style';
-import useRequest from '@/hooks/useRequest';
+import useStoreData from '@/hooks/useStoreData';
 
 export default function ProfileScreen() {
-  const {fetchStoreProfile} = useRequest();
-  const {data, status} = useQuery('storeProfile', fetchStoreProfile);
+  const {storeName} = useStoreData();
 
-  console.log('storeProfileData', data);
+  const pageInformation = [
+    {title: `About ${storeName}`, name: 'about'},
+    {title: "Owner's Information", name: 'ownerInformation'},
+    {title: 'Settlement', name: 'settlement'},
+  ];
 
   return (
     <>
@@ -22,7 +23,6 @@ export default function ProfileScreen() {
         <View style={styles.container}>
           <View style={styles.profileDetails}>
             <Image style={styles.profileImage} source={JollofRice} />
-            <View>{/*<Text>{storeProfile?.name}</Text>*/}</View>
             <Button
               buttonStyle={styles.reviewBtn}
               titleStyle={styles.btnTitle}
@@ -30,7 +30,7 @@ export default function ProfileScreen() {
             />
           </View>
           <View>
-            {profileJson.map((profile, index) => (
+            {pageInformation.map((profile, index) => (
               <ListItem key={index} bottomDivider>
                 <ListItem.Content>
                   <Text style={styles.profileText}>{profile.title}</Text>

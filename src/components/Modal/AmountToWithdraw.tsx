@@ -1,27 +1,55 @@
-import React, {useState} from 'react';
-import {View} from 'react-native';
-import {useQueryClient} from 'react-query';
+import React, {useEffect, useState} from 'react';
+import {View, Text} from 'react-native';
+import {useQuery} from 'react-query';
 import {Button} from 'react-native-elements';
 
 import {styles} from '@/components/Modal/WithdrawalModal.style';
 import {InputField} from '@/components/FormElements/Input';
+import {useDispatch} from 'react-redux';
+import {UIWithdrawalModalAction} from '@/store/actions/UIActions';
+import useRequest from '@/hooks/useRequest';
 
 export default function AmountToWithdraw({closeModal}: any) {
   const [amount, setAmount] = useState(0);
-  const queryClient = useQueryClient();
+  const [proceed, setProceedAction] = useState(false);
 
-  const walletDetails = queryClient.getQueryData('storeAnalytics');
+  const dispatch = useDispatch();
+  const {fetchAnalytics} = useRequest();
+
+  const {status, data: walletDetails} = useQuery(
+    'storeAnalytics',
+    fetchAnalytics,
+  );
+
+  const walletBalance = walletDetails?.walletBalance;
 
   console.log('walletDetails', walletDetails);
 
-  //useEffect(() => {
-  //  if (amount < walletDetails.walletBalance) {
+  useEffect(() => {
+    if (amount <= walletBalance && proceed) {
+      setProceedAction(false);
+    } else if (amount > walletBalance && proceed) {
+      dispatch(UIWithdrawalModalAction('pin'));
+    }
+  }, [amount, dispatch, walletBalance, proceed]);
 
-  //  }
-  //}, []);
+  function nextStage() {
+    setProceedAction(true);
+  }
+
+  function exitModal() {
+    closeModal();
+    dispatch(UIWithdrawalModalAction('pin'));
+  }
+
+  const note =
+    status === 'success' && amount < walletDetails.walletBalance
+      ? `Your wallet balance is NGN ${walletDetails.walletBalance}, you can't perform this operation`
+      : 'Proceed to enter your transaction pin';
 
   return (
     <View style={styles.modalContent}>
+      {proceed && <Text>{note}</Text>}
       <InputField
         styleContainer={styles.input}
         value={amount}
@@ -33,10 +61,14 @@ export default function AmountToWithdraw({closeModal}: any) {
       <View style={styles.buttonGroup}>
         <Button
           buttonStyle={styles.buttonAmt}
-          onPress={closeModal}
+          onPress={exitModal}
           title="Exit"
         />
-        <Button buttonStyle={styles.buttonAmt} title="Proceed" />
+        <Button
+          onPress={nextStage}
+          buttonStyle={styles.buttonAmt}
+          title="Proceed"
+        />
       </View>
     </View>
   );

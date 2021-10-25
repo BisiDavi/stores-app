@@ -28,6 +28,7 @@ export default function useAuth() {
   async function signIn(email: string, password: string) {
     dispatch(AuthRequestAction());
     const loginInToken: any = await loginUser(email, password);
+    console.log('loginInToken', loginInToken);
     if (loginInToken !== null) {
       setClientToken(loginInToken);
       dispatch(UserLoggedinAction());
@@ -60,6 +61,8 @@ export default function useAuth() {
           dispatch(UserOnboardingCompletedAction(false));
           dispatch(AuthErrorAction());
         });
+    } else {
+      dispatch(stopAuthRequestAction());
     }
   }
 

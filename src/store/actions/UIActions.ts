@@ -1,8 +1,12 @@
-import {MOVE_TO_WITHDRAW_AMOUNT_MODAL} from '../constant';
+import {MOVE_WITHDRAW_MODAL} from '../constant';
 
 export const UIWithdrawalModalAction =
-  () => (dispatch: (arg0: {type: 'MOVE_TO_WITHDRAW_AMOUNT_MODAL'}) => void) => {
+  (payload: string) =>
+  (
+    dispatch: (arg0: {type: 'MOVE_WITHDRAW_MODAL'; payload: string}) => void,
+  ) => {
     dispatch({
-      type: MOVE_TO_WITHDRAW_AMOUNT_MODAL,
+      type: MOVE_WITHDRAW_MODAL,
+      payload,
     });
   };

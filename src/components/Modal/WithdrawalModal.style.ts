@@ -96,9 +96,27 @@ export const styles = StyleSheet.create({
     fontFamily: 'Roboto-Bold',
     fontSize: 20,
   },
+  pinSuccess: {
+    marginLeft: 10,
+    marginRight: 5,
+    color: 'green',
+    fontFamily: 'Roboto-Bold',
+    fontSize: 20,
+  },
   modalPinView: {
     justifyContent: 'center',
     alignItems: 'center',
     display: 'flex',
+  },
+  performWithdrawalText: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontFamily: 'Roboto-Medium',
+    marginTop: 40,
+    marginBottom: 40,
+  },
+  performWithdrawalButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

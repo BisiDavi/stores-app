@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import Spinner from 'react-native-loading-spinner-overlay';
+import {StyleSheet, View} from 'react-native';
 
 import {setClientToken} from '@/network/axiosInstance';
 import {RootState} from '@/store/RootReducer';
@@ -75,8 +76,18 @@ export default function RootNavigator() {
       ) : tokenHasExpired && !completed ? (
         <PublicNavigation />
       ) : (
-        <Spinner visible={true} color={colors.cloudOrange5} />
+        <View style={styles.spinnerView}>
+          <Spinner visible={true} color={colors.cloudOrange5} />
+        </View>
       )}
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  spinnerView: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});

@@ -2,6 +2,7 @@ import React from 'react';
 
 import TransactionPin from './TransactionPin';
 import AmountToWithdraw from './AmountToWithdraw';
+import PerformWithdrawal from './PerformWithdrawal';
 
 export default function displayWithdrawalModalContent(
   stage: string,
@@ -9,10 +10,13 @@ export default function displayWithdrawalModalContent(
 ) {
   switch (stage) {
     case 'pin': {
-      return <TransactionPin />;
+      return <TransactionPin closeModal={closeModal} />;
     }
     case 'withdawAmount': {
       return <AmountToWithdraw closeModal={closeModal} />;
+    }
+    case 'performWithdrawal': {
+      return <PerformWithdrawal closeModal={closeModal} />;
     }
     default:
       return null;

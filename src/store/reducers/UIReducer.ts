@@ -1,4 +1,4 @@
-import {MOVE_TO_WITHDRAW_AMOUNT_MODAL} from '../constant';
+import {MOVE_WITHDRAW_MODAL} from '../constant';
 
 export default function UIReducer(
   state = {
@@ -6,13 +6,13 @@ export default function UIReducer(
   },
   action: any,
 ) {
-  const {type} = action;
+  const {type, payload} = action;
 
   switch (type) {
-    case MOVE_TO_WITHDRAW_AMOUNT_MODAL:
+    case MOVE_WITHDRAW_MODAL:
       return {
         ...state,
-        withdrawalModal: 'pin',
+        withdrawalModal: payload,
       };
     default:
       return state;
