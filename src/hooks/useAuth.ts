@@ -19,6 +19,7 @@ import {
   AuthSigninAction,
   AuthSignoutAction,
   AuthSignupAction,
+  stopAuthRequestAction,
 } from '@/store/actions/authAction';
 
 export default function useAuth() {
@@ -31,12 +32,16 @@ export default function useAuth() {
       setClientToken(loginInToken);
       dispatch(UserLoggedinAction());
       dispatch(AuthSigninAction(loginInToken));
+      dispatch(AuthRequestAction());
       getExistingStoreProfile()
         .then((response: any) => {
+          dispatch(stopAuthRequestAction());
           if (response.errorOccured) {
             saveToStorage('onboardingCompleted', false);
             console.log('response.errorOccured', response);
+            showToast('complete your onboarding process');
             dispatch(AuthErrorAction());
+            dispatch(UserOnboardingCompletedAction(false));
             return;
           }
           console.log('response', response);
@@ -46,12 +51,13 @@ export default function useAuth() {
             dispatch(StoreProfileNameActions(response.name));
             showToast(`Welcome, ${response.name}`);
             saveToStorage('onboardingCompleted', true);
-            dispatch(UserOnboardingCompletedAction());
+            dispatch(UserOnboardingCompletedAction(true));
           }
         })
         .catch(error => {
           console.log('getExistingStoreProfile error', error);
           showToast('complete your onboarding process');
+          dispatch(UserOnboardingCompletedAction(false));
           dispatch(AuthErrorAction());
         });
     }

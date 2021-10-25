@@ -4,6 +4,7 @@ import {
   SIGN_IN,
   SIGN_OUT,
   SIGN_UP,
+  STOP_AUTH_REQUEST,
 } from '../constant';
 
 export const AuthSigninAction =
@@ -19,6 +20,13 @@ export const AuthRequestAction =
   () => (dispatch: (arg0: {type: 'AUTH_REQUEST'}) => void) => {
     dispatch({
       type: AUTH_REQUEST,
+    });
+  };
+
+export const stopAuthRequestAction =
+  () => (dispatch: (arg0: {type: 'STOP_AUTH_REQUEST'}) => void) => {
+    dispatch({
+      type: STOP_AUTH_REQUEST,
     });
   };
 

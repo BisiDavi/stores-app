@@ -38,11 +38,11 @@ export default function SettlementDetailsForm() {
       postStoreDetailsRequest(storeDetails)
         .then(response => {
           setLoading(false);
+          setSubmitForm(false);
           if (postSettlementDetails) {
             showToast(response.data.message);
             onBoardingNextScreen(4, false);
           }
-          setSubmitForm(false);
         })
         .catch(error => {
           console.log('error', error);

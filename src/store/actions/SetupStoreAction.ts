@@ -48,11 +48,16 @@ export const UserSignedinAction =
   };
 
 export const UserOnboardingCompletedAction =
-  () => (dispatch: (arg0: {type: 'ONBOARDING_COMPLETED'}) => void) => {
+  (payload: boolean) =>
+  (
+    dispatch: (arg0: {type: 'ONBOARDING_COMPLETED'; payload: boolean}) => void,
+  ) => {
     dispatch({
       type: ONBOARDING_COMPLETED,
+      payload,
     });
   };
+
 export const persistStoresEmail =
   (payload: string) =>
   (dispatch: (arg0: {type: 'STORES_EMAIL'; payload: string}) => void) => {

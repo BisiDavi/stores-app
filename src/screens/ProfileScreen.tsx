@@ -22,10 +22,7 @@ export default function ProfileScreen() {
         <View style={styles.container}>
           <View style={styles.profileDetails}>
             <Image style={styles.profileImage} source={JollofRice} />
-            <View>
-              {/*<Text>{storeProfile?.name}</Text>*/}
-              <Text>Store ID: 11</Text>
-            </View>
+            <View>{/*<Text>{storeProfile?.name}</Text>*/}</View>
             <Button
               buttonStyle={styles.reviewBtn}
               titleStyle={styles.btnTitle}

@@ -20,6 +20,7 @@ export default function UserCoordinateReducer(
   },
   action: actionType,
 ) {
+  console.log('coOrdinateState', state);
   const {type, payload} = action;
   switch (type) {
     case GET_USER_COORDINATES: {

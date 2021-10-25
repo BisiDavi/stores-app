@@ -12,6 +12,7 @@ type dispatchType = {
 
 export const GetUserCoordinateAction =
   (payload: payloadType) => (dispatch: (dispatch: dispatchType) => void) => {
+    console.log('payload', payload);
     dispatch({
       type: GET_USER_COORDINATES,
       payload: {

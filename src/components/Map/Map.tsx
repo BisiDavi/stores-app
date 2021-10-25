@@ -1,17 +1,18 @@
-import React, {useState} from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useEffect, useState} from 'react';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import {useSelector} from 'react-redux';
 
 //import {GetUserCoordinateAction} from '@/store/actions/UserCoordinateAction';
 import {RootState} from '@/store/RootReducer';
 import {styles} from './Map.style';
+import useCurrentLocation from '@/hooks/useCurrentLocation';
 
 const Map = () => {
+  const {location, getLocation}: any = useCurrentLocation();
   const {longitude, latitude} = useSelector(
     (state: RootState) => state.coordinates,
   );
-
-  console.log('longitude', longitude, 'latitude', latitude);
 
   const [coordinate, setCoordinate] = useState<any>({
     latitude: latitude,
@@ -19,6 +20,31 @@ const Map = () => {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   });
+
+  useEffect(() => {
+    getLocation();
+  }, []);
+
+  useEffect(() => {
+    if (location !== null) {
+      setCoordinate({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      });
+    }
+  }, [location]);
+
+  console.log(
+    'longitude',
+    longitude,
+    'latitude',
+    latitude,
+    'location',
+    location?.coords,
+  );
+
   console.log('coordinate', coordinate);
 
   function onRegionChange(region: any) {

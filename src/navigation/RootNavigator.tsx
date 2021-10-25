@@ -68,7 +68,7 @@ export default function RootNavigator() {
   return (
     <>
       <Spinner visible={loading} color={colors.cloudOrange5} />
-      {!tokenHasExpired && !completed ? (
+      {!tokenHasExpired && !completed && completed !== null ? (
         <StoreDetailsNavigation />
       ) : !tokenHasExpired && completed ? (
         <DrawerNavigation />

@@ -4,6 +4,7 @@ import {
   SIGN_OUT,
   AUTH_REQUEST,
   AUTH_ERROR,
+  STOP_AUTH_REQUEST,
 } from '../constant';
 
 type actionType =
@@ -11,7 +12,8 @@ type actionType =
   | 'SIGN_IN'
   | 'SIGN_OUT'
   | 'AUTH_REQUEST'
-  | 'AUTH_ERROR';
+  | 'AUTH_ERROR'
+  | 'STOP_AUTH_REQUEST';
 type payloadType = string;
 type stateType = {
   token: null | string;
@@ -38,6 +40,11 @@ export default function AuthReducer(
       return {
         ...state,
         loading: true,
+      };
+    case STOP_AUTH_REQUEST:
+      return {
+        ...state,
+        loading: false,
       };
     case SIGN_UP:
       return {

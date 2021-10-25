@@ -10,7 +10,7 @@ import {
 
 export function SetupStoreReducer(
   state = {
-    completed: false,
+    completed: null,
     formPage: 0,
     isWelcomeModalShown: false,
     authMethod: '',
@@ -55,7 +55,7 @@ export function SetupStoreReducer(
     case ONBOARDING_COMPLETED: {
       return {
         ...state,
-        completed: true,
+        completed: payload,
       };
     }
     case STORES_EMAIL: {
