@@ -3,4 +3,7 @@
  <color name="blue">#013A93</color>
     <color name="primary_dark">#000000</color>
     <color name="status_bar_color">#F29100</color>
+		<integer-array  name="androidcolors">
+    	<item>@color/blue</item>
+    </integer-array>
 </resources>

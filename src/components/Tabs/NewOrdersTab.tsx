@@ -30,7 +30,7 @@ export default function NewOrdersTab({navigation}: any) {
     data: newOrders,
     error,
     status,
-  } = useQuery('newOrders', fetchPendingOrders, {
+  }: any = useQuery('newOrders', fetchPendingOrders, {
     refetchInterval: 5000,
     refetchIntervalInBackground: true,
     refetchOnMount: true,
